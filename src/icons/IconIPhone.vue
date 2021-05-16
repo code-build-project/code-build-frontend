@@ -30,6 +30,6 @@
 <script>
 
 export default {
-  name: 'IconIPhone',
+  name: 'IconIphone',
 };
 </script>

@@ -15,18 +15,27 @@
 
     <v-button />
 
-    <icon-i-phone class="intro__iphone"/>
+    <!-- Иконки заднего фона -->
+    <icon-iphone class="intro__iphone"/>
+
+    <icon-ipad class="intro__ipad"/>
+    <!-- Иконки заднего фона -->
   </div>
 </template>
 
 <script>
-import IconIPhone from '@/icons/IconIPhone.vue'
+import IconIphone from '@/icons/IconIphone.vue'
+import IconIpad from '@/icons/IconIpad.vue'
 
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Intro',
-  components: { IconIPhone, VButton }
+  components: { 
+    IconIphone, 
+    IconIpad, 
+    VButton 
+  }
 }
 </script>
 
@@ -50,8 +59,6 @@ export default {
       width: 550px;
 
       font-family: 'ObjectSans';
-      font-style: normal;
-      font-weight: normal;
       font-size: 57px;
       line-height: 56px;
       letter-spacing: -0.01em;
@@ -67,8 +74,6 @@ export default {
       width: 400px;
 
       font-family: 'Circe';
-      font-style: normal;
-      font-weight: normal;
       font-size: 24px;
       line-height: 35px;
 
@@ -80,6 +85,14 @@ export default {
 
       left: 910px;
       top: 487px;
+      z-index: 1;
+    }
+
+    &__ipad {
+      position: absolute;
+
+      left: 1119px;
+      top: 252px;
     }
   }
 </style>
