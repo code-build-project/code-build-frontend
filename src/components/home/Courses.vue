@@ -109,13 +109,34 @@ export default {
       margin-top: 65px;
 
       font-family: 'ObjectSans';
-      font-style: normal;
-      font-weight: normal;
       font-size: 40px;
       line-height: 48px;
       letter-spacing: -0.01em;
 
       color: #ffffff;
+
+      &:after {
+        content: "FREE";
+
+        position: absolute;
+        width: 56px;
+        height: 29px;
+    
+        background: #EE3465;
+        border-radius: 5px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 24px;
+        color: #FFFFFF;
+
+        margin-top: 15px;
+        margin-left: 10px;
+      }
     }
 
     &__subtitle {
@@ -124,8 +145,6 @@ export default {
       margin-top: 35px;
 
       font-family: 'Circe';
-      font-style: normal;
-      font-weight: normal;
       font-size: 22px;
       line-height: 29px;
       letter-spacing: -0.025em;
@@ -145,8 +164,6 @@ export default {
       font-family: 'EuclidCircular';
       font-size: 18px;
       line-height: 18px;
-      font-style: normal;
-      font-weight: normal;
       color: #ffffff;
 
       display: flex;

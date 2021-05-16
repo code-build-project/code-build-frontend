@@ -128,7 +128,6 @@ export default {
       justify-content: center;
 
       border: 1px solid #256CFE;
-      box-shadow: 0px 12px 18px -13px #256CFE;
       border-radius: 8px;
 
       font-family: 'EuclidCircular';
