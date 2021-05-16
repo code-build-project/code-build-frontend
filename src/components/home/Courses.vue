@@ -18,11 +18,17 @@
         как платных, так и бесплатных 
         курсов прямо сейчас
       </div>
-    
-      <button class="courses__button">
+
+      <v-button 
+        class="courses_top70"
+        fontFamily="EuclidCircular"
+        fontSize="18"
+        textColor="#FFFFFF"
+        iconWidth="24"
+        iconHeight="24"
+      >
         Все курсы
-        <icon-arrow fill="#FFFFFF" width="24px" height="24px" />
-      </button>
+      </v-button>
     </div>
     <!-- Левая часть -->
 
@@ -62,16 +68,16 @@
 
 <script>
 import IconPlay from '@/icons/IconPlay.vue'
-import IconArrow from '@/icons/IconArrow.vue'
 
 import VCourseCard from '@/components/common/VCourseCard.vue'
+import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Courses',
   components: { 
     IconPlay, 
-    IconArrow, 
     VCourseCard,
+    VButton,
   }
 }
 </script>
@@ -150,29 +156,6 @@ export default {
       letter-spacing: -0.025em;
 
       color: #43485E;
-    }
-
-    &__button {
-      width: 199px;
-      height: 60px;
-
-      margin-top: 65px;
-
-      padding-left: 36px;
-      padding-right: 36px;
-
-      font-family: 'EuclidCircular';
-      font-size: 18px;
-      line-height: 18px;
-      color: #ffffff;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background: transparent;
-      border: 1px solid #256CFE;
-      border-radius: 8px;
     }
 
     // общие классы

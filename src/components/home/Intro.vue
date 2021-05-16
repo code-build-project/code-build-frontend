@@ -13,7 +13,7 @@
       и middle-разработчиков
     </div>
 
-    <v-button />
+    <v-button>Начать учиться</v-button>
 
     <!-- Иконки заднего фона -->
     <icon-iphone class="intro__iphone"/>

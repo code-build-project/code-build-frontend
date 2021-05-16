@@ -1,8 +1,24 @@
 <template>
   <div class="button-wrap">
-    <button class="button" @click="$emit('click')">
-      Начать учиться
-      <icon-arrow fill="#256CFE" width="30px" height="30px" />
+    <button 
+      class="button" 
+      :style="{
+        'fontFamily': fontFamily,
+        'fontSize': fontSize + 'px',
+        'color': textColor,
+        'borderColor': borderColor
+      }"
+      @click="$emit('click')"
+    >
+      <slot>Кнопка</slot>
+
+      <icon-arrow 
+        v-if="isIcon"
+        class="button__icon"
+        :fill="textColor" 
+        :width="iconWidth + 'px'" 
+        :height="iconHeight + 'px'" 
+      />
     </button>
   </div>
 </template>
@@ -14,6 +30,40 @@ export default {
   name: 'VButton',
   components: { IconArrow },
   props: {
+    fontFamily: {
+      type: String,
+      default: 'Circe',
+    },
+
+    fontSize: {
+      type: String,
+      default: '24',
+    },
+
+    textColor: {
+      type: String,
+      default: '#256CFE',
+    },
+
+    borderColor: {
+      type: String,
+      default: '#256CFE',
+    },
+
+    isIcon: {
+      type: Boolean,
+      default: true,
+    },
+
+    iconWidth: {
+      type: String,
+      default: '30',
+    },
+
+    iconHeight: {
+      type: String,
+      default: '30',
+    },
   },
   data() {
     return {}
@@ -24,25 +74,19 @@ export default {
 
 <style lang="scss" scoped>
 .button {
-  width: 298px;
-  height: 84px;
-
-  padding-left: 47px;
-  padding-right: 47px;
-
-  font-family: 'Circe';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: normal;
-  color: #256CFE;
+  padding: 1em 2em 1em 2em;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   background: transparent;
-  border: 2px solid #256CFE;
+  border: 0.1em solid;
   border-radius: 8px;
+
+  &__icon {
+    margin-left: 0.5em;
+  }
 }
 
 

@@ -70,20 +70,26 @@
     </div>
 
     <div class="reviews_row">
-      <div class="reviews__button">
+      <v-button 
+        fontFamily="EuclidCircular"
+        fontSize="18"
+        :isIcon="false"
+      >
         Показать еще
-      </div>
+      </v-button>
     </div>
   </div>
 </template>
 
 <script>
 import VReviewCard from '@/components/common/VReviewCard.vue';
+import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Reviews',
   components: { 
     VReviewCard,
+    VButton,
   }
 }
 </script>
@@ -91,12 +97,9 @@ export default {
 <style lang="scss" scoped>
   .reviews {
     padding: 100px 380px 80px 380px;
-    // box-sizing: border-box;
 
     &__title {
       font-family: 'ObjectSans';
-      font-style: normal;
-      font-weight: normal;
       font-size: 40px;
       line-height: 44px;
       letter-spacing: -1.5px;
@@ -117,25 +120,6 @@ export default {
 
     &__list-item {
       margin-bottom: 30px;
-    }
-
-    &__button {
-      width: 228px;
-      height: 60px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid #256CFE;
-      border-radius: 8px;
-
-      font-family: 'EuclidCircular';
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 18px;
-      color: #256CFE;
     }
 
     // общие классы

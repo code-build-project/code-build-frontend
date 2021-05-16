@@ -49,10 +49,16 @@
         навыки программирования
       </div>
 
-      <button class="articles__button">
+      <v-button 
+        class="articles_top70"
+        fontFamily="EuclidCircular"
+        fontSize="18"
+        textColor="#FFFFFF"
+        iconWidth="24"
+        iconHeight="24"
+      >
         Все статьи
-        <icon-arrow fill="#FFFFFF" width="24px" height="24px" />
-      </button>
+      </v-button>
     </div>
     <!-- Правая часть -->
   </div>
@@ -60,16 +66,16 @@
 
 <script>
 import IconList from '@/icons/IconList.vue'
-import IconArrow from '@/icons/IconArrow.vue'
 
 import VArticleCard from '@/components/common/VArticleCard.vue'
+import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Articles',
   components: { 
     IconList,
-    IconArrow,
     VArticleCard,
+    VButton,
   }
 }
 </script>
@@ -107,8 +113,6 @@ export default {
       margin-top: 65px;
 
       font-family: 'ObjectSans';
-      font-style: normal;
-      font-weight: normal;
       font-size: 40px;
       line-height: 48px;
       letter-spacing: -0.01em;
@@ -122,38 +126,11 @@ export default {
       margin-top: 30px;
 
       font-family: 'Circe';
-      font-style: normal;
-      font-weight: normal;
       font-size: 22px;
       line-height: 29px;
       letter-spacing: -0.025em;
 
       color: #43485E;
-    }
-
-    &__button {
-      width: 199px;
-      height: 60px;
-
-      margin-top: 65px;
-
-      padding-left: 36px;
-      padding-right: 36px;
-
-      font-family: 'EuclidCircular';
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 18px;
-      color: #ffffff;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      background: transparent;
-      border: 1px solid #256CFE;
-      border-radius: 8px;
     }
 
     // общие классы
