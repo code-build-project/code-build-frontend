@@ -1,0 +1,18 @@
+<template>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4.47998 11.98H19.47" :stroke="fill" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.483 5.98804L19.52 12L13.483 18.012" :stroke="fill" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</template>
+
+<script>
+
+export default {
+  name: 'IconArrow',
+  props: {
+    fill: {
+      default: 'white'
+    }
+  }
+};
+</script>

@@ -1,0 +1,40 @@
+$maxWidth: 1920; // Максимальная ширина экрана по макету
+
+/* Формула для адаптивного шрифта
+    $pcSize - максимальный размер шрифта по макету
+    $mobSize - минимальный размер шрифта для 320px*/
+@mixin adaptiv-font($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $addMobSize: $addSize + $addSize * 0.7;
+    @media (max-width: 767px) {
+        font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+
+    }
+    @media (min-width: 767px) {
+        font-size: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+    }
+}
+
+
+/* Формула для адаптивного внутреннего отступа 
+    $pcSize - максимальный размер отступа по макету
+    $mobSize - минимальный размер отступа для 320px*/
+@mixin adaptiv-padding($pcSize, $mobSize) {
+    $addSize: $pcSize - $mobSize;
+    $addMobSize: $addSize + $addSize * 0.7;
+    @media (max-width: 767px) {
+        padding: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+
+    }
+    @media (min-width: 767px) {
+        padding: calc(#{$mobSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+    }
+}
+
+
+/* Формула для ширины в процентах относительно родителя
+    $childWidth - ширина блока которая должна адаптироваться относительно родителя
+    $parentWidth - ширина блока родителя */
+    @mixin percent-width($childWidth, $parentWidth) {
+        width: calc(#{$childWidth} * 100% / #{$parentWidth});
+    }

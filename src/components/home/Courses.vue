@@ -1,0 +1,184 @@
+<template>
+  <div class="courses">
+    <!-- Левая часть -->
+    <div class="courses_column">
+      <div class="courses__icon">
+        <icon-play />
+      </div>
+
+      <div class="courses__title">
+        В нашем сервисе 
+        большинство курсов 
+        являются полностью
+        бесплатными
+      </div>
+
+      <div class="courses__subtitle">
+        Вы можете приступить к изучению 
+        как платных, так и бесплатных 
+        курсов прямо сейчас
+      </div>
+    
+      <button class="courses__button">
+        Все курсы
+        <icon-arrow fill="#FFFFFF" width="24px" height="24px" />
+      </button>
+    </div>
+    <!-- Левая часть -->
+
+    <!-- Правая часть -->
+    <div class="courses_row">
+      <div class="courses_column">
+        <v-course-card class="courses_top70">
+          <template #text>
+            Создание сайта с нуля на CMS WordPress
+          </template>
+        </v-course-card>
+
+        <v-course-card class="courses_top35">
+          <template #text>
+            Изучение языка Ruby для начинающих
+          </template>
+        </v-course-card>
+      </div>
+
+      <div class="courses_column courses_left30">
+        <v-course-card fire >
+          <template #text>
+            Изучение языка Си для начинающих
+          </template>
+        </v-course-card>
+
+        <v-course-card class="courses_top35" level="Intermediate">
+          <template #text>
+            Уроки Java Android программирования
+          </template>
+        </v-course-card>
+      </div>
+    </div>
+    <!-- Правая часть -->
+  </div>
+</template>
+
+<script>
+import IconPlay from '@/icons/IconPlay.vue'
+import IconArrow from '@/icons/IconArrow.vue'
+
+import VCourseCard from '@/components/common/VCourseCard.vue'
+
+export default {
+  name: 'Courses',
+  components: { 
+    IconPlay, 
+    IconArrow, 
+    VCourseCard,
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+  .courses {
+    height: 1030px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include adaptiv-padding(380, 40);
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    box-sizing: border-box;
+
+    background: #17191f;
+
+    &__icon {
+      width: 90px;
+      height: 90px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 2px solid #272A37;
+      border-radius: 20px;
+    }
+
+    &__title {
+      width: 450px;
+
+      margin-top: 65px;
+
+      font-family: 'ObjectSans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 48px;
+      letter-spacing: -0.01em;
+
+      color: #ffffff;
+    }
+
+    &__subtitle {
+      width: 340px;
+
+      margin-top: 35px;
+
+      font-family: 'Circe';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 29px;
+      letter-spacing: -0.025em;
+
+      color: #43485E;
+    }
+
+    &__button {
+      width: 199px;
+      height: 60px;
+
+      margin-top: 65px;
+
+      padding-left: 36px;
+      padding-right: 36px;
+
+      font-family: 'EuclidCircular';
+      font-size: 18px;
+      line-height: 18px;
+      font-style: normal;
+      font-weight: normal;
+      color: #ffffff;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: transparent;
+      border: 1px solid #256CFE;
+      border-radius: 8px;
+    }
+
+    // общие классы
+    &_column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &_row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &_top35 {
+      margin-top: 35px;
+    }
+
+    &_top70 {
+      margin-top: 70px;
+    }
+
+    &_left30 {
+      margin-left: 30px;
+    }
+  }
+</style>
