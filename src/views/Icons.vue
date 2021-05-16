@@ -47,6 +47,7 @@ export default {
   background: turquoise;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 
   &__component {
     margin-left: 50px;
