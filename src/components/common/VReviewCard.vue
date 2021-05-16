@@ -42,8 +42,8 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  width: 367px;
-  height: 335px;
+  max-width: 367px;
+  height: max-content;
 
   padding: 30px;
   box-sizing: border-box;
