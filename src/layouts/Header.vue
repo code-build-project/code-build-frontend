@@ -10,19 +10,30 @@
 
     <div class="header__buttons">
       <span>Войти</span>
-      <v-premium-button />
+      <v-button 
+        fontSize="18"
+        textColor="#FFFFFF"
+        borderColor="#EE3465"
+        borderWidth="0"
+        backgroundColor="#EE3465"
+        iconPosition="left"
+        iconWidth="21"
+        iconHeight="21"
+      >
+        Премиум
+      </v-button>
     </div>
   </div>
 </template>
 
 <script>
 import IconLogo from '@/icons/IconLogo.vue'
-import VPremiumButton from '@/components/common/VPremiumButton.vue'
+import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Header',
 
-  components: {IconLogo, VPremiumButton},
+  components: {IconLogo, VButton},
 
   props: {},
 

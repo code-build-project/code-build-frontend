@@ -6,15 +6,25 @@
         'fontFamily': fontFamily,
         'fontSize': fontSize + 'px',
         'color': textColor,
-        'borderColor': borderColor
+        'borderColor': borderColor,
+        'borderWidth': borderWidth + 'em',
+        'background': backgroundColor
       }"
       @click="$emit('click')"
     >
+      <icon-premium 
+        v-if="isIcon && iconPosition === 'left'"
+        class="button__icon-left"
+        :fill="textColor" 
+        :width="iconWidth + 'px'" 
+        :height="iconHeight + 'px'" 
+      />
+
       <slot>Кнопка</slot>
 
       <icon-arrow 
-        v-if="isIcon"
-        class="button__icon"
+        v-if="isIcon && iconPosition === 'right'"
+        class="button__icon-right"
         :fill="textColor" 
         :width="iconWidth + 'px'" 
         :height="iconHeight + 'px'" 
@@ -25,10 +35,11 @@
 
 <script>
 import IconArrow from '@/icons/IconArrow.vue'
+import IconPremium from '@/icons/IconPremium.vue'
 
 export default {
   name: 'VButton',
-  components: { IconArrow },
+  components: { IconArrow, IconPremium },
   props: {
     fontFamily: {
       type: String,
@@ -50,9 +61,24 @@ export default {
       default: '#256CFE',
     },
 
+    borderWidth: {
+      type: String,
+      default: '0.1',
+    },
+
+    backgroundColor: {
+      type: String,
+      default: 'transparent',
+    },
+
     isIcon: {
       type: Boolean,
       default: true,
+    },
+
+    iconPosition: {
+      type: String,
+      default: 'right',
     },
 
     iconWidth: {
@@ -80,11 +106,14 @@ export default {
   align-items: center;
   justify-content: space-between;
 
-  background: transparent;
-  border: 0.1em solid;
+  border-style: solid;
   border-radius: 8px;
+  
+  &__icon-left {
+    margin-right: 0.5em;
+  }
 
-  &__icon {
+  &__icon-right {
     margin-left: 0.5em;
   }
 }
