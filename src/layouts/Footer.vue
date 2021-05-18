@@ -1,28 +1,28 @@
 <template>
   <div class="footer">
-    <div class="footer__row">
+    <div class="footer_row">
       <icon-logo />
 
-      <div class="footer__row footer__social">
-        <div class="footer__icon">
+      <div class="footer_row footer__social">
+        <div class="footer_icon">
           <icon-you-tube />
         </div>
 
-        <div class="footer__icon">
+        <div class="footer_icon">
           <icon-vk />
         </div>
         
-        <div class="footer__icon">
+        <div class="footer_icon">
           <icon-instagram />
         </div>
 
-        <div class="footer__icon">
+        <div class="footer_icon">
           <icon-telegram />
         </div>
       </div>
 
-      <div class="footer__row footer__nav">
-        <div class="footer__row footer__links">
+      <div class="footer_row footer__nav">
+        <div class="footer_row footer__links">
           <span>О проекте</span>
           <span>Блог</span>
           <span>Видеокурсы</span>
@@ -32,15 +32,15 @@
       </div>
     </div>
 
-    <hr class="footer__line m_top50"/>
+    <hr class="footer__line footer_top50"/>
 
-    <div class="footer__row m_top15">
-      <span class="footer__row footer__copyright">
+    <div class="footer_row footer_top15">
+      <span class="footer_row footer__copyright">
         <icon-copyright />
         Все права защищены — 2021 год
       </span>
 
-      <span class="footer__row footer__copy">
+      <span class="footer_row footer__copy">
         Пишите: help@codebuild.com
         <icon-copy />
       </span>
@@ -91,33 +91,13 @@ export default {
   box-sizing: border-box;
 
   font-family: 'Circe';
-  font-style: normal;
-  font-weight: normal;
   font-size: 25px;
 
   color: white;
   background: #171717;
 
-  &__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   &__social {
     min-width: 220px;
-  }
-
-  &__icon {
-    width: 44px;
-    height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #272A37;
-    border-radius: 9.36774px;
   }
 
   &__nav {
@@ -150,9 +130,26 @@ export default {
     font-size: 14px;
     color: #444754;
   }
-}
 
-.m {
+  // общие классы
+  &_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #272A37;
+    border-radius: 9px;
+  }
+
   &_top15 {
     margin-top: 15px;
   }
@@ -161,11 +158,4 @@ export default {
     margin-top: 50px;
   }
 }
-
-// модификаторы состояния 
-// .ms {
-//   &_focus {
-
-//   }
-// }
 </style>

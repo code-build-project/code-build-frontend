@@ -35,6 +35,14 @@ $maxWidth: 1920; // Максимальная ширина экрана по ма
 /* Формула для ширины в процентах относительно родителя
     $childWidth - ширина блока которая должна адаптироваться относительно родителя
     $parentWidth - ширина блока родителя */
-    @mixin percent-width($childWidth, $parentWidth) {
-        width: calc(#{$childWidth} * 100% / #{$parentWidth});
-    }
+@mixin percent-width($childWidth, $parentWidth) {
+    width: calc(#{$childWidth} * 100% / #{$parentWidth});
+}
+
+/* Формула для адаптивной величины в формате vw из px
+    $argument - названия стиля которое нужно получить
+    $pxSize - размерность в пикселях*/
+@mixin adaptiv-vw($argument, $pxSize) {
+    $fallibility: $pxSize / 18; // примерно посчитанная погрешность
+    #{$argument}: calc(#{($pxSize - $fallibility) + vw} * 100 / #{$maxWidth});
+}
