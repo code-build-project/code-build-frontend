@@ -1,49 +1,51 @@
 <template>
-  <div class="footer">
-    <div class="footer_row">
-      <icon-logo />
+  <div class="footer__wrap">
+    <div class="footer">
+      <div class="footer_row">
+        <icon-logo />
 
-      <div class="footer_row footer__social">
-        <div class="footer_icon">
-          <icon-you-tube />
+        <div class="footer_row footer__social">
+          <div class="footer_icon">
+            <icon-you-tube />
+          </div>
+
+          <div class="footer_icon">
+            <icon-vk />
+          </div>
+          
+          <div class="footer_icon">
+            <icon-instagram />
+          </div>
+
+          <div class="footer_icon">
+            <icon-telegram />
+          </div>
         </div>
 
-        <div class="footer_icon">
-          <icon-vk />
-        </div>
-        
-        <div class="footer_icon">
-          <icon-instagram />
-        </div>
+        <div class="footer_row footer__nav">
+          <div class="footer_row footer__links">
+            <span>О проекте</span>
+            <span>Блог</span>
+            <span>Видеокурсы</span>
+          </div>
 
-        <div class="footer_icon">
-          <icon-telegram />
+          <icon-rus-flag />
         </div>
       </div>
 
-      <div class="footer_row footer__nav">
-        <div class="footer_row footer__links">
-          <span>О проекте</span>
-          <span>Блог</span>
-          <span>Видеокурсы</span>
-        </div>
+      <hr class="footer__line footer_top50"/>
 
-        <icon-rus-flag />
+      <div class="footer_row footer_top15">
+        <span class="footer_row footer__copyright">
+          <icon-copyright />
+          Все права защищены — 2021 год
+        </span>
+
+        <span class="footer_row footer__copy">
+          Пишите: help@codebuild.com
+          <icon-copy />
+        </span>
       </div>
-    </div>
-
-    <hr class="footer__line footer_top50"/>
-
-    <div class="footer_row footer_top15">
-      <span class="footer_row footer__copyright">
-        <icon-copyright />
-        Все права защищены — 2021 год
-      </span>
-
-      <span class="footer_row footer__copy">
-        Пишите: help@codebuild.com
-        <icon-copy />
-      </span>
     </div>
   </div>
 </template>
@@ -82,30 +84,34 @@ export default {
 </script>
 
 <style lang="scss">
+.footer__wrap {
+  @extend .footer_center;
+  width: 100%;
+  background: #171717;
+}
+  
 .footer {
+  width: 1160px;
   height: 276px;
 
-  @include adaptiv-padding(380, 40);
-  padding-top: 67px !important;
-  padding-bottom: 67px !important;
-  box-sizing: border-box;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
 
   font-family: 'Circe';
   font-size: 25px;
-
   color: white;
-  background: #171717;
 
   &__social {
     min-width: 220px;
   }
 
   &__nav {
-    @include percent-width(500, 1160);
+    width: 500px;
   }
 
   &__links {
-    @include percent-width(340, 500);
+    width: 340px;
 
     font-size: 17px;
     line-height: 18px;
@@ -132,6 +138,12 @@ export default {
   }
 
   // общие классы
+  &_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &_row {
     display: flex;
     align-items: center;
@@ -139,12 +151,9 @@ export default {
   }
 
   &_icon {
+    @extend .footer_center;
     width: 44px;
     height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     border: 1px solid #272A37;
     border-radius: 9px;

@@ -42,15 +42,15 @@ export default {
 <style lang="scss" scoped>
   .intro {
     position: relative;
+    width: 1160px;
     height: 960px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    @include adaptiv-padding(380, 40);
-    padding-bottom: 265px !important;
-    padding-top: 180px !important;
+    padding-bottom: 265px;
+    padding-top: 180px;
     box-sizing: border-box;
 
     overflow: hidden;
@@ -83,7 +83,7 @@ export default {
     &__iphone {
       position: absolute;
 
-      left: 910px;
+      left: 513px;
       top: 487px;
       z-index: 1;
     }
@@ -91,7 +91,7 @@ export default {
     &__ipad {
       position: absolute;
 
-      left: 1119px;
+      left: 743px;
       top: 252px;
     }
   }

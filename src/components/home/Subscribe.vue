@@ -1,28 +1,30 @@
 <template>
-  <div class="subscribe">
-    <div class="subscribe__left-side">
-      <div class="subscribe__title">Подпишись на codebuild</div>
-      <div class="subscribe__subtitle">
-        Присоединяйся к сообществу программистов, узнавай
-        много нового из мира IT и будь в курсе всех событий!
-      </div>
-    </div>
-
-    <div class="subscribe__right-side">
-      <div class="subscribe__icon">
-        <icon-you-tube width="37" height="37"/>
+  <div class="subscribe__wrap">
+    <div class="subscribe">
+      <div class="subscribe__left-side">
+        <div class="subscribe__title">Подпишись на codebuild</div>
+        <div class="subscribe__subtitle">
+          Присоединяйся к сообществу программистов, узнавай
+          много нового из мира IT и будь в курсе всех событий!
+        </div>
       </div>
 
-      <div class="subscribe__icon">
-        <icon-vk width="35" height="35"/>
-      </div>
+      <div class="subscribe__right-side">
+        <div class="subscribe__icon">
+          <icon-you-tube width="37" height="37"/>
+        </div>
 
-      <div class="subscribe__icon">
-        <icon-instagram width="37" height="37"/>
-      </div>
+        <div class="subscribe__icon">
+          <icon-vk width="35" height="35"/>
+        </div>
 
-      <div class="subscribe__icon">
-        <icon-telegram width="32" height="32"/>
+        <div class="subscribe__icon">
+          <icon-instagram width="37" height="37"/>
+        </div>
+
+        <div class="subscribe__icon">
+          <icon-telegram width="32" height="32"/>
+        </div>
       </div>
     </div>
   </div>
@@ -46,69 +48,70 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subscribe {
-  height: 315px;
-
-  @include adaptiv-padding(380, 40);
-  padding-bottom: 100px !important;
-  padding-top: 100px !important;
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: #256cfe;
-
-  &__left-side {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .subscribe__wrap {
+    @extend .subscribe_center;
+    width: 100%;
+    background: #256cfe;
   }
 
-  &__right-side {
-    width: 532px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .subscribe {
+    @extend .subscribe_row-between;
+    width: 1160px;
+    height: 315px;
+
+    &__left-side {
+      @extend .subscribe_column;
+    }
+
+    &__right-side {
+      @extend .subscribe_row-between;
+      width: 532px;
+    }
+
+    &__title {
+      font-family: 'ObjectSans';
+      font-size: 40px;
+      line-height: 48px;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+
+    &__subtitle {
+      width: 470px;
+
+      font-family: 'Circe';
+      font-size: 20px;
+      line-height: 31px;
+      letter-spacing: -0.025em;
+      color: #FFFFFF;
+    }
+
+    &__icon {
+      @extend .subscribe_center;
+      width: 100px;
+      height: 100px;
+
+      border: 2px solid #3A7AFE;
+      box-sizing: border-box;
+      border-radius: 21px;
+    }
+
+    // общие классы
+    &_center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &_row-between {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
-
-  &__title {
-    font-family: 'ObjectSans';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 40px;
-    line-height: 48px;
-    letter-spacing: -0.01em;
-    color: #FFFFFF;
-  }
-
-  &__subtitle {
-    width: 470px;
-
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 31px;
-    letter-spacing: -0.025em;
-    color: #FFFFFF;
-  }
-
-  &__icon {
-    width: 100px;
-    height: 100px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 2px solid #3A7AFE;
-    box-sizing: border-box;
-    border-radius: 21px;
-  }
-}
 </style>

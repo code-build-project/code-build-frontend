@@ -95,40 +95,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .reviews {
-    padding: 100px 380px 80px 380px;
+.reviews {
+  width: 1160px;
+  padding: 100px 380px 80px 380px;
 
-    &__title {
-      font-family: 'ObjectSans';
-      font-size: 40px;
-      line-height: 44px;
-      letter-spacing: -1.5px;
-      color: #18214D;
-    }
-
-    &__list {
-      margin-top: 50px;
-
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-
-      height: 800px;
-
-      overflow: hidden;
-    }
-
-    &__list-item {
-      margin-bottom: 30px;
-    }
-
-    // общие классы
-    &_row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      padding: 20px;
-    }
+  &__title {
+    font-family: 'ObjectSans';
+    font-size: 40px;
+    line-height: 44px;
+    letter-spacing: -1.5px;
+    color: #18214D;
   }
+
+  &__list {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    height: 800px;
+
+    overflow: hidden;
+  }
+
+  &__list-item {
+    margin-bottom: 30px;
+  }
+
+  // общие классы
+  &_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding: 20px;
+  }
+}
 </style>

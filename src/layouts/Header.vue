@@ -46,40 +46,31 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  @extend .header_row;
+  width: 1160px;
   min-height: 120px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  @include adaptiv-padding(380, 40);
-  padding-bottom: 0 !important;
-  padding-top: 0 !important;
-  box-sizing: border-box;
 
   font-family: 'Circe';
   font-size: 18px;
-  font-style: normal;
-  font-weight: normal;
   color: #15244B;
 
   &__nav {
-    // @include percent-width(360, 1160);
+    @extend .header_row;
     width: 360px;
-
-    display: flex;
-    justify-content: space-between;
   }
 
   &__buttons {
-    // @include percent-width(290, 1160);
-    width: 290px;
+    @extend .header_row;
 
+    width: 290px;
+    color: #EE3465;
+  }
+
+  // общие классы
+  &_row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    color: #EE3465;
   }
 }
 </style>

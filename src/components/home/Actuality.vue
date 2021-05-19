@@ -88,52 +88,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .actuality {
-    position: relative;
-    height: 900px;
+.actuality {
+  position: relative;
+  height: 900px;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
-    @include adaptiv-padding(380, 40);
-    padding-bottom: 314px !important;
-    padding-top: 314px !important;
-    box-sizing: border-box;
+  padding-bottom: 314px;
+  padding-top: 314px;
+  box-sizing: border-box;
 
-    background: #256CFE;
-    color: #FFFFFF;
+  background: #256CFE;
+  color: #FFFFFF;
 
-    &__title {
-      font-family: 'ObjectSans';
-      @include adaptiv-vw(font-size, 45);
-      @include adaptiv-vw(line-height, 55);
-      letter-spacing: -0.01em;
-    }
-
-    &__subtitle {
-      font-family: 'Circe';
-      @include adaptiv-vw(font-size, 22);
-      @include adaptiv-vw(line-height, 29);
-      letter-spacing: -0.025em;
-    }
-
-    // общие классы
-    &_center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &_icon {
-      position: absolute;
-
-      @extend .actuality_center;
-
-      background: #3A7AFE;
-      border: 2px solid #3A7AFE;
-      border-radius: 20px;
-    }
+  &__title {
+    font-family: 'ObjectSans';
+    font-size: 45px;
+    line-height: 55px;
+    letter-spacing: -0.01em;
   }
+
+  &__subtitle {
+    font-family: 'Circe';
+    font-size: 22px;
+    line-height: 29px;
+    letter-spacing: -0.025em;
+  }
+
+  // общие классы
+  &_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_icon {
+    @extend .actuality_center;
+    position: absolute;
+
+    background: #3A7AFE;
+    border: 2px solid #3A7AFE;
+    border-radius: 20px;
+  }
+}
 </style>
