@@ -1,25 +1,27 @@
 <template>
-  <div class="intro">
-    <div class="intro__title">
-      Повысь<br/>
-      свои навыки
-      программирования 
-      вместе с <span class="intro__title_blue">codebuild</span>
+  <div class="intro__wrap">
+    <div class="intro">
+      <div class="intro__title">
+        Повысь<br/>
+        свои навыки
+        программирования 
+        вместе с <span class="intro__title_blue">codebuild</span>
+      </div>
+
+      <div class="intro__subtitle">
+        Платные и бесплатные видеокурсы 
+        по программированию для новичков 
+        и middle-разработчиков
+      </div>
+
+      <v-button>Начать учиться</v-button>
+
+      <!-- Иконки заднего фона -->
+      <icon-iphone class="intro__iphone"/>
+
+      <icon-ipad class="intro__ipad"/>
+      <!-- Иконки заднего фона -->
     </div>
-
-    <div class="intro__subtitle">
-      Платные и бесплатные видеокурсы 
-      по программированию для новичков 
-      и middle-разработчиков
-    </div>
-
-    <v-button>Начать учиться</v-button>
-
-    <!-- Иконки заднего фона -->
-    <icon-iphone class="intro__iphone"/>
-
-    <icon-ipad class="intro__ipad"/>
-    <!-- Иконки заднего фона -->
   </div>
 </template>
 
@@ -40,59 +42,71 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .intro {
-    position: relative;
-    width: 1160px;
-    height: 960px;
+.intro__wrap {
+  @extend .intro_center;
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.intro {
+  position: relative;
+  width: 1160px;
+  height: 960px;
 
-    padding-bottom: 265px;
-    padding-top: 180px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    overflow: hidden;
+  padding-bottom: 265px;
+  padding-top: 180px;
+  box-sizing: border-box;
 
-    &__title {
-      width: 550px;
+  &__title {
+    width: 550px;
 
-      font-family: 'ObjectSans';
-      font-size: 57px;
-      line-height: 56px;
-      letter-spacing: -0.01em;
+    font-family: 'ObjectSans';
+    font-size: 57px;
+    line-height: 56px;
+    letter-spacing: -0.01em;
 
-      color: #15244B;
+    color: #15244B;
 
-      &_blue {
-        color: #256CFE;
-      }
-    }
-
-    &__subtitle {
-      width: 400px;
-
-      font-family: 'Circe';
-      font-size: 24px;
-      line-height: 35px;
-
-      color: #3E4462;
-    }
-
-    &__iphone {
-      position: absolute;
-
-      left: 513px;
-      top: 487px;
-      z-index: 1;
-    }
-
-    &__ipad {
-      position: absolute;
-
-      left: 743px;
-      top: 252px;
+    &_blue {
+      color: #256CFE;
     }
   }
+
+  &__subtitle {
+    width: 400px;
+
+    font-family: 'Circe';
+    font-size: 24px;
+    line-height: 35px;
+
+    color: #3E4462;
+  }
+
+  &__iphone {
+    position: absolute;
+
+    left: 513px;
+    top: 487px;
+    z-index: 1;
+  }
+
+  &__ipad {
+    position: absolute;
+
+    left: 743px;
+    top: 252px;
+  }
+  
+  // общие классы
+  &_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 </style>

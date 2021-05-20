@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <icon-logo fill="#256CFE"/>
+    <icon-logo />
 
     <div class="header__nav">
       <span>О проекте</span>

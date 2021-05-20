@@ -2,9 +2,9 @@
   <div class="footer__wrap">
     <div class="footer">
       <div class="footer_row">
-        <icon-logo />
+        <icon-logo border="white"/>
 
-        <div class="footer_row footer__social">
+        <div class="footer__social">
           <div class="footer_icon">
             <icon-you-tube />
           </div>
@@ -22,8 +22,8 @@
           </div>
         </div>
 
-        <div class="footer_row footer__nav">
-          <div class="footer_row footer__links">
+        <div class="footer__nav">
+          <div class="footer__links">
             <span>О проекте</span>
             <span>Блог</span>
             <span>Видеокурсы</span>
@@ -33,15 +33,15 @@
         </div>
       </div>
 
-      <hr class="footer__line footer_top50"/>
+      <hr class="footer__line"/>
 
       <div class="footer_row footer_top15">
-        <span class="footer_row footer__copyright">
+        <span class="footer__copyright">
           <icon-copyright />
           Все права защищены — 2021 год
         </span>
 
-        <span class="footer_row footer__copy">
+        <span class="footer__copy">
           Пишите: help@codebuild.com
           <icon-copy />
         </span>
@@ -91,26 +91,26 @@ export default {
 }
   
 .footer {
+  @extend .footer_column-center;
   width: 1160px;
   height: 276px;
-
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
 
   font-family: 'Circe';
   font-size: 25px;
   color: white;
 
   &__social {
+    @extend .footer_row;
     min-width: 220px;
   }
 
   &__nav {
+    @extend .footer_row;
     width: 500px;
   }
 
   &__links {
+    @extend .footer_row;
     width: 340px;
 
     font-size: 17px;
@@ -120,10 +120,12 @@ export default {
   &__line {
     height: 1px;
     border: none; 
+    margin-top: 50px;
     background-color: #444754; 
   }
 
   &__copyright {
+    @extend .footer_row;
     width: 215px;
 
     font-size: 14px;
@@ -131,6 +133,7 @@ export default {
   }
 
   &__copy {
+    @extend .footer_row;
     width: 210px;
 
     font-size: 14px;
@@ -141,6 +144,12 @@ export default {
   &_center {
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  &_column-center {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
   }
 
@@ -161,10 +170,6 @@ export default {
 
   &_top15 {
     margin-top: 15px;
-  }
-
-  &_top50 {
-    margin-top: 50px;
   }
 }
 </style>

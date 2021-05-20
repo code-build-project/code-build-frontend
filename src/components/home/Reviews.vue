@@ -97,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 .reviews {
   width: 1160px;
-  padding: 100px 380px 80px 380px;
+  padding: 100px 0px 80px 0px;
 
   &__title {
     font-family: 'ObjectSans';
