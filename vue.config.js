@@ -10,8 +10,8 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        // Глобальный инпорт миксина scss
-        prependData: `@import "~@/assets/scss/mixins.scss";`,
+        // Глобальный импорт общего scss
+        prependData: `@import "~@/assets/scss/main.scss";`,
       },
     },
   },

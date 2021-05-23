@@ -33,7 +33,7 @@ import VButton from '@/components/common/VButton.vue'
 export default {
   name: 'Header',
 
-  components: {IconLogo, VButton},
+  components: { IconLogo, VButton },
 
   props: {},
 
@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  @extend .header_row;
+  @extend .cb_row-between;
   width: 1160px;
   min-height: 120px;
 
@@ -55,22 +55,15 @@ export default {
   color: #15244B;
 
   &__nav {
-    @extend .header_row;
+    @extend .cb_row-between;
     width: 360px;
   }
 
   &__buttons {
-    @extend .header_row;
+    @extend .cb_row-between;
 
     width: 290px;
     color: #EE3465;
-  }
-
-  // общие классы
-  &_row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 }
 </style>

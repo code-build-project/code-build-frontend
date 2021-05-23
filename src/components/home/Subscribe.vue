@@ -48,70 +48,52 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .subscribe__wrap {
-    @extend .subscribe_center;
-    width: 100%;
-    background: #256cfe;
+.subscribe__wrap {
+  @extend .cb_center;
+  width: 100%;
+  background: #256cfe;
+}
+
+.subscribe {
+  @extend .cb_row-between;
+  width: 1160px;
+  height: 315px;
+
+  &__left-side {
+    @extend .cb_column;
   }
 
-  .subscribe {
-    @extend .subscribe_row-between;
-    width: 1160px;
-    height: 315px;
-
-    &__left-side {
-      @extend .subscribe_column;
-    }
-
-    &__right-side {
-      @extend .subscribe_row-between;
-      width: 532px;
-    }
-
-    &__title {
-      font-family: 'ObjectSans';
-      font-size: 40px;
-      line-height: 48px;
-      letter-spacing: -0.01em;
-      color: #FFFFFF;
-    }
-
-    &__subtitle {
-      width: 470px;
-
-      font-family: 'Circe';
-      font-size: 20px;
-      line-height: 31px;
-      letter-spacing: -0.025em;
-      color: #FFFFFF;
-    }
-
-    &__icon {
-      @extend .subscribe_center;
-      width: 100px;
-      height: 100px;
-
-      border: 2px solid #3A7AFE;
-      box-sizing: border-box;
-      border-radius: 21px;
-    }
-
-    // общие классы
-    &_center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &_column {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &_row-between {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  &__right-side {
+    @extend .cb_row-between;
+    width: 532px;
   }
+
+  &__title {
+    font-family: 'ObjectSans';
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+  }
+
+  &__subtitle {
+    width: 470px;
+
+    font-family: 'Circe';
+    font-size: 20px;
+    line-height: 31px;
+    letter-spacing: -0.025em;
+    color: #FFFFFF;
+  }
+
+  &__icon {
+    @extend .cb_center;
+    width: 100px;
+    height: 100px;
+
+    border: 2px solid #3A7AFE;
+    box-sizing: border-box;
+    border-radius: 21px;
+  }
+}
 </style>

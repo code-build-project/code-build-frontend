@@ -43,20 +43,19 @@ export default {
 
 <style lang="scss" scoped>
 .intro__wrap {
-  @extend .intro_center;
+  @extend .cb_center;
   width: 100%;
   background: transparent;
   overflow: hidden;
 }
 
 .intro {
+  @extend .cb_column-between;
+  align-items: flex-start;
+
   position: relative;
   width: 1160px;
   height: 960px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 
   padding-bottom: 265px;
   padding-top: 180px;
@@ -100,13 +99,6 @@ export default {
 
     left: 743px;
     top: 252px;
-  }
-  
-  // общие классы
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 </style>

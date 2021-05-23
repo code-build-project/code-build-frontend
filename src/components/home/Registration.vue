@@ -30,18 +30,15 @@ export default {
 
 <style lang="scss" scoped>
 .reg__wrap {
-  @extend .reg_center;
+  @extend .cb_center;
   width: 100%;
   background: #256CFE;
 }
 
 .reg {
+  @extend .cb_row-between;
   width: 1160px;
   height: 364px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   &__info {
     width: 380px;
@@ -54,19 +51,12 @@ export default {
   }
 
   &__icon {
-    @extend .reg_center;
+    @extend .cb_center;
     width: 50px;
     height: 50px;
 
     border: 2px solid #3A7AFE;
     border-radius: 10px;
-  }
-
-  // общие классы
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 </style>

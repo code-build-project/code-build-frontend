@@ -1,21 +1,21 @@
 <template>
   <div class="actuality">
     <div class="actuality__title">
-      <span class="actuality_center">
+      <span class="cb_center">
         Вы с нуля освоите профессию
       </span>
       разработчика и сможете добавить
-      <span class="actuality_center">
+      <span class="cb_center">
         в арсенал необходимые навыки.
       </span>
     </div>
 
     <div class="actuality__subtitle">
-      <span class="actuality_center">
+      <span class="cb_center">
         Мы помогаем новичкам стать профессиональными 
       </span>
       программистами, а опытным разработчикам получать 
-      <span class="actuality_center">
+      <span class="cb_center">
         новые знания и расти профессионально
       </span>
     </div>
@@ -89,14 +89,10 @@ export default {
 
 <style lang="scss" scoped>
 .actuality {
+  @extend .cb_column-between;
   position: relative;
   height: 900px;
   width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 
   padding-bottom: 314px;
   padding-top: 314px;
@@ -119,15 +115,8 @@ export default {
     letter-spacing: -0.025em;
   }
 
-  // общие классы
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   &_icon {
-    @extend .actuality_center;
+    @extend .cb_center;
     position: absolute;
 
     background: #3A7AFE;

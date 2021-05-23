@@ -16,12 +16,12 @@
       <div class="card__info-footer">
         <div class="card__info-footer_item">
           <icon-timer />
-          <span class="card_left5">Время прочтения: 15 м.</span>
+          <span class="cb_left5">Время прочтения: 15 м.</span>
         </div>
 
         <div class="card__info-footer_item">
           <icon-open-eye />
-          <span class="card_left5">1200</span>
+          <span class="cb_left5">1200</span>
         </div>
       </div>
     </div>
@@ -64,12 +64,10 @@ export default {
   }
 
   &__info {
+    @extend .cb_column-between;
+    align-items: stretch;
     width: 268px;
     height: 142px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     padding: 17px;
     box-sizing: border-box;
@@ -83,7 +81,6 @@ export default {
     align-items: center;
     
     font-family: 'EuclidCircular';
-    font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 23px;
@@ -94,7 +91,6 @@ export default {
     width: 240px;
 
     font-family: 'EuclidCircular';
-    font-style: normal;
     font-weight: 500;
     font-size: 17px;
     line-height: 20px;
@@ -102,20 +98,15 @@ export default {
   }
 
   &__info-footer {
-    display: flex;
-    justify-content: space-between;
+    @extend .cb_row-between;
 
     font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
     font-size: 11px;
     line-height: 24px;
     color: #FFFFFF;
 
     &_item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @extend .cb_row-between;
 
       padding-left: 13px;
       padding-right: 13px;
@@ -123,11 +114,6 @@ export default {
       border: 1px solid #383C4A;
       border-radius: 5px;
     }
-  }
-
-  // общие классы
-  &_left5 {
-    margin-left: 5px;
   }
 }
 </style>

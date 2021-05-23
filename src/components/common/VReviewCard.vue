@@ -1,29 +1,22 @@
 <template>
-  <div class="card">
+  <div class="card" :style="{'height': height + 'px'}">
     <div class="card__score">
       <icon-star />
-      <span>4,5</span>
+      <span>{{ score }}</span>
     </div>
 
     <div class="card__text">
-      <slot name="text">
-        Всем привет! Мне 27, я из Королёва.  
-        По окончании школы я связал свою жизнь 
-        с полиграфией и поступил в Университет 
-        Печати им. Ивана Фёдорова. Работаю 
-        дизайнером наружной рекламы и мне 
-        надоело. Всем привет! Мне 27, я из.
-      </slot>
+      {{ text }}
     </div>
 
-    <div class="card_row card_top35">
+    <div class="cb_row cb_top35">
       <div class="card__avatar-img">
 
       </div>
 
-      <div class="card_column card_left17">
-        <div class="card__avatar-name">Кристина Белова</div>
-        <div class="card__avatar-date">21 января 2021</div>
+      <div class="cb_column-center cb_left17">
+        <div class="card__avatar-name">{{ name }}</div>
+        <div class="card__avatar-date">{{ date }}</div>
       </div>
     </div>
   </div>
@@ -37,27 +30,56 @@ export default {
   components: {
     IconStar,
   },
+  props: {
+    // Высота карты
+    height: {
+      type: String,
+      default: '335',
+    },
+    // Оценка
+    score: {
+      type: String,
+      default: '4,5',
+    },
+    // Текст
+    text: {
+      type: String,
+      default: `Всем привет! Мне 27, я из Королёва.  
+        По окончании школы я связал свою жизнь 
+        с полиграфией и поступил в Университет 
+        Печати им. Ивана Фёдорова. Работаю 
+        дизайнером наружной рекламы и мне 
+        надоело. Всем привет! Мне 27, я из.`
+      },
+    // Имя автора
+    name: {
+      type: String,
+      default: 'Автор',
+    },
+    // Дата публикации
+    date: {
+      type: String,
+      default: '21 января 2021',
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
   max-width: 367px;
-  height: max-content;
 
   padding: 30px;
   box-sizing: border-box;
+  overflow: hidden;
 
   border: 1.5px solid #DCE7FF;
   border-radius: 8px;
 
   &__score {
+    @extend .cb_row-between;
     width: 60px;
     height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
     padding: 0px 10px 0px 10px;
     box-sizing: border-box;
@@ -70,8 +92,6 @@ export default {
     margin-top: 16px;
 
     font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 25px;
     letter-spacing: -0.025em;
@@ -88,7 +108,6 @@ export default {
 
   &__avatar-name {
     font-family: 'Circe';
-    font-style: normal;
     font-weight: bold;
     font-size: 20px;
     line-height: 30px;
@@ -98,32 +117,10 @@ export default {
 
   &__avatar-date {
     font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.4px;
     color: #B0B7C8;
-  }
-
-  // общие классы
-  &_column {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  &_row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &_left17 {
-    margin-left: 17px;
-  }
-
-  &_top35 {
-    margin-top: 35px;
   }
 }
 </style>

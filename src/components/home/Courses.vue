@@ -2,7 +2,7 @@
   <div class="courses__wrap">
     <div class="courses">
       <!-- Левая часть -->
-      <div class="courses_column">
+      <div class="cb_column">
         <div class="courses__icon">
           <icon-play />
         </div>
@@ -21,7 +21,7 @@
         </div>
 
         <v-button 
-          class="courses_top70"
+          class="cb_top70"
           fontFamily="EuclidCircular"
           fontSize="18"
           textColor="#FFFFFF"
@@ -34,29 +34,29 @@
       <!-- Левая часть -->
 
       <!-- Правая часть -->
-      <div class="courses_row">
-        <div class="courses_column">
-          <v-course-card class="courses_top70">
+      <div class="cb_row">
+        <div class="cb_column">
+          <v-course-card class="cb_top70">
             <template #text>
               Создание сайта с нуля на CMS WordPress
             </template>
           </v-course-card>
 
-          <v-course-card class="courses_top35">
+          <v-course-card class="cb_top35">
             <template #text>
               Изучение языка Ruby для начинающих
             </template>
           </v-course-card>
         </div>
 
-        <div class="courses_column courses_left30">
+        <div class="cb_column cb_left30">
           <v-course-card fire >
             <template #text>
               Изучение языка Си для начинающих
             </template>
           </v-course-card>
 
-          <v-course-card class="courses_top35" level="Intermediate">
+          <v-course-card class="cb_top35" level="Intermediate">
             <template #text>
               Уроки Java Android программирования
             </template>
@@ -86,21 +86,18 @@ export default {
 
 <style lang="scss" scoped>
 .courses__wrap {
-  @extend .courses_center;
+  @extend .cb_center;
   width: 100%;
   background: #17191f;
 }
 
 .courses {
+  @extend .cb_row-between;
   width: 1160px;
   height: 1045px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   &__icon {
-    @extend .courses_center;
+    @extend .cb_center;
     width: 90px;
     height: 90px;
 
@@ -155,35 +152,6 @@ export default {
     letter-spacing: -0.025em;
 
     color: #43485E;
-  }
-
-  // общие классы
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &_column {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &_row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &_top35 {
-    margin-top: 35px;
-  }
-
-  &_top70 {
-    margin-top: 70px;
-  }
-
-  &_left30 {
-    margin-left: 30px;
   }
 }
 </style>

@@ -2,29 +2,29 @@
   <div class="articles__wrap">
     <div class="articles">
       <!-- Левая часть -->
-      <div class="articles_row">
-        <div class="articles_column">
-          <v-article-card class="articles_top70">
+      <div class="cb_row">
+        <div class="cb_column">
+          <v-article-card class="cb_top70">
             <template #text>
               Новые открытия в сфере искусственного интеллекта
             </template>
           </v-article-card>
 
-          <v-article-card class="articles_top35">
+          <v-article-card class="cb_top35">
             <template #text>
               Как повлияет коронавирус на it-сферу в 2021
             </template>
           </v-article-card>
         </div>
 
-        <div class="articles_column articles_left30">
+        <div class="cb_column cb_left30">
           <v-article-card>
             <template #text>
               Стоит ли открывать интернет-магазин в 2021
             </template>
           </v-article-card>
 
-          <v-article-card class="articles_top35">
+          <v-article-card class="cb_top35">
             <template #text>
               В какую страну переехать для роста в it-сфере
             </template>
@@ -34,7 +34,7 @@
       <!-- Левая часть -->
 
       <!-- Правая часть -->
-      <div class="articles_column">
+      <div class="cb_column">
         <div class="articles__icon">
           <icon-list />
         </div>
@@ -51,7 +51,7 @@
         </div>
 
         <v-button 
-          class="articles_top70"
+          class="cb_top70"
           fontFamily="EuclidCircular"
           fontSize="18"
           textColor="#FFFFFF"
@@ -84,21 +84,18 @@ export default {
 
 <style lang="scss" scoped>
   .articles__wrap {
-    @extend .articles_center;
+    @extend .cb_center;
     width: 100%;
     background: #17191f;
   }
   
   .articles {
+    @extend .cb_row-between;
     width: 1160px;
     height: 1045px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
     &__icon {
-      @extend .articles_center;
+      @extend .cb_center;
       width: 90px;
       height: 90px;
 
@@ -115,7 +112,6 @@ export default {
       font-size: 40px;
       line-height: 48px;
       letter-spacing: -0.01em;
-
       color: #ffffff;
     }
 
@@ -128,37 +124,7 @@ export default {
       font-size: 22px;
       line-height: 29px;
       letter-spacing: -0.025em;
-
       color: #43485E;
-    }
-
-    // общие классы
-    &_center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &_column {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &_row {
-      display: flex;
-      flex-direction: row;
-    }
-
-    &_top35 {
-      margin-top: 35px;
-    }
-
-    &_top70 {
-      margin-top: 70px;
-    }
-
-    &_left30 {
-      margin-left: 30px;
     }
   }
 </style>

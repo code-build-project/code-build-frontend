@@ -1,7 +1,7 @@
 <template>
   <div class="footer__wrap">
     <div class="footer">
-      <div class="footer_row">
+      <div class="cb_row-between">
         <icon-logo border="white"/>
 
         <div class="footer__social">
@@ -35,7 +35,7 @@
 
       <hr class="footer__line"/>
 
-      <div class="footer_row footer_top15">
+      <div class="cb_row-between cb_top15">
         <span class="footer__copyright">
           <icon-copyright />
           Все права защищены — 2021 год
@@ -85,13 +85,13 @@ export default {
 
 <style lang="scss">
 .footer__wrap {
-  @extend .footer_center;
+  @extend .cb_center;
   width: 100%;
   background: #171717;
 }
   
 .footer {
-  @extend .footer_column-center;
+  @extend .cb_column-center;
   width: 1160px;
   height: 276px;
 
@@ -100,17 +100,17 @@ export default {
   color: white;
 
   &__social {
-    @extend .footer_row;
+    @extend .cb_row-between;
     min-width: 220px;
   }
 
   &__nav {
-    @extend .footer_row;
+    @extend .cb_row-between;
     width: 500px;
   }
 
   &__links {
-    @extend .footer_row;
+    @extend .cb_row-between;
     width: 340px;
 
     font-size: 17px;
@@ -125,7 +125,7 @@ export default {
   }
 
   &__copyright {
-    @extend .footer_row;
+    @extend .cb_row-between;
     width: 215px;
 
     font-size: 14px;
@@ -133,43 +133,20 @@ export default {
   }
 
   &__copy {
-    @extend .footer_row;
+    @extend .cb_row-between;
     width: 210px;
 
     font-size: 14px;
     color: #444754;
   }
 
-  // общие классы
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &_column-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &_row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   &_icon {
-    @extend .footer_center;
+    @extend .cb_center;
     width: 44px;
     height: 44px;
 
     border: 1px solid #272A37;
     border-radius: 9px;
-  }
-
-  &_top15 {
-    margin-top: 15px;
   }
 }
 </style>
