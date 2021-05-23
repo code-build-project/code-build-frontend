@@ -14,8 +14,9 @@
       </div>
     </div>
 
-    <div class="reviews_row">
+    <div class="reviews__footer">
       <v-button 
+        class="cb_top160"
         fontFamily="EuclidCircular"
         fontSize="18"
         :isIcon="false"
@@ -108,8 +109,9 @@ export default {
 
 <style lang="scss" scoped>
 .reviews {
+  position: relative;
   width: 1160px;
-  padding: 100px 0px 80px 0px;
+  padding-top: 100px;
 
   &__title {
     font-family: 'ObjectSans';
@@ -120,7 +122,7 @@ export default {
   }
 
   &__list {
-    height: 800px;
+    height: 1060px;
 
     display: flex;
     justify-content: space-between;
@@ -134,13 +136,15 @@ export default {
     margin-bottom: 30px;
   }
 
-  // общие классы
-  &_row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  &__footer {
+    position: absolute;
+    height: 300px;
+    width: 1160px;
+    
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 29.69%, #FFFFFF 100%);
 
-    padding: 20px;
+    @extend .cb_row-center;
+    bottom: 0px;
   }
 }
 </style>

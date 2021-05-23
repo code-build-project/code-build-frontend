@@ -59,6 +59,10 @@
       margin-top: 70px;
     }
 
+    &_top160 {
+      margin-top: 160px;
+    }
+
     // margin-left
     &_left5 {
       margin-left: 5px;
@@ -70,6 +74,14 @@
 
     &_left30 {
       margin-left: 30px;
+    }
+
+    // hover
+    &_hover-fill-blue {
+      &:hover {
+        fill: #256CFE;
+        border: #FFFFFF;
+      }
     }
   }
   

@@ -10,7 +10,7 @@
         <icon-ellipse :fill="level !== 'Beginner' ? '#EE3465' : '#3A3F4F'"/>
         <icon-ellipse :fill="level === 'High' ? '#EE3465' : '#3A3F4F'"/>
 
-        <span class="card_left5">{{ level }}</span>
+        <span class="cb_left5">{{ level }}</span>
       </div>
 
       <div class="card__info-text">
@@ -20,17 +20,17 @@
       <div class="card__info-footer">
         <div class="card__info-footer_item">
           <icon-video />
-          <span class="card_left5">6 уроков</span>
+          <span class="cb_left5">6 уроков</span>
         </div>
 
         <div class="card__info-footer_item">
           <icon-timer />
-          <span class="card_left5">1 ч. 25 м.</span>
+          <span class="cb_left5">1 ч. 25 м.</span>
         </div>
 
         <div class="card__info-footer_item">
           <icon-open-eye />
-          <span class="card_left5">300</span>
+          <span class="cb_left5">300</span>
         </div>
       </div>
     </div>
@@ -88,12 +88,11 @@ export default {
   }
 
   &__info {
+    @extend .cb_column-between;
+    align-items: stretch;
+
     width: 268px;
     height: 142px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     padding: 17px;
     box-sizing: border-box;
@@ -107,8 +106,6 @@ export default {
     align-items: center;
     
     font-family: 'EuclidCircular';
-    font-style: normal;
-    font-weight: normal;
     font-size: 11px;
     line-height: 19px;
     color: #FFFFFF;
@@ -118,7 +115,6 @@ export default {
     width: 200px;
 
     font-family: 'EuclidCircular';
-    font-style: normal;
     font-weight: 500;
     font-size: 17px;
     line-height: 20px;
@@ -126,20 +122,15 @@ export default {
   }
 
   &__info-footer {
-    display: flex;
-    justify-content: space-between;
+    @extend .cb_row-between;
 
     font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
     font-size: 11px;
     line-height: 24px;
     color: #FFFFFF;
 
     &_item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @extend .cb_row-between;
 
       padding-left: 10px;
       padding-right: 10px;
@@ -150,25 +141,17 @@ export default {
   }
 
   &__icon-fire {
+    @extend .cb_center;
     position: absolute;
 
     top: -20px;
     right: -20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     width: 50px;
     height: 50px;
 
     background: #EE3465;
     border-radius: 50%;
-  }
-
-  // общие классы
-  &_left5 {
-    margin-left: 5px;
   }
 }
 </style>

@@ -100,11 +100,8 @@ export default {
 
 <style lang="scss" scoped>
 .button {
+  @extend .cb_row-between;
   padding: 1em 2em 1em 2em;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   border-style: solid;
   border-radius: 8px;
