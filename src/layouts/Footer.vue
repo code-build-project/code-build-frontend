@@ -2,31 +2,31 @@
   <div class="footer__wrap">
     <div class="footer">
       <div class="cb_row-between">
-        <icon-logo border="white"/>
+        <icon-logo class="footer__logo" stroke="#FFFFFF"/>
 
         <div class="footer__social">
-          <div class="footer_icon">
+          <div class="footer__icon">
             <icon-you-tube />
           </div>
 
-          <div class="footer_icon">
+          <div class="footer__icon">
             <icon-vk />
           </div>
           
-          <div class="footer_icon">
+          <div class="footer__icon">
             <icon-instagram />
           </div>
 
-          <div class="footer_icon">
+          <div class="footer__icon">
             <icon-telegram />
           </div>
         </div>
 
         <div class="footer__nav">
           <div class="footer__links">
-            <span>О проекте</span>
-            <span>Блог</span>
-            <span>Видеокурсы</span>
+            <span class="footer__links-item">О проекте</span>
+            <span class="footer__links-item">Блог</span>
+            <span class="footer__links-item">Видеокурсы</span>
           </div>
 
           <icon-rus-flag />
@@ -43,7 +43,12 @@
 
         <span class="footer__copy">
           Пишите: help@codebuild.com
-          <icon-copy />
+          <div 
+            class="footer__icon" 
+            style="width: 28px; height: 28px; border-radius: 6px"
+          >
+            <icon-copy />
+          </div>
         </span>
       </div>
     </div>
@@ -83,7 +88,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .footer__wrap {
   @extend .cb_center;
   width: 100%;
@@ -134,19 +139,46 @@ export default {
 
   &__copy {
     @extend .cb_row-between;
-    width: 210px;
+    width: 225px;
 
     font-size: 14px;
     color: #444754;
   }
 
-  &_icon {
+  &__icon {
     @extend .cb_center;
-    width: 44px;
+    width: 44px; 
     height: 44px;
 
     border: 1px solid #272A37;
     border-radius: 9px;
+  }
+}
+
+// hovers
+:hover.footer {
+  &__logo {
+    cursor: pointer;
+
+    ::v-deep {
+      path {
+        fill: #171717;
+      }
+
+      rect {
+        fill: #FFFFFF;
+      }
+    }
+  }
+
+  &__icon {
+    background: #272A37;
+    cursor: pointer;
+  }
+
+  &__links-item {
+    cursor: pointer;
+    color: #256CFE;
   }
 }
 </style>

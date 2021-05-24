@@ -15,12 +15,7 @@
     </div>
 
     <div class="reviews__footer">
-      <v-button 
-        class="cb_top160"
-        fontFamily="EuclidCircular"
-        fontSize="18"
-        :isIcon="false"
-      >
+      <v-button class="cb_top160" buttonType="reviews">
         Показать еще
       </v-button>
     </div>

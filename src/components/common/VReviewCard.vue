@@ -123,4 +123,10 @@ export default {
     color: #B0B7C8;
   }
 }
+
+// hovers
+:hover.card {
+  border-color: #256CFE;
+  cursor: pointer;
+}
 </style>

@@ -52,9 +52,8 @@
 
         <v-button 
           class="cb_top70"
-          fontFamily="EuclidCircular"
-          fontSize="18"
-          textColor="#FFFFFF"
+          buttonType="articles"
+          iconPosition="right"
           iconWidth="24"
           iconHeight="24"
         >

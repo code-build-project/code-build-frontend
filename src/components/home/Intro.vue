@@ -14,7 +14,7 @@
         и middle-разработчиков
       </div>
 
-      <v-button>Начать учиться</v-button>
+      <v-button buttonType="intro" iconPosition="right">Начать учиться</v-button>
 
       <!-- Иконки заднего фона -->
       <icon-iphone class="intro__iphone"/>

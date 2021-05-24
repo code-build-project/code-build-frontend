@@ -96,4 +96,12 @@ export default {
     border-radius: 21px;
   }
 }
+
+// hovers
+:hover.subscribe {
+  &__icon {
+    background: #3A7AFE;
+    cursor: pointer;
+  }
+}
 </style>

@@ -2,20 +2,12 @@
   <div class="button-wrap">
     <button 
       class="button" 
-      :style="{
-        'fontFamily': fontFamily,
-        'fontSize': fontSize + 'px',
-        'color': textColor,
-        'borderColor': borderColor,
-        'borderWidth': borderWidth + 'em',
-        'background': backgroundColor
-      }"
+      :class="`button-${buttonType}`"
       @click="$emit('click')"
     >
       <icon-premium 
-        v-if="isIcon && iconPosition === 'left'"
+        v-if="iconPosition === 'left'"
         class="button__icon-left"
-        :fill="textColor" 
         :width="iconWidth + 'px'" 
         :height="iconHeight + 'px'" 
       />
@@ -23,9 +15,8 @@
       <slot>Кнопка</slot>
 
       <icon-arrow 
-        v-if="isIcon && iconPosition === 'right'"
+        v-if="iconPosition === 'right'"
         class="button__icon-right"
-        :fill="textColor" 
         :width="iconWidth + 'px'" 
         :height="iconHeight + 'px'" 
       />
@@ -41,51 +32,22 @@ export default {
   name: 'VButton',
   components: { IconArrow, IconPremium },
   props: {
-    fontFamily: {
+    // Название типа кнопки
+    buttonType: {
       type: String,
-      default: 'Circe',
+      default: 'header',
     },
-
-    fontSize: {
-      type: String,
-      default: '24',
-    },
-
-    textColor: {
-      type: String,
-      default: '#256CFE',
-    },
-
-    borderColor: {
-      type: String,
-      default: '#256CFE',
-    },
-
-    borderWidth: {
-      type: String,
-      default: '0.1',
-    },
-
-    backgroundColor: {
-      type: String,
-      default: 'transparent',
-    },
-
-    isIcon: {
-      type: Boolean,
-      default: true,
-    },
-
+    // Позиция иконки
     iconPosition: {
       type: String,
-      default: 'right',
+      default: '',
     },
-
+    // Ширина иконки
     iconWidth: {
       type: String,
       default: '30',
     },
-
+    // Высота иконки
     iconHeight: {
       type: String,
       default: '30',
@@ -113,7 +75,80 @@ export default {
   &__icon-right {
     margin-left: 0.5em;
   }
+
+  // Типы кнопок
+  &-header {
+    font-family: 'Circe';
+    font-size: 18px;
+    color: #FFFFFF;
+    border: none;
+    background: #EE3465;
+
+    &:hover {
+      box-shadow: 0px 12px 18px -13px #EE3465;
+    }
+  }
+
+  &-intro {
+    font-family: 'Circe';
+    font-size: 24px;
+    color: #256CFE;
+    border-color: #256CFE;
+    border-width: 0.1em;
+    background: transparent;
+
+    ::v-deep path {
+      stroke: #256CFE;
+    }
+
+    &:hover {
+      color: #FFFFFF;
+      background: #256CFE;
+
+      ::v-deep path {
+        stroke: #FFFFFF;
+      }
+    }
+  }
+
+  &-courses {
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: #FFFFFF;
+    border-color: #256CFE;
+    border-width: 0.1em;
+    background: transparent;
+
+    &:hover {
+      background: #256CFE;
+    }
+  }
+
+  &-articles {
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: #FFFFFF;
+    border-color: #256CFE;
+    border-width: 0.1em;
+    background: transparent;
+
+    &:hover {
+      background: #256CFE;
+    }
+  }
+
+  &-reviews {
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: #256CFE;
+    border-color: #256CFE;
+    border-width: 0.1em;
+    background: transparent;
+
+    &:hover {
+      color: #FFFFFF;
+      background: #256CFE;
+    }
+  }
 }
-
-
 </style>

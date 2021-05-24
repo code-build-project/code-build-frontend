@@ -1,21 +1,17 @@
 <template>
   <div class="header">
-    <icon-logo />
+    <icon-logo class="header__logo" />
 
     <div class="header__nav">
-      <span>О проекте</span>
-      <span>Блог</span>
-      <span>Видеокурсы</span>
+      <span class="header__nav-item">О проекте</span>
+      <span class="header__nav-item">Блог</span>
+      <span class="header__nav-item">Видеокурсы</span>
     </div>
 
     <div class="header__buttons">
-      <span>Войти</span>
+      <span class="header__button">Войти</span>
       <v-button 
-        fontSize="18"
-        textColor="#FFFFFF"
-        borderColor="#EE3465"
-        borderWidth="0"
-        backgroundColor="#EE3465"
+        buttonType="header"
         iconPosition="left"
         iconWidth="21"
         iconHeight="21"
@@ -64,6 +60,33 @@ export default {
 
     width: 290px;
     color: #EE3465;
+  }
+}
+
+// hovers
+:hover.header {
+  &__logo {
+    cursor: pointer;
+    
+    ::v-deep {
+      path {
+        fill: #FFFFFF;
+      }
+
+      rect {
+        fill: #256CFE;
+      }
+    }
+  }
+
+  &__nav-item {
+    cursor: pointer;
+    color: #256CFE;
+  }
+
+  &__button {
+    cursor: pointer;
+    color: #15244B;
   }
 }
 </style>
