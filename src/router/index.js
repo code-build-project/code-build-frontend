@@ -15,6 +15,16 @@ const routes = [
         component: () => import('@/views/Home.vue'),
       },
       {
+        path: 'courses',
+        name: 'Courses',
+        component: () => import('@/views/Courses.vue'),
+      },
+      {
+        path: 'course',
+        name: 'Course',
+        component: () => import('@/views/Course.vue'),
+      },
+      {
         path: 'icons',
         name: 'Icons',
         component: () => import('@/views/Icons.vue'),

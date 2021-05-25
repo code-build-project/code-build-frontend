@@ -14,23 +14,23 @@
       </div>
 
       <div class="card__info-text">
-        <slot name="text">Создание сайта с нуля на CMS WordPress</slot>
+        {{ title }}
       </div>
 
       <div class="card__info-footer">
         <div class="card__info-footer_item">
           <icon-video />
-          <span class="cb_left5">6 уроков</span>
+          <span class="cb_left5">{{ lessons }}</span>
         </div>
 
         <div class="card__info-footer_item">
           <icon-timer />
-          <span class="cb_left5">1 ч. 25 м.</span>
+          <span class="cb_left5">{{ time }}</span>
         </div>
 
         <div class="card__info-footer_item">
           <icon-open-eye />
-          <span class="cb_left5">300</span>
+          <span class="cb_left5">{{ views }}</span>
         </div>
       </div>
     </div>
@@ -66,6 +66,26 @@ export default {
     fire: {
       type: Boolean,
       default: false,
+    },
+    // Название курса
+    title: {
+      type: String,
+      default: 'Название курса',
+    },
+    // Количество уроков
+    lessons: {
+      type: String,
+      default: '6 уроков',
+    },
+    // Общее время курса
+    time: {
+      type: String,
+      default: '1 ч. 25 м.',
+    },
+    // Количество просмотров курса
+    views: {
+      type: String,
+      default: '300',
     },
   },
   data() {
