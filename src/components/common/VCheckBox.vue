@@ -48,15 +48,16 @@ export default {
 .checkbox-input + label::before {
   content: '';
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
   flex-grow: 0;
-  border: 1px solid #e9eff6;
-  border-radius: 0.35em;
+  border: 1px solid #B1B8C6;
+  border-radius: 8px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 70% 70%;
+  cursor: pointer;
 }
 
 /* стили при наведении курсора на checkbox */

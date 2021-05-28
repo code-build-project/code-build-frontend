@@ -1,6 +1,6 @@
 <template>
   <div class="auth-layout">
-    <router-view />
+    <router-view class="auth-layout__form"/>
   </div>
 </template>
 
@@ -23,5 +23,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &__form {
+    width: 490px;
+    height: 735px;
+
+    border: 2px solid #256CFE;
+    border-radius: 8px;
+
+    padding: 58px 70px 58px 70px;
+    box-sizing: border-box;
+  }
 }
 </style>

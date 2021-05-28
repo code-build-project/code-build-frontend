@@ -1,5 +1,5 @@
 <template>
-  <div class="success">
+  <div>
     <div class="success__header">Спасибо</div>
 
     <div class="success__text">
@@ -7,14 +7,8 @@
       <b>{{ $route.params.email }}</b>
     </div>
 
-    <div class="repeat">
-      <v-button
-        class="repeat__button"
-        text="Отправить повторно"
-        :disabled="interval !== 0"
-        :buttonStyle="'small'"
-        @click="onSign()"
-      />
+    <div class="success__footer">
+      <div class="success__footer-text">Отправить повторно через</div>
 
       <icon-timer class="ps_ml11" />
 
@@ -78,35 +72,34 @@ export default {
 
 <style lang="scss" scoped>
 .success {
-  width: 30%;
-
-  border: 2px solid #0083f5;
-  border-radius: 22px;
-
-  @include adaptiv-padding(65, 12);
-  box-sizing: border-box;
+  @extend .cb_column;
 
   &__header {
-    font-family: 'Graphik LCG';
-    font-style: normal;
-    font-weight: bold;
-    @include adaptiv-font(25, 12);
-
-    color: #000000;
+    font-family: 'Circe';
+    font-size: 26px;
+    line-height: 28px;
+    color: #272A37;
   }
 
   &__text {
-    width: 85%;
+    font-family: 'Circe';
+    font-size: 20px;
+    line-height: 28px;
+    color: #272A37;
 
-    font-family: 'Graphik LCG';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 32px;
-    @include adaptiv-font(20, 10);
+    margin-top: 50px;
+  }
 
-    color: #000000;
+  &__footer {
+    @extend .cb_row-between;
+    margin-top: 330px;
+  }
 
-    margin-top: 45px;
+  &__footer-text {
+    font-family: 'Circe';
+    font-size: 20px;
+    line-height: 24px;
+    color: #272A37;
   }
 }
 
@@ -115,7 +108,7 @@ export default {
   align-items: center;
   margin-top: 200px;
 
-  &__button {
+  &__text {
     width: 60%;
   }
 

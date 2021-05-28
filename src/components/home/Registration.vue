@@ -7,24 +7,30 @@
         к более чем 20 курсам
       </div>
 
-      <v-input placeholder="your.email@example.com">
-        <template #rightIcon>
-          <div class="reg__icon">
-            <icon-arrow />
-          </div>
-        </template>
-      </v-input>
+      <div class="reg__input">
+        <div class="reg__input-legend">Email</div>
+
+        <input
+          class="reg__input-field"
+          value=""
+          placeholder="your.email@example.com"
+        />
+
+        <div class="reg__input-icon">
+          <icon-arrow />
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import IconArrow from '@/icons/IconArrow.vue'
-import VInput from '@/components/common/VInput.vue'
 
 export default {
   name: 'Registration',
-  components: { IconArrow, VInput }
+  components: { IconArrow }
 }
 </script>
 
@@ -50,13 +56,63 @@ export default {
     color: #FFFFFF;
   }
 
-  &__icon {
+  &__input {
+    position: relative;
+    width: 496px;
+    height: 80px;
+
+    font-family: 'Circe';
+    border-bottom: 1px solid #FFFFFF;
+  }
+
+  &__input-legend {
+    font-family: 'Circe';
+    font-size: 17px;
+    line-height: 19px;
+    color: #FFFFFF;
+  }
+
+  &__input-field {
+    margin-top: 20px;
+  
+    font-size: 26px;
+    line-height: 19px;
+    letter-spacing: -0.02em;
+
+    border: none;
+    background: transparent;
+    color: #FFFFFF;
+
+    outline: none;
+
+    &::placeholder {
+      color: #518AFF;
+    }
+  }
+
+  &__input-icon {
     @extend .cb_center;
+    position: absolute;
     width: 50px;
     height: 50px;
 
+    right: 0px;
+    bottom: 20px;
+
     border: 2px solid #3A7AFE;
     border-radius: 10px;
+  }
+}
+
+// hovers
+:hover.reg {
+  &__input-icon {
+    background: #FFFFFF;
+    cursor: pointer;
+
+    ::v-deep path {
+      stroke: #256CFE;
+    }
   }
 }
 </style>

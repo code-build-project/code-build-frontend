@@ -39,18 +39,18 @@ const routes = [
       {
         path: 'auth',
         name: 'Authorization',
-        component: () => import('@/components/Authorization.vue'),
+        component: () => import('@/views/Authorization.vue'),
       },
       {
         path: 'reg',
         name: 'Registration',
-        component: () => import('@/components/Registration.vue'),
+        component: () => import('@/views/Registration.vue'),
         props: true,
       },
       {
         path: 'reg/confirm',
         name: 'SuccessRegistration',
-        component: () => import('@/components/SuccessRegistration.vue'),
+        component: () => import('@/views/SuccessRegistration.vue'),
         props: true,
       },
     ],

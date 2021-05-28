@@ -72,36 +72,33 @@ export default {
 
 <style lang="scss" scoped>
 .input {
-  width: 496px;
-  height: 80px;
-
+  // @extend .cb_column-center;
   position: relative;
+  width: 374px;
+  height: 55px;
 
   font-family: 'Circe';
-  font-style: normal;
-  font-weight: normal;
-
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #B1B8C6;
 
   &__legend {
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 19px;
-    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-size: 13px;
+    line-height: 16px;
+    color: #B1B8C6;
   }
   
   &__field {
     margin-top: 20px;
-  
-    font-size: 26px;
-    line-height: 19px;
-    letter-spacing: -0.02em;
+    
+    font-size: 17px;
+    line-height: 16px;
 
     border: none;
     background: transparent;
-    color: #FFFFFF;
+    color: #272A37;;
 
     outline: none;
 
@@ -114,7 +111,7 @@ export default {
     }
 
     &::placeholder {
-      color: #518AFF;
+      color: #B1B8C6;
     }
   }
 

@@ -150,5 +150,22 @@ export default {
       background: #256CFE;
     }
   }
+
+  &-reg {
+    @extend .cb_row-center;
+    width: 374px;
+    
+    font-family: 'EuclidCircular';
+    font-size: 20px;
+    color: #272A37;
+    border-color: #B1B8C6;
+    border-width: 1px;
+    background: transparent;
+
+    &:hover {
+      color: #FFFFFF;
+      background: #256CFE;
+    }
+  }
 }
 </style>
