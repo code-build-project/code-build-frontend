@@ -35,31 +35,31 @@
       <!-- Правая часть -->
       <div class="cb_row">
         <div class="cb_column">
-          <v-course-card class="cb_top70">
+          <v-course-mini-card class="cb_top70">
             <template #text>
               Создание сайта с нуля на CMS WordPress
             </template>
-          </v-course-card>
+          </v-course-mini-card>
 
-          <v-course-card class="cb_top35">
+          <v-course-mini-card class="cb_top35">
             <template #text>
               Изучение языка Ruby для начинающих
             </template>
-          </v-course-card>
+          </v-course-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
-          <v-course-card fire >
+          <v-course-mini-card fire >
             <template #text>
               Изучение языка Си для начинающих
             </template>
-          </v-course-card>
+          </v-course-mini-card>
 
-          <v-course-card class="cb_top35" level="Intermediate">
+          <v-course-mini-card class="cb_top35" level="Intermediate">
             <template #text>
               Уроки Java Android программирования
             </template>
-          </v-course-card>
+          </v-course-mini-card>
         </div>
       </div>
       <!-- Правая часть -->
@@ -70,14 +70,14 @@
 <script>
 import IconPlay from '@/icons/IconPlay.vue'
 
-import VCourseCard from '@/components/common/VCourseCard.vue'
+import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Courses',
   components: { 
     IconPlay, 
-    VCourseCard,
+    VCourseMiniCard,
     VButton,
   }
 }

@@ -29,7 +29,6 @@ export default {
 }
 
 .content {
-  // flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <hr class="footer__line"/>
+      <hr class="footer__line cb_top50"/>
 
       <div class="cb_row-between cb_top15">
         <span class="footer__copyright">
@@ -125,7 +125,6 @@ export default {
   &__line {
     height: 1px;
     border: none; 
-    margin-top: 50px;
     background-color: #444754; 
   }
 

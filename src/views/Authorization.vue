@@ -1,22 +1,20 @@
 <template>
   <div class="auth">
-    <icon-logo class="auth__logo" width="107" height="75"/>
+    <icon-logo class="auth__logo cb_top75" width="107" height="75"/>
 
-    <div class="auth__title">Войдите, чтобы продолжить</div>
+    <div class="auth__title cb_top25">Войдите, чтобы продолжить</div>
 
-    <v-input class="cb_top100" placeholder="Логин или E-mail" />
+    <v-input class="cb_top95" placeholder="Логин или E-mail" />
 
-    <v-input class="cb_top55" placeholder="Пароль" />
+    <v-input class="cb_top40" placeholder="Пароль" />
 
-    <div class="auth__forget">
-      <span class="auth__forget_text">Забыли пароль?</span>
-    </div>
+    <div class="auth__forget cb_top8">Забыли пароль?</div>
 
-    <v-button class="cb_top75" buttonType="reg" >Войти</v-button>
+    <v-button class="cb_top70" buttonType="reg">Войти</v-button>
 
-    <div class="auth__footer">
+    <div class="auth__footer cb_top30">
       <span>Новый пользователь?</span>
-      <span class="auth__footer_reg">Зарегистрируйтесь</span>
+      <span class="auth__reg cb_left5">Зарегистрируйтесь</span>
     </div>
   </div>
 </template>
@@ -85,51 +83,37 @@ export default {
 
 <style lang="scss" scoped>
 .auth {
-  @extend .cb_column-center;
+  @extend .cb_column;
+  font-family: 'Circe';
   align-items: center;
-
-  width: 490px;
-  height: 735px;
-
-  border: 2px solid #256CFE;
-  border-radius: 8px;
-  box-sizing: border-box;
 
 
   &__title {
-    font-family: 'Circe';
     font-size: 22px;
     line-height: 27px;
     text-align: center;
     color: #272A37;
-
-    margin-top: 26px;
   }
 
   &__forget {
+    @extend .cb_row-end;
     width: 374px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
 
-    font-family: 'Circe';
     font-size: 15px;
     color: #B1B8C6;
   }
 
   &__footer {
-    margin-top: 27px;
-    font-family: 'Circe';
     font-size: 16px;
     color: #B1B8C6;
+  }
 
-    &_reg {
-      @extend .cb_underline-blue;
-      position: relative;
-      margin-left: 3px;
-      font-weight: bold;
-      color: #272A37;
-    }
+  &__reg {
+    @extend .cb_underline-blue;
+    position: relative;
+
+    font-weight: bold;
+    color: #272A37;
   }
 }
 
@@ -149,7 +133,7 @@ export default {
     }
   }
 
-  &__footer_reg {
+  &__reg {
     cursor: pointer;
     color: #256CFE;
   }

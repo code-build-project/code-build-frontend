@@ -3,16 +3,17 @@
     <div class="courses">
       <div class="courses__title">Все видеокурсы</div>
 
-      <div class="courses__filter">
+      <div class="courses__filter cb_top30">
         <div v-for="(item, index) in filterList" :key="index" class="courses__filter-item">
           {{ item.name }}
         </div>
       </div>
 
-      <div class="courses__list">
+      <div class="courses__list cb_top60">
         <div v-for="(item, index) in courseList" :key="index">
           <v-course-card 
-            class="cb_bottom30" 
+            class="cb_bottom30"
+            :class="{'cb_left29 cb_right29': (index - 1) % 3 === 0}" 
             :title="item.title"
             :lessons="item.lessons"
             :time="item.time"
@@ -107,7 +108,7 @@ export default {
   width: 1160px;
   min-height: 1840px;
 
-  padding: 100px 0px 100px 0px;
+  padding: 100px 0px 110px 0px;
 
   &__title {
     font-family: 'ObjectSans';
@@ -121,8 +122,6 @@ export default {
     @extend .cb_row-between;
     width: 1000px;
     height: 50px;
-
-    margin-top: 30px;
   }
 
   &__filter-item {
@@ -138,10 +137,8 @@ export default {
   }
 
   &__list {
-    margin-top: 60px;
-
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-wrap: wrap;
   }
 }
