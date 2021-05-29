@@ -1,14 +1,14 @@
 <template>
   <div class="reg">
-    <icon-logo class="reg__logo" width="107" height="75"/>
+    <icon-logo class="reg__logo cb_top75" width="107" height="75"/>
 
-    <div class="reg__title">Зарегистрируйтесь в Code Build</div>
+    <div class="reg__title cb_top25">Зарегистрируйтесь в Code Build</div>
 
     <v-input class="cb_top75" placeholder="Имя" />
 
     <v-input class="cb_top55" placeholder="E-mail" />
 
-    <div class="reg__consent">
+    <div class="reg__consent cb_top40">
       <v-check-box />
 
       <div class="cb_left10">
@@ -19,9 +19,9 @@
 
     <v-button class="cb_top60" buttonType="reg" >Зарегистрироваться</v-button>
 
-    <div class="reg__footer">
+    <div class="cb_top25">
       <span>У вас уже есть аккаунт?</span>
-      <span class="reg__footer_entry">Войти</span>
+      <span class="reg__entry cb_left5">Войти</span>
     </div>
   </div>
 </template>
@@ -80,24 +80,15 @@ export default {
 
 <style lang="scss" scoped>
 .reg {
-  @extend .cb_column-center;
+  @extend .cb_column;
+  font-family: 'Circe';
   align-items: center;
 
-  width: 490px;
-  height: 735px;
-
-  border: 2px solid #256CFE;
-  border-radius: 8px;
-  box-sizing: border-box;
-
   &__title {
-    font-family: 'Circe';
     font-size: 22px;
     line-height: 27px;
     text-align: center;
     color: #272A37;
-
-    margin-top: 26px;
   }
 
   &__consent {
@@ -105,31 +96,23 @@ export default {
     align-items: center;
     width: 374px;
 
-    font-family: 'Circe';
     font-size: 13px;
     line-height: 15px;
     color: #B1B8C6;
-
-    margin-top: 40px;
 
     &_blue {
       color: #256cfe;
     }
   }
 
-  &__footer {
-    margin-top: 27px;
-    font-family: 'Circe';
+  &__entry {
+    @extend .cb_underline-blue;
+    position: relative;
+
     font-size: 16px;
     color: #B1B8C6;
-
-    &_entry {
-      @extend .cb_underline-blue;
-      position: relative;
-      margin-left: 3px;
-      font-weight: bold;
-      color: #272A37;
-    }
+    font-weight: bold;
+    color: #272A37;
   }
 }
 
@@ -149,7 +132,7 @@ export default {
     }
   }
 
-  &__footer_entry {
+  &__entry {
     cursor: pointer;
     color: #256CFE;
   }
