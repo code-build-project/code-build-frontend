@@ -167,5 +167,36 @@ export default {
       background: #256CFE;
     }
   }
+
+  &-interval {
+    @extend .cb_row-center;
+    width: 190px;
+    height: 70px;
+    
+    font-family: 'Circe';
+    font-size: 20px;
+    color: #272A37;
+    border-color: #B1B8C6;
+    border-width: 1px;
+    background: transparent;
+
+    &:hover {
+      color: #FFFFFF;
+      background: #256CFE;
+    }
+  }
+
+  &-success {
+    @extend .cb_row-center;
+    width: 190px;
+    height: 70px;
+    
+    font-family: 'Circe';
+    font-size: 20px;
+    color: #FFFFFF;
+    border-color: #B1B8C6;
+    border-width: 1px;
+    background: #256CFE;
+  }
 }
 </style>

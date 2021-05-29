@@ -31,7 +31,7 @@ export default {
     border: 2px solid #256CFE;
     border-radius: 8px;
 
-    padding: 58px 70px 58px 70px;
+    padding: 0px 58px 0px 58px;
     box-sizing: border-box;
   }
 }

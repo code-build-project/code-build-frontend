@@ -82,6 +82,10 @@
     &_top160 {
       margin-top: 160px;
     }
+
+    &_top370 {
+      margin-top: 370px;
+    }
   
     // margin-bottom
     &_bottom30 {
@@ -121,6 +125,33 @@
         height: 2px;
         background: #256CFE;
       }
+    }
+
+    // font
+    &_circe20-black {
+      font-family: 'Circe';
+      font-size: 20px;
+      color: #272A37;
+    }
+
+    &_circe20-black-line24 {
+      font-family: 'Circe';
+      font-size: 20px;
+      line-height: 24px;
+      color: #272A37;
+    }
+
+    &_circe20-black-line28 {
+      font-family: 'Circe';
+      font-size: 20px;
+      line-height: 28px;
+      color: #272A37;
+    }
+
+    &_circe26-black {
+      font-family: 'Circe';
+      font-size: 26px;
+      color: #272A37;
     }
   }
     

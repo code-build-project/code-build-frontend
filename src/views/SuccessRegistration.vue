@@ -1,20 +1,22 @@
 <template>
-  <div>
-    <div class="success__header">Спасибо</div>
+  <div class="success">
+    <div class="cb_circe26-black cb_top60">Спасибо</div>
 
-    <div class="success__text">
-      Завершите регистрацию по ссылке в письме, которое мы отправили на
-      <b>{{ $route.params.email }}</b>
+    <div class="cb_circe20-black-line28 cb_top60">
+      Завершите регистрацию по ссылке<br/> в письме, которое мы отправили на<br/>
+      {{ $route.params.email }}
     </div>
 
-    <div class="success__footer">
-      <div class="success__footer-text">Отправить повторно через</div>
+    <div class="cb_row-between cb_top370">
+      <div class="cb_circe20-black-line24">Отправить<br/> повторно через</div>
 
-      <icon-timer class="ps_ml11" />
+      <v-button v-if="interval" buttonType="interval">
+        00:{{ interval > 9 ? interval : '0' + interval }}
+      </v-button>
 
-      <span class="repeat__timer">
-        через 00:{{ interval > 9 ? interval : '0' + interval }}
-      </span>
+      <v-button v-else buttonType="success">
+        Отправить
+      </v-button>
     </div>
   </div>
 </template>
@@ -22,12 +24,11 @@
 <script>
 import IconTimer from '@/icons/IconTimer.vue'
 
-import VInput from '@/components/common/VInput.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'SuccessRegistration',
-  components: { IconTimer, VInput, VButton },
+  components: { IconTimer, VButton },
   props: {},
   data() {
     return {
@@ -69,65 +70,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.success {
-  @extend .cb_column;
-
-  &__header {
-    font-family: 'Circe';
-    font-size: 26px;
-    line-height: 28px;
-    color: #272A37;
-  }
-
-  &__text {
-    font-family: 'Circe';
-    font-size: 20px;
-    line-height: 28px;
-    color: #272A37;
-
-    margin-top: 50px;
-  }
-
-  &__footer {
-    @extend .cb_row-between;
-    margin-top: 330px;
-  }
-
-  &__footer-text {
-    font-family: 'Circe';
-    font-size: 20px;
-    line-height: 24px;
-    color: #272A37;
-  }
-}
-
-.repeat {
-  display: flex;
-  align-items: center;
-  margin-top: 200px;
-
-  &__text {
-    width: 60%;
-  }
-
-  &__timer {
-    margin-left: 3%;
-    width: 21%;
-
-    font-family: 'Graphik LCG';
-    font-style: normal;
-    font-weight: normal;
-    @include adaptiv-font(14, 7);
-
-    color: #a5b4c5;
-  }
-}
-
-.ps {
-  &_ml11 {
-    margin-left: 11%;
-  }
-}
-</style>
