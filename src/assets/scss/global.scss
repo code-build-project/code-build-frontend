@@ -73,15 +73,15 @@
 
   // color
   $status-colors: (
-    black:  #272A37,
-    blue:   #256CFE,
-    navy:   #2468F2,
-    pink:   #EE3465,
-    gray:   #B1B8C6,
-    smoky:  #CACACA,
-    silver: #E4E4E4,
-    white:  #FFFFFF,
-    red:    #FF3300,
+    'black':  #272A37,
+    'blue':   #256CFE,
+    'navy':   #2468F2,
+    'pink':   #EE3465,
+    'gray':   #B1B8C6,
+    'smoky':  #CACACA,
+    'silver': #E4E4E4,
+    'white':  #FFFFFF,
+    'red':    #FF3300,
   );
 
   @each $status, $color in $status-colors {
