@@ -1,14 +1,14 @@
 <template>
   <div class="success">
-    <div class="cb_circe26-black cb_top60">Спасибо</div>
+    <div class="success__title cb_top60">Спасибо</div>
 
-    <div class="cb_circe20-black-line28 cb_top60">
+    <div class="success__subtitle cb_top60">
       Завершите регистрацию по ссылке<br/> в письме, которое мы отправили на<br/>
       {{ $route.params.email }}
     </div>
 
-    <div class="cb_row-between cb_top370">
-      <div class="cb_circe20-black-line24">Отправить<br/> повторно через</div>
+    <div class="success__footer cb_top370">
+      <div>Отправить<br/> повторно через</div>
 
       <v-button v-if="interval" buttonType="interval">
         00:{{ interval > 9 ? interval : '0' + interval }}
@@ -70,3 +70,31 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.success {
+  @extend .cb_column;
+
+  &__title {
+    font-family: 'Circe';
+    font-size: 26px;
+    line-height: 28px;
+    color: #272A37;
+  }
+
+  &__subtitle {
+    font-family: 'Circe';
+    font-size: 20px;
+    line-height: 28px;
+    color: #272A37;
+  }
+
+  &__footer {
+    @extend .cb_row-between;
+    font-family: 'Circe';
+    font-size: 20px;
+    line-height: 24px;
+    color: #272A37;
+  }
+}
+</style>

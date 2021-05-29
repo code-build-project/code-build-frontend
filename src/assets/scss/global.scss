@@ -2,192 +2,149 @@
   Идентефикатор, с которого начинается название каждого глобального класса -> cb
   (сокращенно от названия проекта "code-build") */
 
-  .cb {
-    // flex
-    &_center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    &_row {
-      display: flex;
-      flex-direction: row;
-    }
-  
-    &_row-between {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  
-    &_row-center {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-    }
-  
-    &_column {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    &_column-between {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    &_column-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  
-    // margin-top
-    &_top15 {
-      margin-top: 15px;
-    }
+.cb {
+  // flex
+  &_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &_top25 {
-      margin-top: 25px;
-    }
-  
-    &_top35 {
-      margin-top: 35px;
-    }
+  &_row {
+    display: flex;
+    flex-direction: row;
+  }
 
-    &_top40 {
-      margin-top: 40px;
-    }
+  &_row-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    &_top50 {
-      margin-top: 50px;
-    }
-  
-    &_top55 {
-      margin-top: 55px;
-    }
-  
-    &_top60 {
-      margin-top: 60px;
-    }
+  &_row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
-    &_top65 {
-      margin-top: 65px;
-    }
-  
-    &_top70 {
-      margin-top: 70px;
-    }
-  
-    &_top75 {
-      margin-top: 75px;
-    }
-  
-    &_top100 {
-      margin-top: 100px;
-    }
-  
-    &_top125 {
-      margin-top: 125px;
-    }
-  
-    &_top160 {
-      margin-top: 160px;
-    }
+  &_column {
+    display: flex;
+    flex-direction: column;
+  }
 
-    &_top370 {
-      margin-top: 370px;
-    }
+  &_column-between {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
   
-    // margin-bottom
-    &_bottom30 {
-      margin-bottom: 30px;
-    }
-  
-    // margin-left
-    &_left5 {
-      margin-left: 5px;
-    }
-  
-    &_left10 {
-      margin-left: 10px;
-    }
-  
-  
-    &_left17 {
-      margin-left: 17px;
-    }
-  
-    &_left20 {
-      margin-left: 20px;
-    }
-  
-    &_left30 {
-      margin-left: 30px;
-    }
-  
-    // underline
-    &_underline-blue {
-      &:after {
-        position: absolute;
-        content: "";
-        top: 18px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: #256CFE;
-      }
-    }
+  &_column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    // font Circe black
-    &_circe20-black {
-      font-family: 'Circe';
-      font-size: 20px;
-      color: #272A37;
-    }
+  // margin-top
+  &_top15 {
+    margin-top: 15px;
+  }
 
-    &_circe20-black-line24 {
-      font-family: 'Circe';
-      font-size: 20px;
-      line-height: 24px;
-      color: #272A37;
-    }
+  &_top25 {
+    margin-top: 25px;
+  }
 
-    &_circe20-black-line28 {
-      font-family: 'Circe';
-      font-size: 20px;
-      line-height: 28px;
-      color: #272A37;
-    }
+  &_top35 {
+    margin-top: 35px;
+  }
 
-    &_circe22-black {
-      font-family: 'Circe';
-      font-size: 22px;
-      color: #272A37;
-    }
+  &_top40 {
+    margin-top: 40px;
+  }
 
-    &_circe26-black {
-      font-family: 'Circe';
-      font-size: 26px;
-      color: #272A37;
-    }
+  &_top45 {
+    margin-top: 45px;
+  }
 
-    // font Circe gray
-    &_circe13-gray-line15 {
-      font-family: 'Circe';
-      font-size: 13px;
-      line-height: 15px;
-      color: #B1B8C6;
-    }
+  &_top50 {
+    margin-top: 50px;
+  }
 
-    &_circe16-gray {
-      font-family: 'Circe';
-      font-size: 16px;
-      color: #B1B8C6;
+  &_top55 {
+    margin-top: 55px;
+  }
+
+  &_top60 {
+    margin-top: 60px;
+  }
+
+  &_top65 {
+    margin-top: 65px;
+  }
+
+  &_top70 {
+    margin-top: 70px;
+  }
+
+  &_top75 {
+    margin-top: 75px;
+  }
+
+  &_top100 {
+    margin-top: 100px;
+  }
+
+  &_top125 {
+    margin-top: 125px;
+  }
+
+  &_top160 {
+    margin-top: 160px;
+  }
+
+  &_top370 {
+    margin-top: 370px;
+  }
+
+  // margin-bottom
+  &_bottom30 {
+    margin-bottom: 30px;
+  }
+
+  // margin-left
+  &_left5 {
+    margin-left: 5px;
+  }
+
+  &_left10 {
+    margin-left: 10px;
+  }
+
+
+  &_left17 {
+    margin-left: 17px;
+  }
+
+  &_left20 {
+    margin-left: 20px;
+  }
+
+  &_left30 {
+    margin-left: 30px;
+  }
+
+  // underline
+  &_underline-blue {
+    &:after {
+      position: absolute;
+      content: "";
+      top: 18px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #256CFE;
     }
   }
+}
     

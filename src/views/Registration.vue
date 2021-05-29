@@ -4,9 +4,9 @@
 
     <div class="reg__title cb_top25">Зарегистрируйтесь в Code Build</div>
 
-    <v-input class="cb_top75" placeholder="Имя" />
+    <v-input class="cb_top70" placeholder="Имя" />
 
-    <v-input class="cb_top55" placeholder="E-mail" />
+    <v-input class="cb_top40" placeholder="E-mail" />
 
     <div class="reg__consent cb_top40">
       <v-check-box />
@@ -17,9 +17,9 @@
       </div>
     </div>
 
-    <v-button class="cb_top60" buttonType="reg" >Зарегистрироваться</v-button>
+    <v-button class="cb_top50" buttonType="reg" >Зарегистрироваться</v-button>
 
-    <div class="cb_top25">
+    <div class="reg__footer cb_top25">
       <span>У вас уже есть аккаунт?</span>
       <span class="reg__entry cb_left5">Войти</span>
     </div>
@@ -105,12 +105,16 @@ export default {
     }
   }
 
+  &__footer {
+    font-size: 16px;
+    color: #B1B8C6;
+  }
+
   &__entry {
     @extend .cb_underline-blue;
     position: relative;
 
     font-size: 16px;
-    color: #B1B8C6;
     font-weight: bold;
     color: #272A37;
   }
