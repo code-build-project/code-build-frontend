@@ -19,7 +19,6 @@
         <v-lesson-card class="cb_bottom30" />
 
         <v-lesson-card class="cb_bottom30" />
-        
       </div>
 
       <div class="course__useful">

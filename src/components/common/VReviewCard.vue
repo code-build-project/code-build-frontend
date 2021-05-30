@@ -1,5 +1,8 @@
 <template>
-  <div class="card" :style="{'height': height + 'px'}">
+  <div
+    class="card"
+    :style="{'height': height + 'px'}"
+  >
     <div class="card__score">
       <icon-star />
       <span>{{ score }}</span>
@@ -10,13 +13,15 @@
     </div>
 
     <div class="cb_row cb_top35">
-      <div class="card__avatar-img">
-
-      </div>
+      <div class="card__avatar-img" />
 
       <div class="cb_column-center cb_left17">
-        <div class="card__avatar-name">{{ name }}</div>
-        <div class="card__avatar-date">{{ date }}</div>
+        <div class="card__avatar-name">
+          {{ name }}
+        </div>
+        <div class="card__avatar-date">
+          {{ date }}
+        </div>
       </div>
     </div>
   </div>

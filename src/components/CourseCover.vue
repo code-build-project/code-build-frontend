@@ -5,11 +5,19 @@
         <div class="cover__route">
           <div class="cb_center">
             Code build 
-            <icon-arrow class="cb_left20" width="20" height="20" />
+            <icon-arrow
+              class="cb_left20"
+              width="20"
+              height="20"
+            />
           </div>
           <div class="cb_center cb_left20">
             Видеокурсы 
-            <icon-arrow class="cb_left20" width="20" height="20" />
+            <icon-arrow
+              class="cb_left20"
+              width="20"
+              height="20"
+            />
           </div>
           <div class="cb_center cb_left20">
             Создание сайта с нуля на CMS WordPress 
@@ -24,7 +32,7 @@
       </div>
 
       <div class="cover__subtitle">
-        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на движке WordPress.<br/> 
+        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на движке WordPress.<br /> 
         В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
       </div>
 

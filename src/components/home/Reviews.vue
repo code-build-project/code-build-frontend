@@ -1,21 +1,30 @@
 <template>
   <div class="reviews">
-    <div class="reviews__title">Отзывы о наших курсах</div>
+    <div class="reviews__title">
+      Отзывы о наших курсах
+    </div>
 
     <div class="reviews__list">
-      <div v-for="(item, index) in reviewList" :key="index">
+      <div
+        v-for="(item, index) in reviewList"
+        :key="index"
+      >
         <v-review-card 
           class="reviews__list-item" 
           :height="index === 1 ? '700' : '335'"
           :score="item.score"
           :text="item.text"
           :name="item.name"
-          :date="item.date"/>
+          :date="item.date"
+        />
       </div>
     </div>
 
     <div class="reviews__footer">
-      <v-button class="cb_top160" buttonType="reviews">
+      <v-button
+        class="cb_top160"
+        button-type="reviews"
+      >
         Показать еще
       </v-button>
     </div>

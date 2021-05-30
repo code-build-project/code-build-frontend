@@ -22,10 +22,10 @@
 
         <v-button 
           class="cb_top70"
-          buttonType="courses"
-          iconPosition="right"
-          iconWidth="24"
-          iconHeight="24"
+          button-type="courses"
+          icon-position="right"
+          icon-width="24"
+          icon-height="24"
         >
           Все курсы
         </v-button>
@@ -49,13 +49,16 @@
         </div>
 
         <div class="cb_column cb_left30">
-          <v-course-mini-card fire >
+          <v-course-mini-card fire>
             <template #text>
               Изучение языка Си для начинающих
             </template>
           </v-course-mini-card>
 
-          <v-course-mini-card class="cb_top35" level="Intermediate">
+          <v-course-mini-card
+            class="cb_top35"
+            level="Intermediate"
+          >
             <template #text>
               Уроки Java Android программирования
             </template>

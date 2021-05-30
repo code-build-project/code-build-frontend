@@ -1,16 +1,35 @@
 <template>
   <div class="auth">
-    <icon-logo class="auth__logo cb_top75" width="107" height="75"/>
+    <icon-logo
+      class="auth__logo cb_top75"
+      width="107"
+      height="75"
+    />
 
-    <div class="auth__title cb_top25">Войдите, чтобы продолжить</div>
+    <div class="auth__title cb_top25">
+      Войдите, чтобы продолжить
+    </div>
 
-    <v-input class="cb_top95" placeholder="Логин или E-mail" />
+    <v-input
+      class="cb_top95"
+      placeholder="Логин или E-mail"
+    />
 
-    <v-input class="cb_top40" placeholder="Пароль" />
+    <v-input
+      class="cb_top40"
+      placeholder="Пароль"
+    />
 
-    <div class="auth__forget cb_top8">Забыли пароль?</div>
+    <div class="auth__forget cb_top8">
+      Забыли пароль?
+    </div>
 
-    <v-button class="cb_top70" buttonType="reg">Войти</v-button>
+    <v-button
+      class="cb_top70"
+      button-type="reg"
+    >
+      Войти
+    </v-button>
 
     <div class="auth__footer cb_top30">
       <span>Новый пользователь?</span>
@@ -22,17 +41,23 @@
 <script>
 import IconLogo from '@/icons/IconLogo.vue'
 
-import IconCloseEye from '@/icons/IconCloseEye.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
+// import IconCloseEye from '@/icons/IconCloseEye.vue'
+// import IconOpenEye from '@/icons/IconOpenEye.vue'
 
 import VInput from '@/components/common/VInput.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Authorization',
-  components: { IconLogo, IconCloseEye, IconOpenEye, VInput, VButton },
+  components: {
+    IconLogo,
+    // IconCloseEye,
+    // IconOpenEye,
+    VInput,
+    VButton
+  },
   props: {},
-  data() {
+  data () {
     return {
       viewPassword: false, // видимость пароля
 
@@ -42,27 +67,27 @@ export default {
       emailError: false,
       emailErrorText: '',
 
-      passwordError: false,
+      passwordError: false
     }
   },
   computed: {},
   methods: {
-    validateEmail() {
-      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    // validateEmail () {
+    //   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 
-      if (reg.test(this.email) === false) {
-        this.emailError = true
-        this.emailErrorText = 'Неверный формат'
-      } else {
-        this.emailError = false
-        this.emailErrorText = ''
-      }
-    },
+    //   if (reg.test(this.email) === false) {
+    //     this.emailError = true
+    //     this.emailErrorText = 'Неверный формат'
+    //   } else {
+    //     this.emailError = false
+    //     this.emailErrorText = ''
+    //   }
+    // },
 
-    onLogin() {
+    onLogin () {
       const payload = {
         email: this.email,
-        password: this.password,
+        password: this.password
       }
 
       this.axios
@@ -76,8 +101,8 @@ export default {
           this.emailError = true
           this.passwordError = true
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -87,12 +112,11 @@ export default {
   font-family: 'Circe';
   align-items: center;
 
-
   &__title {
     font-size: 22px;
     line-height: 27px;
     text-align: center;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__forget {
@@ -100,12 +124,12 @@ export default {
     width: 374px;
 
     font-size: 15px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__footer {
     font-size: 16px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__reg {
@@ -113,7 +137,7 @@ export default {
     position: relative;
 
     font-weight: bold;
-    color: #272A37;
+    color: #272a37;
   }
 }
 
@@ -121,21 +145,21 @@ export default {
 :hover.auth {
   &__logo {
     cursor: pointer;
-    
+
     ::v-deep {
       path {
-        fill: #FFFFFF;
+        fill: #ffffff;
       }
 
       rect {
-        fill: #256CFE;
+        fill: #256cfe;
       }
     }
   }
 
   &__reg {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
   }
 }
 </style>

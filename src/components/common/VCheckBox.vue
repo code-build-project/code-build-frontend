@@ -7,7 +7,10 @@
       :checked="checked"
       @change="$emit('change', $event.target.checked)"
     />
-    <label class="checkbox-label" :for="keyField"> </label>
+    <label
+      class="checkbox-label"
+      :for="keyField"
+    />
   </div>
 </template>
 

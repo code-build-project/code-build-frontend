@@ -1,23 +1,40 @@
 <template>
   <div class="reg">
-    <icon-logo class="reg__logo cb_top75" width="107" height="75" />
+    <icon-logo
+      class="reg__logo cb_top75"
+      width="107"
+      height="75"
+    />
 
-    <div class="reg__title cb_top25">Зарегистрируйтесь в Code Build</div>
+    <div class="reg__title cb_top25">
+      Зарегистрируйтесь в Code Build
+    </div>
 
-    <v-input class="cb_top70" placeholder="Имя" />
+    <v-input
+      class="cb_top70"
+      placeholder="Имя"
+    />
 
-    <v-input class="cb_top40" placeholder="E-mail" />
+    <v-input
+      class="cb_top40"
+      placeholder="E-mail"
+    />
 
     <div class="reg__consent cb_top40">
       <v-check-box />
 
       <div class="cb_left10">
-        Я согласен с условиями обработки<br/> 
+        Я согласен с условиями обработки<br /> 
         <span class="cb_color-blue">персональных данных</span>
       </div>
     </div>
 
-    <v-button class="cb_top50" buttonType="reg">Зарегистрироваться</v-button>
+    <v-button
+      class="cb_top50"
+      button-type="reg"
+    >
+      Зарегистрироваться
+    </v-button>
 
     <div class="reg__footer cb_top25">
       <span>У вас уже есть аккаунт?</span>

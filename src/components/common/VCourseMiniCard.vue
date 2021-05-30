@@ -1,14 +1,12 @@
 <template>
   <div class="card">
-    <div class="card__poster">
-
-    </div>
+    <div class="card__poster" />
 
     <div class="card__info">
       <div class="card__info-header">
         <icon-ellipse fill="#EE3465" />
-        <icon-ellipse :fill="level !== 'Beginner' ? '#EE3465' : '#3A3F4F'"/>
-        <icon-ellipse :fill="level === 'High' ? '#EE3465' : '#3A3F4F'"/>
+        <icon-ellipse :fill="level !== 'Beginner' ? '#EE3465' : '#3A3F4F'" />
+        <icon-ellipse :fill="level === 'High' ? '#EE3465' : '#3A3F4F'" />
 
         <span class="cb_left5">{{ level }}</span>
       </div>
@@ -35,7 +33,10 @@
       </div>
     </div>
 
-    <div v-if="fire" class="card__icon-fire">
+    <div
+      v-if="fire"
+      class="card__icon-fire"
+    >
       <icon-fire />
     </div>
   </div>

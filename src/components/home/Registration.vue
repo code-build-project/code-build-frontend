@@ -8,7 +8,9 @@
       </div>
 
       <div class="reg__input">
-        <div class="reg__input-legend">Email</div>
+        <div class="reg__input-legend">
+          Email
+        </div>
 
         <input
           class="reg__input-field"
@@ -20,7 +22,6 @@
           <icon-arrow />
         </div>
       </div>
-
     </div>
   </div>
 </template>

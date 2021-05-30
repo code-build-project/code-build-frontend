@@ -1,6 +1,6 @@
 <template>
   <div class="auth-layout">
-    <router-view class="auth-layout__form"/>
+    <router-view class="auth-layout__form" />
   </div>
 </template>
 

@@ -1,26 +1,35 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <div class="courses__title">Все видеокурсы</div>
+      <div class="courses__title">
+        Все видеокурсы
+      </div>
 
       <div class="courses__filter cb_top30">
-        <div v-for="(item, index) in filterList" :key="index" class="courses__filter-item">
+        <div
+          v-for="(item, index) in filterList"
+          :key="index"
+          class="courses__filter-item"
+        >
           {{ item.name }}
         </div>
       </div>
 
       <div class="courses__list cb_top60">
-        <div v-for="(item, index) in courseList" :key="index">
+        <div
+          v-for="(item, index) in courseList"
+          :key="index"
+        >
           <v-course-card 
             class="cb_bottom30"
             :class="{'cb_left29 cb_right29': (index - 1) % 3 === 0}" 
             :title="item.title"
             :lessons="item.lessons"
             :time="item.time"
-            :views="item.views"/>
+            :views="item.views"
+          />
         </div>
       </div>
-
     </div>
 
     <block-registration />

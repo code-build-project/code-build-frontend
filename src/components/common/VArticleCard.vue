@@ -1,8 +1,6 @@
 <template>
   <div class="card">
-    <div class="card__poster">
-
-    </div>
+    <div class="card__poster" />
 
     <div class="card__info">
       <div class="card__info-header">
@@ -10,7 +8,9 @@
       </div>
 
       <div class="card__info-text">
-        <slot name="text">Новые открытия в сфере искусственного интеллекта</slot>
+        <slot name="text">
+          Новые открытия в сфере искусственного интеллекта
+        </slot>
       </div>
 
       <div class="card__info-footer">

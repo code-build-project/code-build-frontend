@@ -3,39 +3,42 @@
     <div class="success__title cb_top60">Спасибо</div>
 
     <div class="success__subtitle cb_top60">
-      Завершите регистрацию по ссылке<br/> в письме, которое мы отправили на<br/>
+      Завершите регистрацию по ссылке<br />
+      в письме, которое мы отправили на<br />
       {{ $route.params.email }}
     </div>
 
     <div class="success__footer cb_top370">
-      <div>Отправить<br/> повторно через</div>
+      <div>
+        Отправить<br />
+        повторно через
+      </div>
 
-      <v-button v-if="interval" buttonType="interval">
+      <v-button v-if="interval" button-type="interval">
         00:{{ interval > 9 ? interval : '0' + interval }}
       </v-button>
 
-      <v-button v-else buttonType="success">
-        Отправить
-      </v-button>
+      <v-button v-else button-type="success"> Отправить </v-button>
     </div>
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue'
-
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'SuccessRegistration',
-  components: { IconTimer, VButton },
+  components: { VButton },
   props: {},
   data() {
     return {
-      interval: 60,
+      interval: 60
     }
   },
   computed: {},
+  mounted() {
+    this.startTimer()
+  },
   methods: {
     startTimer() {
       let timer = setInterval(() => {
@@ -52,7 +55,7 @@ export default {
       const payload = {
         name: this.$route.params.name,
         surname: this.$route.params.surname,
-        email: this.$route.params.email,
+        email: this.$route.params.email
       }
 
       this.axios
@@ -63,11 +66,8 @@ export default {
         .catch(() => {
           console.log('Ошибка')
         })
-    },
-  },
-  mounted() {
-    this.startTimer()
-  },
+    }
+  }
 }
 </script>
 
@@ -79,14 +79,14 @@ export default {
     font-family: 'Circe';
     font-size: 26px;
     line-height: 28px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__subtitle {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 28px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__footer {
@@ -94,7 +94,7 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 24px;
-    color: #272A37;
+    color: #272a37;
   }
 }
 </style>

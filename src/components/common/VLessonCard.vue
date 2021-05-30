@@ -1,8 +1,6 @@
 <template>
   <div class="card">
-    <div class="card__poster">
-
-    </div>
+    <div class="card__poster" />
 
     <div class="card__info">
       <div class="card__info-lesson">
@@ -15,12 +13,20 @@
 
       <div class="card__info-footer">
         <div class="card__info-footer_item">
-          <icon-timer :fill="'#3A3F4F'" width="15" height="15"/>
+          <icon-timer
+            :fill="'#3A3F4F'"
+            width="15"
+            height="15"
+          />
           <span class="cb_left5">{{ time }}</span>
         </div>
 
         <div class="card__info-footer_item">
-          <icon-open-eye :fill="'#3A3F4F'" width="17" height="14"/>
+          <icon-open-eye
+            :fill="'#3A3F4F'"
+            width="17"
+            height="14"
+          />
           <span class="cb_left5">{{ views }}</span>
         </div>
       </div>

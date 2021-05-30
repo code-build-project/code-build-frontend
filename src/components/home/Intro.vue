@@ -1,25 +1,29 @@
 <template>
   <div class="intro__wrap">
     <div class="intro">
-      <div class="intro__title">
-        Повысь<br/>
-        свои навыки
-        программирования 
-        вместе с <span class="intro__title_blue">codebuild</span>
+      <div class="intro__title cb_top170">
+        Повысь<br />
+        свои навыки программирования вместе с
+        <span class="cb_color-blue">codebuild</span>
       </div>
 
-      <div class="intro__subtitle">
-        Платные и бесплатные видеокурсы 
-        по программированию для новичков 
-        и middle-разработчиков
+      <div class="intro__subtitle cb_top30">
+        Платные и бесплатные видеокурсы по программированию для новичков и
+        middle-разработчиков
       </div>
 
-      <v-button buttonType="intro" iconPosition="right">Начать учиться</v-button>
+      <v-button
+        class="cb_top80"
+        button-type="intro"
+        icon-position="right"
+      >
+        Начать учиться
+      </v-button>
 
       <!-- Иконки заднего фона -->
-      <icon-iphone class="intro__iphone"/>
+      <icon-iphone class="intro__iphone" />
 
-      <icon-ipad class="intro__ipad"/>
+      <icon-ipad class="intro__ipad" />
       <!-- Иконки заднего фона -->
     </div>
   </div>
@@ -33,10 +37,10 @@ import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'Intro',
-  components: { 
-    IconIphone, 
-    IconIpad, 
-    VButton 
+  components: {
+    IconIphone,
+    IconIpad,
+    VButton
   }
 }
 </script>
@@ -45,21 +49,16 @@ export default {
 .intro__wrap {
   @extend .cb_center;
   width: 100%;
+
   background: transparent;
   overflow: hidden;
 }
 
 .intro {
-  @extend .cb_column-between;
-  align-items: flex-start;
-
+  @extend .cb_column;
   position: relative;
   width: 1160px;
   height: 960px;
-
-  padding-bottom: 265px;
-  padding-top: 180px;
-  box-sizing: border-box;
 
   &__title {
     width: 550px;
@@ -68,12 +67,7 @@ export default {
     font-size: 57px;
     line-height: 56px;
     letter-spacing: -0.01em;
-
-    color: #15244B;
-
-    &_blue {
-      color: #256CFE;
-    }
+    color: #15244b;
   }
 
   &__subtitle {
@@ -82,13 +76,11 @@ export default {
     font-family: 'Circe';
     font-size: 24px;
     line-height: 35px;
-
-    color: #3E4462;
+    color: #3e4462;
   }
 
   &__iphone {
     position: absolute;
-
     left: 513px;
     top: 487px;
     z-index: 1;
@@ -96,7 +88,6 @@ export default {
 
   &__ipad {
     position: absolute;
-
     left: 743px;
     top: 252px;
   }

@@ -52,10 +52,10 @@
 
         <v-button 
           class="cb_top70"
-          buttonType="articles"
-          iconPosition="right"
-          iconWidth="24"
-          iconHeight="24"
+          button-type="articles"
+          icon-position="right"
+          icon-width="24"
+          icon-height="24"
         >
           Все статьи
         </v-button>

@@ -4,7 +4,7 @@ module.exports = {
       'Access-Control-Allow-Origin': '*',
     },
     host: '127.0.0.1',
-    port: 8080, // CHANGE YOUR PORT HERE!
+    port: 8080, // Тут можно поменять порт!
   },
 
   css: {

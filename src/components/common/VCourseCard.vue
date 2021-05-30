@@ -1,18 +1,19 @@
 <template>
   <div class="card">
-    <div class="card__poster">
-
-    </div>
+    <div class="card__poster" />
 
     <div class="card__info">
       <div class="card__level">
         <span class="cb_right5">Сложность</span>
 
-        <icon-ellipse v-for="item in [1,2,3,4,5]" :key="item" 
+        <icon-ellipse
+          v-for="item in [1,2,3,4,5]"
+          :key="item" 
           class="cb_left2"
           width="8" 
           height="8" 
-          :fill="level >= item ? '#EE3465' : '#EDEDED'"/>
+          :fill="level >= item ? '#EE3465' : '#EDEDED'"
+        />
       </div>
 
       <div class="card__title cb_top15">
@@ -21,17 +22,29 @@
 
       <div class="card__footer cb_top35">
         <div class="card__footer-item cb_width112">
-          <icon-video width="18" height="18" fill="#3A3F4F"/>
+          <icon-video
+            width="18"
+            height="18"
+            fill="#3A3F4F"
+          />
           <span class="cb_left8">{{ lessons }}</span>
         </div>
 
         <div class="card__footer-item cb_width103">
-          <icon-timer width="18" height="18" fill="#3A3F4F"/>
+          <icon-timer
+            width="18"
+            height="18"
+            fill="#3A3F4F"
+          />
           <span class="cb_left8">{{ time }}</span>
         </div>
 
         <div class="card__footer-item cb_width80">
-          <icon-open-eye width="21" height="18" fill="#3A3F4F"/>
+          <icon-open-eye
+            width="21"
+            height="18"
+            fill="#3A3F4F"
+          />
           <span class="cb_left8">{{ views }}</span>
         </div>
       </div>

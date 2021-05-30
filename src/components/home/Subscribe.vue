@@ -2,7 +2,9 @@
   <div class="subscribe__wrap">
     <div class="subscribe">
       <div class="subscribe__left-side">
-        <div class="subscribe__title">Подпишись на codebuild</div>
+        <div class="subscribe__title">
+          Подпишись на codebuild
+        </div>
         <div class="subscribe__subtitle">
           Присоединяйся к сообществу программистов, узнавай
           много нового из мира IT и будь в курсе всех событий!
@@ -11,19 +13,31 @@
 
       <div class="subscribe__right-side">
         <div class="subscribe__icon">
-          <icon-you-tube width="37" height="37"/>
+          <icon-you-tube
+            width="37"
+            height="37"
+          />
         </div>
 
         <div class="subscribe__icon">
-          <icon-vk width="35" height="35"/>
+          <icon-vk
+            width="35"
+            height="35"
+          />
         </div>
 
         <div class="subscribe__icon">
-          <icon-instagram width="37" height="37"/>
+          <icon-instagram
+            width="37"
+            height="37"
+          />
         </div>
 
         <div class="subscribe__icon">
-          <icon-telegram width="32" height="32"/>
+          <icon-telegram
+            width="32"
+            height="32"
+          />
         </div>
       </div>
     </div>

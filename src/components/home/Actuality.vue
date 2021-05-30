@@ -1,59 +1,80 @@
 <template>
   <div class="actuality">
-    <div class="actuality__title">
-      <span class="cb_center">
-        Вы с нуля освоите профессию
-      </span>
+    <div class="actuality__title cb_top300">
+      <span class="cb_center"> Вы с нуля освоите профессию </span>
       разработчика и сможете добавить
-      <span class="cb_center">
-        в арсенал необходимые навыки.
-      </span>
+      <span class="cb_center"> в арсенал необходимые навыки. </span>
     </div>
 
-    <div class="actuality__subtitle">
+    <div class="actuality__subtitle cb_top30">
       <span class="cb_center">
-        Мы помогаем новичкам стать профессиональными 
+        Мы помогаем новичкам стать профессиональными
       </span>
-      программистами, а опытным разработчикам получать 
-      <span class="cb_center">
-        новые знания и расти профессионально
-      </span>
+      программистами, а опытным разработчикам получать
+      <span class="cb_center"> новые знания и расти профессионально </span>
     </div>
 
     <!-- Иконки заднего фона -->
-    <div class="actuality_icon" style="left: 16%; top: 133px; padding: 17px 20px 20px 21px">
+    <div
+      class="actuality_icon"
+      style="left: 16%; top: 133px; padding: 17px 20px 20px 21px"
+    >
       <icon-apple />
     </div>
 
-    <div class="actuality_icon" style="left: 46%; top: 70px; padding: 32px 32px 32px 32px">
+    <div
+      class="actuality_icon"
+      style="left: 46%; top: 70px; padding: 32px 32px 32px 32px"
+    >
       <icon-code-box />
     </div>
 
-    <div class="actuality_icon" style="left: 76%; top: 135px; padding: 53px 53px 53px 53px">
+    <div
+      class="actuality_icon"
+      style="left: 76%; top: 135px; padding: 53px 53px 53px 53px"
+    >
       <icon-command-line />
     </div>
 
-    <div class="actuality_icon" style="left: 14%; top: 379px; padding: 31px 32px 31px 32px">
+    <div
+      class="actuality_icon"
+      style="left: 14%; top: 379px; padding: 31px 32px 31px 32px"
+    >
       <icon-css3 />
     </div>
 
-    <div class="actuality_icon" style="left: 91%; top: 420px; padding: 20px 20px 20px 20px">
+    <div
+      class="actuality_icon"
+      style="left: 91%; top: 420px; padding: 20px 20px 20px 20px"
+    >
       <icon-html />
     </div>
 
-    <div class="actuality_icon" style="left: 5%; top: 631px; padding: 20px 20px 20px 20px">
+    <div
+      class="actuality_icon"
+      style="left: 5%; top: 631px; padding: 20px 20px 20px 20px"
+    >
       <icon-lock />
     </div>
 
-    <div class="actuality_icon" style="left: 23%; top: 670px; padding: 32px 38px 32px 38px">
+    <div
+      class="actuality_icon"
+      style="left: 23%; top: 670px; padding: 32px 38px 32px 38px"
+    >
       <icon-cursor />
     </div>
 
-    <div class="actuality_icon" style="left: 48%; top: 763px; padding: 20px 20px 20px 20px">
+    <div
+      class="actuality_icon"
+      style="left: 48%; top: 763px; padding: 20px 20px 20px 20px"
+    >
       <icon-git-merge />
     </div>
 
-    <div class="actuality_icon" style="left: 75%; top: 644px; padding: 32px 33px 32px 33px">
+    <div
+      class="actuality_icon"
+      style="left: 75%; top: 644px; padding: 32px 33px 32px 33px"
+    >
       <icon-bug />
     </div>
     <!-- Иконки заднего фона -->
@@ -73,7 +94,7 @@ import IconBug from '@/icons/IconBug.vue'
 
 export default {
   name: 'Actuality',
-  components: { 
+  components: {
     IconApple,
     IconCodeBox,
     IconCommandLine,
@@ -82,24 +103,21 @@ export default {
     IconLock,
     IconCursor,
     IconGitMerge,
-    IconBug,
+    IconBug
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .actuality {
-  @extend .cb_column-between;
+  @extend .cb_column;
+  align-items: center;
   position: relative;
   height: 900px;
   width: 100%;
 
-  padding-bottom: 314px;
-  padding-top: 314px;
-  box-sizing: border-box;
-
-  background: #256CFE;
-  color: #FFFFFF;
+  background: #256cfe;
+  color: #ffffff;
 
   &__title {
     font-family: 'ObjectSans';
@@ -119,8 +137,8 @@ export default {
     @extend .cb_center;
     position: absolute;
 
-    background: #3A7AFE;
-    border: 2px solid #3A7AFE;
+    background: #3a7afe;
+    border: 2px solid #3a7afe;
     border-radius: 20px;
   }
 }

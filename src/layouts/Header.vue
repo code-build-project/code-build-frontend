@@ -11,10 +11,10 @@
     <div class="header__buttons">
       <span class="header__button">Войти</span>
       <v-button 
-        buttonType="header"
-        iconPosition="left"
-        iconWidth="21"
-        iconHeight="21"
+        button-type="header"
+        icon-position="left"
+        icon-width="21"
+        icon-height="21"
       >
         Премиум
       </v-button>

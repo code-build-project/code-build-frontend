@@ -2,7 +2,10 @@
   <div class="footer__wrap">
     <div class="footer">
       <div class="cb_row-between">
-        <icon-logo class="footer__logo" stroke="#FFFFFF"/>
+        <icon-logo
+          class="footer__logo"
+          stroke="#FFFFFF"
+        />
 
         <div class="footer__social">
           <div class="footer__icon">
@@ -33,7 +36,7 @@
         </div>
       </div>
 
-      <hr class="footer__line cb_top50"/>
+      <hr class="footer__line cb_top50" />
 
       <div class="cb_row-between cb_top15">
         <span class="footer__copyright">
@@ -78,11 +81,11 @@ export default {
     IconCopy,
   },
 
-  computed: {},
-
   data() {
     return {}
   },
+
+  computed: {},
 
   methods: {},
 }

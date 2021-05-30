@@ -1,6 +1,8 @@
 <template>
   <div class="input">
-    <div class="input__legend">Email</div>
+    <div class="input__legend">
+      Email
+    </div>
 
     <input
       class="input__field"
@@ -12,7 +14,12 @@
       @input="onInput($event.target.value)"
       @blur="$emit('blur')"
     />
-    <div v-if="error" class="input__error">{{errorMessage}}</div>
+    <div
+      v-if="error"
+      class="input__error"
+    >
+      {{ errorMessage }}
+    </div>
 
     <div class="input__icon">
       <slot name="rightIcon" />
