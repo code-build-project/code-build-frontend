@@ -1,7 +1,7 @@
 <template>
   <div class="cover__wrap">
     <div class="cover">
-      <div class="cb_row-between">
+      <div class="cb_row-between cb_top86">
         <div class="cover__route">
           <div class="cb_center">
             Code build 
@@ -27,29 +27,42 @@
         <icon-heart />
       </div>
 
-      <div class="cover__title">
+      <div class="cover__title cb_top35">
         Создание сайта с нуля на CMS WordPress
       </div>
 
-      <div class="cover__subtitle">
+      <div class="cover__subtitle cb_top20">
         Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на движке WordPress.<br /> 
         В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
       </div>
 
-      <div class="cb_row cb_top35">
+      <div class="cb_row cb_top30">
         <div class="cover__attribute">
-          <icon-video />
+          <icon-video
+            width="20"
+            height="20"
+          />
           <span class="cb_left10">6 уроков</span>
         </div>
 
         <div class="cover__attribute cb_left10">
-          <icon-timer />
+          <icon-timer
+            width="22"
+            height="22"
+          />
           <span class="cb_left10">1 ч. 25 м.</span>
         </div>
 
         <div class="cover__attribute cb_left10">
-          <icon-open-eye />
+          <icon-open-eye
+            width="23"
+            height="20"
+          />
           <span class="cb_left10">300</span>
+        </div>
+
+        <div class="cover__attribute cb_left10">
+          #Сайты
         </div>
       </div>
     </div>
@@ -87,9 +100,9 @@ export default {
 }
 
 .cover {
-  @extend .cb_column-center;
+  @extend .cb_column;
   width: 1160px;
-  height: 462px;
+  height: 532px;
 
   &__route {
     @extend .cb_row;
@@ -100,13 +113,13 @@ export default {
   }
 
   &__title {
+    width: 900px;
+
     font-family: 'ObjectSans';
-    font-size: 40px;
-    line-height: 44px;
+    font-size: 62px;
+    line-height: 69px;
     letter-spacing: -1px;
     color: #FFFFFF;
-
-    margin-top: 30px;
   }
 
   &__subtitle {
@@ -114,8 +127,6 @@ export default {
     font-size: 20px;
     line-height: 30px;
     color: #FFFFFF;
-
-    margin-top: 15px;
   }
 
   &__attribute {

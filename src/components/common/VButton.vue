@@ -198,5 +198,17 @@ export default {
     border-width: 1px;
     background: #256CFE;
   }
+
+  &-player {
+    @extend .cb_center;
+    width: 206px;
+    height: 53px;
+    
+    font-family: 'Circe';
+    font-size: 15px;
+    color: #FFFFFF;
+    border: none;
+    background: #EE3465;
+  }
 }
 </style>

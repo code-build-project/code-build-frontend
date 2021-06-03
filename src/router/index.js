@@ -10,7 +10,7 @@ const routes = [
     component: () => import('@/layouts/MainLayout.vue'),
     children: [
       {
-        path: 'home',
+        path: '/',
         name: 'Home',
         component: () => import('@/views/Home.vue'),
       },
@@ -61,11 +61,14 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 }
+  }
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'MainLayout' && to.path === '/') {
-    next({ name: 'MainLayout' })
+  if (to.name !== 'Home' && to.path === '/') {
+    next({ name: 'Home' })
   } else next()
 })
 

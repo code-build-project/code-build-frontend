@@ -5,6 +5,7 @@
         <icon-logo
           class="footer__logo"
           stroke="#FFFFFF"
+          @click.native="$router.push('/')"
         />
 
         <div class="footer__social">
@@ -27,9 +28,24 @@
 
         <div class="footer__nav">
           <div class="footer__links">
-            <span class="footer__links-item">О проекте</span>
-            <span class="footer__links-item">Блог</span>
-            <span class="footer__links-item">Видеокурсы</span>
+            <router-link
+              class="footer__links-item"
+              to="/"
+            >
+              О проекте
+            </router-link>
+            <router-link
+              class="footer__links-item"
+              to="/course"
+            >
+              Блог
+            </router-link>
+            <router-link
+              class="footer__links-item"
+              to="/courses"
+            >
+              Видеокурсы
+            </router-link>
           </div>
 
           <icon-rus-flag />

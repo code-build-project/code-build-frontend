@@ -10,7 +10,7 @@
       fill-rule="evenodd"
       clip-rule="evenodd"
       d="M13.696 1C16.871 1 19 3.98 19 6.755C19 12.388 10.161 17 10 17C9.839 17 1 12.388 1 6.755C1 3.98 3.129 1 6.304 1C8.119 1 9.311 1.905 10 2.711C10.689 1.905 11.881 1 13.696 1Z"
-      stroke="white"
+      :stroke="stroke"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -22,5 +22,10 @@
 
 export default {
   name: 'IconHeart',
+  props: {
+    stroke: {
+      default: 'white'
+    }
+  }
 };
 </script>

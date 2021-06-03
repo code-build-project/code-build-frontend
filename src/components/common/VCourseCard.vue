@@ -1,5 +1,8 @@
 <template>
-  <div class="card">
+  <div
+    class="card"
+    @click="$emit('click')"
+  >
     <div class="card__poster" />
 
     <div class="card__info">

@@ -3,30 +3,35 @@
     <div class="card__poster" />
 
     <div class="card__info">
-      <div class="card__info-header">
-        <icon-ellipse fill="#EE3465" />
-        <icon-ellipse :fill="level !== 'Beginner' ? '#EE3465' : '#3A3F4F'" />
-        <icon-ellipse :fill="level === 'High' ? '#EE3465' : '#3A3F4F'" />
+      <div class="card__level">
+        <span class="cb_right5">Сложность</span>
 
-        <span class="cb_left5">{{ level }}</span>
+        <icon-ellipse
+          v-for="item in [1,2,3,4,5]"
+          :key="item" 
+          class="cb_left2"
+          width="6" 
+          height="6" 
+          :fill="level >= item ? '#EE3465' : '#3A3F4F'"
+        />
       </div>
 
-      <div class="card__info-text">
+      <div class="card__title">
         {{ title }}
       </div>
 
-      <div class="card__info-footer">
-        <div class="card__info-footer_item">
+      <div class="card__footer">
+        <div class="card__footer-item">
           <icon-video />
           <span class="cb_left5">{{ lessons }}</span>
         </div>
 
-        <div class="card__info-footer_item">
+        <div class="card__footer-item">
           <icon-timer />
           <span class="cb_left5">{{ time }}</span>
         </div>
 
-        <div class="card__info-footer_item">
+        <div class="card__footer-item">
           <icon-open-eye />
           <span class="cb_left5">{{ views }}</span>
         </div>
@@ -59,14 +64,10 @@ export default {
     IconFire,
   },
   props: {
+    // Уровень сложности
     level: {
       type: String,
-      default: 'Beginner',
-    },
-
-    fire: {
-      type: Boolean,
-      default: false,
+      default: '1',
     },
     // Название курса
     title: {
@@ -87,6 +88,11 @@ export default {
     views: {
       type: String,
       default: '300',
+    },
+    // Метка о популярности курса
+    fire: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -122,7 +128,7 @@ export default {
     border-radius: 0px 0px 7px 7px;
   }
 
-  &__info-header {
+  &__level {
     display: flex;
     align-items: center;
     
@@ -132,33 +138,32 @@ export default {
     color: #FFFFFF;
   }
 
-  &__info-text {
+  &__title {
     width: 200px;
 
     font-family: 'EuclidCircular';
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 21px;
     color: #FFFFFF;
   }
 
-  &__info-footer {
+  &__footer {
     @extend .cb_row-between;
 
     font-family: 'Circe';
     font-size: 11px;
     line-height: 24px;
     color: #FFFFFF;
+  }
 
-    &_item {
-      @extend .cb_row-between;
+  &__footer-item {
+    @extend .cb_row-between;
 
-      padding-left: 10px;
-      padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 
-      border: 1px solid #383C4A;
-      border-radius: 5px;
-    }
+    border: 1px solid #383C4A;
+    border-radius: 5px;
   }
 
   &__icon-fire {

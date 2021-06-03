@@ -1,15 +1,39 @@
 <template>
   <div class="header">
-    <icon-logo class="header__logo" />
+    <icon-logo
+      class="header__logo"
+      @click.native="$router.push('/')"
+    />
 
     <div class="header__nav">
-      <span class="header__nav-item">О проекте</span>
-      <span class="header__nav-item">Блог</span>
-      <span class="header__nav-item">Видеокурсы</span>
+      <router-link
+        class="header__nav-item"
+        to="/"
+      >
+        О проекте
+      </router-link>
+      <router-link
+        class="header__nav-item"
+        to="/course"
+      >
+        Блог
+      </router-link>
+      <router-link
+        class="header__nav-item"
+        to="/courses"
+      >
+        Видеокурсы
+      </router-link>
     </div>
 
     <div class="header__buttons">
-      <span class="header__button">Войти</span>
+      <router-link
+        class="header__button"
+        to="/auth"
+        target="_blank"
+      >
+        Войти
+      </router-link>
       <v-button 
         button-type="header"
         icon-position="left"

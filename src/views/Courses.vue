@@ -27,6 +27,7 @@
             :lessons="item.lessons"
             :time="item.time"
             :views="item.views"
+            @click="$router.push('/course')"
           />
         </div>
       </div>

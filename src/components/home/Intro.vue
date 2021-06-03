@@ -16,6 +16,7 @@
         class="cb_top80"
         button-type="intro"
         icon-position="right"
+        @click="$router.push('/courses')"
       >
         Начать учиться
       </v-button>

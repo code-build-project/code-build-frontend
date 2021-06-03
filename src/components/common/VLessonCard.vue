@@ -3,16 +3,16 @@
     <div class="card__poster" />
 
     <div class="card__info">
-      <div class="card__info-lesson">
-        {{ lessonNamber }}
+      <div class="card__lesson-number">
+        Урок №{{ lessonNamber }}
       </div>
 
-      <div class="card__info-text">
+      <div class="card__title">
         {{ title }}
       </div>
 
-      <div class="card__info-footer">
-        <div class="card__info-footer_item">
+      <div class="card__footer">
+        <div class="card__footer-item">
           <icon-timer
             :fill="'#3A3F4F'"
             width="15"
@@ -21,7 +21,7 @@
           <span class="cb_left5">{{ time }}</span>
         </div>
 
-        <div class="card__info-footer_item">
+        <div class="card__footer-item">
           <icon-open-eye
             :fill="'#3A3F4F'"
             width="17"
@@ -32,8 +32,11 @@
       </div>
     </div>
 
-    <div class="card__icon-heart">
-      <icon-heart />
+    <div
+      class="card__icon-heart"
+      @click="isLike = !isLike"
+    >
+      <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" />
     </div>
   </div>
 </template>
@@ -51,33 +54,31 @@ export default {
     IconHeart,
   },
   props: {
+    // Номер урока
     lessonNamber: {
       type: String,
-      default: 'Урок №1',
+      default: '1',
     },
-    // Название курса
+    // Название урока
     title: {
       type: String,
       default: 'Установка всего необходимого',
     },
-    // Количество уроков
-    lessons: {
-      type: String,
-      default: '6 уроков',
-    },
-    // Общее время курса
+    // Время урока
     time: {
       type: String,
       default: '1 ч. 25 м.',
     },
-    // Количество просмотров курса
+    // Количество просмотров урока
     views: {
       type: String,
       default: '300',
     },
   },
   data() {
-    return {}
+    return {
+      isLike: false,
+    }
   },
   computed: {},
 }
@@ -93,7 +94,7 @@ export default {
     width: 268px;
     height: 181px;
 
-    background: #256CFE;
+    background: #C4C4C4;
     border-radius: 8px 8px 0px 0px;
   }
 
@@ -111,7 +112,7 @@ export default {
     border-radius: 0px 0px 8px 8px;
   }
 
-  &__info-lesson {
+  &__lesson-number {
     display: flex;
     align-items: center;
     
@@ -121,7 +122,7 @@ export default {
     color: #256CFE;
   }
 
-  &__info-text {
+  &__title {
     width: 200px;
 
     font-family: 'Circe';
@@ -130,23 +131,23 @@ export default {
     color: #3A3F4F;
   }
 
-  &__info-footer {
+  &__footer {
     @extend .cb_row-between;
 
     font-family: 'Circe';
     font-size: 14px;
     line-height: 12px;
     color: #3A3F4F;
+  }
 
-    &_item {
-      @extend .cb_row-between;
-      height: 40px;
+  &__footer-item {
+    @extend .cb_row-between;
+    height: 40px;
 
-      padding: 0px 27px 0px 24px;
+    padding: 0px 27px 0px 24px;
 
-      border: 1px solid #EDEDED;
-      border-radius: 7px;
-    }
+    border: 1px solid #EDEDED;
+    border-radius: 7px;
   }
 
   &__icon-heart {
@@ -155,6 +156,7 @@ export default {
 
     top: 19px;
     right: 19px;
+    cursor: pointer;
   }
 }
 </style>
