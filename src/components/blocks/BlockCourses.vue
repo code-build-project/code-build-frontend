@@ -77,7 +77,7 @@ import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
-  name: 'Courses',
+  name: 'BlockCourses',
   components: { 
     IconPlay, 
     VCourseMiniCard,

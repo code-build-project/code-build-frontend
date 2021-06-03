@@ -72,7 +72,7 @@ import VArticleCard from '@/components/common/VArticleCard.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
-  name: 'Articles',
+  name: 'BlockArticles',
   components: { 
     IconList,
     VArticleCard,

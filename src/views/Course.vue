@@ -1,6 +1,6 @@
 <template>
   <div class="course__wrap">
-    <course-cover />
+    <block-course-cover />
 
     <div class="course">
       <div class="course__lessons">
@@ -46,8 +46,8 @@ import VLessonCard from '@/components/common/VLessonCard.vue'
 import VCourseCard from '@/components/common/VCourseCard.vue'
 import VMediaPlayer from '../components/common/VMediaPlayer.vue'
 
-import CourseCover from '@/components/CourseCover.vue'
-import BlockSubscribe from '@/components/home/Subscribe.vue'
+import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue'
+import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue'
 
 export default {
   name: 'Course',
@@ -55,7 +55,7 @@ export default {
     VLessonCard,
     VCourseCard,
     VMediaPlayer,
-    CourseCover,
+    BlockCourseCover,
     BlockSubscribe,
   },
   data() {

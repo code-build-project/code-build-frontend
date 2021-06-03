@@ -39,7 +39,7 @@
 
 <script>
 import VCourseCard from '@/components/common/VCourseCard.vue'
-import BlockRegistration from '@/components/home/Registration.vue'
+import BlockRegistration from '@/components/blocks/BlockRegistration.vue'
 
 export default {
   name: 'Courses',

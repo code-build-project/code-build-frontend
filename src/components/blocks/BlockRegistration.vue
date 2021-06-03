@@ -30,7 +30,7 @@
 import IconArrow from '@/icons/IconArrow.vue'
 
 export default {
-  name: 'Registration',
+  name: 'BlockRegistration',
   components: { IconArrow }
 }
 </script>

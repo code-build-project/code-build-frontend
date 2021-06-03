@@ -37,7 +37,7 @@ import IconIpad from '@/icons/IconIpad.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
-  name: 'Intro',
+  name: 'BlockIntro',
   components: {
     IconIphone,
     IconIpad,

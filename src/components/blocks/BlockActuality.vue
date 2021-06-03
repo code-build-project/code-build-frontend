@@ -93,7 +93,7 @@ import IconGitMerge from '@/icons/IconGitMerge.vue'
 import IconBug from '@/icons/IconBug.vue'
 
 export default {
-  name: 'Actuality',
+  name: 'BlockActuality',
   components: {
     IconApple,
     IconCodeBox,

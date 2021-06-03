@@ -77,7 +77,7 @@ import IconTimer from '@/icons/IconTimer.vue'
 import IconOpenEye from '@/icons/IconOpenEye.vue'
 
 export default {
-  name: 'CourseCover',
+  name: 'BlockCourseCover',
   components: {
     IconArrow,
     IconHeart,

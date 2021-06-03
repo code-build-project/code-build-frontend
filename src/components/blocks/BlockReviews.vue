@@ -36,7 +36,7 @@ import VReviewCard from '@/components/common/VReviewCard.vue';
 import VButton from '@/components/common/VButton.vue'
 
 export default {
-  name: 'Reviews',
+  name: 'BlockReviews',
 
   components: { 
     VReviewCard,

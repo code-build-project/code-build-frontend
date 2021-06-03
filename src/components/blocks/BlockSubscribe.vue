@@ -51,7 +51,7 @@ import IconInstagram from '@/icons/IconInstagram.vue';
 import IconTelegram from '@/icons/IconTelegram.vue';
 
 export default {
-  name: 'Subscribe',
+  name: 'BlockSubscribe',
   components: { 
     IconYouTube,
     IconVk,
