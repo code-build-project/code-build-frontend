@@ -23,12 +23,20 @@
           </v-button>
         </div>
       </div>
+
+      <!-- Внешние кнопки -->
+      <icon-close class="media__icon-close" />
+      <icon-angle-bracket class="media__icon-bracket-left" />
+      <icon-angle-bracket class="media__icon-bracket-right" />
+      <!-- Внешние кнопки -->
     </div>
   </div>
 </template>
 
 <script>
 import IconHeart from '@/icons/IconHeart.vue'
+import IconClose from '@/icons/IconClose.vue'
+import IconAngleBracket from '@/icons/IconAngleBracket.vue'
 
 import VButton from '@/components/common/VButton.vue'
 
@@ -36,6 +44,8 @@ export default {
   name: 'VMediaPlayer',
   components: {
     IconHeart, 
+    IconClose,
+    IconAngleBracket,
     VButton
   },
   props: {
@@ -61,6 +71,7 @@ export default {
   backdrop-filter: blur(18px);
 
   &__player {
+    position: relative;
     width: 1022px;
     height: 660px;
 
@@ -76,10 +87,6 @@ export default {
     height: 498px;
 
     background: #202020;
-  }
-
-  &__footer {
-
   }
 
   &__lesson-number {
@@ -103,6 +110,28 @@ export default {
 
     border: 0.8px solid #DEDEDE;
     border-radius: 8px;
+  }
+
+  &__icon-close {
+    position: absolute;
+
+    top: -100px;
+    right: -30px;
+  }
+
+  &__icon-bracket-left {
+    position: absolute;
+    transform: rotate(180deg);
+
+    top: 320px;
+    left: -80px;
+  }
+
+  &__icon-bracket-right {
+    position: absolute;
+
+    top: 320px;
+    right: -80px;
   }
 }
 </style>
