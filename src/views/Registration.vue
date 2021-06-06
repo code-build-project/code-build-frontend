@@ -38,7 +38,13 @@
 
     <div class="reg__footer cb_top25">
       <span>У вас уже есть аккаунт?</span>
-      <span class="reg__entry cb_left5">Войти</span>
+      <router-link
+        class="reg__entry cb_left5"
+        to="/auth"
+        target="_blank"
+      >
+        Войти
+      </router-link>
     </div>
   </div>
 </template>

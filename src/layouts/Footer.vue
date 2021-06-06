@@ -36,7 +36,7 @@
             </router-link>
             <router-link
               class="footer__links-item"
-              to="/course"
+              to="/articles"
             >
               Блог
             </router-link>

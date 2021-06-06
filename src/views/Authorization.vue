@@ -33,7 +33,13 @@
 
     <div class="auth__footer cb_top30">
       <span>Новый пользователь?</span>
-      <span class="auth__reg cb_left5">Зарегистрируйтесь</span>
+      <router-link
+        class="auth__reg cb_left5"
+        to="/reg"
+        target="_blank"
+      >
+        Зарегистрируйтесь
+      </router-link>
     </div>
   </div>
 </template>

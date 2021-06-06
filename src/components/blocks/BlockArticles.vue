@@ -4,31 +4,31 @@
       <!-- Левая часть -->
       <div class="cb_row">
         <div class="cb_column">
-          <v-article-card class="cb_top70">
+          <v-article-mini-card class="cb_top70">
             <template #text>
               Новые открытия в сфере искусственного интеллекта
             </template>
-          </v-article-card>
+          </v-article-mini-card>
 
-          <v-article-card class="cb_top35">
+          <v-article-mini-card class="cb_top35">
             <template #text>
               Как повлияет коронавирус на it-сферу в 2021
             </template>
-          </v-article-card>
+          </v-article-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
-          <v-article-card>
+          <v-article-mini-card>
             <template #text>
               Стоит ли открывать интернет-магазин в 2021
             </template>
-          </v-article-card>
+          </v-article-mini-card>
 
-          <v-article-card class="cb_top35">
+          <v-article-mini-card class="cb_top35">
             <template #text>
               В какую страну переехать для роста в it-сфере
             </template>
-          </v-article-card>
+          </v-article-mini-card>
         </div>
       </div>
       <!-- Левая часть -->
@@ -56,6 +56,7 @@
           icon-position="right"
           icon-width="24"
           icon-height="24"
+          @click="$router.push('/articles')"
         >
           Все статьи
         </v-button>
@@ -68,14 +69,14 @@
 <script>
 import IconList from '@/icons/IconList.vue'
 
-import VArticleCard from '@/components/common/VArticleCard.vue'
+import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'BlockArticles',
   components: { 
     IconList,
-    VArticleCard,
+    VArticleMiniCard,
     VButton,
   }
 }

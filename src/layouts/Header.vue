@@ -14,7 +14,7 @@
       </router-link>
       <router-link
         class="header__nav-item"
-        to="/course"
+        to="/articles"
       >
         Блог
       </router-link>

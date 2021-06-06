@@ -25,7 +25,10 @@
       </div>
 
       <!-- Внешние кнопки -->
-      <icon-close class="media__icon-close" />
+      <icon-close
+        class="media__icon-close"
+        @click.native="$emit('close')"
+      />
       <icon-angle-bracket class="media__icon-bracket-left" />
       <icon-angle-bracket class="media__icon-bracket-right" />
       <!-- Внешние кнопки -->
@@ -114,6 +117,7 @@ export default {
 
   &__icon-close {
     position: absolute;
+    cursor: pointer;
 
     top: -100px;
     right: -30px;
@@ -121,6 +125,7 @@ export default {
 
   &__icon-bracket-left {
     position: absolute;
+    cursor: pointer;
     transform: rotate(180deg);
 
     top: 320px;
@@ -129,6 +134,7 @@ export default {
 
   &__icon-bracket-right {
     position: absolute;
+    cursor: pointer;
 
     top: 320px;
     right: -80px;

@@ -1,29 +1,51 @@
 <template>
-  <div class="card">
+  <div
+    class="card"
+  >
     <div class="card__poster" />
 
-    <div class="card__info">
-      <div class="card__info-header">
-        <span>{{ date }}</span>
+    <div
+      class="card__info"
+      @click="$emit('click')"
+    >
+      <div class="card__date">
+        {{ date }}
       </div>
 
-      <div class="card__info-text">
-        <slot name="text">
-          Новые открытия в сфере искусственного интеллекта
-        </slot>
+      <div class="card__title cb_top15">
+        {{ title }}
       </div>
 
-      <div class="card__info-footer">
-        <div class="card__info-footer_item">
-          <icon-timer />
-          <span class="cb_left5">Время прочтения: 15 м.</span>
+      <div class="card__footer cb_top15">
+        <div class="card__footer-item cb_width207">
+          <icon-timer
+            width="18"
+            height="18"
+            fill="#3A3F4F"
+          />
+          <span class="cb_left7"> Время прочтения: {{ time }}</span>
         </div>
 
-        <div class="card__info-footer_item">
-          <icon-open-eye />
-          <span class="cb_left5">1200</span>
+        <div class="card__footer-item cb_width95">
+          <icon-open-eye
+            width="21"
+            height="18"
+            fill="#3A3F4F"
+          />
+          <span class="cb_left7">{{ views }}</span>
         </div>
       </div>
+    </div>
+
+    <div
+      class="card__icon-heart"
+      @click="isLike = !isLike"
+    >
+      <icon-heart
+        :fill="isLike ? '#EE3465' : 'transparent'"
+        width="26"
+        height="23"
+      />
     </div>
   </div>
 </template>
@@ -31,21 +53,41 @@
 <script>
 import IconTimer from '@/icons/IconTimer.vue'
 import IconOpenEye from '@/icons/IconOpenEye.vue'
+import IconHeart from '@/icons/IconHeart.vue'
 
 export default {
-  name: 'VCourseCard',
+  name: 'VArticleCard',
   components: { 
     IconTimer,
     IconOpenEye,
+    IconHeart
   },
   props: {
+    // Название курса
+    title: {
+      type: String,
+      default: 'Название курса',
+    },
+    // Уровень сложности
     date: {
       type: String,
       default: '12 апреля 2021',
     },
+    // Общее время курса
+    time: {
+      type: String,
+      default: '15 м.',
+    },
+    // Количество просмотров курса
+    views: {
+      type: String,
+      default: '300',
+    },
   },
   data() {
-    return {}
+    return {
+      isLike: false,
+    }
   },
   computed: {},
 }
@@ -54,66 +96,68 @@ export default {
 <style lang="scss" scoped>
 .card {
   position: relative;
+  width: 367px;
 
   &__poster {
-    width: 268px;
-    height: 208px;
+    height: 240px;
 
-    background: #256CFE;
-    border-radius: 7px 7px 0px 0px;
+    background: #C4C4C4;
+    border-radius: 8px 8px 0px 0px;
   }
 
   &__info {
-    @extend .cb_column-between;
-    align-items: stretch;
-    width: 268px;
-    height: 142px;
+    @extend .cb_column;
+    height: 226px;
 
-    padding: 17px;
+    padding: 21px 27px 27px 27px;
     box-sizing: border-box;
 
-    background: #272A37;
-    border-radius: 0px 0px 7px 7px;
+    background: #FFFFFF;
+    border-radius: 0px 0px 8px 8px;
   }
 
-  &__info-header {
-    display: flex;
-    align-items: center;
-    
+  &__date {
     font-family: 'EuclidCircular';
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 23px;
-    color: #4C5169;
+    font-size: 15px;
+    color: #B1B8C6;
   }
 
-  &__info-text {
-    width: 240px;
+  &__title {
+    width: 314px;
+    height: 95px;
 
-    font-family: 'EuclidCircular';
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 20px;
-    color: #FFFFFF;
+    font-family: 'Circe';
+    font-size: 26px;
+    line-height: 31px;
+    color: #3A3F4F;
+    letter-spacing: -0.01em;
   }
 
-  &__info-footer {
+  &__footer {
     @extend .cb_row-between;
 
     font-family: 'Circe';
-    font-size: 11px;
-    line-height: 24px;
-    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 12px;
+    color: #3A3F4F;
+  }
 
-    &_item {
-      @extend .cb_row-between;
+  &__footer-item {
+    @extend .cb_row-center;
+    align-items: center;
+    height: 40px;
 
-      padding-left: 13px;
-      padding-right: 13px;
+    border: 1px solid #EDEDED;
+    border-radius: 7px;
+  }
 
-      border: 1px solid #383C4A;
-      border-radius: 5px;
-    }
+  &__icon-heart {
+    @extend .cb_center;
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
   }
 }
 </style>

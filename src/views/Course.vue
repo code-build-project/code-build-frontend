@@ -18,6 +18,7 @@
             :lesson-namber="item.lessonNamber"
             :time="item.time"
             :views="item.views"
+            @click="isPlayer = true"
           />
         </div>
       </div>
@@ -37,7 +38,10 @@
 
     <block-subscribe />
 
-    <v-media-player />
+    <v-media-player
+      v-if="isPlayer"
+      @close="isPlayer = false"
+    />
   </div>
 </template>
 
@@ -60,6 +64,8 @@ export default {
   },
   data() {
     return {
+      isPlayer: false,
+
       lessonsList: [
         {
           title: 'Первый урок',

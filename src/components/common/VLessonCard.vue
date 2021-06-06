@@ -2,7 +2,10 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info">
+    <div
+      class="card__info"
+      @click="$emit('click')"
+    >
       <div class="card__lesson-number">
         Урок №{{ lessonNamber }}
       </div>
@@ -113,8 +116,7 @@ export default {
   }
 
   &__lesson-number {
-    display: flex;
-    align-items: center;
+    cursor: pointer;
     
     font-family: 'Circe';
     font-size: 15px;

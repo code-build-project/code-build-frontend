@@ -25,6 +25,16 @@ const routes = [
         component: () => import('@/views/Course.vue'),
       },
       {
+        path: 'articles',
+        name: 'Articles',
+        component: () => import('@/views/Articles.vue'),
+      },
+      {
+        path: 'article',
+        name: 'Article',
+        component: () => import('@/views/Article.vue'),
+      },
+      {
         path: 'icons',
         name: 'Icons',
         component: () => import('@/views/Icons.vue'),

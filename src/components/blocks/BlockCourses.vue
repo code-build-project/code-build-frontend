@@ -26,6 +26,7 @@
           icon-position="right"
           icon-width="24"
           icon-height="24"
+          @click="$router.push('/courses')"
         >
           Все курсы
         </v-button>

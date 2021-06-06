@@ -1,8 +1,8 @@
 <template>
   <div class="cover__wrap">
     <div class="cover">
-      <div class="cb_row-between cb_top86">
-        <div class="cover__route">
+      <div class="cover__route cb_top86">
+        <div class="cb_row">
           <div class="cb_center">
             Code build 
             <icon-arrow
@@ -12,7 +12,7 @@
             />
           </div>
           <div class="cb_center cb_left20">
-            Видеокурсы 
+            Статьи 
             <icon-arrow
               class="cb_left20"
               width="20"
@@ -20,7 +20,7 @@
             />
           </div>
           <div class="cb_center cb_left20">
-            Создание сайта с нуля на CMS WordPress 
+            Make art NONSNS again. Как абсурд в искусстве придаёт смысл обыденным вещам
           </div>
         </div>
 
@@ -33,29 +33,23 @@
       </div>
 
       <div class="cover__title cb_top35">
-        Создание сайта с нуля на CMS WordPress
+        Make art NONSNS again.<br /> 
+        Как абсурд в искусстве придаёт <br />
+        смысл обыденным вещам
       </div>
 
       <div class="cover__subtitle cb_top20">
-        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на движке WordPress.<br /> 
-        В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
+        Современное искусство, спекуляции и ирония. Группа NONSNS рассказала<br /> 
+        о своём шоу для «Гаража» и дизайне, который сделал это шоу убедительным.
       </div>
 
       <div class="cb_row cb_top30">
         <div class="cover__attribute">
-          <icon-video
-            width="20"
-            height="20"
-          />
-          <span class="cb_left10">6 уроков</span>
-        </div>
-
-        <div class="cover__attribute cb_left10">
           <icon-timer
             width="22"
             height="22"
           />
-          <span class="cb_left10">1 ч. 25 м.</span>
+          <span class="cb_left10">Время прочтения: 15 м.</span>
         </div>
 
         <div class="cover__attribute cb_left10">
@@ -67,7 +61,7 @@
         </div>
 
         <div class="cover__attribute cb_left10">
-          #Сайты
+          #Дизайн
         </div>
       </div>
     </div>
@@ -77,16 +71,14 @@
 <script>
 import IconArrow from '@/icons/IconArrow.vue'
 import IconHeart from '@/icons/IconHeart.vue'
-import IconVideo from '@/icons/IconVideo.vue'
 import IconTimer from '@/icons/IconTimer.vue'
 import IconOpenEye from '@/icons/IconOpenEye.vue'
 
 export default {
-  name: 'BlockCourseCover',
+  name: 'BlockArticleCover',
   components: {
     IconArrow,
     IconHeart,
-    IconVideo,
     IconTimer,
     IconOpenEye,
   },
@@ -108,10 +100,10 @@ export default {
 .cover {
   @extend .cb_column;
   width: 1160px;
-  height: 532px;
+  height: 600px;
 
   &__route {
-    @extend .cb_row;
+    @extend .cb_row-between;
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;
@@ -119,7 +111,8 @@ export default {
   }
 
   &__title {
-    width: 900px;
+    width: 1030px;
+    height: 217px;
 
     font-family: 'ObjectSans';
     font-size: 62px;
