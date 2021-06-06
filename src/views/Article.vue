@@ -18,7 +18,10 @@
         </div>
 
         <div class="article__content-right cb_left108">
-          <img class="article__avatar cb_top10" src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"/>
+          <img
+            class="article__avatar cb_top10"
+            src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
+          />
 
           <div class="article__author cb_top20">
             МАРИЯ РОМАДАНОВА
@@ -31,11 +34,11 @@
 
           <div class="cb_row cb_top15">
             <div class="article__icon">
-              <icon-vk fill="#B1B8C6"/>
+              <icon-vk fill="#B1B8C6" />
             </div>
 
             <div class="article__icon cb_left10">
-              <icon-instagram fill="#B1B8C6"/>
+              <icon-instagram fill="#B1B8C6" />
             </div>
           </div>
 
