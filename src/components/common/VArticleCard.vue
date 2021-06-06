@@ -61,22 +61,22 @@ export default {
     IconHeart
   },
   props: {
-    // Название курса
+    // Название статьи
     title: {
       type: String,
-      default: 'Название курса'
+      default: 'Название статьи'
     },
-    // Уровень сложности
+    // Дата публикации
     date: {
       type: String,
       default: '12 апреля 2021'
     },
-    // Общее время курса
+    // Среднее время прочтения
     time: {
       type: String,
       default: '15 м.'
     },
-    // Количество просмотров курса
+    // Количество просмотров статьи
     views: {
       type: String,
       default: '300'
