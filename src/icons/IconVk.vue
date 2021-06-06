@@ -25,13 +25,12 @@
 </template>
 
 <script>
-
 export default {
-  name: 'IconVK',
+  name: 'IconVk',
   props: {
     fill: {
       default: 'white'
     }
   }
-};
+}
 </script>

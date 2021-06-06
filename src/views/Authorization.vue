@@ -63,7 +63,7 @@ export default {
     VButton
   },
   props: {},
-  data () {
+  data() {
     return {
       viewPassword: false, // видимость пароля
 
@@ -90,7 +90,7 @@ export default {
     //   }
     // },
 
-    onLogin () {
+    onLogin() {
       const payload = {
         email: this.email,
         password: this.password

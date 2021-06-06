@@ -6,8 +6,8 @@
           Подпишись на codebuild
         </div>
         <div class="subscribe__subtitle">
-          Присоединяйся к сообществу программистов, узнавай
-          много нового из мира IT и будь в курсе всех событий!
+          Присоединяйся к сообществу программистов, узнавай много нового из мира IT и будь в курсе
+          всех событий!
         </div>
       </div>
 
@@ -45,18 +45,18 @@
 </template>
 
 <script>
-import IconYouTube from '@/icons/IconYouTube.vue';
-import IconVk from '@/icons/IconVk.vue';
-import IconInstagram from '@/icons/IconInstagram.vue';
-import IconTelegram from '@/icons/IconTelegram.vue';
+import IconYouTube from '@/icons/IconYouTube.vue'
+import IconVk from '@/icons/IconVk.vue'
+import IconInstagram from '@/icons/IconInstagram.vue'
+import IconTelegram from '@/icons/IconTelegram.vue'
 
 export default {
   name: 'BlockSubscribe',
-  components: { 
+  components: {
     IconYouTube,
     IconVk,
     IconInstagram,
-    IconTelegram,
+    IconTelegram
   }
 }
 </script>
@@ -87,7 +87,7 @@ export default {
     font-size: 40px;
     line-height: 48px;
     letter-spacing: -0.01em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__subtitle {
@@ -97,7 +97,7 @@ export default {
     font-size: 20px;
     line-height: 31px;
     letter-spacing: -0.025em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__icon {
@@ -105,7 +105,7 @@ export default {
     width: 100px;
     height: 100px;
 
-    border: 2px solid #3A7AFE;
+    border: 2px solid #3a7afe;
     box-sizing: border-box;
     border-radius: 21px;
   }
@@ -114,7 +114,7 @@ export default {
 // hovers
 :hover.subscribe {
   &__icon {
-    background: #3A7AFE;
+    background: #3a7afe;
     cursor: pointer;
   }
 }

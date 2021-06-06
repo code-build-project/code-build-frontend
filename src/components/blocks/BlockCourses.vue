@@ -8,19 +8,14 @@
         </div>
 
         <div class="courses__title">
-          В нашем сервисе 
-          большинство курсов 
-          являются полностью
-          бесплатными
+          В нашем сервисе большинство курсов являются полностью бесплатными
         </div>
 
         <div class="courses__subtitle">
-          Вы можете приступить к изучению 
-          как платных, так и бесплатных 
-          курсов прямо сейчас
+          Вы можете приступить к изучению как платных, так и бесплатных курсов прямо сейчас
         </div>
 
-        <v-button 
+        <v-button
           class="cb_top70"
           button-type="courses"
           icon-position="right"
@@ -79,10 +74,10 @@ import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'BlockCourses',
-  components: { 
-    IconPlay, 
+  components: {
+    IconPlay,
     VCourseMiniCard,
-    VButton,
+    VButton
   }
 }
 </script>
@@ -104,7 +99,7 @@ export default {
     width: 90px;
     height: 90px;
 
-    border: 2px solid #272A37;
+    border: 2px solid #272a37;
     border-radius: 20px;
   }
 
@@ -121,23 +116,23 @@ export default {
     color: #ffffff;
 
     &:after {
-      content: "FREE";
+      content: 'FREE';
 
       position: absolute;
       width: 56px;
       height: 29px;
-  
-      background: #EE3465;
+
+      background: #ee3465;
       border-radius: 5px;
 
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      
+
       font-weight: 500;
       font-size: 11px;
       line-height: 24px;
-      color: #FFFFFF;
+      color: #ffffff;
 
       margin-top: 15px;
       margin-left: 10px;
@@ -154,7 +149,7 @@ export default {
     line-height: 29px;
     letter-spacing: -0.025em;
 
-    color: #43485E;
+    color: #43485e;
   }
 }
 </style>

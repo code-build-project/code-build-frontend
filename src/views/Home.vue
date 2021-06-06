@@ -34,7 +34,7 @@ export default {
     BlockArticles,
     BlockSubscribe,
     BlockReviews,
-    BlockRegistration,
+    BlockRegistration
   }
 }
 </script>

@@ -13,7 +13,7 @@ export default {
     return {}
   },
   computed: {},
-  methods: {},
+  methods: {}
 }
 </script>
 
@@ -28,7 +28,7 @@ export default {
     width: 490px;
     height: 735px;
 
-    border: 2px solid #256CFE;
+    border: 2px solid #256cfe;
     border-radius: 8px;
 
     padding: 0px 58px 0px 58px;

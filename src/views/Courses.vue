@@ -20,9 +20,9 @@
           v-for="(item, index) in courseList"
           :key="index"
         >
-          <v-course-card 
+          <v-course-card
             class="cb_bottom30"
-            :class="{'cb_left29 cb_right29': (index - 1) % 3 === 0}" 
+            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
             :title="item.title"
             :lessons="item.lessons"
             :time="item.time"
@@ -45,67 +45,67 @@ export default {
   name: 'Courses',
   components: {
     BlockRegistration,
-    VCourseCard,
+    VCourseCard
   },
   data() {
     return {
       filterList: [
         {
-          name: 'Все курсы',
+          name: 'Все курсы'
         },
         {
-          name: 'Игры',
+          name: 'Игры'
         },
         {
-          name: 'Сайты',
+          name: 'Сайты'
         },
         {
-          name: 'Языки',
+          name: 'Языки'
         },
         {
-          name: 'Прочее',
+          name: 'Прочее'
         },
         {
-          name: 'Платные',
+          name: 'Платные'
         },
         {
-          name: 'Бесплатные',
-        },
+          name: 'Бесплатные'
+        }
       ],
       courseList: [
         {
           title: 'Первый курс',
           lessons: '3 урока',
           time: '22 ч. 11 м.',
-          views: '222',
+          views: '222'
         },
         {
           title: 'Второй курс',
           lessons: '1 урок',
           time: '12 ч. 22 м.',
-          views: '22',
+          views: '22'
         },
         {
           title: 'Третий курс',
           lessons: '66 уроков',
           time: '2 ч. 2 м.',
-          views: '44',
+          views: '44'
         },
         {
           title: 'Четвертый курс',
           lessons: '16 уроков',
           time: '22 ч. 23 м.',
-          views: '54',
+          views: '54'
         },
         {
           title: 'Пятый курс',
           lessons: '6 уроков',
           time: '32 ч. 3 м.',
-          views: '588',
-        },
+          views: '588'
+        }
       ]
     }
-  },
+  }
 }
 </script>
 
@@ -125,7 +125,7 @@ export default {
     font-size: 40px;
     line-height: 44px;
     letter-spacing: -1px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__filter {
@@ -139,10 +139,10 @@ export default {
     font-family: 'Circe';
     font-size: 18px;
     line-height: 18px;
-    color: #272A37;
+    color: #272a37;
 
     padding: 1em 1.7em 1em 1.7em;
-    border: 1px solid #E2E2E2;
+    border: 1px solid #e2e2e2;
     border-radius: 8px;
   }
 
@@ -157,8 +157,8 @@ export default {
 :hover.courses {
   &__filter-item {
     cursor: pointer;
-    color: #FFFFFF;
-    background: #256CFE;
+    color: #ffffff;
+    background: #256cfe;
   }
 }
 </style>

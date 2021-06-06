@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'App',
-  components: {},
+  components: {}
 }
 </script>
 
@@ -15,8 +15,7 @@ export default {
 @import '~@/assets/scss/fonts.scss';
 
 #app {
-  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
-    sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

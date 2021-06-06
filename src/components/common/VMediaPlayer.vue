@@ -46,18 +46,16 @@ import VButton from '@/components/common/VButton.vue'
 export default {
   name: 'VMediaPlayer',
   components: {
-    IconHeart, 
+    IconHeart,
     IconClose,
     IconAngleBracket,
     VButton
   },
-  props: {
-
-  },
+  props: {},
   data() {
     return {}
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -81,7 +79,7 @@ export default {
     padding: 35px;
     box-sizing: border-box;
 
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 8px;
   }
 
@@ -96,14 +94,14 @@ export default {
     font-family: 'Circe';
     font-size: 17px;
     line-height: 16px;
-    color: #256CFE;
+    color: #256cfe;
   }
 
   &__title {
     font-family: 'Circe';
     font-size: 24px;
     line-height: 19px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__icon {
@@ -111,7 +109,7 @@ export default {
     width: 53px;
     height: 53px;
 
-    border: 0.8px solid #DEDEDE;
+    border: 0.8px solid #dedede;
     border-radius: 8px;
   }
 

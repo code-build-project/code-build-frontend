@@ -24,7 +24,7 @@
       <v-check-box />
 
       <div class="cb_left10">
-        Я согласен с условиями обработки<br /> 
+        Я согласен с условиями обработки<br />
         <span class="cb_color-blue">персональных данных</span>
       </div>
     </div>
@@ -59,11 +59,11 @@ import VCheckBox from '@/components/common/VCheckBox.vue'
 export default {
   name: 'Registration',
 
-  components: { 
+  components: {
     IconLogo,
-    VInput, 
-    VButton, 
-    VCheckBox 
+    VInput,
+    VButton,
+    VCheckBox
   },
 
   props: {},
@@ -76,7 +76,7 @@ export default {
 
       emailError: false,
 
-      checkbox: false,
+      checkbox: false
     }
   },
 
@@ -85,7 +85,7 @@ export default {
       const payload = {
         name: this.name,
         surname: this.surname,
-        email: this.email,
+        email: this.email
       }
 
       this.axios
@@ -96,8 +96,8 @@ export default {
         .catch(() => {
           this.emailError = true
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -111,7 +111,7 @@ export default {
     font-size: 22px;
     line-height: 27px;
     text-align: center;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__consent {
@@ -121,12 +121,12 @@ export default {
 
     font-size: 13px;
     line-height: 15px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__footer {
     font-size: 16px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__entry {
@@ -135,7 +135,7 @@ export default {
 
     font-size: 16px;
     font-weight: bold;
-    color: #272A37;
+    color: #272a37;
   }
 }
 
@@ -143,21 +143,21 @@ export default {
 :hover.reg {
   &__logo {
     cursor: pointer;
-    
+
     ::v-deep {
       path {
-        fill: #FFFFFF;
+        fill: #ffffff;
       }
 
       rect {
-        fill: #256CFE;
+        fill: #256cfe;
       }
     }
   }
 
   &__entry {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div
     class="card"
-    :style="{'height': height + 'px'}"
+    :style="{ height: height + 'px' }"
   >
     <div class="card__score">
       <icon-star />
@@ -28,23 +28,23 @@
 </template>
 
 <script>
-import IconStar from '@/icons/IconStar.vue';
+import IconStar from '@/icons/IconStar.vue'
 
 export default {
   name: 'VReviewCard',
   components: {
-    IconStar,
+    IconStar
   },
   props: {
     // Высота карты
     height: {
       type: String,
-      default: '335',
+      default: '335'
     },
     // Оценка
     score: {
       type: String,
-      default: '4,5',
+      default: '4,5'
     },
     // Текст
     text: {
@@ -55,19 +55,19 @@ export default {
         Печати им. Ивана Фёдорова. Работаю 
         дизайнером наружной рекламы и мне 
         надоело. Всем привет! Мне 27, я из.`
-      },
+    },
     // Имя автора
     name: {
       type: String,
-      default: 'Автор',
+      default: 'Автор'
     },
     // Дата публикации
     date: {
       type: String,
-      default: '21 января 2021',
+      default: '21 января 2021'
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -78,7 +78,7 @@ export default {
   box-sizing: border-box;
   overflow: hidden;
 
-  border: 1.5px solid #DCE7FF;
+  border: 1.5px solid #dce7ff;
   border-radius: 8px;
 
   &__score {
@@ -89,7 +89,7 @@ export default {
     padding: 0px 10px 0px 10px;
     box-sizing: border-box;
 
-    background: #ECF2FF;
+    background: #ecf2ff;
     border-radius: 5px;
   }
 
@@ -100,14 +100,14 @@ export default {
     font-size: 16px;
     line-height: 25px;
     letter-spacing: -0.025em;
-    color: #3E4462;
+    color: #3e4462;
   }
 
   &__avatar-img {
     width: 56px;
     height: 56px;
 
-    background: #256CFE;
+    background: #256cfe;
     border-radius: 11.9226px;
   }
 
@@ -117,7 +117,7 @@ export default {
     font-size: 20px;
     line-height: 30px;
     letter-spacing: -0.55px;
-    color: #18214D;
+    color: #18214d;
   }
 
   &__avatar-date {
@@ -125,13 +125,13 @@ export default {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.4px;
-    color: #B0B7C8;
+    color: #b0b7c8;
   }
 }
 
 // hovers
 :hover.card {
-  border-color: #256CFE;
+  border-color: #256cfe;
   cursor: pointer;
 }
 </style>

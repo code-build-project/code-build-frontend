@@ -4,7 +4,7 @@
       <div class="cb_row-between cb_top86">
         <div class="cover__route">
           <div class="cb_center">
-            Code build 
+            Code build
             <icon-arrow
               class="cb_left20"
               width="20"
@@ -12,7 +12,7 @@
             />
           </div>
           <div class="cb_center cb_left20">
-            Видеокурсы 
+            Видеокурсы
             <icon-arrow
               class="cb_left20"
               width="20"
@@ -20,7 +20,7 @@
             />
           </div>
           <div class="cb_center cb_left20">
-            Создание сайта с нуля на CMS WordPress 
+            Создание сайта с нуля на CMS WordPress
           </div>
         </div>
 
@@ -37,7 +37,8 @@
       </div>
 
       <div class="cover__subtitle cb_top20">
-        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на движке WordPress.<br /> 
+        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на
+        движке WordPress.<br />
         В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
       </div>
 
@@ -88,13 +89,13 @@ export default {
     IconHeart,
     IconVideo,
     IconTimer,
-    IconOpenEye,
+    IconOpenEye
   },
   data() {
     return {
-      isLike: false,
+      isLike: false
     }
-  },
+  }
 }
 </script>
 
@@ -115,7 +116,7 @@ export default {
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__title {
@@ -125,14 +126,14 @@ export default {
     font-size: 62px;
     line-height: 69px;
     letter-spacing: -1px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__subtitle {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__attribute {
@@ -140,7 +141,7 @@ export default {
     font-family: 'Circe';
     font-size: 18px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
 
     padding: 17px 25px 17px 25px;
 
@@ -153,5 +154,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>

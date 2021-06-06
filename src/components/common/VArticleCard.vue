@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="card"
-  >
+  <div class="card">
     <div class="card__poster" />
 
     <div
@@ -57,7 +55,7 @@ import IconHeart from '@/icons/IconHeart.vue'
 
 export default {
   name: 'VArticleCard',
-  components: { 
+  components: {
     IconTimer,
     IconOpenEye,
     IconHeart
@@ -66,30 +64,30 @@ export default {
     // Название курса
     title: {
       type: String,
-      default: 'Название курса',
+      default: 'Название курса'
     },
     // Уровень сложности
     date: {
       type: String,
-      default: '12 апреля 2021',
+      default: '12 апреля 2021'
     },
     // Общее время курса
     time: {
       type: String,
-      default: '15 м.',
+      default: '15 м.'
     },
     // Количество просмотров курса
     views: {
       type: String,
-      default: '300',
-    },
+      default: '300'
+    }
   },
   data() {
     return {
-      isLike: false,
+      isLike: false
     }
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -101,7 +99,7 @@ export default {
   &__poster {
     height: 240px;
 
-    background: #C4C4C4;
+    background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
 
@@ -112,14 +110,14 @@ export default {
     padding: 21px 27px 27px 27px;
     box-sizing: border-box;
 
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 0px 0px 8px 8px;
   }
 
   &__date {
     font-family: 'EuclidCircular';
     font-size: 15px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__title {
@@ -129,7 +127,7 @@ export default {
     font-family: 'Circe';
     font-size: 26px;
     line-height: 31px;
-    color: #3A3F4F;
+    color: #3a3f4f;
     letter-spacing: -0.01em;
   }
 
@@ -139,7 +137,7 @@ export default {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 12px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__footer-item {
@@ -147,7 +145,7 @@ export default {
     align-items: center;
     height: 40px;
 
-    border: 1px solid #EDEDED;
+    border: 1px solid #ededed;
     border-radius: 7px;
   }
 

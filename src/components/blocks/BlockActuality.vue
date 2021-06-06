@@ -7,9 +7,7 @@
     </div>
 
     <div class="actuality__subtitle cb_top30">
-      <span class="cb_center">
-        Мы помогаем новичкам стать профессиональными
-      </span>
+      <span class="cb_center"> Мы помогаем новичкам стать профессиональными </span>
       программистами, а опытным разработчикам получать
       <span class="cb_center"> новые знания и расти профессионально </span>
     </div>

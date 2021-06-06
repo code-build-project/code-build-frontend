@@ -40,17 +40,14 @@
         </div>
 
         <div class="articles__title">
-          Свежие новости 
-          и познавательные 
-          статьи из мира IT
+          Свежие новости и познавательные статьи из мира IT
         </div>
 
         <div class="articles__subtitle">
-          Читай наши статьи и улучшай 
-          навыки программирования
+          Читай наши статьи и улучшай навыки программирования
         </div>
 
-        <v-button 
+        <v-button
           class="cb_top70"
           button-type="articles"
           icon-position="right"
@@ -74,57 +71,57 @@ import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'BlockArticles',
-  components: { 
+  components: {
     IconList,
     VArticleMiniCard,
-    VButton,
+    VButton
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .articles__wrap {
+.articles__wrap {
+  @extend .cb_center;
+  width: 100%;
+  background: #17191f;
+}
+
+.articles {
+  @extend .cb_row-between;
+  width: 1160px;
+  height: 1045px;
+
+  &__icon {
     @extend .cb_center;
-    width: 100%;
-    background: #17191f;
+    width: 90px;
+    height: 90px;
+
+    border: 2px solid #272a37;
+    border-radius: 20px;
   }
-  
-  .articles {
-    @extend .cb_row-between;
-    width: 1160px;
-    height: 1045px;
 
-    &__icon {
-      @extend .cb_center;
-      width: 90px;
-      height: 90px;
+  &__title {
+    width: 360px;
 
-      border: 2px solid #272A37;
-      border-radius: 20px;
-    }
+    margin-top: 65px;
 
-    &__title {
-      width: 360px;
-
-      margin-top: 65px;
-
-      font-family: 'ObjectSans';
-      font-size: 40px;
-      line-height: 48px;
-      letter-spacing: -0.01em;
-      color: #ffffff;
-    }
-
-    &__subtitle {
-      width: 340px;
-
-      margin-top: 30px;
-
-      font-family: 'Circe';
-      font-size: 22px;
-      line-height: 29px;
-      letter-spacing: -0.025em;
-      color: #43485E;
-    }
+    font-family: 'ObjectSans';
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -0.01em;
+    color: #ffffff;
   }
+
+  &__subtitle {
+    width: 340px;
+
+    margin-top: 30px;
+
+    font-family: 'Circe';
+    font-size: 22px;
+    line-height: 29px;
+    letter-spacing: -0.025em;
+    color: #43485e;
+  }
+}
 </style>

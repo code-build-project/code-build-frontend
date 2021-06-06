@@ -7,11 +7,11 @@
         <span class="cb_right5">Сложность</span>
 
         <icon-ellipse
-          v-for="item in [1,2,3,4,5]"
-          :key="item" 
+          v-for="item in [1, 2, 3, 4, 5]"
+          :key="item"
           class="cb_left2"
-          width="6" 
-          height="6" 
+          width="6"
+          height="6"
           :fill="level >= item ? '#EE3465' : '#3A3F4F'"
         />
       </div>
@@ -56,49 +56,49 @@ import IconFire from '@/icons/IconFire.vue'
 
 export default {
   name: 'VCourseMiniCard',
-  components: { 
+  components: {
     IconEllipse,
     IconVideo,
     IconTimer,
     IconOpenEye,
-    IconFire,
+    IconFire
   },
   props: {
     // Уровень сложности
     level: {
       type: String,
-      default: '1',
+      default: '1'
     },
     // Название курса
     title: {
       type: String,
-      default: 'Название курса',
+      default: 'Название курса'
     },
     // Количество уроков
     lessons: {
       type: String,
-      default: '6 уроков',
+      default: '6 уроков'
     },
     // Общее время курса
     time: {
       type: String,
-      default: '1 ч. 25 м.',
+      default: '1 ч. 25 м.'
     },
     // Количество просмотров курса
     views: {
       type: String,
-      default: '300',
+      default: '300'
     },
     // Метка о популярности курса
     fire: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {}
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -110,7 +110,7 @@ export default {
     width: 268px;
     height: 208px;
 
-    background: #256CFE;
+    background: #256cfe;
     border-radius: 7px 7px 0px 0px;
   }
 
@@ -124,18 +124,18 @@ export default {
     padding: 17px;
     box-sizing: border-box;
 
-    background: #272A37;
+    background: #272a37;
     border-radius: 0px 0px 7px 7px;
   }
 
   &__level {
     display: flex;
     align-items: center;
-    
+
     font-family: 'EuclidCircular';
     font-size: 11px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__title {
@@ -144,7 +144,7 @@ export default {
     font-family: 'EuclidCircular';
     font-size: 13px;
     line-height: 21px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__footer {
@@ -153,7 +153,7 @@ export default {
     font-family: 'Circe';
     font-size: 11px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__footer-item {
@@ -162,7 +162,7 @@ export default {
     padding-left: 10px;
     padding-right: 10px;
 
-    border: 1px solid #383C4A;
+    border: 1px solid #383c4a;
     border-radius: 5px;
   }
 
@@ -176,7 +176,7 @@ export default {
     width: 50px;
     height: 50px;
 
-    background: #EE3465;
+    background: #ee3465;
     border-radius: 50%;
   }
 }

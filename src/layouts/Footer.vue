@@ -16,7 +16,7 @@
           <div class="footer__icon">
             <icon-vk />
           </div>
-          
+
           <div class="footer__icon">
             <icon-instagram />
           </div>
@@ -62,8 +62,8 @@
 
         <span class="footer__copy">
           Пишите: help@codebuild.com
-          <div 
-            class="footer__icon" 
+          <div
+            class="footer__icon"
             style="width: 28px; height: 28px; border-radius: 6px"
           >
             <icon-copy />
@@ -84,17 +84,16 @@ import IconTelegram from '@/icons/IconTelegram.vue'
 import IconCopyright from '@/icons/IconCopyright.vue'
 import IconCopy from '@/icons/IconCopy.vue'
 
-
 export default {
-  components: { 
-    IconLogo, 
-    IconYouTube, 
+  components: {
+    IconLogo,
+    IconYouTube,
     IconRusFlag,
     IconVk,
     IconInstagram,
     IconTelegram,
     IconCopyright,
-    IconCopy,
+    IconCopy
   },
 
   data() {
@@ -103,7 +102,7 @@ export default {
 
   computed: {},
 
-  methods: {},
+  methods: {}
 }
 </script>
 
@@ -113,7 +112,7 @@ export default {
   width: 100%;
   background: #171717;
 }
-  
+
 .footer {
   @extend .cb_column-center;
   width: 1160px;
@@ -143,8 +142,8 @@ export default {
 
   &__line {
     height: 1px;
-    border: none; 
-    background-color: #444754; 
+    border: none;
+    background-color: #444754;
   }
 
   &__copyright {
@@ -165,10 +164,10 @@ export default {
 
   &__icon {
     @extend .cb_center;
-    width: 44px; 
+    width: 44px;
     height: 44px;
 
-    border: 1px solid #272A37;
+    border: 1px solid #272a37;
     border-radius: 9px;
   }
 }
@@ -184,19 +183,19 @@ export default {
       }
 
       rect {
-        fill: #FFFFFF;
+        fill: #ffffff;
       }
     }
   }
 
   &__icon {
-    background: #272A37;
+    background: #272a37;
     cursor: pointer;
   }
 
   &__links-item {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
   }
 }
 </style>

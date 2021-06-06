@@ -14,8 +14,8 @@ export default {
   name: 'MainLayout',
   components: {
     Header,
-    Footer,
-  },
+    Footer
+  }
 }
 </script>
 

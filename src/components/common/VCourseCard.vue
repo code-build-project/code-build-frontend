@@ -10,11 +10,11 @@
         <span class="cb_right5">Сложность</span>
 
         <icon-ellipse
-          v-for="item in [1,2,3,4,5]"
-          :key="item" 
+          v-for="item in [1, 2, 3, 4, 5]"
+          :key="item"
           class="cb_left2"
-          width="8" 
-          height="8" 
+          width="8"
+          height="8"
           :fill="level >= item ? '#EE3465' : '#EDEDED'"
         />
       </div>
@@ -63,43 +63,43 @@ import IconOpenEye from '@/icons/IconOpenEye.vue'
 
 export default {
   name: 'VCourseCard',
-  components: { 
+  components: {
     IconEllipse,
     IconVideo,
     IconTimer,
-    IconOpenEye,
+    IconOpenEye
   },
   props: {
     // Название курса
     title: {
       type: String,
-      default: 'Название курса',
+      default: 'Название курса'
     },
     // Уровень сложности
     level: {
       type: String,
-      default: '1',
+      default: '1'
     },
     // Количество уроков
     lessons: {
       type: String,
-      default: '6 уроков',
+      default: '6 уроков'
     },
     // Общее время курса
     time: {
       type: String,
-      default: '1 ч. 25 м.',
+      default: '1 ч. 25 м.'
     },
     // Количество просмотров курса
     views: {
       type: String,
-      default: '300',
-    },
+      default: '300'
+    }
   },
   data() {
     return {}
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -111,7 +111,7 @@ export default {
   &__poster {
     height: 240px;
 
-    background: #C4C4C4;
+    background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
 
@@ -122,17 +122,17 @@ export default {
     padding: 21px 27px 27px 27px;
     box-sizing: border-box;
 
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 0px 0px 8px 8px;
   }
 
   &__level {
     @extend .cb_row;
     align-items: center;
-    
+
     font-family: 'EuclidCircular';
     font-size: 15px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__title {
@@ -142,7 +142,7 @@ export default {
     font-family: 'Circe';
     font-size: 26px;
     line-height: 35px;
-    color: #3A3F4F;
+    color: #3a3f4f;
     letter-spacing: -0.01em;
   }
 
@@ -152,7 +152,7 @@ export default {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 12px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__footer-item {
@@ -160,7 +160,7 @@ export default {
     align-items: center;
     height: 40px;
 
-    border: 1px solid #EDEDED;
+    border: 1px solid #ededed;
     border-radius: 7px;
   }
 }

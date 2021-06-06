@@ -2,9 +2,7 @@
   <div class="reg__wrap">
     <div class="reg">
       <div class="reg__info">
-        Зарегистрируйся в codebuild
-        и получи бесплатный доступ 
-        к более чем 20 курсам
+        Зарегистрируйся в codebuild и получи бесплатный доступ к более чем 20 курсам
       </div>
 
       <div class="reg__input">
@@ -39,7 +37,7 @@ export default {
 .reg__wrap {
   @extend .cb_center;
   width: 100%;
-  background: #256CFE;
+  background: #256cfe;
 }
 
 .reg {
@@ -54,7 +52,7 @@ export default {
     font-size: 30px;
     line-height: 39px;
     letter-spacing: -0.025em;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__input {
@@ -63,31 +61,31 @@ export default {
     height: 80px;
 
     font-family: 'Circe';
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #ffffff;
   }
 
   &__input-legend {
     font-family: 'Circe';
     font-size: 17px;
     line-height: 19px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__input-field {
     margin-top: 20px;
-  
+
     font-size: 26px;
     line-height: 19px;
     letter-spacing: -0.02em;
 
     border: none;
     background: transparent;
-    color: #FFFFFF;
+    color: #ffffff;
 
     outline: none;
 
     &::placeholder {
-      color: #518AFF;
+      color: #518aff;
     }
   }
 
@@ -100,7 +98,7 @@ export default {
     right: 0px;
     bottom: 20px;
 
-    border: 2px solid #3A7AFE;
+    border: 2px solid #3a7afe;
     border-radius: 10px;
   }
 }
@@ -108,11 +106,11 @@ export default {
 // hovers
 :hover.reg {
   &__input-icon {
-    background: #FFFFFF;
+    background: #ffffff;
     cursor: pointer;
 
     ::v-deep path {
-      stroke: #256CFE;
+      stroke: #256cfe;
     }
   }
 }

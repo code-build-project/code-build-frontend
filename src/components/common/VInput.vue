@@ -7,7 +7,7 @@
     <input
       class="input__field"
       :value="value"
-      :style="{'paddingRight': $slots.rightIcon ? '60px' : ''}"
+      :style="{ paddingRight: $slots.rightIcon ? '60px' : '' }"
       :placeholder="placeholder"
       :type="typeInput"
       required="true"
@@ -33,34 +33,34 @@ export default {
 
   model: {
     prop: 'value',
-    event: 'change',
+    event: 'change'
   },
 
   props: {
     value: {
       type: [String, Number],
-      required: false,
+      required: false
     },
 
     typeInput: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
 
     placeholder: {
       type: String,
-      default: '',
+      default: ''
     },
 
     error: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     errorMessage: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
 
   data() {
@@ -72,8 +72,8 @@ export default {
   methods: {
     onInput(event) {
       this.$emit('change', event)
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -85,7 +85,7 @@ export default {
   height: 55px;
 
   font-family: 'Circe';
-  border-bottom: 1px solid #B1B8C6;
+  border-bottom: 1px solid #b1b8c6;
 
   &__legend {
     position: absolute;
@@ -94,31 +94,30 @@ export default {
 
     font-size: 13px;
     line-height: 16px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
-  
+
   &__field {
     margin-top: 20px;
-    
+
     font-size: 17px;
     line-height: 16px;
 
     border: none;
     background: transparent;
-    color: #272A37;;
+    color: #272a37;
 
     outline: none;
 
     &:hover {
-
     }
 
-    &:focus, &:valid {
-
+    &:focus,
+    &:valid {
     }
 
     &::placeholder {
-      color: #B1B8C6;
+      color: #b1b8c6;
     }
   }
 
@@ -129,5 +128,4 @@ export default {
     bottom: 20px;
   }
 }
-
 </style>

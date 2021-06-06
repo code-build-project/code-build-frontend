@@ -4,7 +4,7 @@
       <div class="cover__route cb_top86">
         <div class="cb_row">
           <div class="cb_center">
-            Code build 
+            Code build
             <icon-arrow
               class="cb_left20"
               width="20"
@@ -12,7 +12,7 @@
             />
           </div>
           <div class="cb_center cb_left20">
-            Статьи 
+            Статьи
             <icon-arrow
               class="cb_left20"
               width="20"
@@ -33,13 +33,13 @@
       </div>
 
       <div class="cover__title cb_top35">
-        Make art NONSNS again.<br /> 
+        Make art NONSNS again.<br />
         Как абсурд в искусстве придаёт <br />
         смысл обыденным вещам
       </div>
 
       <div class="cover__subtitle cb_top20">
-        Современное искусство, спекуляции и ирония. Группа NONSNS рассказала<br /> 
+        Современное искусство, спекуляции и ирония. Группа NONSNS рассказала<br />
         о своём шоу для «Гаража» и дизайне, который сделал это шоу убедительным.
       </div>
 
@@ -80,13 +80,13 @@ export default {
     IconArrow,
     IconHeart,
     IconTimer,
-    IconOpenEye,
+    IconOpenEye
   },
   data() {
     return {
-      isLike: false,
+      isLike: false
     }
-  },
+  }
 }
 </script>
 
@@ -107,7 +107,7 @@ export default {
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__title {
@@ -118,14 +118,14 @@ export default {
     font-size: 62px;
     line-height: 69px;
     letter-spacing: -1px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__subtitle {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   &__attribute {
@@ -133,7 +133,7 @@ export default {
     font-family: 'Circe';
     font-size: 18px;
     line-height: 16px;
-    color: #FFFFFF;
+    color: #ffffff;
 
     padding: 17px 25px 17px 25px;
 
@@ -146,5 +146,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>

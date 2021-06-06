@@ -5,16 +5,14 @@
     <div class="article">
       <div class="article__content">
         <div class="article__content-left">
-          Этой весной в музее «Гараж» открылась выставка «Выбирая дистанцию: спекуляции, фейки, прогнозы в эпоху коронацена». 
-          Её придумали в прошлом году, во время самоизоляции. 
-          Музей предложил художникам переосмыслить локдаун и составить прогнозы возможных версий будущего, 
-          прошлого или настоящего, используя инструмент спекуляции.
-          Одним из 33 участников выставки стала гибридная самоорганизация NONSNS: Мария Челоянц, 
-          Гоша Голицын и Руслан Поланин по-своему пересняли четыре популярных телевизионных передачи.
-
-          Первая уже вышла — это ироничное шоу «Давай поджемимся!». 
-          В нём куратор ищет идеального художника для совместных творческих проектов. 
-          Ему в этом помогают друзья, свахи и астролог.
+          Этой весной в музее «Гараж» открылась выставка «Выбирая дистанцию: спекуляции, фейки,
+          прогнозы в эпоху коронацена». Её придумали в прошлом году, во время самоизоляции. Музей
+          предложил художникам переосмыслить локдаун и составить прогнозы возможных версий будущего,
+          прошлого или настоящего, используя инструмент спекуляции. Одним из 33 участников выставки
+          стала гибридная самоорганизация NONSNS: Мария Челоянц, Гоша Голицын и Руслан Поланин
+          по-своему пересняли четыре популярных телевизионных передачи. Первая уже вышла — это
+          ироничное шоу «Давай поджемимся!». В нём куратор ищет идеального художника для совместных
+          творческих проектов. Ему в этом помогают друзья, свахи и астролог.
         </div>
 
         <div class="article__content-right cb_left108">
@@ -28,8 +26,8 @@
           </div>
 
           <div class="article__hobby cb_top10">
-            Журналистка. Из газеты — в digital. 
-            Пишет о дизайне, искусстве и красоте. Живёт на Байкале.
+            Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на
+            Байкале.
           </div>
 
           <div class="cb_row cb_top15">
@@ -84,13 +82,11 @@ export default {
     IconDate,
     VArticleCard,
     BlockArticleCover,
-    BlockSubscribe,
+    BlockSubscribe
   },
   data() {
-    return {
-
-    }
-  },
+    return {}
+  }
 }
 </script>
 
@@ -112,7 +108,7 @@ export default {
     min-height: 710px;
 
     padding-bottom: 70px;
-    border-bottom: 1px solid #E4E4E4;
+    border-bottom: 1px solid #e4e4e4;
   }
 
   &__content-left {
@@ -120,7 +116,7 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__content-right {
@@ -130,9 +126,9 @@ export default {
   }
 
   &__avatar {
-    width: 100px; 
+    width: 100px;
     height: 100px;
-    background: #83A7C9;
+    background: #83a7c9;
     border-radius: 50%;
   }
 
@@ -141,14 +137,14 @@ export default {
     font-weight: bold;
     font-size: 16px;
     line-height: 30px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__hobby {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 20px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__date {
@@ -156,7 +152,7 @@ export default {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 22px;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__icon {
@@ -164,7 +160,7 @@ export default {
     width: 44px;
     height: 44px;
 
-    border: 1px solid #E4E4E4;
+    border: 1px solid #e4e4e4;
     box-sizing: border-box;
     border-radius: 9px;
   }
@@ -174,7 +170,7 @@ export default {
     font-size: 40px;
     line-height: 44px;
     letter-spacing: -1px;
-    color: #272A37;
+    color: #272a37;
   }
 }
 </style>

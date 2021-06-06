@@ -1,43 +1,32 @@
 <template>
-  <div  class="icons">
+  <div class="icons">
     <div v-for="(item, index) in iconsList" :key="index" :title="item.name">
-      <component 
-        class="icons__component" 
-        :is="item.component" 
-        width="50px" 
-        height="50px"/>
+      <component class="icons__component" :is="item.component" width="50px" height="50px" />
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Icons',
-  components: {
-
-  },
+  components: {},
   data() {
     return {
-      iconsList: [], 
+      iconsList: []
     }
   },
 
   created() {
     // получаем названия все файлы в папке @/icons
-    const icons = require.context(
-      '@/icons',
-      true,
-      /^.*\.vue$/
-    )
+    const icons = require.context('@/icons', true, /^.*\.vue$/)
 
     // заполняем массив импортами и названиями каждого компонента иконки
     icons.keys().forEach((item) => {
       this.iconsList.push({
         component: () => import(`@/icons${item.substring(1)}`),
-        name: item.substring(2),
+        name: item.substring(2)
       })
-    });
+    })
   }
 }
 </script>

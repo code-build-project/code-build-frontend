@@ -9,8 +9,8 @@
         v-for="(item, index) in reviewList"
         :key="index"
       >
-        <v-review-card 
-          class="reviews__list-item" 
+        <v-review-card
+          class="reviews__list-item"
           :height="index === 1 ? '700' : '335'"
           :score="item.score"
           :text="item.text"
@@ -32,23 +32,23 @@
 </template>
 
 <script>
-import VReviewCard from '@/components/common/VReviewCard.vue';
+import VReviewCard from '@/components/common/VReviewCard.vue'
 import VButton from '@/components/common/VButton.vue'
 
 export default {
   name: 'BlockReviews',
 
-  components: { 
+  components: {
     VReviewCard,
-    VButton,
+    VButton
   },
 
   data() {
     return {
       reviewList: [
-        { 
+        {
           score: '3,2',
-      
+
           name: 'Кристина Белова',
           date: '21 апреля 2012'
         },
@@ -65,49 +65,49 @@ export default {
         },
         {
           score: '1,2',
-        
+
           name: 'Дядя Степа',
           date: '11 сентября 2015'
         },
-        { 
+        {
           score: '4,2',
-     
+
           name: 'Жора Прохоров',
           date: '6 мая 2018'
         },
         {
           score: '1,3',
-        
+
           name: 'Арсений Белов',
           date: '14 декабря 2021'
         },
         {
           score: '3,2',
-      
+
           name: 'Федор Емельяненко',
           date: '22 августа 2012'
         },
-        { 
+        {
           score: '4,7',
-      
+
           name: 'Катя Старшова',
           date: '16 июня 2011'
         },
         {
           score: '2,8',
-   
+
           name: 'Арсений Белов',
           date: '14 октября 2013'
         },
         {
           score: '1,2',
-    
+
           name: 'Федор Емельяненко',
           date: '2 января 2015'
         }
       ]
     }
-  },
+  }
 }
 </script>
 
@@ -122,7 +122,7 @@ export default {
     font-size: 40px;
     line-height: 44px;
     letter-spacing: -1.5px;
-    color: #18214D;
+    color: #18214d;
   }
 
   &__list {
@@ -144,8 +144,13 @@ export default {
     position: absolute;
     height: 300px;
     width: 1160px;
-    
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 29.69%, #FFFFFF 100%);
+
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.95) 29.69%,
+      #ffffff 100%
+    );
 
     @extend .cb_row-center;
     bottom: 0px;

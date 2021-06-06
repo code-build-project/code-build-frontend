@@ -34,7 +34,7 @@
       >
         Войти
       </router-link>
-      <v-button 
+      <v-button
         button-type="header"
         icon-position="left"
         icon-width="21"
@@ -60,7 +60,7 @@ export default {
   data() {
     return {}
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -72,7 +72,7 @@ export default {
 
   font-family: 'Circe';
   font-size: 18px;
-  color: #15244B;
+  color: #15244b;
 
   &__nav {
     @extend .cb_row-between;
@@ -83,7 +83,7 @@ export default {
     @extend .cb_row-between;
 
     width: 290px;
-    color: #EE3465;
+    color: #ee3465;
   }
 }
 
@@ -91,26 +91,26 @@ export default {
 :hover.header {
   &__logo {
     cursor: pointer;
-    
+
     ::v-deep {
       path {
-        fill: #FFFFFF;
+        fill: #ffffff;
       }
 
       rect {
-        fill: #256CFE;
+        fill: #256cfe;
       }
     }
   }
 
   &__nav-item {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
   }
 
   &__button {
     cursor: pointer;
-    color: #15244B;
+    color: #15244b;
   }
 }
 </style>

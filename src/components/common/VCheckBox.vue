@@ -19,15 +19,15 @@ export default {
   name: 'VCheckBox',
   model: {
     prop: 'checked',
-    event: 'change',
+    event: 'change'
   },
   props: {
     keyField: {
       type: [Number, String],
-      default: 1,
+      default: 1
     },
-    checked: Boolean,
-  },
+    checked: Boolean
+  }
 }
 </script>
 
@@ -55,7 +55,7 @@ export default {
   height: 30px;
   flex-shrink: 0;
   flex-grow: 0;
-  border: 1px solid #B1B8C6;
+  border: 1px solid #b1b8c6;
   border-radius: 8px;
   background-repeat: no-repeat;
   background-position: center center;

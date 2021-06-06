@@ -51,39 +51,39 @@ import IconHeart from '@/icons/IconHeart.vue'
 
 export default {
   name: 'VCourseCard',
-  components: { 
+  components: {
     IconTimer,
     IconOpenEye,
-    IconHeart,
+    IconHeart
   },
   props: {
     // Номер урока
     lessonNamber: {
       type: String,
-      default: '1',
+      default: '1'
     },
     // Название урока
     title: {
       type: String,
-      default: 'Установка всего необходимого',
+      default: 'Установка всего необходимого'
     },
     // Время урока
     time: {
       type: String,
-      default: '1 ч. 25 м.',
+      default: '1 ч. 25 м.'
     },
     // Количество просмотров урока
     views: {
       type: String,
-      default: '300',
-    },
+      default: '300'
+    }
   },
   data() {
     return {
-      isLike: false,
+      isLike: false
     }
   },
-  computed: {},
+  computed: {}
 }
 </script>
 
@@ -97,7 +97,7 @@ export default {
     width: 268px;
     height: 181px;
 
-    background: #C4C4C4;
+    background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
 
@@ -111,17 +111,17 @@ export default {
     padding: 17px;
     box-sizing: border-box;
 
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 0px 0px 8px 8px;
   }
 
   &__lesson-number {
     cursor: pointer;
-    
+
     font-family: 'Circe';
     font-size: 15px;
     line-height: 18px;
-    color: #256CFE;
+    color: #256cfe;
   }
 
   &__title {
@@ -130,7 +130,7 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 21px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__footer {
@@ -139,7 +139,7 @@ export default {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 12px;
-    color: #3A3F4F;
+    color: #3a3f4f;
   }
 
   &__footer-item {
@@ -148,7 +148,7 @@ export default {
 
     padding: 0px 27px 0px 24px;
 
-    border: 1px solid #EDEDED;
+    border: 1px solid #ededed;
     border-radius: 7px;
   }
 
