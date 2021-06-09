@@ -17,7 +17,7 @@
 
       <div class="articles__list cb_top60">
         <div
-          v-for="(item, index) in courseList"
+          v-for="(item, index) in articleList"
           :key="index"
         >
           <v-article-card
@@ -48,54 +48,21 @@ export default {
   },
   data() {
     return {
-      filterList: [
-        {
-          name: 'Все статьи'
-        },
-        {
-          name: 'Игры'
-        },
-        {
-          name: 'Сайты'
-        },
-        {
-          name: 'Языки'
-        },
-        {
-          name: 'Прочее'
-        },
-        {
-          name: 'Лучшее'
-        }
-      ],
-      courseList: [
-        {
-          title: 'Новые открытия в сфере искуственного интеллекта',
-          time: '11 м.',
-          views: '222'
-        },
-        {
-          title: 'Второй курс',
-          time: '22 м.',
-          views: '22'
-        },
-        {
-          title: 'Третий курс',
-          time: '2 м.',
-          views: '44'
-        },
-        {
-          title: 'Четвертый курс',
-          time: '23 м.',
-          views: '54'
-        },
-        {
-          title: 'Пятый курс',
-          time: '33 м.',
-          views: '588'
-        }
-      ]
+      filterList: [],
+      articleList: []
     }
+  },
+
+  created() {
+    this.axios.get('http://127.0.1.1:4000/articles')
+    .then((request) => {
+      this.articleList = request.data;
+    })
+
+    this.axios.get('http://127.0.1.1:4000/articles/filters')
+    .then((request) => {
+      this.filterList = request.data;
+    })
   }
 }
 </script>

@@ -24,6 +24,7 @@
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
             :title="item.title"
+            :level="item.level"
             :lessons="item.lessons"
             :time="item.time"
             :views="item.views"
@@ -49,62 +50,21 @@ export default {
   },
   data() {
     return {
-      filterList: [
-        {
-          name: 'Все курсы'
-        },
-        {
-          name: 'Игры'
-        },
-        {
-          name: 'Сайты'
-        },
-        {
-          name: 'Языки'
-        },
-        {
-          name: 'Прочее'
-        },
-        {
-          name: 'Платные'
-        },
-        {
-          name: 'Бесплатные'
-        }
-      ],
-      courseList: [
-        {
-          title: 'Первый курс',
-          lessons: '3 урока',
-          time: '22 ч. 11 м.',
-          views: '222'
-        },
-        {
-          title: 'Второй курс',
-          lessons: '1 урок',
-          time: '12 ч. 22 м.',
-          views: '22'
-        },
-        {
-          title: 'Третий курс',
-          lessons: '66 уроков',
-          time: '2 ч. 2 м.',
-          views: '44'
-        },
-        {
-          title: 'Четвертый курс',
-          lessons: '16 уроков',
-          time: '22 ч. 23 м.',
-          views: '54'
-        },
-        {
-          title: 'Пятый курс',
-          lessons: '6 уроков',
-          time: '32 ч. 3 м.',
-          views: '588'
-        }
-      ]
+      filterList: [],
+      courseList: []
     }
+  },
+  
+  created() {
+    this.axios.get('http://127.0.1.1:4000/courses')
+    .then((request) => {
+      this.courseList = request.data;
+    })
+
+    this.axios.get('http://127.0.1.1:4000/courses/filters')
+    .then((request) => {
+      this.filterList = request.data;
+    })
   }
 }
 </script>

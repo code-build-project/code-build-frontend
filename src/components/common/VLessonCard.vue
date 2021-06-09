@@ -7,7 +7,7 @@
       @click="$emit('click')"
     >
       <div class="card__lesson-number">
-        Урок №{{ lessonNamber }}
+        Урок №{{ lessonNumber }}
       </div>
 
       <div class="card__title">
@@ -15,7 +15,7 @@
       </div>
 
       <div class="card__footer">
-        <div class="card__footer-item">
+        <div class="card__footer-item cb_width126">
           <icon-timer
             :fill="'#3A3F4F'"
             width="15"
@@ -24,7 +24,7 @@
           <span class="cb_left5">{{ time }}</span>
         </div>
 
-        <div class="card__footer-item">
+        <div class="card__footer-item cb_width96">
           <icon-open-eye
             :fill="'#3A3F4F'"
             width="17"
@@ -58,7 +58,7 @@ export default {
   },
   props: {
     // Номер урока
-    lessonNamber: {
+    lessonNumber: {
       type: String,
       default: '1'
     },
@@ -143,10 +143,8 @@ export default {
   }
 
   &__footer-item {
-    @extend .cb_row-between;
+    @extend .cb_center;
     height: 40px;
-
-    padding: 0px 27px 0px 24px;
 
     border: 1px solid #ededed;
     border-radius: 7px;
