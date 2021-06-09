@@ -8,8 +8,8 @@
   >
     <path
       d="M1.66699 35.6666L18.3337 18.9999L1.66699 2.33325"
-      stroke="white"
-      stroke-width="3"
+      :stroke="stroke"
+      :stroke-width="strokeWidth"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -18,6 +18,14 @@
 
 <script>
 export default {
-  name: 'IconAngleBracket'
+  name: 'IconAngleBracket',
+  props: {
+    stroke: {
+      default: 'white'
+    },
+    strokeWidth: {
+      default: '3'
+    },
+  }
 }
 </script>

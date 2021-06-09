@@ -89,6 +89,18 @@ export default {
     }
   }
 
+  &-buy-premium {
+    font-family: 'Circe';
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    background: #ee3465;
+
+    &:hover {
+      box-shadow: 0px 12px 18px -13px #ee3465;
+    }
+  }
+
   &-intro {
     font-family: 'Circe';
     font-size: 24px;

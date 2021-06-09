@@ -35,6 +35,11 @@ const routes = [
         component: () => import('@/views/Article.vue'),
       },
       {
+        path: 'cabinet',
+        name: 'Cabinet',
+        component: () => import('@/views/Cabinet.vue'),
+      },
+      {
         path: 'icons',
         name: 'Icons',
         component: () => import('@/views/Icons.vue'),

@@ -26,34 +26,30 @@
       </router-link>
     </div>
 
-    <div class="header__buttons">
-      <router-link
-        class="header__button"
-        to="/auth"
-        target="_blank"
-      >
-        Войти
-      </router-link>
-      <v-button
-        button-type="header"
-        icon-position="left"
-        icon-width="21"
-        icon-height="21"
-      >
+    <!-- <div class="header__buttons">
+      <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
+      <v-button button-type="header" icon-position="left" icon-width="21" icon-height="21">
         Премиум
       </v-button>
-    </div>
+    </div> -->
+
+    <v-user-select />
   </div>
 </template>
 
 <script>
 import IconLogo from '@/icons/IconLogo.vue'
-import VButton from '@/components/common/VButton.vue'
+// import VButton from '@/components/common/VButton.vue'
+import VUserSelect from '@/components/common/VUserSelect.vue'
 
 export default {
   name: 'Header',
 
-  components: { IconLogo, VButton },
+  components: { 
+    IconLogo, 
+    // VButton, 
+    VUserSelect 
+  },
 
   props: {},
 
