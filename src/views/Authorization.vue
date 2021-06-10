@@ -27,6 +27,7 @@
     <v-button
       class="cb_top70"
       button-type="reg"
+      @click="onLogin"
     >
       Войти
     </v-button>
@@ -92,12 +93,12 @@ export default {
 
     onLogin() {
       const payload = {
-        email: this.email,
-        password: this.password
+        email: 'ya.sham@yandex.ru',
+        password: 'sdfsdfsdf'
       }
 
       this.axios
-        .post('http://localhost:3000/auth', payload)
+        .post('http://127.0.1.1:4000/login', payload)
         .then((response) => {
           console.log(response)
           alert('Вы успешно авторизовались!')
