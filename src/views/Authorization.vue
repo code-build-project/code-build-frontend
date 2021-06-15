@@ -17,6 +17,7 @@
 
     <v-input
       class="cb_top40"
+      type-input="password"
       placeholder="Пароль"
     />
 
@@ -48,9 +49,6 @@
 <script>
 import IconLogo from '@/icons/IconLogo.vue'
 
-// import IconCloseEye from '@/icons/IconCloseEye.vue'
-// import IconOpenEye from '@/icons/IconOpenEye.vue'
-
 import VInput from '@/components/common/VInput.vue'
 import VButton from '@/components/common/VButton.vue'
 
@@ -58,8 +56,6 @@ export default {
   name: 'Authorization',
   components: {
     IconLogo,
-    // IconCloseEye,
-    // IconOpenEye,
     VInput,
     VButton
   },

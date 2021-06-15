@@ -12,6 +12,8 @@ module.exports = {
       "html": {"void": "always"}
     }], 
 
+    "vue/max-attributes-per-line": "off"
+
     // инфу по правилам можно найти здесь https://eslint.vuejs.org/rules
   }
 }

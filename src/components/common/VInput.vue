@@ -1,5 +1,5 @@
 <template>
-  <div class="input">
+  <div class="input" :class="{ input_focus: isFocus }">
     <div class="input__legend">
       Email
     </div>
@@ -12,24 +12,33 @@
       :type="typeInput"
       required="true"
       @input="onInput($event.target.value)"
-      @blur="$emit('blur')"
+      @focus="onFocus"
+      @blur="onBlur"
     />
-    <div
-      v-if="error"
-      class="input__error"
-    >
+
+    <div v-if="error" class="input__error">
       {{ errorMessage }}
     </div>
 
-    <div class="input__icon">
-      <slot name="rightIcon" />
+    <div v-if="typeInput === 'password'" class="input__icon">
+      <icon-open-eye v-if="isPassword" width="21" height="15" fill="#E4E4E4" />
+
+      <icon-close-eye v-else width="21" height="12" fill="#E4E4E4" />
     </div>
   </div>
 </template>
 
 <script>
+import IconCloseEye from '@/icons/IconCloseEye.vue'
+import IconOpenEye from '@/icons/IconOpenEye.vue'
+
 export default {
   name: 'VInput',
+
+  components: {
+    IconCloseEye,
+    IconOpenEye
+  },
 
   model: {
     prop: 'value',
@@ -64,12 +73,23 @@ export default {
   },
 
   data() {
-    return {}
+    return {
+      isFocus: false,
+      isPassword: false
+    }
   },
 
   computed: {},
 
   methods: {
+    onFocus() {
+      this.isFocus = true
+    },
+
+    onBlur() {
+      this.isFocus = false
+    },
+
     onInput(event) {
       this.$emit('change', event)
     }
@@ -79,7 +99,6 @@ export default {
 
 <style lang="scss" scoped>
 .input {
-  // @extend .cb_column-center;
   position: relative;
   width: 374px;
   height: 55px;
@@ -109,13 +128,6 @@ export default {
 
     outline: none;
 
-    &:hover {
-    }
-
-    &:focus,
-    &:valid {
-    }
-
     &::placeholder {
       color: #b1b8c6;
     }
@@ -125,7 +137,11 @@ export default {
     position: absolute;
 
     right: 0px;
-    bottom: 20px;
+    bottom: 10px;
+  }
+
+  &_focus {
+    border-color: #256cfe;
   }
 }
 </style>
