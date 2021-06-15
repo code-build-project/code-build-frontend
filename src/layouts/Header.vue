@@ -27,8 +27,19 @@
     </div>
 
     <div class="header__buttons">
-      <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
-      <v-button button-type="header" icon-position="left" icon-width="21" icon-height="21">
+      <router-link
+        class="header__button"
+        to="/auth"
+        target="_blank"
+      >
+        Войти
+      </router-link>
+      <v-button
+        button-type="header"
+        icon-position="left"
+        icon-width="21"
+        icon-height="21"
+      >
         Премиум
       </v-button>
     </div>
