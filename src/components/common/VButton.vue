@@ -198,6 +198,18 @@ export default {
     }
   }
 
+  &-auth {
+    width: 374px;
+    height: 70px;
+
+    font-family: 'EuclidCircular';
+    font-size: 20px;
+    color: #ffffff;
+    background: #256cfe;
+    border-color: #b1b8c6;
+    border-width: 1px;
+  }
+
   &-interval {
     width: 190px;
     height: 70px;

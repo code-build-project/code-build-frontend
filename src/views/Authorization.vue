@@ -12,13 +12,15 @@
 
     <v-input
       class="cb_top95"
-      placeholder="Логин или E-mail"
+      v-model="email"
+      label="Логин или E-mail"
     />
 
     <v-input
       class="cb_top40"
-      type-input="password"
-      placeholder="Пароль"
+      v-model="password"
+      isPassword
+      label="Пароль"
     />
 
     <div class="auth__forget cb_top8">
@@ -26,8 +28,10 @@
     </div>
 
     <v-button
-      class="cb_top70"
-      button-type="reg"
+      class="auth__button-disable cb_top70"
+      
+      button-type="auth"
+      :class="{'auth__button-disable': !email && !password}"
       @click="onLogin"
     >
       Войти
@@ -62,8 +66,6 @@ export default {
   props: {},
   data() {
     return {
-      viewPassword: false, // видимость пароля
-
       email: '',
       password: '',
 
@@ -135,6 +137,12 @@ export default {
     color: #b1b8c6;
   }
 
+  &__button-disable {
+    color: #272a37;
+    pointer-events: none;
+    background: transparent;
+  }
+
   &__reg {
     @extend .cb_underline-blue;
     position: relative;
@@ -158,6 +166,11 @@ export default {
         fill: #256cfe;
       }
     }
+  }
+
+  &__forget {
+    cursor: pointer;
+    color: #256CFE;
   }
 
   &__reg {

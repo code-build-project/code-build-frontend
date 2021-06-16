@@ -1,29 +1,39 @@
 <template>
   <div class="input" :class="{ input_focus: isFocus }">
-    <div class="input__legend">
-      Email
-    </div>
-
     <input
       class="input__field"
       :value="value"
       :style="{ paddingRight: $slots.rightIcon ? '60px' : '' }"
-      :placeholder="placeholder"
-      :type="typeInput"
+      :type="type"
       required="true"
       @input="onInput($event.target.value)"
       @focus="onFocus"
       @blur="onBlur"
     />
+    <label class="input__label">{{ label }}</label>
 
     <div v-if="error" class="input__error">
       {{ errorMessage }}
     </div>
 
-    <div v-if="typeInput === 'password'" class="input__icon">
-      <icon-open-eye v-if="isPassword" width="21" height="15" fill="#E4E4E4" />
+    <div v-if="isPassword" class="input__icon">
+      <icon-close-eye
+        v-if="hidePassword"
+        class="cb_pointer"
+        width="21"
+        height="12"
+        fill="#E4E4E4"
+        @click.native="onIconClick(false)"
+      />
 
-      <icon-close-eye v-else width="21" height="12" fill="#E4E4E4" />
+      <icon-open-eye
+        v-else
+        class="cb_pointer"
+        width="21"
+        height="15"
+        fill="#E4E4E4"
+        @click.native="onIconClick(true)"
+      />
     </div>
   </div>
 </template>
@@ -46,26 +56,27 @@ export default {
   },
 
   props: {
+    // Значение текста в поле
     value: {
       type: [String, Number],
       required: false
     },
-
-    typeInput: {
+    // Значение лейбла и плейсхолдера
+    label: {
       type: String,
-      default: 'text'
+      required: 'Label'
     },
-
-    placeholder: {
-      type: String,
-      default: ''
+    // Флаг: тип поля - Пароль, или нет
+    isPassword: {
+      type: Boolean,
+      default: false
     },
-
+    // Флаг наличия ошибки в поле
     error: {
       type: Boolean,
       default: false
     },
-
+    // Текст ошибки
     errorMessage: {
       type: String,
       default: ''
@@ -75,7 +86,8 @@ export default {
   data() {
     return {
       isFocus: false,
-      isPassword: false
+      hidePassword: true,
+      type: this.isPassword ? 'password' : 'text'
     }
   },
 
@@ -92,6 +104,11 @@ export default {
 
     onInput(event) {
       this.$emit('change', event)
+    },
+
+    onIconClick(value) {
+      this.hidePassword = value;
+      this.type = value ? 'password' : 'text'
     }
   }
 }
@@ -106,13 +123,15 @@ export default {
   font-family: 'Circe';
   border-bottom: 1px solid #b1b8c6;
 
-  &__legend {
+  &__label {
+    pointer-events: none;
     position: absolute;
-    top: 0;
+    transition: all 200ms;
     left: 0;
+    bottom: 15px;
 
-    font-size: 13px;
-    line-height: 16px;
+    font-family: 'Circe';
+    font-size: 17px;
     color: #b1b8c6;
   }
 
@@ -127,10 +146,6 @@ export default {
     color: #272a37;
 
     outline: none;
-
-    &::placeholder {
-      color: #b1b8c6;
-    }
   }
 
   &__icon {
@@ -142,6 +157,11 @@ export default {
 
   &_focus {
     border-color: #256cfe;
+
+    .input__label {
+      font-size: 13px;
+      bottom: 40px;
+    }
   }
 }
 </style>
