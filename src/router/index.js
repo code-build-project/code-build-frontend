@@ -12,39 +12,44 @@ const routes = [
       {
         path: '/',
         name: 'Home',
-        component: () => import('@/views/Home.vue'),
+        component: () => import('@/views/Home.vue')
       },
       {
         path: 'courses',
         name: 'Courses',
-        component: () => import('@/views/Courses.vue'),
+        component: () => import('@/views/Courses.vue')
       },
       {
         path: 'course',
         name: 'Course',
-        component: () => import('@/views/Course.vue'),
+        component: () => import('@/views/Course.vue')
       },
       {
         path: 'articles',
         name: 'Articles',
-        component: () => import('@/views/Articles.vue'),
+        component: () => import('@/views/Articles.vue')
       },
       {
         path: 'article',
         name: 'Article',
-        component: () => import('@/views/Article.vue'),
+        component: () => import('@/views/Article.vue')
       },
       {
         path: 'cabinet',
         name: 'Cabinet',
-        component: () => import('@/views/Cabinet.vue'),
+        component: () => import('@/views/Cabinet.vue')
+      },
+      {
+        path: 'subscribe',
+        name: 'Subscribe',
+        component: () => import('@/views/Subscribe.vue')
       },
       {
         path: 'icons',
         name: 'Icons',
-        component: () => import('@/views/Icons.vue'),
-      },
-    ],
+        component: () => import('@/views/Icons.vue')
+      }
+    ]
   },
   {
     path: '',
@@ -54,22 +59,22 @@ const routes = [
       {
         path: 'auth',
         name: 'Authorization',
-        component: () => import('@/views/Authorization.vue'),
+        component: () => import('@/views/Authorization.vue')
       },
       {
         path: 'reg',
         name: 'Registration',
         component: () => import('@/views/Registration.vue'),
-        props: true,
+        props: true
       },
       {
         path: 'reg/confirm',
         name: 'SuccessRegistration',
         component: () => import('@/views/SuccessRegistration.vue'),
-        props: true,
-      },
-    ],
-  },
+        props: true
+      }
+    ]
+  }
 ]
 
 const router = new VueRouter({

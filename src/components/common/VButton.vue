@@ -62,8 +62,8 @@ export default {
 
 <style lang="scss" scoped>
 .button {
-  @extend .cb_row-between;
-  padding: 1em 2em 1em 2em;
+  @extend .cb_row-center;
+  align-items: center;
 
   border-style: solid;
   border-radius: 8px;
@@ -78,6 +78,9 @@ export default {
 
   // Типы кнопок
   &-header {
+    width: 168px;
+    height: 60px;
+
     font-family: 'Circe';
     font-size: 18px;
     color: #ffffff;
@@ -90,6 +93,9 @@ export default {
   }
 
   &-buy-premium {
+    width: 204px;
+    height: 55px;
+
     font-family: 'Circe';
     font-size: 16px;
     color: #ffffff;
@@ -102,6 +108,9 @@ export default {
   }
 
   &-intro {
+    width: 298px;
+    height: 84px;
+
     font-family: 'Circe';
     font-size: 24px;
     color: #256cfe;
@@ -124,6 +133,9 @@ export default {
   }
 
   &-courses {
+    width: 200px;
+    height: 60px;
+
     font-family: 'EuclidCircular';
     font-size: 18px;
     color: #ffffff;
@@ -137,6 +149,9 @@ export default {
   }
 
   &-articles {
+    width: 200px;
+    height: 60px;
+
     font-family: 'EuclidCircular';
     font-size: 18px;
     color: #ffffff;
@@ -150,6 +165,9 @@ export default {
   }
 
   &-reviews {
+    width: 230px;
+    height: 60px;
+
     font-family: 'EuclidCircular';
     font-size: 18px;
     color: #256cfe;
@@ -164,8 +182,8 @@ export default {
   }
 
   &-reg {
-    @extend .cb_row-center;
     width: 374px;
+    height: 70px;
 
     font-family: 'EuclidCircular';
     font-size: 20px;
@@ -181,7 +199,6 @@ export default {
   }
 
   &-interval {
-    @extend .cb_row-center;
     width: 190px;
     height: 70px;
 
@@ -199,7 +216,6 @@ export default {
   }
 
   &-success {
-    @extend .cb_row-center;
     width: 190px;
     height: 70px;
 
@@ -212,7 +228,6 @@ export default {
   }
 
   &-player {
-    @extend .cb_center;
     width: 206px;
     height: 53px;
 
@@ -221,6 +236,26 @@ export default {
     color: #ffffff;
     border: none;
     background: #ee3465;
+  }
+
+  &-subscrube {
+    width: 188px;
+    height: 60px;
+
+    font-family: 'Circe';
+    font-size: 18px;
+    color: #272A37;
+    background: transparent;
+
+    border: 1px solid #E4E4E4;
+    border-radius: 8px;
+
+    &:hover {
+      border: none;
+      color: #FFFFFF;
+      background: #EE3465;
+      box-shadow: 0px 12px 18px -13px #EE3465;
+    }
   }
 }
 </style>

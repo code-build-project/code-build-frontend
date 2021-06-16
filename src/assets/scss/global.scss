@@ -2,110 +2,124 @@
   Идентефикатор, с которого начинается название каждого глобального класса -> cb
   (сокращенно от названия проекта "code-build") */
 
-.cb {
-  // flex
-  &_center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &_row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &_row-between {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &_row-end {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  &_row-center {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  &_column {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &_column-between {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
+  .cb {
+    // flex
+    &_center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   
-  &_column-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &_wrap {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  // margin
-  $sides: (top, bottom, left, right); 
+    &_row {
+      display: flex;
+      flex-direction: row;
+    }
   
-  @each $side in $sides {
-    @for $i from 1 through 600 {
-      &_#{$side}#{$i} {
-        margin-#{$side}: #{$i} + 'px';
+    &_row-between {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    &_row-end {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  
+    &_row-center {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    &_column {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    &_column-between {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    &_column-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    &_wrap {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    // margin
+    $sides: (top, bottom, left, right); 
+    
+    @each $side in $sides {
+      @for $i from 1 through 600 {
+        &_#{$side}#{$i} {
+          margin-#{$side}: #{$i} + 'px';
+        }
+      }
+    }
+  
+    // width
+    @for $i from 1 through 800 {
+      &_width#{$i} {
+        width: #{$i} + 'px';
+      }
+    }
+  
+    // color
+    $status-colors: (
+      'black':  #272A37,
+      'blue':   #256CFE,
+      'navy':   #2468F2,
+      'pink':   #EE3465,
+      'gray':   #B1B8C6,
+      'smoky':  #CACACA,
+      'silver': #E4E4E4,
+      'white':  #FFFFFF,
+      'red':    #FF3300,
+    );
+  
+    @each $status, $color in $status-colors {
+      &_color-#{$status} {
+        color: $color;
+      }
+    }
+  
+    // underline
+    &_underline-blue {
+      position: relative;
+      &:after {
+        position: absolute;
+        content: "";
+        top: 18px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #256CFE;
+      }
+    }
+  
+    &_underline-mini-blue {
+      position: relative;
+      &:after {
+        position: absolute;
+        content: "";
+        top: 18px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: #256CFE;
       }
     }
   }
-
-  // width
-  @for $i from 1 through 800 {
-    &_width#{$i} {
-      width: #{$i} + 'px';
-    }
-  }
-
-  // color
-  $status-colors: (
-    'black':  #272A37,
-    'blue':   #256CFE,
-    'navy':   #2468F2,
-    'pink':   #EE3465,
-    'gray':   #B1B8C6,
-    'smoky':  #CACACA,
-    'silver': #E4E4E4,
-    'white':  #FFFFFF,
-    'red':    #FF3300,
-  );
-
-  @each $status, $color in $status-colors {
-    &_color-#{$status} {
-      color: $color;
-    }
-  }
-
-  // underline
-  &_underline-blue {
-    &:after {
-      position: absolute;
-      content: "";
-      top: 18px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #256CFE;
-    }
-  }
-}
-    
+      

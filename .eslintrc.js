@@ -1,4 +1,7 @@
 module.exports = {
+  parserOptions: {
+    "parser":"babel-eslint"
+  },
   // Комплекты конфигураций Eslint
   extends: [
     'plugin:vue/recommended' /* Конфигурация для Vue.js 2.x. Базовые правила 

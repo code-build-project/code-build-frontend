@@ -1,7 +1,7 @@
 <template>
   <div class="icons">
     <div v-for="(item, index) in iconsList" :key="index" :title="item.name">
-      <component class="icons__component" :is="item.component" width="50px" height="50px" />
+      <component :is="item.component" class="icons__component" width="50px" height="50px" />
     </div>
   </div>
 </template>
@@ -43,4 +43,3 @@ export default {
   }
 }
 </style>
-
