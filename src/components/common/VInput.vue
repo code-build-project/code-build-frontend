@@ -1,5 +1,5 @@
 <template>
-  <div class="input" :class="{ input_focus: isFocus }">
+  <div class="input" :class="[{ input_focus: isFocus || value }, { input_error: isError }]">
     <input
       class="input__field"
       :value="value"
@@ -12,7 +12,7 @@
     />
     <label class="input__label">{{ label }}</label>
 
-    <div v-if="error" class="input__error">
+    <div v-if="isError" class="input__error">
       {{ errorMessage }}
     </div>
 
@@ -72,7 +72,7 @@ export default {
       default: false
     },
     // Флаг наличия ошибки в поле
-    error: {
+    isError: {
       type: Boolean,
       default: false
     },
@@ -100,6 +100,7 @@ export default {
 
     onBlur() {
       this.isFocus = false
+      this.$emit('blur')
     },
 
     onInput(event) {
@@ -107,7 +108,7 @@ export default {
     },
 
     onIconClick(value) {
-      this.hidePassword = value;
+      this.hidePassword = value
       this.type = value ? 'password' : 'text'
     }
   }
@@ -155,6 +156,16 @@ export default {
     bottom: 10px;
   }
 
+  &__error {
+    position: absolute;
+    top: 60px;
+    font-size: 13px;
+    color: #ff3300;
+  }
+}
+
+// Модификаторы
+.input {
   &_focus {
     border-color: #256cfe;
 
@@ -162,6 +173,10 @@ export default {
       font-size: 13px;
       bottom: 40px;
     }
+  }
+
+  &_error {
+    border-color: #ff3300;
   }
 }
 </style>

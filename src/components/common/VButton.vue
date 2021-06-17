@@ -206,8 +206,29 @@ export default {
     font-size: 20px;
     color: #ffffff;
     background: #256cfe;
+    border: none;
+
+    &:hover {
+      box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
+    }
+
+    &:active {
+      background: #2468F2;
+    }
+  }
+
+  &-auth-disable {
+    width: 374px;
+    height: 70px;
+
+    font-family: 'EuclidCircular';
+    font-size: 20px;
+    color: #272a37;
+    background: transparent;
     border-color: #b1b8c6;
     border-width: 1px;
+
+    pointer-events: none;
   }
 
   &-interval {

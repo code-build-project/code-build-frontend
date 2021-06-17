@@ -1,37 +1,33 @@
 <template>
   <div class="auth">
-    <icon-logo
-      class="auth__logo cb_top75"
-      width="107"
-      height="75"
-    />
+    <icon-logo class="auth__logo cb_top75" width="107" height="75" />
 
-    <div class="auth__title cb_top25">
-      Войдите, чтобы продолжить
-    </div>
+    <div class="auth__title cb_top25">Войдите, чтобы продолжить</div>
 
     <v-input
-      v-model="email"
+      v-model="email.name"
       class="cb_top95"
       label="Логин или E-mail"
+      :isError="email.isError"
+      :errorMessage="email.errorName"
+      @blur="validateEmail"
     />
 
     <v-input
-      v-model="password"
+      v-model="password.name"
       class="cb_top40"
       is-password
       label="Пароль"
+      :isError="password.isError"
+      :errorMessage="password.errorName"
+      @change="password.isError = false"
     />
 
-    <div class="auth__forget cb_top8">
-      Забыли пароль?
-    </div>
+    <div class="auth__forget cb_top8">Забыли пароль?</div>
 
     <v-button
-      class="auth__button-disable cb_top70"
-      
-      button-type="auth"
-      :class="{'auth__button-disable': !email && !password}"
+      class="cb_top70"
+      :button-type="isDisable ? 'auth' : 'auth-disable'"
       @click="onLogin"
     >
       Войти
@@ -39,11 +35,7 @@
 
     <div class="auth__footer cb_top30">
       <span>Новый пользователь?</span>
-      <router-link
-        class="auth__reg cb_left5"
-        to="/reg"
-        target="_blank"
-      >
+      <router-link class="auth__reg cb_left5" to="/reg" target="_blank">
         Зарегистрируйтесь
       </router-link>
     </div>
@@ -63,48 +55,57 @@ export default {
     VInput,
     VButton
   },
-  props: {},
   data() {
     return {
-      email: '',
-      password: '',
+      email: {
+        name: '',
+        isError: false,
+        errorName: ''
+      },
 
-      emailError: false,
-      emailErrorText: '',
-
-      passwordError: false
+      password: {
+        name: '',
+        isError: false,
+        errorName: ''
+      }
     }
   },
-  computed: {},
+  computed: {
+    // Флаг дизейбла кнопки
+    isDisable() {
+      return this.email.name && !this.email.isError && this.password.name && !this.password.isError
+    }
+  },
   methods: {
-    // validateEmail () {
-    //   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    validateEmail() {
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 
-    //   if (reg.test(this.email) === false) {
-    //     this.emailError = true
-    //     this.emailErrorText = 'Неверный формат'
-    //   } else {
-    //     this.emailError = false
-    //     this.emailErrorText = ''
-    //   }
-    // },
+      if (reg.test(this.email.name) === false) {
+        this.email.isError = true
+        this.email.errorName = 'Неверный формат'
+      } else {
+        this.email.isError = false
+        this.email.errorName = ''
+      }
+    },
 
     onLogin() {
       const payload = {
-        email: 'ya.sham@yandex.ru',
-        password: 'sdfsdfsdf'
+        email: this.email.name,
+        password: this.password.name
       }
 
       this.axios
-        .post('http://127.0.1.1:4000/login', payload)
+        .post('http://127.0.1.1:5000/login', payload)
         .then((response) => {
-          console.log(response)
+          console.log(response.data.token)
           alert('Вы успешно авторизовались!')
+          localStorage.token = response.data.token
         })
         .catch((error) => {
-          console.log(error.response.data.type)
-          this.emailError = true
-          this.passwordError = true
+          this.email.isError = true
+          this.password.isError = true
+          this.password.errorName = error.response.data.message
         })
     }
   }
@@ -137,12 +138,6 @@ export default {
     color: #b1b8c6;
   }
 
-  &__button-disable {
-    color: #272a37;
-    pointer-events: none;
-    background: transparent;
-  }
-
   &__reg {
     @extend .cb_underline-blue;
     position: relative;
@@ -170,7 +165,7 @@ export default {
 
   &__forget {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
   }
 
   &__reg {
