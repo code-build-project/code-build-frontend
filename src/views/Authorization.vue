@@ -11,15 +11,15 @@
     </div>
 
     <v-input
-      class="cb_top95"
       v-model="email"
+      class="cb_top95"
       label="Логин или E-mail"
     />
 
     <v-input
-      class="cb_top40"
       v-model="password"
-      isPassword
+      class="cb_top40"
+      is-password
       label="Пароль"
     />
 

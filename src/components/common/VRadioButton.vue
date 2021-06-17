@@ -1,18 +1,18 @@
 <template>
-  <div class="radio">
+  <div class="radio" :class="{'radio__focus': picked === price}">
     <div class="cb_row">
       <input
         :id="keyField"
         class="radio__input"
         type="radio"
         :value="price"
-        :checked="checked"
         name="subscribe"
-        @change="$emit('change', $event.target.checked)"
+        @change="$emit('change', price)"
       />
       <label
         class="radio__label"
-        :for="keyField" />
+        :for="keyField"
+      />
 
       <div class="radio__title cb_left30">
         <slot>1 месяц подписки</slot>
@@ -23,7 +23,7 @@
     </div>
   
     <div class="radio__price">
-      {{ price }}
+      {{ price }}₽
     </div>
   </div>
 </template>
@@ -32,19 +32,19 @@
 export default {
   name: 'VRadioButton',
   model: {
-    prop: 'checked',
+    prop: 'picked',
     event: 'change'
   },
   props: {
+    // Значение выбранного переключателя
+    picked: {
+      type: [Number, String],
+      default: ''
+    },
     // Уникальный ключ чекбокса
     keyField: {
       type: [Number, String],
       default: 1
-    },
-    // Флаг на проверку выбран или не выбран чекбокс
-    checked: {
-      type: Boolean,
-      default: false
     },
     // Ценник
     price: {
@@ -100,6 +100,10 @@ export default {
     background: #FFF1F5;
     border-radius: 15px;
   }
+
+  &__focus {
+    border-color: #EE3465;
+  }
 }
 
 /* для элемента input c type="radio" */
@@ -140,8 +144,8 @@ export default {
 
 /* стили для активного чекбокса (при нажатии на него) */
 .radio__input:not(:disabled):active + label::before {
-  background-color: #b3d7ff;
-  border-color: #b3d7ff;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */

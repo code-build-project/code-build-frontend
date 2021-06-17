@@ -110,7 +110,7 @@ export default {
   &-subscribe {
     /* создание в label псевдоэлемента before со следующими стилями */
     .checkbox-input + label::before {
-      border: 1px solid #EE3465;
+      border: 1px solid #E4E4E4;
       background-size: 60% 60%;
     }
 
@@ -121,13 +121,13 @@ export default {
 
     /* стили для активного чекбокса (при нажатии на него) */
     .checkbox-input:not(:disabled):active + label::before {
-      background-color: #EE3465;
-      border-color: #EE3465;
+      background-color: transparent;
+      border-color: transparent;
     }
 
     /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
     .checkbox-input:focus:not(:checked) + label::before {
-      border-color: #EE3465;
+      border-color: #E4E4E4;
     }
 
     /* стили для чекбокса, находящегося в состоянии checked */
