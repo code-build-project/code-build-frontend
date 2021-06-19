@@ -57,13 +57,13 @@ export default {
   
   created() {
     this.axios.get('http://127.0.1.1:4000/courses')
-    .then((request) => {
-      this.courseList = request.data;
+    .then((response) => {
+      this.courseList = response.data;
     })
 
     this.axios.get('http://127.0.1.1:4000/courses/filters')
-    .then((request) => {
-      this.filterList = request.data;
+    .then((response) => {
+      this.filterList = response.data;
     })
   }
 }

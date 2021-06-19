@@ -7,7 +7,10 @@
 <script>
 export default {
   name: 'App',
-  components: {}
+
+  created() {
+    this.$store.dispatch('authorize');
+  }
 }
 </script>
 
@@ -41,6 +44,7 @@ export default {
 
 body {
   margin: 0; /* Убираем отступы */
+  user-select: none; /* Чтобы не выделялся текст */
 }
 
 html,

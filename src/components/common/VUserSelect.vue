@@ -1,10 +1,14 @@
 <template>
   <div class="select">
-    <div class="select__icon-user">
-      <icon-user />
+    <div v-if="!isPremium" class="select__icon-premium">
+      <icon-premium width="20" height="20"/>
     </div>
 
-    <div class="select__user cb_left20">
+    <div v-else class="select__icon-user">
+      <icon-user width="13" height="15"/>
+    </div>
+
+    <div class="select__user cb_left20" @click="isDropdown = !isDropdown">
       Александр
       <icon-angle-bracket
         class="select__icon-bracket cb_left8"
@@ -17,40 +21,21 @@
       />
     </div>
 
-    <div
-      v-if="isDropdown"
-      class="select__dropdown"
-    >
+    <!-- Выпадашка -->
+    <div v-if="isDropdown" class="select__dropdown">
       <div class="select__dropdown-item">
         Мой профиль
-        <icon-user
-          class="cb_top5"
-          stroke="#B1B8C6"
-          width="18"
-          height="16"
-        />
+        <icon-user class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
       </div>
 
       <div class="select__dropdown-item">
         Избранное
-        <icon-heart
-          class="cb_top5"
-          stroke="#B1B8C6"
-          width="18"
-          height="16"
-        />
+        <icon-heart class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
       </div>
 
-      <div
-        class="select__dropdown-item cb_color-gray"
-        style="border: none"
-      >
+      <div class="select__dropdown-item cb_color-gray" style="border: none">
         Выйти
-        <icon-exit
-          stroke="#B1B8C6"
-          width="22"
-          height="22"
-        />
+        <icon-exit stroke="#B1B8C6" width="22" height="22" />
       </div>
 
       <v-button
@@ -63,36 +48,48 @@
         Купить премиум
       </v-button>
     </div>
+    <!-- Выпадашка -->
   </div>
 </template>
 
 <script>
-import IconUser from '@/icons/IconUser.vue'
-// import IconPremium from '@/icons/IconPremium.vue'
-import IconAngleBracket from '@/icons/IconAngleBracket.vue'
-import IconHeart from '@/icons/IconHeart.vue'
-import IconExit from '@/icons/IconExit.vue'
+import IconUser from '@/icons/IconUser.vue';
+import IconPremium from '@/icons/IconPremium.vue';
+import IconAngleBracket from '@/icons/IconAngleBracket.vue';
+import IconHeart from '@/icons/IconHeart.vue';
+import IconExit from '@/icons/IconExit.vue';
 
-import VButton from '@/components/common/VButton.vue'
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'VUserSelect',
-  components: { 
-    IconUser, 
-    // IconPremium, 
-    IconAngleBracket, 
-    IconHeart, 
-    IconExit, 
-    VButton 
+  components: {
+    IconUser,
+    IconPremium,
+    IconAngleBracket,
+    IconHeart,
+    IconExit,
+    VButton
   },
-  props: {},
+  props: {
+    // Имя пользователя
+    name: {
+      type: Boolean,
+      default: false
+    },
+    // Флаг на наличие премиум подписки
+    isPremium: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       isDropdown: false
-    }
+    };
   },
   computed: {}
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -102,13 +99,21 @@ export default {
   position: relative;
   width: 290px;
 
+  &__icon-premium {
+    @extend .cb_center;
+    width: 44px;
+    height: 44px;
+
+    background: #ee3465;
+    border-radius: 8px;
+  }
+  
   &__icon-user {
     @extend .cb_center;
     width: 44px;
     height: 44px;
 
     border: 1px solid #256cfe;
-    box-sizing: border-box;
     border-radius: 8px;
   }
 
@@ -118,6 +123,7 @@ export default {
   }
 
   &__user {
+    cursor: pointer;
     font-family: 'Circe';
     font-size: 18px;
     line-height: 18px;
