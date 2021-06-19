@@ -1,6 +1,6 @@
 <template>
   <div class="select">
-    <div v-if="!isPremium" class="select__icon-premium">
+    <div v-if="isPremium" class="select__icon-premium">
       <icon-premium width="20" height="20"/>
     </div>
 
@@ -9,7 +9,7 @@
     </div>
 
     <div class="select__user cb_left20" @click="isDropdown = !isDropdown">
-      Александр
+      {{ name }}
       <icon-angle-bracket
         class="select__icon-bracket cb_left8"
         :style="isDropdown ? 'transform: rotate(-90deg)' : 'transform: rotate(90deg)'"
@@ -17,7 +17,6 @@
         height="8"
         stroke="#B1B8C6"
         stroke-width="6"
-        @click.native="isDropdown = !isDropdown"
       />
     </div>
 
@@ -39,6 +38,7 @@
       </div>
 
       <v-button
+        v-if="!isPremium"
         class="cb_top15 cb_bottom25"
         button-type="buy-premium"
         icon-position="left"
@@ -54,10 +54,10 @@
 
 <script>
 import IconUser from '@/icons/IconUser.vue';
+import IconExit from '@/icons/IconExit.vue';
+import IconHeart from '@/icons/IconHeart.vue';
 import IconPremium from '@/icons/IconPremium.vue';
 import IconAngleBracket from '@/icons/IconAngleBracket.vue';
-import IconHeart from '@/icons/IconHeart.vue';
-import IconExit from '@/icons/IconExit.vue';
 
 import VButton from '@/components/common/VButton.vue';
 
@@ -65,10 +65,10 @@ export default {
   name: 'VUserSelect',
   components: {
     IconUser,
+    IconExit,
+    IconHeart,
     IconPremium,
     IconAngleBracket,
-    IconHeart,
-    IconExit,
     VButton
   },
   props: {
@@ -105,6 +105,7 @@ export default {
     height: 44px;
 
     background: #ee3465;
+    box-shadow: 0px 11px 18px -9px #EE3465;
     border-radius: 8px;
   }
   
@@ -154,6 +155,23 @@ export default {
     color: #272a37;
 
     border-bottom: 1px solid #f2f2f2;
+  }
+}
+
+// hovers
+:hover.select {
+  &__user {
+    ::v-deep path {
+      stroke: #256CFE;
+    }
+  }
+
+  &__dropdown-item {
+    cursor: pointer;
+    color: #256CFE;
+    ::v-deep path {
+      stroke: #256CFE;
+    }
   }
 }
 </style>

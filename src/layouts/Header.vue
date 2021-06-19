@@ -8,8 +8,7 @@
       <router-link class="header__nav-item" to="/courses"> Видеокурсы </router-link>
     </div>
 
-    
-    <v-user-select v-if="user"/>
+    <v-user-select v-if="user" :name="user.name" :isPremium="user.isPremium"/>
 
     <div v-else class="header__buttons">
       <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
