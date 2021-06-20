@@ -13,7 +13,7 @@
 
     <div v-else class="cb_row-center">
       <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
-      <v-button class="header__button cb_left45">
+      <v-button class="header__button cb_left45" @click="$router.push('/subscribe')">
         <icon-premium class="cb_right9" width="21" height="21" />
         Премиум
       </v-button>

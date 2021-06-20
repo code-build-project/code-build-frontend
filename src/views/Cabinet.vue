@@ -41,6 +41,7 @@
         <v-button
           class="cb_left90"
           :class="user.isPremium ? 'cabinet__button-cancel' : 'cabinet__button-buy'"
+          @click="$router.push('/subscribe')"
         >
           <icon-premium v-if="!user.isPremium" class="cb_right9" width="16" height="16" />
           {{ user.isPremium ? 'Отменить подписку' : 'Купить премиум' }}
@@ -64,7 +65,7 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.user;
+      return this.$store.getters.user || {};
     }
   }
 };
