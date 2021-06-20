@@ -1,10 +1,6 @@
 <template>
   <div class="button-wrap">
-    <button
-      class="button"
-      :class="`button-${buttonType}`"
-      @click="$emit('click')"
-    >
+    <button class="button" @click="$emit('click')">
       <slot>Кнопка</slot>
     </button>
   </div>
@@ -12,8 +8,8 @@
 
 <script>
 export default {
-  name: 'VButton',
-}
+  name: 'VButton'
+};
 </script>
 
 <style lang="scss" scoped>

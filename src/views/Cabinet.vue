@@ -22,7 +22,7 @@
     <!-- Блок "Мой профиль" -->
 
     <!-- Блок "Премиум" -->
-    <div class="cabinet__premium cb_top40">
+    <div class="cabinet__premium cb_top40" :class="{ cabinet__premium_active: user.isPremium }">
       <div class="cabinet__premium-left">
         Премиум
         <div class="cabinet__premium-icon cb_left30">
@@ -186,6 +186,13 @@ export default {
       border: none;
       background: #ee3465;
     }
+  }
+}
+
+// Модификаторы
+.cabinet {
+  &__premium_active {
+    border: 2px solid #ee3465;
   }
 }
 
