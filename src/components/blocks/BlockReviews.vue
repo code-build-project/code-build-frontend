@@ -1,14 +1,9 @@
 <template>
   <div class="reviews">
-    <div class="reviews__title">
-      Отзывы о наших курсах
-    </div>
+    <div class="reviews__title">Отзывы о наших курсах</div>
 
     <div class="reviews__list">
-      <div
-        v-for="(item, index) in reviewList"
-        :key="index"
-      >
+      <div v-for="(item, index) in reviewList" :key="index">
         <v-review-card
           class="reviews__list-item"
           :height="index === 1 ? '700' : '335'"
@@ -21,19 +16,14 @@
     </div>
 
     <div class="reviews__footer">
-      <v-button
-        class="cb_top160"
-        button-type="reviews"
-      >
-        Показать еще
-      </v-button>
+      <v-button class="reviews__button cb_top160">Показать еще</v-button>
     </div>
   </div>
 </template>
 
 <script>
-import VReviewCard from '@/components/common/VReviewCard.vue'
-import VButton from '@/components/common/VButton.vue'
+import VReviewCard from '@/components/common/VReviewCard.vue';
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'BlockReviews',
@@ -106,9 +96,9 @@ export default {
           date: '2 января 2015'
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -152,8 +142,31 @@ export default {
       #ffffff 100%
     );
 
-    @extend .cb_row-center;
+    @extend .cb_center;
     bottom: 0px;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 230px;
+      height: 60px;
+
+      font-family: 'EuclidCircular';
+      font-size: 18px;
+      color: #256cfe;
+      border: 1px solid #256cfe;
+      background: transparent;
+    }
+  }
+}
+
+// hovers
+:hover.reviews {
+  &__button {
+    ::v-deep .button {
+      color: #ffffff;
+      background: #256cfe;
+    }
   }
 }
 </style>

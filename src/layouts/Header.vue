@@ -8,19 +8,24 @@
       <router-link class="header__nav-item" to="/courses"> Видеокурсы </router-link>
     </div>
 
+    <!-- Правая часть -->
     <v-user-select v-if="user" :name="user.name" :isPremium="user.isPremium"/>
 
-    <div v-else class="header__buttons">
+    <div v-else class="cb_row-center">
       <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
-      <v-button button-type="header" icon-position="left" icon-width="21" icon-height="21">
+      <v-button class="header__button cb_left45">
+        <icon-premium class="cb_right9" width="21" height="21" />
         Премиум
       </v-button>
     </div>
+    <!-- Правая часть -->
   </div>
 </template>
 
 <script>
 import IconLogo from '@/icons/IconLogo.vue';
+import IconPremium from '@/icons/IconPremium.vue';
+
 import VButton from '@/components/common/VButton.vue';
 import VUserSelect from '@/components/common/VUserSelect.vue'
 
@@ -29,6 +34,7 @@ export default {
 
   components: {
     IconLogo,
+    IconPremium,
     VButton,
     VUserSelect
   },
@@ -60,11 +66,19 @@ export default {
     width: 360px;
   }
 
-  &__buttons {
-    @extend .cb_row-between;
-
-    width: 290px;
+  &__button {
     color: #ee3465;
+
+    ::v-deep .button {
+      width: 168px;
+      height: 60px;
+
+      font-family: 'Circe';
+      font-size: 18px;
+      color: #ffffff;
+      border: none;
+      background: #ee3465;
+    }
   }
 }
 
@@ -92,6 +106,10 @@ export default {
   &__button {
     cursor: pointer;
     color: #15244b;
+
+    ::v-deep .button {
+      box-shadow: 0px 12px 18px -13px #ee3465;
+    }
   }
 }
 </style>

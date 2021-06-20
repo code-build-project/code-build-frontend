@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <v-button button-type="subscrube">
+          <v-button class="subscrube__button">
             Подключить
           </v-button>
         </div>
@@ -177,6 +177,33 @@ export default {
 
   &__questions-list {
     border-top: 1px solid #E4E4E4;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 188px;
+      height: 60px;
+
+      font-family: 'Circe';
+      font-size: 18px;
+      color: #272A37;
+      background: transparent;
+
+      border: 1px solid #E4E4E4;
+      border-radius: 8px;
+    }
+  }
+}
+
+// hovers
+:hover.subscribe {
+  &__button {
+    ::v-deep .button {
+      border: none;
+      color: #FFFFFF;
+      background: #EE3465;
+      box-shadow: 0px 12px 18px -13px #EE3465;
+    }
   }
 }
 </style>

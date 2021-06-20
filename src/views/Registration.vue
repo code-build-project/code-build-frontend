@@ -1,24 +1,12 @@
 <template>
   <div class="reg">
-    <icon-logo
-      class="reg__logo cb_top75"
-      width="107"
-      height="75"
-    />
+    <icon-logo class="reg__logo cb_top75" width="107" height="75" />
 
-    <div class="reg__title cb_top25">
-      Зарегистрируйтесь в Code Build
-    </div>
+    <div class="reg__title cb_top25">Зарегистрируйтесь в Code Build</div>
 
-    <v-input
-      class="cb_top70"
-      placeholder="Имя"
-    />
+    <v-input class="cb_top70" placeholder="Имя" />
 
-    <v-input
-      class="cb_top40"
-      placeholder="E-mail"
-    />
+    <v-input class="cb_top40" placeholder="E-mail" />
 
     <div class="reg__consent cb_top40">
       <v-check-box />
@@ -29,32 +17,21 @@
       </div>
     </div>
 
-    <v-button
-      class="cb_top50"
-      button-type="reg"
-    >
-      Зарегистрироваться
-    </v-button>
+    <v-button class="reg__button cb_top50"> Зарегистрироваться </v-button>
 
     <div class="reg__footer cb_top25">
       <span>У вас уже есть аккаунт?</span>
-      <router-link
-        class="reg__entry cb_left5"
-        to="/auth"
-        target="_blank"
-      >
-        Войти
-      </router-link>
+      <router-link class="reg__entry cb_left5" to="/auth" target="_blank"> Войти </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import IconLogo from '@/icons/IconLogo.vue'
+import IconLogo from '@/icons/IconLogo.vue';
 
-import VInput from '@/components/common/VInput.vue'
-import VButton from '@/components/common/VButton.vue'
-import VCheckBox from '@/components/common/VCheckBox.vue'
+import VInput from '@/components/common/VInput.vue';
+import VButton from '@/components/common/VButton.vue';
+import VCheckBox from '@/components/common/VCheckBox.vue';
 
 export default {
   name: 'Registration',
@@ -77,7 +54,7 @@ export default {
       emailError: false,
 
       checkbox: false
-    }
+    };
   },
 
   methods: {
@@ -86,19 +63,19 @@ export default {
         name: this.name,
         surname: this.surname,
         email: this.email
-      }
+      };
 
       this.axios
         .post('http://localhost:3000/reg', payload)
         .then(() => {
-          this.$router.push({ name: 'SuccessRegistration', params: payload })
+          this.$router.push({ name: 'SuccessRegistration', params: payload });
         })
         .catch(() => {
-          this.emailError = true
-        })
+          this.emailError = true;
+        });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -137,6 +114,19 @@ export default {
     font-weight: bold;
     color: #272a37;
   }
+
+  &__button {
+    ::v-deep .button {
+      width: 374px;
+      height: 70px;
+
+      font-family: 'EuclidCircular';
+      font-size: 20px;
+      color: #272a37;
+      border: 1px solid #b1b8c6;
+      background: transparent;
+    }
+  }
 }
 
 // hovers
@@ -158,6 +148,13 @@ export default {
   &__entry {
     cursor: pointer;
     color: #256cfe;
+  }
+
+  &__button {
+    ::v-deep .button {
+      color: #ffffff;
+      background: #256cfe;
+    }
   }
 }
 </style>

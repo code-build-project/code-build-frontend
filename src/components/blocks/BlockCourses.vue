@@ -15,15 +15,9 @@
           Вы можете приступить к изучению как платных, так и бесплатных курсов прямо сейчас
         </div>
 
-        <v-button
-          class="cb_top70"
-          button-type="courses"
-          icon-position="right"
-          icon-width="24"
-          icon-height="24"
-          @click="$router.push('/courses')"
-        >
+        <v-button class="courses__button cb_top70" @click="$router.push('/courses')">
           Все курсы
+          <icon-arrow class="cb_left9 cb_top3" width="24" height="24" />
         </v-button>
       </div>
       <!-- Левая часть -->
@@ -32,32 +26,21 @@
       <div class="cb_row">
         <div class="cb_column">
           <v-course-mini-card class="cb_top70">
-            <template #text>
-              Создание сайта с нуля на CMS WordPress
-            </template>
+            <template #text> Создание сайта с нуля на CMS WordPress </template>
           </v-course-mini-card>
 
           <v-course-mini-card class="cb_top35">
-            <template #text>
-              Изучение языка Ruby для начинающих
-            </template>
+            <template #text> Изучение языка Ruby для начинающих </template>
           </v-course-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
           <v-course-mini-card fire>
-            <template #text>
-              Изучение языка Си для начинающих
-            </template>
+            <template #text> Изучение языка Си для начинающих </template>
           </v-course-mini-card>
 
-          <v-course-mini-card
-            class="cb_top35"
-            level="Intermediate"
-          >
-            <template #text>
-              Уроки Java Android программирования
-            </template>
+          <v-course-mini-card class="cb_top35" level="Intermediate">
+            <template #text> Уроки Java Android программирования </template>
           </v-course-mini-card>
         </div>
       </div>
@@ -67,19 +50,21 @@
 </template>
 
 <script>
-import IconPlay from '@/icons/IconPlay.vue'
+import IconPlay from '@/icons/IconPlay.vue';
+import IconArrow from '@/icons/IconArrow.vue';
 
-import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue'
-import VButton from '@/components/common/VButton.vue'
+import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue';
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'BlockCourses',
   components: {
     IconPlay,
+    IconArrow,
     VCourseMiniCard,
     VButton
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -150,6 +135,28 @@ export default {
     letter-spacing: -0.025em;
 
     color: #43485e;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 200px;
+      height: 60px;
+
+      font-family: 'EuclidCircular';
+      font-size: 18px;
+      color: #ffffff;
+      border: 1px solid #256cfe;
+      background: transparent;
+    }
+  }
+}
+
+// hovers
+:hover.courses {
+  &__button {
+    ::v-deep .button {
+      background-color: #256cfe;
+    }
   }
 }
 </style>

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store';
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -33,6 +34,11 @@ const routes = [
         path: 'article',
         name: 'Article',
         component: () => import('@/views/Article.vue')
+      },
+      {
+        path: 'favorites',
+        name: 'Favorites',
+        component: () => import('@/views/Favorites.vue')
       },
       {
         path: 'cabinet',
@@ -87,7 +93,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // При переходе на странциу MainLayout по дефолту открывается главная страница
   if (to.name !== 'Home' && to.path === '/') {
+    next({ name: 'Home' })
+  } else next()
+  
+  // Попытка перейти в личный кабинет без авторизации
+  if (to.name === 'Cabinet' && !store.getters.user) {
     next({ name: 'Home' })
   } else next()
 })

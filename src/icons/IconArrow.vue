@@ -8,14 +8,14 @@
   >
     <path
       d="M4.47998 11.98H19.47"
-      :stroke="fill"
+      :stroke="stroke"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M13.483 5.98804L19.52 12L13.483 18.012"
-      :stroke="fill"
+      :stroke="stroke"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -28,7 +28,7 @@
 export default {
   name: 'IconArrow',
   props: {
-    fill: {
+    stroke: {
       default: 'white'
     }
   }

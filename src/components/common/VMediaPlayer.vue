@@ -18,7 +18,7 @@
             <icon-heart :stroke="'#DEDEDE'" />
           </div>
 
-          <v-button button-type="player cb_left8">
+          <v-button class="media__button cb_left8">
             Смотреть на YouTube
           </v-button>
         </div>
@@ -102,6 +102,19 @@ export default {
     font-size: 24px;
     line-height: 19px;
     color: #3a3f4f;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 206px;
+      height: 53px;
+
+      font-family: 'Circe';
+      font-size: 15px;
+      color: #ffffff;
+      border: none;
+      background: #ee3465;
+    }
   }
 
   &__icon {

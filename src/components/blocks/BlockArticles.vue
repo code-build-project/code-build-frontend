@@ -5,29 +5,21 @@
       <div class="cb_row">
         <div class="cb_column">
           <v-article-mini-card class="cb_top70">
-            <template #text>
-              Новые открытия в сфере искусственного интеллекта
-            </template>
+            <template #text> Новые открытия в сфере искусственного интеллекта </template>
           </v-article-mini-card>
 
           <v-article-mini-card class="cb_top35">
-            <template #text>
-              Как повлияет коронавирус на it-сферу в 2021
-            </template>
+            <template #text> Как повлияет коронавирус на it-сферу в 2021 </template>
           </v-article-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
           <v-article-mini-card>
-            <template #text>
-              Стоит ли открывать интернет-магазин в 2021
-            </template>
+            <template #text> Стоит ли открывать интернет-магазин в 2021 </template>
           </v-article-mini-card>
 
           <v-article-mini-card class="cb_top35">
-            <template #text>
-              В какую страну переехать для роста в it-сфере
-            </template>
+            <template #text> В какую страну переехать для роста в it-сфере </template>
           </v-article-mini-card>
         </div>
       </div>
@@ -39,23 +31,13 @@
           <icon-list />
         </div>
 
-        <div class="articles__title">
-          Свежие новости и познавательные статьи из мира IT
-        </div>
+        <div class="articles__title">Свежие новости и познавательные статьи из мира IT</div>
 
-        <div class="articles__subtitle">
-          Читай наши статьи и улучшай навыки программирования
-        </div>
+        <div class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</div>
 
-        <v-button
-          class="cb_top70"
-          button-type="articles"
-          icon-position="right"
-          icon-width="24"
-          icon-height="24"
-          @click="$router.push('/articles')"
-        >
+        <v-button class="articles__button cb_top70" @click="$router.push('/articles')">
           Все статьи
+          <icon-arrow class="cb_left9 cb_top3" width="24" height="24" />
         </v-button>
       </div>
       <!-- Правая часть -->
@@ -64,19 +46,21 @@
 </template>
 
 <script>
-import IconList from '@/icons/IconList.vue'
+import IconList from '@/icons/IconList.vue';
+import IconArrow from '@/icons/IconArrow.vue';
 
-import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue'
-import VButton from '@/components/common/VButton.vue'
+import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue';
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'BlockArticles',
   components: {
     IconList,
+    IconArrow,
     VArticleMiniCard,
     VButton
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -122,6 +106,28 @@ export default {
     line-height: 29px;
     letter-spacing: -0.025em;
     color: #43485e;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 200px;
+      height: 60px;
+
+      font-family: 'EuclidCircular';
+      font-size: 18px;
+      color: #ffffff;
+      border: 1px solid #256cfe;
+      background: transparent;
+    }
+  }
+}
+
+// hovers
+:hover.articles {
+  &__button {
+    ::v-deep .button {
+      background-color: #256cfe;
+    }
   }
 }
 </style>

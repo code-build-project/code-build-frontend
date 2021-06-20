@@ -1,5 +1,6 @@
 <template>
   <div class="cabinet">
+    <!-- Блок "Мой профиль" -->
     <div class="cabinet__profile">
       <div class="cabinet__profile-left">
         Мой<br />
@@ -7,58 +8,66 @@
       </div>
 
       <div class="cabinet__profile-right">
-        <div class="cabinet__label">
-          Имя
-        </div>
+        <div class="cabinet__label">Имя</div>
         <div class="cabinet__input cb_top10">
-          Александр
+          {{ user.name }}
         </div>
 
-        <div class="cabinet__label cb_top30">
-          E-mail
-        </div>
+        <div class="cabinet__label cb_top30">E-mail</div>
         <div class="cabinet__input cb_top10">
-          Alexmoic96@yandex.ru
+          {{ user.email }}
         </div>
       </div>
     </div>
+    <!-- Блок "Мой профиль" -->
 
-    <div class="cabinet__premium cb_top40"> 
+    <!-- Блок "Премиум" -->
+    <div class="cabinet__premium cb_top40">
       <div class="cabinet__premium-left">
-        Премиум 
+        Премиум
         <div class="cabinet__premium-icon cb_left30">
           <icon-premium width="20" height="20" />
         </div>
       </div>
 
       <div class="cabinet__premium-right cb_left240">
-        У вас нет активных подписок
+        <div v-if="user.isPremium">
+          <div class="cb_color-pink">Активен</div>
+          <div>Подписка закончится 27 июля</div>
+        </div>
+
+        <div v-else>У вас нет активных подписок</div>
+
         <v-button
           class="cb_left90"
-          button-type="buy-premium"
-          icon-position="left"
-          icon-width="16"
-          icon-height="16"
+          :class="user.isPremium ? 'cabinet__button-cancel' : 'cabinet__button-buy'"
         >
-          Купить премиум
+          <icon-premium v-if="!user.isPremium" class="cb_right9" width="16" height="16" />
+          {{ user.isPremium ? 'Отменить подписку' : 'Купить премиум' }}
         </v-button>
       </div>
     </div>
+    <!-- Блок "Премиум" -->
   </div>
 </template>
 
 <script>
-import IconPremium from '@/icons/IconPremium.vue'
+import IconPremium from '@/icons/IconPremium.vue';
 
-import VButton from '@/components/common/VButton.vue'
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'Cabinet',
-  components: {IconPremium, VButton},
+  components: { IconPremium, VButton },
   data() {
-    return {}
+    return {};
+  },
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -98,7 +107,7 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     letter-spacing: -0.01em;
-    color: #B1B8C6;
+    color: #b1b8c6;
   }
 
   &__input {
@@ -131,7 +140,7 @@ export default {
     @extend .cb_row;
     font-family: 'ObjectSans';
     font-size: 30px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__premium-right {
@@ -139,7 +148,7 @@ export default {
     align-items: center;
     font-family: 'Circe';
     font-size: 20px;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__premium-icon {
@@ -147,9 +156,52 @@ export default {
     width: 44px;
     height: 44px;
 
-    background: #EE3465;
-    box-shadow: 0px 11px 18px -9px #EE3465;
+    background: #ee3465;
+    box-shadow: 0px 11px 18px -9px #ee3465;
     border-radius: 8px;
+  }
+
+  &__button-cancel {
+    ::v-deep .button {
+      width: 204px;
+      height: 55px;
+
+      font-family: 'Circe';
+      font-size: 16px;
+      color: #272a37;
+      border: 1px solid #e4e4e4;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+  }
+
+  &__button-buy {
+    ::v-deep .button {
+      width: 204px;
+      height: 55px;
+
+      font-family: 'Circe';
+      font-size: 16px;
+      color: #ffffff;
+      border: none;
+      background: #ee3465;
+    }
+  }
+}
+
+// hovers
+:hover.cabinet {
+  &__button-cancel {
+    ::v-deep .button {
+      color: #ffffff;
+      background: #ee3465;
+    }
+  }
+
+  &__button-buy {
+    ::v-deep .button {
+      box-shadow: 0px 12px 18px -13px #ee3465;
+    }
   }
 }
 </style>

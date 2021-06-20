@@ -141,8 +141,7 @@ export default {
   }
 
   &__footer-item {
-    @extend .cb_row-center;
-    align-items: center;
+    @extend .cb_center;
     height: 40px;
 
     border: 1px solid #ededed;

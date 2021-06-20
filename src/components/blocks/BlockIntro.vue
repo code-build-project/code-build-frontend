@@ -11,13 +11,9 @@
         Платные и бесплатные видеокурсы по программированию для новичков и middle-разработчиков
       </div>
 
-      <v-button
-        class="cb_top80"
-        button-type="intro"
-        icon-position="right"
-        @click="$router.push('/courses')"
-      >
+      <v-button class="intro__button cb_top80" @click="$router.push('/courses')">
         Начать учиться
+        <icon-arrow class="cb_left9 cb_top3" stroke="#256cfe" width="30" height="30" />
       </v-button>
 
       <!-- Иконки заднего фона -->
@@ -30,19 +26,21 @@
 </template>
 
 <script>
-import IconIphone from '@/icons/IconIphone.vue'
-import IconIpad from '@/icons/IconIpad.vue'
+import IconIpad from '@/icons/IconIpad.vue';
+import IconArrow from '@/icons/IconArrow.vue';
+import IconIphone from '@/icons/IconIphone.vue';
 
-import VButton from '@/components/common/VButton.vue'
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'BlockIntro',
   components: {
-    IconIphone,
     IconIpad,
+    IconArrow,
+    IconIphone,
     VButton
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -79,6 +77,19 @@ export default {
     color: #3e4462;
   }
 
+  &__button {
+    ::v-deep .button {
+      width: 298px;
+      height: 84px;
+
+      font-family: 'Circe';
+      font-size: 24px;
+      color: #256cfe;
+      border: 2px solid #256cfe;
+      background: transparent;
+    }
+  }
+
   &__iphone {
     position: absolute;
     left: 513px;
@@ -90,6 +101,20 @@ export default {
     position: absolute;
     left: 743px;
     top: 252px;
+  }
+}
+
+// hovers
+:hover.intro {
+  &__button {
+    ::v-deep .button {
+      color: #ffffff;
+      background: #256cfe;
+
+      path {
+        stroke: #ffffff;
+      }
+    }
   }
 }
 </style>

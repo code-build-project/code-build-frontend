@@ -1,17 +1,20 @@
 <template>
-  <div class="select">
+  <div class="select" v-click-outside="onClickOutside">
+    <!-- Иконка -->
     <div v-if="isPremium" class="select__icon-premium">
-      <icon-premium width="20" height="20"/>
+      <icon-premium width="20" height="20" />
     </div>
 
     <div v-else class="select__icon-user">
-      <icon-user width="13" height="15"/>
+      <icon-user width="13" height="15" />
     </div>
+    <!-- Иконка -->
 
-    <div class="select__user cb_left20" @click="isDropdown = !isDropdown">
+    <!-- Имя -->
+    <div class="cb_pointer cb_left20" @click="isDropdown = !isDropdown">
       {{ name }}
       <icon-angle-bracket
-        class="select__icon-bracket cb_left8"
+        class="cb_pointer cb_left8"
         :style="isDropdown ? 'transform: rotate(-90deg)' : 'transform: rotate(90deg)'"
         width="12"
         height="8"
@@ -19,32 +22,27 @@
         stroke-width="6"
       />
     </div>
+    <!-- Имя -->
 
     <!-- Выпадашка -->
     <div v-if="isDropdown" class="select__dropdown">
-      <div class="select__dropdown-item">
+      <div class="select__dropdown-item" @click="setRoute('cabinet')">
         Мой профиль
         <icon-user class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
       </div>
 
-      <div class="select__dropdown-item">
+      <div class="select__dropdown-item" @click="setRoute('favorites')">
         Избранное
         <icon-heart class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
       </div>
 
-      <div class="select__dropdown-item cb_color-gray" style="border: none">
+      <div class="select__dropdown-item cb_color-gray" style="border: none" @click="onExit()">
         Выйти
         <icon-exit stroke="#B1B8C6" width="22" height="22" />
       </div>
 
-      <v-button
-        v-if="!isPremium"
-        class="cb_top15 cb_bottom25"
-        button-type="buy-premium"
-        icon-position="left"
-        icon-width="16"
-        icon-height="16"
-      >
+      <v-button v-if="!isPremium" class="cb_top15 cb_bottom25">
+        <icon-premium class="select__button cb_right9" width="16" height="16" />
         Купить премиум
       </v-button>
     </div>
@@ -74,8 +72,8 @@ export default {
   props: {
     // Имя пользователя
     name: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: ''
     },
     // Флаг на наличие премиум подписки
     isPremium: {
@@ -88,7 +86,21 @@ export default {
       isDropdown: false
     };
   },
-  computed: {}
+  methods: {
+    onClickOutside() {
+      this.isDropdown = false;
+    },
+
+    setRoute(route) {
+      this.$router.push(`/${route}`);
+      this.onClickOutside();
+    },
+
+    onExit() {
+      localStorage.token = null;
+      location.reload();
+    }
+  }
 };
 </script>
 
@@ -99,16 +111,20 @@ export default {
   position: relative;
   width: 290px;
 
+  font-family: 'Circe';
+  font-size: 18px;
+  color: #272a37;
+
   &__icon-premium {
     @extend .cb_center;
     width: 44px;
     height: 44px;
 
     background: #ee3465;
-    box-shadow: 0px 11px 18px -9px #EE3465;
+    box-shadow: 0px 11px 18px -9px #ee3465;
     border-radius: 8px;
   }
-  
+
   &__icon-user {
     @extend .cb_center;
     width: 44px;
@@ -116,19 +132,6 @@ export default {
 
     border: 1px solid #256cfe;
     border-radius: 8px;
-  }
-
-  &__icon-bracket {
-    cursor: pointer;
-    transform: rotate(90deg);
-  }
-
-  &__user {
-    cursor: pointer;
-    font-family: 'Circe';
-    font-size: 18px;
-    line-height: 18px;
-    color: #272a37;
   }
 
   &__dropdown {
@@ -150,11 +153,20 @@ export default {
     width: 204px;
     height: 60px;
 
-    font-family: 'Circe';
-    font-size: 18px;
-    color: #272a37;
-
     border-bottom: 1px solid #f2f2f2;
+  }
+
+  &__button {
+    ::v-deep .button {
+      width: 204px;
+      height: 55px;
+
+      font-family: 'Circe';
+      font-size: 16px;
+      color: #ffffff;
+      border: none;
+      background: #ee3465;
+    }
   }
 }
 
@@ -162,15 +174,22 @@ export default {
 :hover.select {
   &__user {
     ::v-deep path {
-      stroke: #256CFE;
+      stroke: #256cfe;
     }
   }
 
   &__dropdown-item {
     cursor: pointer;
-    color: #256CFE;
+    color: #256cfe;
+
     ::v-deep path {
-      stroke: #256CFE;
+      stroke: #256cfe;
+    }
+  }
+
+  &__button {
+    ::v-deep .button {
+      box-shadow: 0px 12px 18px -13px #ee3465;
     }
   }
 }
