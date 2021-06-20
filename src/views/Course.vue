@@ -71,7 +71,7 @@ export default {
   },
 
   created() {
-    this.axios.get('http://127.0.1.1:4000/lessons')
+    this.axios.get('/lessons')
     .then((response) => {
       this.lessonList = response.data;
     })

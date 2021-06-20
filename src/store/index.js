@@ -24,7 +24,7 @@ export default new Vuex.Store({
   actions: {
     // Получение данных пользователя по токену
     authorize ({ commit }) {    
-      axios.get('http://127.0.1.1:5000/user')
+      axios.get('/user')
       .then((response) => {
         commit('setUser', response.data);
       })

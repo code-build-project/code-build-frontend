@@ -96,7 +96,7 @@ export default {
       };
 
       this.axios
-        .post('http://127.0.1.1:5000/login', payload)
+        .post('/login', payload)
         .then((response) => {
           localStorage.token = response.data.token;
           this.$router.push('/').then(() => location.reload());

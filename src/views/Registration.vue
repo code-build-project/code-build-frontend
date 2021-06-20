@@ -66,7 +66,7 @@ export default {
       };
 
       this.axios
-        .post('http://localhost:3000/reg', payload)
+        .post('/reg', payload)
         .then(() => {
           this.$router.push({ name: 'SuccessRegistration', params: payload });
         })

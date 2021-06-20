@@ -56,12 +56,12 @@ export default {
   },
   
   created() {
-    this.axios.get('http://127.0.1.1:4000/courses')
+    this.axios.get('/courses')
     .then((response) => {
       this.courseList = response.data;
     })
 
-    this.axios.get('http://127.0.1.1:4000/courses/filters')
+    this.axios.get('/courses/filters')
     .then((response) => {
       this.filterList = response.data;
     })

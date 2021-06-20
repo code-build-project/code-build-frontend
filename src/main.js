@@ -5,8 +5,9 @@ import store from './store';
 import router from './router';
 import './directives/clickOutside';
 
-// Добавление токена в заголовок axios
+// Добавление токена в заголовок axios и адрес сервера
 const token = localStorage.token || '';
+axios.defaults.baseURL = 'https://fast-ocean-40880.herokuapp.com';
 axios.defaults.headers.common['Authorization'] = token.substring(7);
 
 // Доавление axios в прототипы, чтобы не импортировать в каждый файл

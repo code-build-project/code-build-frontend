@@ -59,7 +59,7 @@ export default {
       };
 
       this.axios
-        .post('http://localhost:3000/reg', payload)
+        .post('/reg', payload)
         .then(() => {
           console.log('Успешно');
         })
