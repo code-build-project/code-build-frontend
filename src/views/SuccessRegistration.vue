@@ -1,6 +1,8 @@
 <template>
   <div class="success">
-    <div class="success__title cb_top60">Спасибо</div>
+    <div class="success__title cb_top60">
+      Спасибо
+    </div>
 
     <div class="success__subtitle cb_top60">
       Завершите регистрацию по ссылке<br />
@@ -18,7 +20,9 @@
         00:{{ interval > 9 ? interval : '0' + interval }}
       </v-button>
 
-      <v-button v-else class="success__button">Отправить</v-button>
+      <v-button v-else class="success__button">
+        Отправить
+      </v-button>
     </div>
   </div>
 </template>

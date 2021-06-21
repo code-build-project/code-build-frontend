@@ -1,5 +1,5 @@
 <template>
-  <div class="select" v-click-outside="onClickOutside">
+  <div v-click-outside="onClickOutside" class="select">
     <!-- Иконка -->
     <div v-if="isPremium" class="select__icon-premium">
       <icon-premium width="20" height="20" />
@@ -41,7 +41,7 @@
         <icon-exit stroke="#B1B8C6" width="22" height="22" />
       </div>
 
-      <v-button v-if="!isPremium" class="cb_top15 cb_bottom25">
+      <v-button v-if="!isPremium" class="select__button cb_top15 cb_bottom25" @click="setRoute('subscribe')">
         <icon-premium class="select__button cb_right9" width="16" height="16" />
         Купить премиум
       </v-button>

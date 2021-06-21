@@ -41,12 +41,9 @@
           <v-lesson-card
             v-if="filterId === 2"
             class="cb_bottom30"
-            :class="[
-              { 'cb_left22': (index - 1) % 4 === 0 },
-              { 'cb_left22 cb_right22': (index - 1) % 2 === 0 }
-            ]"
+            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
             :title="item.title"
-            :lesson-number="item.lessonNumber"
+            :course-title="item.courseTitle"
             :time="item.time"
             :views="item.views"
           />
@@ -81,20 +78,6 @@ export default {
     VLessonCard,
     VArticleCard,
     BlockSubscribe
-  },
-  computed: {
-    itemList() {
-      switch (this.filterId) {
-        case 1:
-          return this.courseList
-        case 2:
-          return this.lessonList
-        case 3:
-          return this.articleList
-        default:
-          return this.courseList
-      }
-    }
   },
   data() {
     return {
@@ -163,37 +146,37 @@ export default {
       lessonList: [
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
         {
           title: 'Установка всего необходимого',
-          lessonNumber: '2',
+          courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
         },
@@ -231,6 +214,20 @@ export default {
           views: '150'
         },
       ]
+    }
+  },
+  computed: {
+    itemList() {
+      switch (this.filterId) {
+        case 1:
+          return this.courseList
+        case 2:
+          return this.lessonList
+        case 3:
+          return this.articleList
+        default:
+          return this.courseList
+      }
     }
   },
   

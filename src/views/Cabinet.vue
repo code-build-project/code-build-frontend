@@ -8,12 +8,16 @@
       </div>
 
       <div class="cabinet__profile-right">
-        <div class="cabinet__label">Имя</div>
+        <div class="cabinet__label">
+          Имя
+        </div>
         <div class="cabinet__input cb_top10">
           {{ user.name }}
         </div>
 
-        <div class="cabinet__label cb_top30">E-mail</div>
+        <div class="cabinet__label cb_top30">
+          E-mail
+        </div>
         <div class="cabinet__input cb_top10">
           {{ user.email }}
         </div>
@@ -32,11 +36,15 @@
 
       <div class="cabinet__premium-right cb_left240">
         <div v-if="user.isPremium">
-          <div class="cb_color-pink">Активен</div>
+          <div class="cb_color-pink">
+            Активен
+          </div>
           <div>Подписка закончится 27 июля</div>
         </div>
 
-        <div v-else>У вас нет активных подписок</div>
+        <div v-else>
+          У вас нет активных подписок
+        </div>
 
         <v-button
           class="cb_left90"

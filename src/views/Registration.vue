@@ -2,26 +2,42 @@
   <div class="reg">
     <icon-logo class="reg__logo cb_top75" width="107" height="75" />
 
-    <div class="reg__title cb_top25">Зарегистрируйтесь в Code Build</div>
+    <div class="reg__title cb_top25">
+      Зарегистрируйтесь в Code Build
+    </div>
 
-    <v-input class="cb_top70" placeholder="Имя" />
+    <v-input v-model="name" class="cb_top70">
+      Имя
+    </v-input>
 
-    <v-input class="cb_top40" placeholder="E-mail" />
+    <v-input 
+      v-model="email.name" 
+      class="cb_top40"    
+      :is-error="email.isError"
+      :error-message="email.errorName"
+      @blur="validateEmail"
+    >
+      E-mail
+    </v-input>
 
     <div class="reg__consent cb_top40">
-      <v-check-box />
+      <v-check-box border-color="blue" />
 
       <div class="cb_left10">
-        Я согласен с условиями обработки<br />
-        <span class="cb_color-blue">персональных данных</span>
+        Я согласен с условиями обработки
+        <v-underline>персональных данных</v-underline>
       </div>
     </div>
 
-    <v-button class="reg__button cb_top50"> Зарегистрироваться </v-button>
+    <v-button class="reg__button cb_top50">
+      Зарегистрироваться
+    </v-button>
 
     <div class="reg__footer cb_top25">
       <span>У вас уже есть аккаунт?</span>
-      <router-link class="reg__entry cb_left5" to="/auth" target="_blank"> Войти </router-link>
+      <router-link class="reg__entry cb_left5" to="/auth" target="_blank">
+        Войти
+      </router-link>
     </div>
   </div>
 </template>
@@ -32,6 +48,7 @@ import IconLogo from '@/icons/IconLogo.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
+import VUnderline from '@/components/common/VUnderline.vue'
 
 export default {
   name: 'Registration',
@@ -40,7 +57,8 @@ export default {
     IconLogo,
     VInput,
     VButton,
-    VCheckBox
+    VCheckBox,
+    VUnderline
   },
 
   props: {},
@@ -48,16 +66,30 @@ export default {
   data() {
     return {
       name: '',
-      surname: '',
-      email: '',
 
-      emailError: false,
+      email: {
+        name: '',
+        isError: false,
+        errorName: ''
+      },
 
       checkbox: false
     };
   },
 
   methods: {
+    validateEmail() {
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+      if (reg.test(this.email.name) === false) {
+        this.email.isError = true;
+        this.email.errorName = 'Неверный формат';
+      } else {
+        this.email.isError = false;
+        this.email.errorName = '';
+      }
+    },
+
     onSign() {
       const payload = {
         name: this.name,

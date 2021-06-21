@@ -1,5 +1,5 @@
 <template>
-  <div class="checkbox" :class="`checkbox-${checkboxType}`">
+  <div class="checkbox" :class="`checkbox__border-${borderColor}`">
     <input
       :id="keyField"
       class="checkbox-input"
@@ -28,10 +28,10 @@ export default {
     },
     checked: Boolean,
     
-    // Тип чекбокса, который влияет на стиль
-    checkboxType: {
+    // Цвет бордера чекбокса
+    borderColor: {
       type: String,
-      default: 'reg'
+      default: 'pink'
     }
   }
 }
@@ -66,6 +66,9 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
+
+    border: 1px solid #E4E4E4;
+    background-size: 60% 60%;
   }
 
   /* стили для чекбокса, находящегося в состоянии disabled */
@@ -73,68 +76,45 @@ export default {
     background-color: #e9ecef;
   }
 
+  /* стили для активного чекбокса (при нажатии на него) */
+  .checkbox-input:not(:disabled):active + label::before {
+    background-color: transparent;
+    border-color: transparent;
+  }
 
+  /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+  .checkbox-input:focus:not(:checked) + label::before {
+    border-color: #E4E4E4;
+  }
 
-  // Типы чекбоксов, в зависимости от экрана
-  &-reg {
-    /* создание в label псевдоэлемента before со следующими стилями */
-    .checkbox-input + label::before {
-      border: 1px solid #b1b8c6;
-      background-size: 70% 70%;
-    }
+  /* стили для чекбокса, находящегося в состоянии checked */
+  .checkbox-input:checked + label::before {
+    background-color: transparent;
+  }
 
+  &__border-pink {
     /* стили при наведении курсора на checkbox */
     .checkbox-input:not(:disabled):not(:checked) + label:hover::before {
-      border-color: #0083f5;
-    }
-
-    /* стили для активного чекбокса (при нажатии на него) */
-    .checkbox-input:not(:disabled):active + label::before {
-      background-color: #b3d7ff;
-      border-color: #b3d7ff;
-    }
-
-    /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
-    .checkbox-input:focus:not(:checked) + label::before {
-      border-color: #0083f5;
+      border-color: #EE3465;
     }
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .checkbox-input:checked + label::before {
-      border-color: #0b76ef;
-      background-color: #0b76ef;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='white' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
+      border-color: #EE3465;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='rgb(238,52,101)' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
     }
   }
 
-  &-subscribe {
-    /* создание в label псевдоэлемента before со следующими стилями */
-    .checkbox-input + label::before {
-      border: 1px solid #E4E4E4;
-      background-size: 60% 60%;
-    }
-
+  &__border-blue {
     /* стили при наведении курсора на checkbox */
     .checkbox-input:not(:disabled):not(:checked) + label:hover::before {
-      border-color: #EE3465;
-    }
-
-    /* стили для активного чекбокса (при нажатии на него) */
-    .checkbox-input:not(:disabled):active + label::before {
-      background-color: transparent;
-      border-color: transparent;
-    }
-
-    /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
-    .checkbox-input:focus:not(:checked) + label::before {
-      border-color: #E4E4E4;
+      border-color: #256CFE;
     }
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .checkbox-input:checked + label::before {
-      border-color: #EE3465;
-      background-color: transparent;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='rgb(238,52,101)' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
+      border-color: #256CFE;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='rgb(37,108,254)' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
     }
   }
 }

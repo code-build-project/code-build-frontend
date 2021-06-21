@@ -13,17 +13,19 @@
         </slot>
       </div>
 
-      <div class="card__info-footer">
-        <div class="card__info-footer_item">
+      <!-- Footer -->
+      <div class="cb_row-between">
+        <div class="card__footer-item cb_width155">
           <icon-timer />
           <span class="cb_left5">Время прочтения: 15 м.</span>
         </div>
 
-        <div class="card__info-footer_item">
-          <icon-open-eye />
+        <div class="card__footer-item cb_width70">
+          <icon-open-eye width="12" height="10" />
           <span class="cb_left5">1200</span>
         </div>
       </div>
+      <!-- Footer -->
     </div>
   </div>
 </template>
@@ -97,23 +99,17 @@ export default {
     color: #ffffff;
   }
 
-  &__info-footer {
-    @extend .cb_row-between;
+  &__footer-item {
+    @extend .cb_center;
+    height: 28px;
 
     font-family: 'Circe';
     font-size: 11px;
     line-height: 24px;
     color: #ffffff;
 
-    &_item {
-      @extend .cb_row-between;
-
-      padding-left: 13px;
-      padding-right: 13px;
-
-      border: 1px solid #383c4a;
-      border-radius: 5px;
-    }
+    border: 1px solid #383c4a;
+    border-radius: 5px;
   }
 }
 </style>

@@ -3,16 +3,24 @@
     <icon-logo class="header__logo" @click.native="$router.push('/')" />
 
     <div class="header__nav">
-      <router-link class="header__nav-item" to="/"> О проекте </router-link>
-      <router-link class="header__nav-item" to="/articles"> Блог </router-link>
-      <router-link class="header__nav-item" to="/courses"> Видеокурсы </router-link>
+      <router-link class="header__nav-item" to="/">
+        О проекте
+      </router-link>
+      <router-link class="header__nav-item" to="/articles">
+        Блог
+      </router-link>
+      <router-link class="header__nav-item" to="/courses">
+        Видеокурсы
+      </router-link>
     </div>
 
     <!-- Правая часть -->
-    <v-user-select v-if="user" :name="user.name" :isPremium="user.isPremium"/>
+    <v-user-select v-if="user" :name="user.name" :is-premium="user.isPremium" />
 
     <div v-else class="cb_row-center">
-      <router-link class="header__button" to="/auth" target="_blank"> Войти </router-link>
+      <router-link class="header__button" to="/auth" target="_blank">
+        Войти
+      </router-link>
       <v-button class="header__button cb_left45" @click="$router.push('/subscribe')">
         <icon-premium class="cb_right9" width="21" height="21" />
         Премиум

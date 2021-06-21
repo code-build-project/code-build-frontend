@@ -19,6 +19,7 @@ export default {
 .underline {
   position: relative;
   color: #256CFE;
+  width: fit-content; 
 
   &__line {
     position: absolute;

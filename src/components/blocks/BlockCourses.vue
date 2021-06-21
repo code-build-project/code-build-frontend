@@ -26,21 +26,29 @@
       <div class="cb_row">
         <div class="cb_column">
           <v-course-mini-card class="cb_top70">
-            <template #text> Создание сайта с нуля на CMS WordPress </template>
+            <template #text>
+              Создание сайта с нуля на CMS WordPress
+            </template>
           </v-course-mini-card>
 
           <v-course-mini-card class="cb_top35">
-            <template #text> Изучение языка Ruby для начинающих </template>
+            <template #text>
+              Изучение языка Ruby для начинающих
+            </template>
           </v-course-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
           <v-course-mini-card fire>
-            <template #text> Изучение языка Си для начинающих </template>
+            <template #text>
+              Изучение языка Си для начинающих
+            </template>
           </v-course-mini-card>
 
           <v-course-mini-card class="cb_top35" level="Intermediate">
-            <template #text> Уроки Java Android программирования </template>
+            <template #text>
+              Уроки Java Android программирования
+            </template>
           </v-course-mini-card>
         </div>
       </div>

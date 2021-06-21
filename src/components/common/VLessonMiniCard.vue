@@ -6,31 +6,31 @@
       class="card__info"
       @click="$emit('click')"
     >
-      <div class="card__course-title">
-        {{ courseTitle }}
+      <div class="card__lesson-number">
+        Урок №{{ lessonNumber }}
       </div>
 
-      <div class="card__title cb_top15">
+      <div class="card__title">
         {{ title }}
       </div>
 
-      <div class="card__footer cb_top15">
-        <div class="card__footer-item cb_width170">
+      <div class="card__footer">
+        <div class="card__footer-item cb_width126">
           <icon-timer
-            width="18"
-            height="18"
-            fill="#3A3F4F"
+            :fill="'#3A3F4F'"
+            width="15"
+            height="15"
           />
-          <span class="cb_left7">{{ time }}</span>
+          <span class="cb_left5">{{ time }}</span>
         </div>
 
-        <div class="card__footer-item cb_width130">
+        <div class="card__footer-item cb_width96">
           <icon-open-eye
-            width="21"
-            height="18"
-            fill="#3A3F4F"
+            :fill="'#3A3F4F'"
+            width="17"
+            height="14"
           />
-          <span class="cb_left7">{{ views }}</span>
+          <span class="cb_left5">{{ views }}</span>
         </div>
       </div>
     </div>
@@ -39,11 +39,7 @@
       class="card__icon-heart"
       @click="isLike = !isLike"
     >
-      <icon-heart
-        :fill="isLike ? '#EE3465' : 'transparent'"
-        width="26"
-        height="23"
-      />
+      <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" />
     </div>
   </div>
 </template>
@@ -54,29 +50,29 @@ import IconOpenEye from '@/icons/IconOpenEye.vue'
 import IconHeart from '@/icons/IconHeart.vue'
 
 export default {
-  name: 'VLessonCard',
+  name: 'VCourseCard',
   components: {
     IconTimer,
     IconOpenEye,
     IconHeart
   },
   props: {
+    // Номер урока
+    lessonNumber: {
+      type: String,
+      default: '1'
+    },
     // Название урока
     title: {
       type: String,
-      default: 'Название урока'
+      default: 'Установка всего необходимого'
     },
-    // Название курса
-    courseTitle: {
-      type: String,
-      default: 'Название курса'
-    },
-    // Длительность по времени
+    // Время урока
     time: {
       type: String,
-      default: '15 м.'
+      default: '1 ч. 25 м.'
     },
-    // Количество просмотров  видео
+    // Количество просмотров урока
     views: {
       type: String,
       default: '300'
@@ -94,43 +90,47 @@ export default {
 <style lang="scss" scoped>
 .card {
   position: relative;
-  width: 367px;
+  width: 268px;
+  height: 338px;
 
   &__poster {
-    height: 240px;
+    width: 268px;
+    height: 181px;
 
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
 
   &__info {
-    @extend .cb_column;
-    height: 226px;
+    @extend .cb_column-between;
+    align-items: stretch;
 
-    padding: 21px 27px 27px 27px;
+    width: 268px;
+    height: 157px;
+
+    padding: 17px;
     box-sizing: border-box;
 
     background: #ffffff;
     border-radius: 0px 0px 8px 8px;
   }
 
-  &__course-title {
-    width: 200px;
-    font-family: 'EuclidCircular';
+  &__lesson-number {
+    cursor: pointer;
+
+    font-family: 'Circe';
     font-size: 15px;
-    line-height: 20px;
-    color: #b1b8c6;
+    line-height: 18px;
+    color: #256cfe;
   }
 
   &__title {
-    width: 314px;
-    height: 95px;
+    width: 200px;
 
     font-family: 'Circe';
-    font-size: 26px;
-    line-height: 31px;
+    font-size: 20px;
+    line-height: 21px;
     color: #3a3f4f;
-    letter-spacing: -0.01em;
   }
 
   &__footer {
@@ -154,8 +154,8 @@ export default {
     @extend .cb_center;
     position: absolute;
 
-    top: 20px;
-    right: 20px;
+    top: 19px;
+    right: 19px;
     cursor: pointer;
   }
 }

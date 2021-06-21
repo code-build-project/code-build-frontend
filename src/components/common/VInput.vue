@@ -10,13 +10,13 @@
       @focus="onFocus"
       @blur="onBlur"
     />
-    <label class="input__label">{{ label }}</label>
+    <label class="input__label"><slot>Label</slot></label>
 
     <div v-if="isError" class="input__error">
       {{ errorMessage }}
     </div>
 
-    <div v-if="isPassword" class="input__icon">
+    <div v-if="type === 'password'" class="input__icon">
       <icon-close-eye
         v-if="hidePassword"
         class="cb_pointer"
@@ -32,6 +32,7 @@
         width="21"
         height="15"
         fill="#E4E4E4"
+        :is-background="false"
         @click.native="onIconClick(true)"
       />
     </div>
@@ -61,15 +62,10 @@ export default {
       type: [String, Number],
       required: false
     },
-    // Значение лейбла и плейсхолдера
-    label: {
+    // Тип поля
+    type: {
       type: String,
-      required: 'Label'
-    },
-    // Флаг: тип поля - Пароль, или нет
-    isPassword: {
-      type: Boolean,
-      default: false
+      default: 'text'
     },
     // Флаг наличия ошибки в поле
     isError: {
@@ -87,7 +83,6 @@ export default {
     return {
       isFocus: false,
       hidePassword: true,
-      type: this.isPassword ? 'password' : 'text'
     }
   },
 
@@ -153,7 +148,7 @@ export default {
     position: absolute;
 
     right: 0px;
-    bottom: 10px;
+    top: 25px;
   }
 
   &__error {

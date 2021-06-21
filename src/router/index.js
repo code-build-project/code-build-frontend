@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import store from '../store';
+import axios from 'axios';
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -43,12 +43,34 @@ const routes = [
       {
         path: 'cabinet',
         name: 'Cabinet',
-        component: () => import('@/views/Cabinet.vue')
+        component: () => import('@/views/Cabinet.vue'),
+        // Попытка перейти в личный кабинет без авторизации
+        beforeEnter: async (to, from, next) => {
+          await axios.get('/user')
+            .then(() => {
+              next()
+            })
+            .catch(() => {
+              next({ name: 'Home' })
+            })
+        }
       },
       {
         path: 'subscribe',
         name: 'Subscribe',
-        component: () => import('@/views/Subscribe.vue')
+        component: () => import('@/views/Subscribe.vue'),
+        // Попытка перейти на страницу покупки подписки, когда подписка уже имеется
+        beforeEnter: async (to, from, next) => {
+          await axios.get('/user')
+            .then((res) => {
+              if(res.data.isPremium) {
+                next({ name: 'Home' });
+              } else next()
+            })
+            .catch(() => {
+              next()
+            })
+        }
       },
       {
         path: 'icons',
@@ -92,14 +114,9 @@ const router = new VueRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // При переходе на странциу MainLayout по дефолту открывается главная страница
   if (to.name !== 'Home' && to.path === '/') {
-    next({ name: 'Home' })
-  } else next()
-  
-  // Попытка перейти в личный кабинет без авторизации
-  if (to.name === 'Cabinet' && !store.getters.user) {
     next({ name: 'Home' })
   } else next()
 })

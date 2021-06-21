@@ -33,7 +33,7 @@
 
         <div class="subscribe__consent cb_top45">
           <div class="cb_center">
-            <v-check-box key-field="11" checkbox-type="subscribe" />
+            <v-check-box key-field="11" border-color="pink" />
 
             <div class="cb_left10">
               Я принимаю
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <v-button class="subscrube__button">
+          <v-button class="subscribe__button">
             Подключить
           </v-button>
         </div>

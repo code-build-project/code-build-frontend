@@ -1,6 +1,8 @@
 <template>
   <div class="reviews">
-    <div class="reviews__title">Отзывы о наших курсах</div>
+    <div class="reviews__title">
+      Отзывы о наших курсах
+    </div>
 
     <div class="reviews__list">
       <div v-for="(item, index) in reviewList" :key="index">
@@ -16,7 +18,9 @@
     </div>
 
     <div class="reviews__footer">
-      <v-button class="reviews__button cb_top160">Показать еще</v-button>
+      <v-button class="reviews__button cb_top160">
+        Показать еще
+      </v-button>
     </div>
   </div>
 </template>

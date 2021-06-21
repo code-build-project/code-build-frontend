@@ -2,28 +2,34 @@
   <div class="auth">
     <icon-logo class="auth__logo cb_top75" width="107" height="75" />
 
-    <div class="auth__title cb_top25">Войдите, чтобы продолжить</div>
+    <div class="auth__title cb_top25">
+      Войдите, чтобы продолжить
+    </div>
 
     <v-input
       v-model="email.name"
       class="cb_top95"
-      label="Логин или E-mail"
       :is-error="email.isError"
       :error-message="email.errorName"
       @blur="validateEmail"
-    />
+    >
+      Логин или E-mail
+    </v-input>
 
     <v-input
       v-model="password.name"
       class="cb_top40"
-      is-password
-      label="Пароль"
+      type="password"
       :is-error="password.isError"
       :error-message="password.errorName"
       @change="password.isError = false"
-    />
+    >
+      Пароль
+    </v-input>
 
-    <div class="auth__forget cb_top8">Забыли пароль?</div>
+    <div class="auth__forget cb_top8">
+      Забыли пароль?
+    </div>
 
     <v-button
       class="cb_top70"
