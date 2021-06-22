@@ -1,5 +1,5 @@
 <template>
-  <div class="actuality">
+  <div ref="actuality" class="actuality" @mousemove="mousemove">
     <div class="actuality__title cb_top300">
       <span class="cb_center"> Вы с нуля освоите профессию </span>
       разработчика и сможете добавить
@@ -16,6 +16,7 @@
     <div
       class="actuality_icon"
       style="left: 16%; top: 133px; padding: 17px 20px 20px 21px"
+      :style="[{'top': getIconPositionY(133) + 'px'},{'left': getIconPositionX(312) + 'px'}]"
     >
       <icon-apple />
     </div>
@@ -102,6 +103,35 @@ export default {
     IconCursor,
     IconGitMerge,
     IconBug
+  },
+  data() {
+    return {
+      cursor: {
+        Y: 0,
+        X: 0
+      }
+    }
+  },
+  methods: {
+    mousemove(mouse) {
+      // console.log(mouse)
+      // console.log(this.$refs)
+
+      // Координаты курсора относительно данного блока
+      this.cursor.Y = mouse.pageY - this.$refs.actuality.offsetTop;
+      this.cursor.X = mouse.pageX;
+
+      // this.$refs.icon.style.top = cursorPositionY + 'px';
+      // this.$refs.icon.style.left = cursorPositionX + 'px'
+    },
+
+    getIconPositionY(iconPositionY) {
+      if((iconPositionY - 80) > this.cursor.Y) return this.cursor.Y + iconPositionY;
+    },
+
+    getIconPositionX(iconPositionX) {
+      if((iconPositionX + 50) < this.cursor.X) return this.cursor.X - iconPositionX;
+    }
   }
 }
 </script>
