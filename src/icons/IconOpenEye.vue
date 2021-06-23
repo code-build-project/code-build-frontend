@@ -36,15 +36,19 @@ export default {
   props: {
     // Если глаз без заднего фона как на странице авторизации, то false
     isBackground: {
+      type: Boolean,
       default: true
     },
     fill: {
+      type: String,
       default: 'white'
     },
     width: {
+      type: String,
       default: '13'
     },
     height: {
+      type: String,
       default: '11'
     },
   }

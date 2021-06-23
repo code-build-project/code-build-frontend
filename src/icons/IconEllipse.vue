@@ -21,6 +21,7 @@ export default {
   name: 'IconEllipse',
   props: {
     fill: {
+      type: String,
       default: '#3A3F4F'
     }
   }

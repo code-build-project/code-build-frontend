@@ -24,6 +24,7 @@ export default {
   name: 'IconHeart',
   props: {
     stroke: {
+      type: String,
       default: 'white'
     }
   }

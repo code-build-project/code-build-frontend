@@ -19,6 +19,7 @@ export default {
   name: 'IconInstagram',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }

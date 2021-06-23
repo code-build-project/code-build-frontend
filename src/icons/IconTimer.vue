@@ -19,6 +19,7 @@ export default {
   name: 'IconTimer',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }

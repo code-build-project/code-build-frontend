@@ -10,16 +10,15 @@
           v-for="(item, index) in filterList"
           :key="index"
           class="articles__filter-item"
+          :class="{ 'articles_filter-active': filterTag === item.tag }"
+          @click="filterTag = item.tag, getArticles()"
         >
           {{ item.name }}
         </div>
       </div>
 
       <div class="articles__list cb_top60">
-        <div
-          v-for="(item, index) in articleList"
-          :key="index"
-        >
+        <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
@@ -37,8 +36,8 @@
 </template>
 
 <script>
-import VArticleCard from '@/components/common/VArticleCard.vue'
-import BlockRegistration from '@/components/blocks/BlockRegistration.vue'
+import VArticleCard from '@/components/common/VArticleCard.vue';
+import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
 
 export default {
   name: 'Articles',
@@ -48,23 +47,28 @@ export default {
   },
   data() {
     return {
+      filterTag: 'all',
+
       filterList: [],
       articleList: []
+    };
+  },
+  methods: {
+    getArticles() {
+      this.axios.get(`/articles?tag=${this.filterTag}`).then((response) => {
+        this.articleList = response.data;
+      });
     }
   },
 
   created() {
-    this.axios.get('/articles')
-    .then((response) => {
-      this.articleList = response.data;
-    })
+    this.getArticles();
 
-    this.axios.get('/articles/filters')
-    .then((response) => {
+    this.axios.get('/filters/articles').then((response) => {
       this.filterList = response.data;
-    })
+    });
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -108,6 +112,14 @@ export default {
     display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
+  }
+}
+
+// Модификаторы
+.articles {
+  &_filter-active {
+    color: #ffffff;
+    background: #256cfe;
   }
 }
 

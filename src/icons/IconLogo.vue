@@ -60,6 +60,7 @@ export default {
   name: 'IconLogo',
   props: {
     stroke: {
+      type: String,
       default: '#256CFE'
     }
   }

@@ -29,6 +29,7 @@ export default {
   name: 'IconArrow',
   props: {
     stroke: {
+      type: String,
       default: 'white'
     }
   }

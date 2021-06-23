@@ -21,6 +21,7 @@ export default {
   name: 'IconPremium',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }

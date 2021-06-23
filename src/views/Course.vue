@@ -4,14 +4,11 @@
 
     <div class="course">
       <div class="course__lessons">
-        <div
-          v-for="(item, index) in lessonList"
-          :key="index"
-        >
-          <v-lesson-card
+        <div v-for="(item, index) in lessonList" :key="index">
+          <v-lesson-mini-card
             class="cb_bottom30"
             :class="[
-              { 'cb_left22': (index - 1) % 4 === 0 },
+              { cb_left22: (index - 1) % 4 === 0 },
               { 'cb_left22 cb_right22': (index - 1) % 2 === 0 }
             ]"
             :title="item.title"
@@ -38,25 +35,22 @@
 
     <block-subscribe />
 
-    <v-media-player
-      v-if="isPlayer"
-      @close="isPlayer = false"
-    />
+    <v-media-player v-if="isPlayer" @close="isPlayer = false" />
   </div>
 </template>
 
 <script>
-import VLessonCard from '@/components/common/VLessonCard.vue'
-import VCourseCard from '@/components/common/VCourseCard.vue'
-import VMediaPlayer from '@/components/common/VMediaPlayer.vue'
+import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
+import VCourseCard from '@/components/common/VCourseCard.vue';
+import VMediaPlayer from '@/components/common/VMediaPlayer.vue';
 
-import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue'
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue'
+import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 
 export default {
   name: 'Course',
   components: {
-    VLessonCard,
+    VLessonMiniCard,
     VCourseCard,
     VMediaPlayer,
     BlockCourseCover,
@@ -67,16 +61,15 @@ export default {
       isPlayer: false,
 
       lessonList: []
-    }
+    };
   },
 
   created() {
-    this.axios.get('/lessons')
-    .then((response) => {
+    this.axios.get('/lessons').then((response) => {
       this.lessonList = response.data;
-    })
+    });
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

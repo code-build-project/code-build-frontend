@@ -19,6 +19,7 @@ export default {
   name: 'IconCloseEye',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }

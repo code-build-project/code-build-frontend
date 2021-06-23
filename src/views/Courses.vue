@@ -10,16 +10,15 @@
           v-for="(item, index) in filterList"
           :key="index"
           class="courses__filter-item"
+          :class="{ 'courses_filter-active': filterTag === item.tag }"
+          @click="filterTag = item.tag, getCourses()"
         >
           {{ item.name }}
         </div>
       </div>
 
       <div class="courses__list cb_top60">
-        <div
-          v-for="(item, index) in courseList"
-          :key="index"
-        >
+        <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
@@ -39,8 +38,8 @@
 </template>
 
 <script>
-import VCourseCard from '@/components/common/VCourseCard.vue'
-import BlockRegistration from '@/components/blocks/BlockRegistration.vue'
+import VCourseCard from '@/components/common/VCourseCard.vue';
+import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
 
 export default {
   name: 'Courses',
@@ -50,23 +49,28 @@ export default {
   },
   data() {
     return {
+      filterTag: 'all',
+
       filterList: [],
       courseList: []
+    };
+  },
+  methods: {
+    getCourses() {
+      this.axios.get(`/courses?tag=${this.filterTag}`).then((response) => {
+        this.courseList = response.data;
+      });
     }
   },
-  
-  created() {
-    this.axios.get('/courses')
-    .then((response) => {
-      this.courseList = response.data;
-    })
 
-    this.axios.get('/courses/filters')
-    .then((response) => {
+  created() {
+    this.getCourses();
+
+    this.axios.get('/filters/courses').then((response) => {
       this.filterList = response.data;
-    })
+    });
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -110,6 +114,14 @@ export default {
     display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
+  }
+}
+
+// Модификаторы
+.courses {
+  &_filter-active {
+    color: #ffffff;
+    background: #256cfe;
   }
 }
 

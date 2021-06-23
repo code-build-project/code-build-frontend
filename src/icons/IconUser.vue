@@ -27,6 +27,7 @@ export default {
   name: 'IconUser',
   props: {
     stroke: {
+      type: String,
       default: '#256CFE'
     }
   }

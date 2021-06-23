@@ -19,6 +19,7 @@ export default {
   name: 'IconVideo',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }

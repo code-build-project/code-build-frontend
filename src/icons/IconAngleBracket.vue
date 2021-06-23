@@ -21,9 +21,11 @@ export default {
   name: 'IconAngleBracket',
   props: {
     stroke: {
+      type: String,
       default: 'white'
     },
     strokeWidth: {
+      type: String,
       default: '3'
     },
   }

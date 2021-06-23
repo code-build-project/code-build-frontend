@@ -1,11 +1,8 @@
 <template>
-  <div
-    class="card"
-    @click="$emit('click')"
-  >
+  <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info">
+    <div class="card__info" @click="$emit('click')">
       <div class="card__level">
         <span class="cb_right5">Сложность</span>
 
@@ -25,41 +22,34 @@
 
       <div class="card__footer cb_top35">
         <div class="card__footer-item cb_width112">
-          <icon-video
-            width="18"
-            height="18"
-            fill="#3A3F4F"
-          />
+          <icon-video width="18" height="18" fill="#3A3F4F" />
           <span class="cb_left8">{{ lessons }}</span>
         </div>
 
         <div class="card__footer-item cb_width103">
-          <icon-timer
-            width="18"
-            height="18"
-            fill="#3A3F4F"
-          />
+          <icon-timer width="18" height="18" fill="#3A3F4F" />
           <span class="cb_left8">{{ time }}</span>
         </div>
 
         <div class="card__footer-item cb_width80">
-          <icon-open-eye
-            width="21"
-            height="18"
-            fill="#3A3F4F"
-          />
+          <icon-open-eye width="21" height="18" fill="#3A3F4F" />
           <span class="cb_left8">{{ views }}</span>
         </div>
       </div>
+    </div>
+
+    <div class="card__icon-heart" @click="isLike = !isLike">
+      <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" width="26" height="23" />
     </div>
   </div>
 </template>
 
 <script>
-import IconEllipse from '@/icons/IconEllipse.vue'
-import IconVideo from '@/icons/IconVideo.vue'
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
+import IconEllipse from '@/icons/IconEllipse.vue';
+import IconVideo from '@/icons/IconVideo.vue';
+import IconTimer from '@/icons/IconTimer.vue';
+import IconOpenEye from '@/icons/IconOpenEye.vue';
+import IconHeart from '@/icons/IconHeart.vue';
 
 export default {
   name: 'VCourseCard',
@@ -67,7 +57,8 @@ export default {
     IconEllipse,
     IconVideo,
     IconTimer,
-    IconOpenEye
+    IconOpenEye,
+    IconHeart
   },
   props: {
     // Название курса
@@ -97,10 +88,12 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      isLike: false
+    };
   },
   computed: {}
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -161,6 +154,15 @@ export default {
 
     border: 1px solid #ededed;
     border-radius: 7px;
+  }
+
+  &__icon-heart {
+    @extend .cb_center;
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
   }
 }
 </style>

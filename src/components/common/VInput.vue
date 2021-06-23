@@ -60,7 +60,7 @@ export default {
     // Значение текста в поле
     value: {
       type: [String, Number],
-      required: false
+      default: ''
     },
     // Тип поля
     type: {

@@ -29,6 +29,7 @@ export default {
   name: 'IconVk',
   props: {
     fill: {
+      type: String,
       default: 'white'
     }
   }
