@@ -182,38 +182,7 @@ export default {
         },
       ],
 
-      articleList: [
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-        {
-          title: 'Новые открытия в сфереискуственного интеллекта',
-          time: '15 м.',
-          views: '150'
-        },
-      ]
+      articleList: []
     }
   },
   computed: {
@@ -228,14 +197,18 @@ export default {
         default:
           return this.courseList
       }
+    },
+
+    user() {
+      return this.$store.getters.user || {};
     }
   },
   
   created() {
-    // this.axios.get('http://127.0.1.1:4000/courses')
-    // .then((request) => {
-    //   this.courseList = request.data;
-    // })
+    this.axios.get(`/articles/favorites?userId=${this.user.id}`)
+    .then((request) => {
+      this.articleList = request.data;
+    })
 
     // this.axios.get('http://127.0.1.1:4000/courses/filters')
     // .then((request) => {
