@@ -37,7 +37,7 @@
 
     <div
       class="card__icon-heart"
-      @click="isLike = !isLike"
+      @click="isLike = !isLike, addLike()"
     >
       <icon-heart
         :fill="isLike ? '#EE3465' : 'transparent'"
@@ -61,6 +61,11 @@ export default {
     IconHeart
   },
   props: {
+    // Id статьи
+    id: {
+      type: String,
+      default: ''
+    },
     // Название статьи
     title: {
       type: String,
@@ -87,7 +92,23 @@ export default {
       isLike: false
     }
   },
-  computed: {}
+  computed: {
+    user() {
+      return this.$store.getters.user || {};
+    }
+  },
+  methods: {
+    addLike() {
+      const payload = {
+        articleId: this.id,
+        userId: this.user.id
+      };
+
+      this.axios.post('/articles/add-like', payload).then((response) => {
+        this.articleList = response.data;
+      });
+    }
+  },
 }
 </script>
 

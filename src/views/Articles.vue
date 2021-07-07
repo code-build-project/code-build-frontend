@@ -22,6 +22,7 @@
           <v-article-card
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            :id="item._id"
             :title="item.title"
             :time="item.time"
             :views="item.views"
