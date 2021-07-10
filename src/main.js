@@ -21,6 +21,7 @@ new Vue({
   store,
   render: h => h(App),
   created () {
+    // Настройка для того чтобы правильно обрабатывался Vue-router на сервере
     if (sessionStorage.redirect) {
       const redirect = sessionStorage.redirect
       delete sessionStorage.redirect
