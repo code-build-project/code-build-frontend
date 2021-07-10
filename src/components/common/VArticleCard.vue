@@ -36,6 +36,7 @@
     </div>
 
     <div
+      v-if="userId"
       class="card__icon-heart"
       @click="onLike()"
     >

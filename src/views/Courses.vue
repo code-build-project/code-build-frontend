@@ -1,9 +1,7 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <div class="courses__title">
-        Все видеокурсы
-      </div>
+      <div class="courses__title">Все видеокурсы</div>
 
       <div class="courses__filter cb_top30">
         <div
@@ -11,7 +9,7 @@
           :key="index"
           class="courses__filter-item"
           :class="{ 'courses_filter-active': filterTag === item.tag }"
-          @click="filterTag = item.tag, getCourses()"
+          @click="(filterTag = item.tag), getCourses()"
         >
           {{ item.name }}
         </div>
@@ -22,12 +20,15 @@
           <v-course-card
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :level="item.level"
             :lessons="item.lessons"
             :time="item.time"
             :views="item.views"
-            @click="$router.push('/course')"
+            :likes="item.likes"
+            @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
         </div>
       </div>
@@ -55,20 +56,28 @@ export default {
       courseList: []
     };
   },
+  computed: {
+    user() {
+      return this.$store.getters.user || {};
+    },
+  },
   methods: {
     getCourses() {
       this.axios.get(`/courses?tag=${this.filterTag}`).then((response) => {
         this.courseList = response.data;
+      });
+    },
+
+    getFilters() {
+      this.axios.get('/filters/courses').then((response) => {
+        this.filterList = response.data;
       });
     }
   },
 
   created() {
     this.getCourses();
-
-    this.axios.get('/filters/courses').then((response) => {
-      this.filterList = response.data;
-    });
+    this.getFilters();
   }
 };
 </script>

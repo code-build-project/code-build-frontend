@@ -11,10 +11,14 @@
               { cb_left22: (index - 1) % 4 === 0 },
               { 'cb_left22 cb_right22': (index - 1) % 2 === 0 }
             ]"
+            :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :lesson-number="item.lessonNumber"
             :time="item.time"
             :views="item.views"
+            :likes="item.likes"
+            :courseName="item.courseName"
             @click="isPlayer = true"
           />
         </div>
@@ -64,8 +68,14 @@ export default {
     };
   },
 
+  computed: {
+    user() {
+      return this.$store.getters.user || {};
+    }
+  },
+
   created() {
-    this.axios.get('/lessons').then((response) => {
+    this.axios.get(`/lessons?courseName=${this.$route.query.courseName}`).then((response) => {
       this.lessonList = response.data;
     });
   }

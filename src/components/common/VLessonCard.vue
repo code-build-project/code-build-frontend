@@ -36,8 +36,9 @@
     </div>
 
     <div
+      v-if="userId"
       class="card__icon-heart"
-      @click="isLike = !isLike"
+      @click="onLike()"
     >
       <icon-heart
         :fill="isLike ? '#EE3465' : 'transparent'"
@@ -61,6 +62,16 @@ export default {
     IconHeart
   },
   props: {
+    // Id урока
+    id: {
+      type: String,
+      default: ''
+    },
+    // Id юзера
+    userId: {
+      type: String,
+      default: ''
+    },
     // Название урока
     title: {
       type: String,
@@ -80,14 +91,51 @@ export default {
     views: {
       type: String,
       default: '300'
+    },
+    // Список id юзеров, лайкнувших урок
+    likes: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    // Название курса(коллекции в бд)
+    courseName: {
+      type: String,
+      default: '',
     }
   },
   data() {
     return {
-      isLike: false
+      isLike: this.likes.includes(this.userId)
     }
   },
-  computed: {}
+  
+  methods: {
+    addLike(payload) {
+      this.axios.post('/lessons/add-like', payload).then((response) => {
+        this.isLike = true;
+      });
+    },
+
+    deleteLike(payload) {
+      this.axios.post('/lessons/delete-like', payload).then((response) => {
+        this.isLike = false;
+      });
+    },
+
+    onLike() {
+      const payload = {
+        lessonId: this.id,
+        userId: this.userId,
+        courseName: this.courseName,
+      };
+
+      if (this.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
+    }
+  }
 }
 </script>
 

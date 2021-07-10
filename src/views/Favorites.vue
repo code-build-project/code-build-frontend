@@ -11,7 +11,7 @@
             :key="index"
             class="favorites__filter-item"
             :class="{ 'favorites_filter-active': filterId === item.filterId }"
-            @click="filterId = item.filterId"
+            @click="changeFilter(item.filterId)"
           >
             {{ item.name }}
           </div>
@@ -25,22 +25,29 @@
             v-if="filterId === 1"
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :level="item.level"
             :lessons="item.lessons"
             :time="item.time"
             :views="item.views"
-            @click="$router.push('/course')"
+            :likes="item.likes"
+            @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
 
           <v-lesson-card
             v-if="filterId === 2"
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :course-title="item.courseTitle"
             :time="item.time"
             :views="item.views"
+            :likes="item.likes"
+            :courseName="item.courseName"
           />
 
           <v-article-card
@@ -96,89 +103,9 @@ export default {
         }
       ],
 
-      courseList: [
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        },
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        },
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        },
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        },
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        },
-        {
-          title: 'Создание сайта с нуля на CMS WordPress',
-          level: '2',
-          lessons: '6 уроков',
-          time: '1 ч. 25 мин.',
-          views: '300'
-        }
-      ],
+      courseList: [],
 
-      lessonList: [
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        },
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        },
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        },
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        },
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        },
-        {
-          title: 'Установка всего необходимого',
-          courseTitle: 'Создание сайта с нуля на CMS WordPress',
-          time: '5 м. 34 с.',
-          views: '250'
-        }
-      ],
+      lessonList: [],
 
       articleList: []
     };
@@ -203,15 +130,45 @@ export default {
   },
 
   methods: {
+    changeFilter(filterId) {
+      this.filterId = filterId;
+
+      switch (this.filterId) {
+        case 1:
+          this.getCourses();
+          break
+        case 2:
+          this.getLessons();
+          break
+        case 3:
+          this.getArticles();
+          break
+        default:
+          break
+      }
+    },
+
+    getCourses() {
+      this.axios.get(`/courses/favorites?userId=${this.user.id}`).then((response) => {
+        this.courseList = response.data;
+      });
+    },
+
+    getLessons() {
+      this.axios.get(`/lessons/favorites?userId=${this.user.id}`).then((response) => {
+        this.lessonList = response.data;
+      });
+    },
+
     getArticles() {
-      this.axios.get(`/articles/favorites?userId=${this.user.id}`).then((request) => {
-        this.articleList = request.data;
+      this.axios.get(`/articles/favorites?userId=${this.user.id}`).then((response) => {
+        this.articleList = response.data;
       });
     }
   },
 
   created() {
-    this.getArticles();
+    this.getCourses();
   }
 };
 </script>

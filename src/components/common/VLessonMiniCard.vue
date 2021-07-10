@@ -2,13 +2,8 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div
-      class="card__info"
-      @click="$emit('click')"
-    >
-      <div class="card__lesson-number">
-        Урок №{{ lessonNumber }}
-      </div>
+    <div class="card__info" @click="$emit('click')">
+      <div class="card__lesson-number">Урок №{{ lessonNumber }}</div>
 
       <div class="card__title">
         {{ title }}
@@ -16,38 +11,27 @@
 
       <div class="card__footer">
         <div class="card__footer-item cb_width126">
-          <icon-timer
-            :fill="'#3A3F4F'"
-            width="15"
-            height="15"
-          />
+          <icon-timer :fill="'#3A3F4F'" width="15" height="15" />
           <span class="cb_left5">{{ time }}</span>
         </div>
 
         <div class="card__footer-item cb_width96">
-          <icon-open-eye
-            :fill="'#3A3F4F'"
-            width="17"
-            height="14"
-          />
+          <icon-open-eye :fill="'#3A3F4F'" width="17" height="14" />
           <span class="cb_left5">{{ views }}</span>
         </div>
       </div>
     </div>
 
-    <div
-      class="card__icon-heart"
-      @click="isLike = !isLike"
-    >
+    <div v-if="userId" class="card__icon-heart" @click="onLike()">
       <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" />
     </div>
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
-import IconHeart from '@/icons/IconHeart.vue'
+import IconTimer from '@/icons/IconTimer.vue';
+import IconOpenEye from '@/icons/IconOpenEye.vue';
+import IconHeart from '@/icons/IconHeart.vue';
 
 export default {
   name: 'VCourseCard',
@@ -57,6 +41,16 @@ export default {
     IconHeart
   },
   props: {
+    // Id урока
+    id: {
+      type: String,
+      default: ''
+    },
+    // Id юзера
+    userId: {
+      type: String,
+      default: ''
+    },
     // Номер урока
     lessonNumber: {
       type: String,
@@ -76,15 +70,52 @@ export default {
     views: {
       type: String,
       default: '300'
+    },
+    // Список id юзеров, лайкнувших урок
+    likes: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    // Название курса(коллекции в бд)
+    courseName: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      isLike: false
-    }
+      isLike: this.likes.includes(this.userId)
+    };
   },
-  computed: {}
-}
+
+  methods: {
+    addLike(payload) {
+      this.axios.post('/lessons/add-like', payload).then((response) => {
+        this.isLike = true;
+      });
+    },
+
+    deleteLike(payload) {
+      this.axios.post('/lessons/delete-like', payload).then((response) => {
+        this.isLike = false;
+      });
+    },
+
+    onLike() {
+      const payload = {
+        lessonId: this.id,
+        userId: this.userId,
+        courseName: this.courseName
+      };
+
+      if (this.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
