@@ -7,7 +7,7 @@ import './directives/clickOutside';
 
 // Добавление токена в заголовок axios и адрес сервера
 const token = localStorage.token || '';
-// axios.defaults.baseURL = 'https://fast-ocean-40880.herokuapp.com';
+// axios.defaults.baseURL = 'https://serene-shelf-39995.herokuapp.com';
 axios.defaults.baseURL = 'http://127.0.1.1:5000/';
 axios.defaults.headers.common['Authorization'] = token.substring(7);
 
@@ -19,5 +19,12 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    if (sessionStorage.redirect) {
+      const redirect = sessionStorage.redirect
+      delete sessionStorage.redirect
+      this.$router.push(redirect)
+    }
+  }
 }).$mount('#app');
