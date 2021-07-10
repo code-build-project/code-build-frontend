@@ -23,9 +23,11 @@
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
             :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :time="item.time"
             :views="item.views"
+            :likes="item.likes"
             @click="$router.push('/article')"
           />
         </div>
@@ -54,20 +56,28 @@ export default {
       articleList: []
     };
   },
+  computed: {
+    user() {
+      return this.$store.getters.user || {};
+    },
+  },
   methods: {
     getArticles() {
       this.axios.get(`/articles?tag=${this.filterTag}`).then((response) => {
         this.articleList = response.data;
+      });
+    },
+
+    getFilters() {
+      this.axios.get('/filters/articles').then((response) => {
+        this.filterList = response.data;
       });
     }
   },
 
   created() {
     this.getArticles();
-
-    this.axios.get('/filters/articles').then((response) => {
-      this.filterList = response.data;
-    });
+    this.getFilters();
   }
 };
 </script>

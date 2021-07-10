@@ -3,16 +3,14 @@
     <div class="favorites">
       <!-- Фильтры -->
       <div class="cb_row">
-        <div class="favorites__title">
-          Избранное
-        </div>
+        <div class="favorites__title">Избранное</div>
 
         <div class="favorites__filter cb_left50">
           <div
             v-for="(item, index) in filterList"
             :key="index"
             class="favorites__filter-item"
-            :class="{'favorites_filter-active': filterId === item.filterId}"
+            :class="{ 'favorites_filter-active': filterId === item.filterId }"
             @click="filterId = item.filterId"
           >
             {{ item.name }}
@@ -22,10 +20,7 @@
       <!-- Фильтры -->
 
       <div class="favorites__list cb_top60">
-        <div
-          v-for="(item, index) in itemList"
-          :key="index"
-        >
+        <div v-for="(item, index) in itemList" :key="index">
           <v-course-card
             v-if="filterId === 1"
             class="cb_bottom30"
@@ -52,9 +47,12 @@
             v-if="filterId === 3"
             class="cb_bottom30"
             :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            :id="item._id"
+            :userId="user.id"
             :title="item.title"
             :time="item.time"
             :views="item.views"
+            :likes="item.likes"
             @click="$router.push('/article')"
           />
         </div>
@@ -66,10 +64,10 @@
 </template>
 
 <script>
-import VCourseCard from '@/components/common/VCourseCard.vue'
-import VLessonCard from '@/components/common/VLessonCard.vue'
-import VArticleCard from '@/components/common/VArticleCard.vue'
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue'
+import VCourseCard from '@/components/common/VCourseCard.vue';
+import VLessonCard from '@/components/common/VLessonCard.vue';
+import VArticleCard from '@/components/common/VArticleCard.vue';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 
 export default {
   name: 'Favorites',
@@ -86,18 +84,18 @@ export default {
       filterList: [
         {
           name: 'Курсы',
-          filterId: 1,
+          filterId: 1
         },
         {
           name: 'Уроки',
-          filterId: 2,
+          filterId: 2
         },
-         {
+        {
           name: 'Статьи',
-          filterId: 3,
+          filterId: 3
         }
       ],
-      
+
       courseList: [
         {
           title: 'Создание сайта с нуля на CMS WordPress',
@@ -140,7 +138,7 @@ export default {
           lessons: '6 уроков',
           time: '1 ч. 25 мин.',
           views: '300'
-        },
+        }
       ],
 
       lessonList: [
@@ -179,23 +177,23 @@ export default {
           courseTitle: 'Создание сайта с нуля на CMS WordPress',
           time: '5 м. 34 с.',
           views: '250'
-        },
+        }
       ],
 
       articleList: []
-    }
+    };
   },
   computed: {
     itemList() {
       switch (this.filterId) {
         case 1:
-          return this.courseList
+          return this.courseList;
         case 2:
-          return this.lessonList
+          return this.lessonList;
         case 3:
-          return this.articleList
+          return this.articleList;
         default:
-          return this.courseList
+          return this.courseList;
       }
     },
 
@@ -203,19 +201,19 @@ export default {
       return this.$store.getters.user || {};
     }
   },
-  
-  created() {
-    this.axios.get(`/articles/favorites?userId=${this.user.id}`)
-    .then((request) => {
-      this.articleList = request.data;
-    })
 
-    // this.axios.get('http://127.0.1.1:4000/courses/filters')
-    // .then((request) => {
-    //   this.filterList = request.data;
-    // })
+  methods: {
+    getArticles() {
+      this.axios.get(`/articles/favorites?userId=${this.user.id}`).then((request) => {
+        this.articleList = request.data;
+      });
+    }
+  },
+
+  created() {
+    this.getArticles();
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

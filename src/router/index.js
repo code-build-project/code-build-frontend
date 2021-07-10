@@ -38,7 +38,17 @@ const routes = [
       {
         path: 'favorites',
         name: 'Favorites',
-        component: () => import('@/views/Favorites.vue')
+        component: () => import('@/views/Favorites.vue'),
+        // Попытка перейти в избранное без авторизации
+        beforeEnter: async (to, from, next) => {
+          await axios.get('/user')
+            .then(() => {
+              next()
+            })
+            .catch(() => {
+              next({ name: 'Home' })
+            })
+        }
       },
       {
         path: 'cabinet',
