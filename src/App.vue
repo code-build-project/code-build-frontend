@@ -9,6 +9,7 @@ export default {
   name: 'App',
 
   created() {
+    // Перед отрисовкой страницы, получать данные пользователя 
     this.$store.dispatch('authorize');
   }
 }

@@ -16,6 +16,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    // Запись данных пользователя
     setUser(state, payload) {
       state.user = payload;
     }
@@ -26,7 +27,11 @@ export default new Vuex.Store({
     authorize({ commit }) {
       axios.get('/user').then(response => {
         commit('setUser', response.data);
-      });
+      })
+      .catch((err) => {
+        console.log('Пользователь не авторизован!')
+        console.log(err.response.data.message)
+      })
     }
   },
 
