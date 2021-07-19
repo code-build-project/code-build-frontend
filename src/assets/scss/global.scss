@@ -2,129 +2,357 @@
   Идентефикатор, с которого начинается название каждого глобального класса -> cb
   (сокращенно от названия проекта "code-build") */
 
-  .cb {
-    // flex
-    &_center {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    &_row {
-      display: flex;
-      flex-direction: row;
-    }
-  
-    &_row-between {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  
-    &_row-end {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  
-    &_row-center {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-  
-    &_column {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    &_column-between {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    &_column-center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  
-    &_wrap {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    // margin
-    $sides: (top, bottom, left, right); 
-    
-    @each $side in $sides {
-      @for $i from 1 through 600 {
-        &_#{$side}#{$i} {
-          margin-#{$side}: #{$i} + 'px';
-        }
-      }
-    }
-  
-    // width
-    @for $i from 1 through 800 {
-      &_width#{$i} {
-        width: #{$i} + 'px';
-      }
-    }
-  
-    // color
-    $status-colors: (
-      'black':  #272A37,
-      'blue':   #256CFE,
-      'navy':   #2468F2,
-      'pink':   #EE3465,
-      'gray':   #B1B8C6,
-      'smoky':  #CACACA,
-      'silver': #E4E4E4,
-      'white':  #FFFFFF,
-      'red':    #FF3300,
-    );
-  
-    @each $status, $color in $status-colors {
-      &_color-#{$status} {
-        color: $color;
-      }
-    }
-  
-    // underline
-    &_underline-blue {
-      position: relative;
-      &:after {
-        position: absolute;
-        content: "";
-        top: 18px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: #256CFE;
-      }
-    }
-  
-    &_underline-mini-blue {
-      position: relative;
-      &:after {
-        position: absolute;
-        content: "";
-        top: 18px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: #256CFE;
-      }
-    }
+.cb {
+  // flex
+  &_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    // cursor
-    &_pointer {
-      cursor: pointer;
+  &_row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &_row-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_row-end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &_row-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &_column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_column-between {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &_wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  // margin
+  $sides: (top, bottom, left, right);
+
+  @each $side in $sides {
+    @for $i from 1 through 600 {
+      &_#{$side}#{$i} {
+        margin-#{$side}: #{$i} + 'px';
+      }
     }
   }
-      
+
+  // width
+  @for $i from 1 through 800 {
+    &_width#{$i} {
+      width: #{$i} + 'px';
+    }
+  }
+
+  // color
+  $status-colors: (
+    'black': #272a37,
+    'blue': #256cfe,
+    'navy': #2468f2,
+    'pink': #ee3465,
+    'gray': #b1b8c6,
+    'smoky': #cacaca,
+    'silver': #e4e4e4,
+    'white': #ffffff,
+    'red': #ff3300
+  );
+
+  @each $status, $color in $status-colors {
+    &_color-#{$status} {
+      color: $color;
+    }
+  }
+
+  // underline
+  &_underline-blue {
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      top: 18px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #256cfe;
+    }
+  }
+
+  &_underline-mini-blue {
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      top: 18px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #256cfe;
+    }
+  }
+
+  // cursor
+  &_pointer {
+    cursor: pointer;
+  }
+}
+
+.flex {
+  // row
+  &_row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &_row-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &_row-start {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &_row-end {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  &_row-center-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_row-center-start {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &_row-center-end {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &_row-center-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_row-start-center {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &_row-start-start {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &_row-start-end {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  &_row-start-between {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &_row-end-center {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  &_row-end-start {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  &_row-end-end {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  &_row-end-between {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  // column
+  &_column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &_column-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  &_column-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &_column-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_column-center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_column-center-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &_column-center-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  &_column-start-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &_column-start-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &_column-start-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  &_column-end-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &_column-end-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &_column-end-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &_column-between-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_column-between-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &_column-between-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &_wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

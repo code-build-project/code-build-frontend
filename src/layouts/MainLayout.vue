@@ -21,17 +21,12 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  @extend .flex_column-between-center;
   height: 100%;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend .flex_column-start-center;
   width: 100%;
 }
 </style>

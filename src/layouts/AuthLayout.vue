@@ -1,6 +1,6 @@
 <template>
-  <div class="auth-layout">
-    <router-view class="auth-layout__form" />
+  <div class="auth">
+    <router-view class="auth__form" />
   </div>
 </template>
 
@@ -11,11 +11,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.auth-layout {
+.auth {
+  @extend .flex_row-center-center;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   &__form {
     width: 490px;
