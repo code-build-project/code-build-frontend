@@ -7,13 +7,6 @@
 <script>
 export default {
   name: 'AuthLayout',
-  components: {},
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  methods: {}
 }
 </script>
 

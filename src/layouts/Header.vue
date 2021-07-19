@@ -1,6 +1,10 @@
 <template>
   <div class="header">
-    <icon-logo class="header__logo" @click.native="$router.push('/')" />
+    <v-icon 
+      class="header__icon-logo" 
+      path="img/logo.svg" 
+      @click.native="$router.push('/')"
+    />
 
     <div class="header__nav">
       <router-link class="header__nav-item" to="/">
@@ -22,7 +26,7 @@
         Войти
       </router-link>
       <v-button class="header__button cb_left45" @click="$router.push('/subscribe')">
-        <icon-premium class="cb_right9" width="21" height="21" />
+        <v-icon class="header__icon-premium cb_right9" path="img/premium.svg" />
         Премиум
       </v-button>
     </div>
@@ -31,9 +35,7 @@
 </template>
 
 <script>
-import IconLogo from '@/icons/IconLogo.vue';
-import IconPremium from '@/icons/IconPremium.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 import VUserSelect from '@/components/common/VUserSelect.vue'
 
@@ -41,8 +43,7 @@ export default {
   name: 'Header',
 
   components: {
-    IconLogo,
-    IconPremium,
+    VIcon,
     VButton,
     VUserSelect
   },
@@ -69,6 +70,27 @@ export default {
   font-size: 18px;
   color: #15244b;
 
+  &__icon-logo {
+    width: 78px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #256CFE;
+    box-sizing: border-box;
+    border-radius: 4.5px;
+    fill: #256CFE;
+  }
+
+  &__icon-premium {
+    width: 21px;
+    height: 21px;
+
+    fill: #ffffff;
+  }
+
   &__nav {
     @extend .cb_row-between;
     width: 360px;
@@ -92,18 +114,10 @@ export default {
 
 // hovers
 :hover.header {
-  &__logo {
+  &__icon-logo {
     cursor: pointer;
-
-    ::v-deep {
-      path {
-        fill: #ffffff;
-      }
-
-      rect {
-        fill: #256cfe;
-      }
-    }
+    fill: #ffffff;
+    background: #256CFE;
   }
 
   &__nav-item {

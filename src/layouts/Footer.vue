@@ -1,29 +1,42 @@
 <template>
   <div class="footer__wrap">
     <div class="footer">
+      <!-- row 1 -->
       <div class="cb_row-between">
-        <icon-logo
-          class="footer__logo"
-          stroke="#FFFFFF"
+        <v-icon 
+          class="footer__icon-logo" 
+          path="img/logo.svg" 
           @click.native="$router.push('/')"
         />
 
         <div class="footer__social">
-          <div class="footer__icon">
-            <icon-you-tube />
-          </div>
+          <v-icon 
+            class="footer__icon-social" 
+            path="img/youtube.svg" 
+            width="17px"
+            height="13px"
+          />
 
-          <div class="footer__icon">
-            <icon-vk />
-          </div>
+          <v-icon 
+            class="footer__icon-social" 
+            path="img/vk.svg" 
+            width="20px"
+            height="11px"
+          />
 
-          <div class="footer__icon">
-            <icon-instagram />
-          </div>
+          <v-icon 
+            class="footer__icon-social" 
+            path="img/insta.svg" 
+            width="17px"
+            height="17px"
+          />
 
-          <div class="footer__icon">
-            <icon-telegram />
-          </div>
+          <v-icon 
+            class="footer__icon-social" 
+            path="img/telegram.svg" 
+            width="18px"
+            height="15px"
+          />
         </div>
 
         <div class="footer__nav">
@@ -48,61 +61,52 @@
             </router-link>
           </div>
 
-          <icon-rus-flag />
+          <v-icon 
+            class="footer__icon-flag" 
+            path="img/flag.svg" 
+            width="28px"
+            height="18px"
+          />
         </div>
       </div>
+      <!-- row 1 -->
 
       <hr class="footer__line cb_top50" />
 
+      <!-- row 2 -->
       <div class="cb_row-between cb_top15">
         <span class="footer__copyright">
-          <icon-copyright />
+          <v-icon 
+            class="footer__icon-copyright" 
+            path="img/copyright.svg" 
+            width="12px"
+            height="12px"
+          />
           Все права защищены — 2021 год
         </span>
 
         <span class="footer__copy">
           Пишите: help@codebuild.com
-          <div
-            class="footer__icon"
-            style="width: 28px; height: 28px; border-radius: 6px"
-          >
-            <icon-copy />
-          </div>
+          <v-icon 
+            class="footer__icon-copy" 
+            path="img/copy.svg" 
+            width="11px"
+            height="12px"
+          />
         </span>
       </div>
+      <!-- row 2 -->
     </div>
   </div>
 </template>
 
 <script>
-import IconLogo from '@/icons/IconLogo.vue'
-import IconYouTube from '@/icons/IconYouTube.vue'
-import IconRusFlag from '@/icons/IconRusFlag.vue'
-import IconVk from '@/icons/IconVk.vue'
-import IconInstagram from '@/icons/IconInstagram.vue'
-import IconTelegram from '@/icons/IconTelegram.vue'
-import IconCopyright from '@/icons/IconCopyright.vue'
-import IconCopy from '@/icons/IconCopy.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   components: {
-    IconLogo,
-    IconYouTube,
-    IconRusFlag,
-    IconVk,
-    IconInstagram,
-    IconTelegram,
-    IconCopyright,
-    IconCopy
+    VIcon
   },
-
-  data() {
-    return {}
-  },
-
-  computed: {},
-
-  methods: {}
 }
 </script>
 
@@ -161,34 +165,57 @@ export default {
     font-size: 14px;
     color: #444754;
   }
+}
 
-  &__icon {
+// icons
+.footer__icon {
+  &-logo {
+    @extend .cb_center;
+    width: 78px;
+    height: 55px;
+
+    border: 2px solid #ffffff;
+    border-radius: 4.5px;
+    fill: #ffffff;
+  }
+
+  &-social {
     @extend .cb_center;
     width: 44px;
     height: 44px;
 
     border: 1px solid #272a37;
     border-radius: 9px;
+    fill: #ffffff;
+  }
+
+  &-copy {
+    @extend .cb_center;
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #272a37;
+    border-radius: 6px;
+    fill: #ffffff;
   }
 }
 
+
+
 // hovers
 :hover.footer {
-  &__logo {
+  &__icon-logo {
     cursor: pointer;
-
-    ::v-deep {
-      path {
-        fill: #171717;
-      }
-
-      rect {
-        fill: #ffffff;
-      }
-    }
+    fill: #171717;
+    background: #ffffff;
   }
 
-  &__icon {
+  &__icon-social {
+    background: #272a37;
+    cursor: pointer;
+  }
+  
+  &__icon-copy {
     background: #272a37;
     cursor: pointer;
   }

@@ -1,25 +1,32 @@
 <template>
   <div v-click-outside="onClickOutside" class="select">
     <!-- Иконка -->
-    <div v-if="isPremium" class="select__icon-premium">
-      <icon-premium width="20" height="20" />
-    </div>
+    <v-icon 
+      v-if="isPremium"
+      class="select__icon-premium cb_right9" 
+      path="img/premium.svg" 
+      width="20px" 
+      height="20px"
+    />
 
-    <div v-else class="select__icon-user">
-      <icon-user width="13" height="15" />
-    </div>
+    <v-icon 
+      v-else
+      class="select__icon-user" 
+      path="img/user.svg" 
+      width="13px" 
+      height="15px"
+    />
     <!-- Иконка -->
 
     <!-- Имя -->
-    <div class="cb_pointer cb_left20" @click="isDropdown = !isDropdown">
+    <div class="select__name cb_left20" @click="isDropdown = !isDropdown">
       {{ name }}
-      <icon-angle-bracket
-        class="cb_pointer cb_left8"
-        :style="isDropdown ? 'transform: rotate(-90deg)' : 'transform: rotate(90deg)'"
-        width="12"
-        height="8"
-        stroke="#B1B8C6"
-        stroke-width="6"
+      <v-icon 
+        class="select__icon-angle-bracket cb_left12" 
+        path="img/angleBracket.svg" 
+        width="9px"
+        height="7px"
+        :style="isDropdown ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'"
       />
     </div>
     <!-- Имя -->
@@ -28,21 +35,36 @@
     <div v-if="isDropdown" class="select__dropdown">
       <div class="select__dropdown-item" @click="setRoute('cabinet')">
         Мой профиль
-        <icon-user class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
+        <v-icon 
+          class="select__icon-profile" 
+          path="img/profile.svg" 
+        />
       </div>
 
       <div class="select__dropdown-item" @click="setRoute('favorites')">
         Избранное
-        <icon-heart class="cb_top5" stroke="#B1B8C6" width="18" height="16" />
+        <v-icon 
+          class="select__icon-heart" 
+          path="img/heart.svg" 
+        />
       </div>
 
       <div class="select__dropdown-item cb_color-gray" style="border: none" @click="onExit()">
         Выйти
-        <icon-exit stroke="#B1B8C6" width="22" height="22" />
+        <v-icon 
+          class="select__icon-exit" 
+          path="img/exit.svg" 
+        />
       </div>
 
       <v-button v-if="!isPremium" class="select__button cb_top15 cb_bottom25" @click="setRoute('subscribe')">
-        <icon-premium class="select__button cb_right9" width="16" height="16" />
+        <v-icon 
+          class="cb_right9" 
+          path="img/premium.svg" 
+          width="17px" 
+          height="17px"
+          fill="#ffffff"
+        />
         Купить премиум
       </v-button>
     </div>
@@ -51,22 +73,13 @@
 </template>
 
 <script>
-import IconUser from '@/icons/IconUser.vue';
-import IconExit from '@/icons/IconExit.vue';
-import IconHeart from '@/icons/IconHeart.vue';
-import IconPremium from '@/icons/IconPremium.vue';
-import IconAngleBracket from '@/icons/IconAngleBracket.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'VUserSelect',
   components: {
-    IconUser,
-    IconExit,
-    IconHeart,
-    IconPremium,
-    IconAngleBracket,
+    VIcon,
     VButton
   },
   props: {
@@ -115,23 +128,8 @@ export default {
   font-size: 18px;
   color: #272a37;
 
-  &__icon-premium {
-    @extend .cb_center;
-    width: 44px;
-    height: 44px;
-
-    background: #ee3465;
-    box-shadow: 0px 11px 18px -9px #ee3465;
-    border-radius: 8px;
-  }
-
-  &__icon-user {
-    @extend .cb_center;
-    width: 44px;
-    height: 44px;
-
-    border: 1px solid #256cfe;
-    border-radius: 8px;
+  &__name {
+    @extend .cb_row-center;
   }
 
   &__dropdown {
@@ -170,10 +168,58 @@ export default {
   }
 }
 
+// icons
+.select__icon {
+  &-premium {
+    @extend .cb_center;
+    width: 44px;
+    height: 44px;
+
+    background: #ee3465;
+    box-shadow: 0px 11px 18px -9px #ee3465;
+    border-radius: 8px;
+    fill: #ffffff;
+  }
+
+  &-user {
+    @extend .cb_center;
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid #256cfe;
+    border-radius: 8px;
+    stroke: #256cfe;
+  }
+
+  &-angle-bracket {
+    stroke: #B1B8C6;
+  }
+
+  &-profile {
+    width: 18px;
+    height: 18px;
+    stroke: #B1B8C6;
+  }
+
+  &-heart {
+    width: 18px;
+    height: 16px;
+    stroke: #B1B8C6;
+  }
+
+  &-exit {
+    width: 20px;
+    height: 20px;
+    stroke: #B1B8C6;
+  }
+}
+
 // hovers
 :hover.select {
-  &__user {
-    ::v-deep path {
+  &__name {
+    cursor: pointer;
+
+    .select__icon-angle-bracket {
       stroke: #256cfe;
     }
   }
@@ -182,7 +228,9 @@ export default {
     cursor: pointer;
     color: #256cfe;
 
-    ::v-deep path {
+    .select__icon-profile,
+    .select__icon-heart,
+    .select__icon-exit {
       stroke: #256cfe;
     }
   }
