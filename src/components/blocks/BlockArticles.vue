@@ -5,29 +5,21 @@
       <div class="cb_row">
         <div class="cb_column">
           <v-article-mini-card class="cb_top70">
-            <template #text>
-              Новые открытия в сфере искусственного интеллекта
-            </template>
+            Новые открытия в сфере искусственного интеллекта
           </v-article-mini-card>
 
           <v-article-mini-card class="cb_top35">
-            <template #text>
-              Как повлияет коронавирус на it-сферу в 2021
-            </template>
+            Как повлияет коронавирус на it-сферу в 2021
           </v-article-mini-card>
         </div>
 
         <div class="cb_column cb_left30">
-          <v-article-mini-card>
-            <template #text>
-              Стоит ли открывать интернет-магазин в 2021
-            </template>
+          <v-article-mini-card> 
+            Стоит ли открывать интернет-магазин в 2021 
           </v-article-mini-card>
 
           <v-article-mini-card class="cb_top35">
-            <template #text>
-              В какую страну переехать для роста в it-сфере
-            </template>
+            В какую страну переехать для роста в it-сфере
           </v-article-mini-card>
         </div>
       </div>
@@ -39,13 +31,9 @@
           <icon-list />
         </div>
 
-        <div class="articles__title">
-          Свежие новости и познавательные статьи из мира IT
-        </div>
+        <div class="articles__title">Свежие новости и познавательные статьи из мира IT</div>
 
-        <div class="articles__subtitle">
-          Читай наши статьи и улучшай навыки программирования
-        </div>
+        <div class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</div>
 
         <v-button class="articles__button cb_top70" @click="$router.push('/articles')">
           Все статьи

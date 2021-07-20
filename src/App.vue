@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss">
 @import '~@/assets/scss/fonts.scss';
+@import "~normalize.css/normalize.css";
 
 #app {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;

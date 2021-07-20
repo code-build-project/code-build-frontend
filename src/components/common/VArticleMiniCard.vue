@@ -8,7 +8,7 @@
       </div>
 
       <div class="card__info-text">
-        <slot name="text">
+        <slot>
           Новые открытия в сфере искусственного интеллекта
         </slot>
       </div>
