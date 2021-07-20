@@ -1,9 +1,7 @@
 <template>
-  <div class="button-wrap">
-    <button class="button" @click="$emit('click')">
-      <slot>Кнопка</slot>
-    </button>
-  </div>
+  <button class="button" @click="$emit('click')">
+    <slot>Кнопка</slot>
+  </button>
 </template>
 
 <script>
@@ -14,8 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .button {
-  @extend .cb_center;
-
+  @extend .flex_row-center-center;
   border-style: solid;
   border-radius: 8px;
 }

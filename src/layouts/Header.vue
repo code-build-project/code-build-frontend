@@ -1,55 +1,32 @@
 <template>
-  <div class="header">
-    <v-icon 
-      class="header__icon-logo" 
-      path="img/logo.svg" 
-      @click.native="$router.push('/')"
-    />
+  <header class="header">
+    <v-icon class="header__icon-logo" path="img/logo.svg" @click.native="$router.push('/')" />
 
-    <div class="header__nav">
-      <router-link class="header__nav-item" to="/">
-        О проекте
-      </router-link>
-      <router-link class="header__nav-item" to="/articles">
-        Блог
-      </router-link>
-      <router-link class="header__nav-item" to="/courses">
-        Видеокурсы
-      </router-link>
+    <nav class="header__nav">
+      <router-link class="header__nav-item" to="/"> О проекте </router-link>
+      <router-link class="header__nav-item" to="/articles"> Блог </router-link>
+      <router-link class="header__nav-item" to="/courses"> Видеокурсы </router-link>
+    </nav>
+
+    <div class="header__right-side">
+      <header-user-menu v-if="user" :name="user.name" :is-premium="user.isPremium" />
+      <header-buttons v-else />
     </div>
-
-    <!-- Правая часть -->
-    <v-user-select v-if="user" :name="user.name" :is-premium="user.isPremium" />
-
-    <div v-else class="cb_row-center">
-      <router-link class="header__button" to="/auth" target="_blank">
-        Войти
-      </router-link>
-      <v-button class="header__button cb_left45" @click="$router.push('/subscribe')">
-        <v-icon class="header__icon-premium cb_right9" path="img/premium.svg" />
-        Премиум
-      </v-button>
-    </div>
-    <!-- Правая часть -->
-  </div>
+  </header>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon.vue';
-import VButton from '@/components/common/VButton.vue';
-import VUserSelect from '@/components/common/VUserSelect.vue'
+import HeaderButtons from '@/components/header/HeaderButtons.vue';
+import HeaderUserMenu from '@/components/header/HeaderUserMenu.vue';
 
 export default {
   name: 'Header',
 
   components: {
     VIcon,
-    VButton,
-    VUserSelect
-  },
-
-  data() {
-    return {};
+    HeaderButtons,
+    HeaderUserMenu
   },
 
   computed: {
@@ -62,53 +39,34 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  @extend .cb_row-between;
+  @extend .flex_row-center-between;
   width: 1160px;
   min-height: 120px;
 
   font-family: 'Circe';
   font-size: 18px;
-  color: #15244b;
-
-  &__icon-logo {
-    width: 78px;
-    height: 55px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 2px solid #256CFE;
-    box-sizing: border-box;
-    border-radius: 4.5px;
-    fill: #256CFE;
-  }
-
-  &__icon-premium {
-    width: 21px;
-    height: 21px;
-
-    fill: #ffffff;
-  }
+  color: $black-color;
 
   &__nav {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
     width: 360px;
   }
 
-  &__button {
-    color: #ee3465;
+  &__right-side {
+    width: 290px;
+  }
+}
 
-    ::v-deep .button {
-      width: 168px;
-      height: 60px;
+// icons
+.header__icon {
+  &-logo {
+    @extend .flex_row-center-center;
+    width: 78px;
+    height: 55px;
 
-      font-family: 'Circe';
-      font-size: 18px;
-      color: #ffffff;
-      border: none;
-      background: #ee3465;
-    }
+    border: 2px solid $blue-color;
+    border-radius: 4.5px;
+    fill: $blue-color;
   }
 }
 
@@ -116,22 +74,13 @@ export default {
 :hover.header {
   &__icon-logo {
     cursor: pointer;
-    fill: #ffffff;
-    background: #256CFE;
+    fill: $white-color;
+    background: $blue-color;
   }
 
   &__nav-item {
     cursor: pointer;
-    color: #256cfe;
-  }
-
-  &__button {
-    cursor: pointer;
-    color: #15244b;
-
-    ::v-deep .button {
-      box-shadow: 0px 12px 18px -13px #ee3465;
-    }
+    color: $blue-color;
   }
 }
 </style>

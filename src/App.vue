@@ -56,6 +56,7 @@ body,
 
 * {
   margin: 0;
+  padding: 0;
   text-align: left;
 }
 
@@ -68,5 +69,9 @@ button {
   text-decoration: none;
   outline: none;
   cursor: pointer;
+}
+
+ul {
+  list-style: none;
 }
 </style>

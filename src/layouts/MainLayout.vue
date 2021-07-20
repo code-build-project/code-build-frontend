@@ -1,14 +1,14 @@
 <template>
-  <div class="main">
+  <div class="layout">
     <Header />
-    <router-view class="content" />
+    <router-view class="layout__content" />
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from '@/layouts/Header.vue'
-import Footer from '@/layouts/Footer.vue'
+import Header from '@/layouts/Header.vue';
+import Footer from '@/layouts/Footer.vue';
 
 export default {
   name: 'MainLayout',
@@ -16,17 +16,17 @@ export default {
     Header,
     Footer
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.main {
+.layout {
   @extend .flex_column-between-center;
   height: 100%;
-}
 
-.content {
-  @extend .flex_column-start-center;
-  width: 100%;
+  &__content {
+    @extend .flex_column-start-center;
+    width: 100%;
+  }
 }
 </style>
