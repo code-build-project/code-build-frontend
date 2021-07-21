@@ -1,26 +1,27 @@
 <template>
   <div class="actuality__wrap" @mousemove="mousemove">
     <div ref="actuality" class="actuality">
-      <div class="actuality__title cb_top300">
-        <span class="cb_center"> Вы с нуля освоите профессию </span>
+      <h1 class="actuality__title">
+        <span class="flex_row-center-center"> Вы с нуля освоите профессию </span>
         разработчика и сможете добавить
-        <span class="cb_center"> в арсенал необходимые навыки. </span>
-      </div>
+        <span class="flex_row-center-center"> в арсенал необходимые навыки. </span>
+      </h1>
 
-      <div class="actuality__subtitle cb_top30">
-        <span class="cb_center"> Мы помогаем новичкам стать профессиональными </span>
+      <h2 class="actuality__subtitle">
+        <span class="flex_row-center-center"> Мы помогаем новичкам стать профессиональными </span>
         программистами, а опытным разработчикам получать
-        <span class="cb_center"> новые знания и расти профессионально </span>
-      </div>
+        <span class="flex_row-center-center"> новые знания и расти профессионально </span>
+      </h2>
 
       <!-- Иконки заднего фона -->
-      <div
+      <v-icon
         class="actuality_icon"
+        path="img/apple.svg"
+        width="19px"
+        height="24px"
         style="left: 16%; top: 133px; padding: 17px 20px 20px 21px"
         :style="[{ top: getIconPositionY(133, 30) }, { left: getIconPositionX(312, 30) }]"
-      >
-        <icon-apple />
-      </div>
+      />
 
       <div
         class="actuality_icon"
@@ -91,7 +92,6 @@
 </template>
 
 <script>
-import IconApple from '@/icons/IconApple.vue';
 import IconCodeBox from '@/icons/IconCodeBox.vue';
 import IconCommandLine from '@/icons/IconCommandLine.vue';
 import IconCss3 from '@/icons/IconCss3.vue';
@@ -101,10 +101,11 @@ import IconCursor from '@/icons/IconCursor.vue';
 import IconGitMerge from '@/icons/IconGitMerge.vue';
 import IconBug from '@/icons/IconBug.vue';
 
+import VIcon from '@/components/common/VIcon.vue';
+
 export default {
   name: 'BlockActuality',
   components: {
-    IconApple,
     IconCodeBox,
     IconCommandLine,
     IconCss3,
@@ -112,7 +113,8 @@ export default {
     IconLock,
     IconCursor,
     IconGitMerge,
-    IconBug
+    IconBug,
+    VIcon
   },
   data() {
     return {
@@ -156,20 +158,19 @@ export default {
 
 <style lang="scss" scoped>
 .actuality__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
-  background: #256cfe;
+  background: $color-blue;
   overflow: hidden;
 }
 
 .actuality {
-  @extend .cb_column;
-  align-items: center;
+  @extend .flex_column-center-center;
   position: relative;
   height: 900px;
   min-width: 1920px;
 
-  color: #ffffff;
+  color: $color-white;
 
   &__title {
     font-family: 'ObjectSans';
@@ -179,6 +180,8 @@ export default {
   }
 
   &__subtitle {
+    margin-top: 30px;
+
     font-family: 'Circe';
     font-size: 22px;
     line-height: 29px;
@@ -186,12 +189,12 @@ export default {
   }
 
   &_icon {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     position: absolute;
 
     background: #3a7afe;
     border: 2px solid #3a7afe;
-    border-radius: 20px;
+    border-radius: 21%;
 
     transition: all 1s ease-in-out;
   }
