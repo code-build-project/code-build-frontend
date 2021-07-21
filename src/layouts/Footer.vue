@@ -2,17 +2,17 @@
   <div class="footer__wrap">
     <footer class="footer">
       <!-- top row -->
-      <div class="flex_row-center-between">
+      <div class="footer__main">
         <v-icon class="footer__icon-logo" path="img/logo.svg" @click.native="$router.push('/')" />
 
-        <div class="flex_row-center-between width-220">
+        <div class="footer__social">
           <v-icon class="footer__icon-social" path="img/youtube.svg" width="17px" height="13px" />
           <v-icon class="footer__icon-social" path="img/vk.svg" width="20px" height="11px" />
           <v-icon class="footer__icon-social" path="img/insta.svg" width="17px" height="17px" />
           <v-icon class="footer__icon-social" path="img/telegram.svg" width="18px" height="15px" />
         </div>
 
-        <div class="flex_row">
+        <div class="footer__nav-wrap">
           <nav class="footer__nav">
             <router-link class="footer__nav-item" to="/"> О проекте </router-link>
             <router-link class="footer__nav-item" to="/articles"> Блог </router-link>
@@ -27,18 +27,13 @@
       <hr class="footer__line" />
 
       <!-- bottom row -->
-      <div class="flex_row-center-between mtop-15">
-        <span class="footer__copyright">
-          <v-icon
-            class="footer__icon-copyright"
-            path="img/copyright.svg"
-            width="12px"
-            height="12px"
-          />
+      <div class="footer__copyright">
+        <span class="footer__copyright-item">
+          <v-icon class="footer__icon-copyright" path="img/copyright.svg" />
           Все права защищены — 2021 год
         </span>
 
-        <span class="footer__copy">
+        <span class="footer__copyright-item">
           Пишите: help@codebuild.com
           <v-icon class="footer__icon-copy" path="img/copy.svg" width="11px" height="12px" />
         </span>
@@ -69,15 +64,10 @@ export default {
   @extend .flex_column-center;
   width: 1160px;
   height: 276px;
-
   font-family: 'Circe';
-  font-size: 25px;
-  color: white;
 
-  &__nav {
-    @extend .flex_row-center-between;
-    width: 340px;
-
+  &__nav-item {
+    color: $color-white;
     font-size: 17px;
     line-height: 18px;
   }
@@ -89,20 +79,37 @@ export default {
     background-color: #444754;
   }
 
-  &__copyright {
-    @extend .flex_row-center-between;
-    width: 215px;
+  &__copyright-item {
+    @extend .flex_row-center;
 
     font-size: 14px;
     color: #444754;
   }
+}
 
-  &__copy {
+// flex containers
+.footer {
+  &__main {
     @extend .flex_row-center-between;
-    width: 225px;
+  }
 
-    font-size: 14px;
-    color: #444754;
+  &__social {
+    @extend .flex_row-center-between;
+    width: 220px;
+  }
+
+  &__nav-wrap {
+    @extend .flex_row-center;
+  }
+
+  &__nav {
+    @extend .flex_row-center-between;
+    width: 340px;
+  }
+
+  &__copyright {
+    @extend .flex_row-center-between;
+    margin-top: 15px;
   }
 }
 
@@ -113,9 +120,9 @@ export default {
     width: 78px;
     height: 55px;
 
-    border: 2px solid #ffffff;
+    border: 2px solid $color-white;
     border-radius: 4.5px;
-    fill: #ffffff;
+    fill: $color-white;
   }
 
   &-social {
@@ -123,9 +130,9 @@ export default {
     width: 44px;
     height: 44px;
 
-    border: 1px solid #272a37;
+    border: 1px solid $color-black;
     border-radius: 9px;
-    fill: #ffffff;
+    fill: $color-white;
   }
 
   &-flag {
@@ -134,14 +141,22 @@ export default {
     margin-left: 110px;
   }
 
+  &-copyright {
+    @extend .flex_row-center-center;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+  }
+
   &-copy {
     @extend .flex_row-center-center;
     width: 28px;
     height: 28px;
 
-    border: 1px solid #272a37;
+    border: 1px solid $color-black;
     border-radius: 6px;
-    fill: #ffffff;
+    fill: $color-white;
+    margin-left: 12px;
   }
 }
 
@@ -150,22 +165,22 @@ export default {
   &__icon-logo {
     cursor: pointer;
     fill: #171717;
-    background: #ffffff;
+    background: $color-white;
   }
 
   &__icon-social {
-    background: #272a37;
+    background: $color-black;
     cursor: pointer;
   }
 
   &__icon-copy {
-    background: #272a37;
+    background: $color-black;
     cursor: pointer;
   }
 
   &__nav-item {
     cursor: pointer;
-    color: #256cfe;
+    color: $color-blue;
   }
 }
 </style>

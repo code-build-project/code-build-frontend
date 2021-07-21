@@ -129,33 +129,15 @@
 }
 
 // Colors
-$black-color: #272a37;
-$blue-color: #256cfe;
-$navy-color: #2468f2;
-$pink-color: #ee3465;
-$gray-color: #b1b8c6;
-$smoky-color: #cacaca;
-$silver-color: #e4e4e4;
-$white-color: #ffffff;
-$red-color: #ff3300;
-
-// width
-@for $i from 1 through 800 {
-  .width-#{$i} {
-    width: #{$i} + 'px';
-  }
-}
-
-// margin
-$sides: (top, bottom, left, right);
-
-@each $side in $sides {
-  @for $i from 1 through 100 {
-    .m#{$side}-#{$i} {
-      margin-#{$side}: #{$i} + 'px';
-    }
-  }
-}
+$color-black:  #272a37;
+$color-blue:   #256cfe;
+$color-navy:   #2468f2;
+$color-pink:   #ee3465;
+$color-gray:   #b1b8c6;
+$color-smoky:  #cacaca;
+$color-silver: #e4e4e4;
+$color-white:  #ffffff;
+$color-red:    #ff3300;
 
 // flex
 .flex {

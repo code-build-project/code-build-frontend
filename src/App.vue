@@ -75,4 +75,10 @@ button {
 ul {
   list-style: none;
 }
+
+h1, h2 {
+  font-size: 100%;
+  font-weight: normal;
+  margin: 0%;
+}
 </style>

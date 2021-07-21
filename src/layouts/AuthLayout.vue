@@ -19,7 +19,7 @@ export default {
     width: 490px;
     height: 735px;
 
-    border: 2px solid $blue-color;
+    border: 2px solid $color-blue;
     border-radius: 8px;
 
     padding: 0px 58px 0px 58px;

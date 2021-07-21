@@ -62,7 +62,7 @@ import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 export default {
-  name: 'HeaderUserMenu',
+  name: 'VUserMenu',
   components: {
     VIcon,
     VButton
@@ -109,7 +109,7 @@ export default {
 
   font-family: 'Circe';
   font-size: 18px;
-  color: $black-color;
+  color: $color-black;
 
   &__name {
     @extend .flex_row-center;
@@ -123,7 +123,7 @@ export default {
     width: 254px;
     top: 60px;
 
-    background: $white-color;
+    background: $color-white;
     box-shadow: 0px 0px 17px rgba(163, 163, 163, 0.24);
     border-radius: 8px;
   }
@@ -140,7 +140,7 @@ export default {
   &__dropdown-last-item {
     @extend .menu__dropdown-item;
     border: none;
-    color: $gray-color;
+    color: $color-gray;
   }
 
   &__button {
@@ -151,9 +151,9 @@ export default {
 
     font-family: 'Circe';
     font-size: 16px;
-    color: $white-color;
+    color: $color-white;
     border: none;
-    background: $pink-color;
+    background: $color-pink;
   }
 }
 
@@ -164,10 +164,10 @@ export default {
     width: 44px;
     height: 44px;
 
-    background: $pink-color;
-    box-shadow: 0px 11px 18px -9px #ee3465;
+    background: $color-pink;
+    box-shadow: 0px 11px 18px -9px $color-pink;
     border-radius: 8px;
-    fill: $white-color;
+    fill: $color-white;
   }
 
   &-user {
@@ -175,38 +175,38 @@ export default {
     width: 44px;
     height: 44px;
 
-    border: 1px solid $blue-color;
+    border: 1px solid $color-blue;
     border-radius: 8px;
-    stroke: $blue-color;
+    stroke: $color-blue;
   }
 
   &-angle-bracket {
-    stroke: $gray-color;
+    stroke: $color-gray;
     margin-left: 12px;
   }
 
   &-profile {
     width: 18px;
     height: 18px;
-    stroke: $gray-color;
+    stroke: $color-gray;
   }
 
   &-heart {
     width: 18px;
     height: 16px;
-    stroke: $gray-color;
+    stroke: $color-gray;
   }
 
   &-exit {
     width: 20px;
     height: 20px;
-    stroke: $gray-color;
+    stroke: $color-gray;
   }
 
   &-buy-premium {
     width: 17px;
     height: 17px;
-    fill: $white-color;
+    fill: $color-white;
     margin-right: 9px;
   }
 }
@@ -217,23 +217,23 @@ export default {
     cursor: pointer;
 
     .menu__icon-angle-bracket {
-      stroke: $blue-color;
+      stroke: $color-blue;
     }
   }
 
   &__dropdown-item {
     cursor: pointer;
-    color: $blue-color;
+    color: $color-blue;
 
     .menu__icon-profile,
     .menu__icon-heart,
     .menu__icon-exit {
-      stroke: $blue-color;
+      stroke: $color-blue;
     }
   }
 
   &__button {
-    box-shadow: 0px 12px 18px -13px #ee3465;
+    box-shadow: 0px 12px 18px -13px $color-pink;
   }
 }
 </style>

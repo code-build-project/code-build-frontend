@@ -1,43 +1,38 @@
 <template>
   <div class="intro__wrap">
     <div class="intro">
-      <div class="intro__title cb_top170">
+      <h1 class="intro__title">
         Повысь<br />
         свои навыки программирования вместе с
-        <span class="cb_color-blue">codebuild</span>
-      </div>
+        <span class="intro__title-blue">codebuild</span>
+      </h1>
 
-      <div class="intro__subtitle cb_top30">
+      <h2 class="intro__subtitle">
         Платные и бесплатные видеокурсы по программированию для новичков и middle-разработчиков
-      </div>
+      </h2>
 
-      <v-button class="intro__button cb_top80" @click="$router.push('/courses')">
+      <v-button class="intro__button" @click="$router.push('/courses')">
         Начать учиться
-        <icon-arrow class="cb_left9 cb_top3" stroke="#256cfe" width="30" height="30" />
+        <v-icon class="intro__icon-arrow" path="img/arrow.svg" />
       </v-button>
 
       <!-- Иконки заднего фона -->
-      <icon-iphone class="intro__iphone" />
+      <v-icon class="intro__icon-iphone" path="img/iphone.svg" />
 
-      <icon-ipad class="intro__ipad" />
+      <v-icon class="intro__icon-ipad" path="img/ipad.svg" />
       <!-- Иконки заднего фона -->
     </div>
   </div>
 </template>
 
 <script>
-import IconIpad from '@/icons/IconIpad.vue';
-import IconArrow from '@/icons/IconArrow.vue';
-import IconIphone from '@/icons/IconIphone.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'BlockIntro',
   components: {
-    IconIpad,
-    IconArrow,
-    IconIphone,
+    VIcon,
     VButton
   }
 };
@@ -45,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .intro__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
 
   background: transparent;
@@ -53,13 +48,14 @@ export default {
 }
 
 .intro {
-  @extend .cb_column;
+  @extend .flex_column;
   position: relative;
   width: 1160px;
   height: 960px;
 
   &__title {
     width: 550px;
+    margin-top: 170px;
 
     font-family: 'ObjectSans';
     font-size: 57px;
@@ -68,8 +64,14 @@ export default {
     color: #15244b;
   }
 
+  &__title-blue {
+    @extend .intro__title;
+    color: $color-blue;
+  }
+
   &__subtitle {
     width: 400px;
+    margin-top: 30px;
 
     font-family: 'Circe';
     font-size: 24px;
@@ -78,27 +80,41 @@ export default {
   }
 
   &__button {
-    ::v-deep .button {
-      width: 298px;
-      height: 84px;
+    width: 298px;
+    height: 84px;
+    margin-top: 80px;
 
-      font-family: 'Circe';
-      font-size: 24px;
-      color: #256cfe;
-      border: 2px solid #256cfe;
-      background: transparent;
-    }
+    font-family: 'Circe';
+    font-size: 24px;
+    color: $color-blue;
+    border: 2px solid $color-blue;
+    background: transparent;
+  }
+}
+
+// icons
+.intro__icon {
+  &-arrow {
+    width: 30px;
+    height: 30px;
+
+    margin-left: 9px;
+    stroke: $color-blue;
   }
 
-  &__iphone {
+  &-iphone {
     position: absolute;
+    width: 361px;
+    height: 719px;
     left: 513px;
     top: 487px;
     z-index: 1;
   }
 
-  &__ipad {
+  &-ipad {
     position: absolute;
+    width: 801px;
+    height: 868px;
     left: 743px;
     top: 252px;
   }
@@ -107,13 +123,11 @@ export default {
 // hovers
 :hover.intro {
   &__button {
-    ::v-deep .button {
-      color: #ffffff;
-      background: #256cfe;
+    color: $color-white;
+    background: $color-blue;
 
-      path {
-        stroke: #ffffff;
-      }
+    .intro__icon-arrow {
+      stroke: $color-white;
     }
   }
 }
