@@ -1,18 +1,18 @@
 <template>
-  <footer class="footer__wrap">
-    <div class="footer">
+  <div class="footer__wrap">
+    <footer class="footer">
       <!-- top row -->
-      <div class="footer__main">
+      <div class="flex_row-center-between">
         <v-icon class="footer__icon-logo" path="img/logo.svg" @click.native="$router.push('/')" />
 
-        <div class="footer__social">
+        <div class="flex_row-center-between width-220">
           <v-icon class="footer__icon-social" path="img/youtube.svg" width="17px" height="13px" />
           <v-icon class="footer__icon-social" path="img/vk.svg" width="20px" height="11px" />
           <v-icon class="footer__icon-social" path="img/insta.svg" width="17px" height="17px" />
           <v-icon class="footer__icon-social" path="img/telegram.svg" width="18px" height="15px" />
         </div>
 
-        <div class="footer__nav-wrap">
+        <div class="flex_row">
           <nav class="footer__nav">
             <router-link class="footer__nav-item" to="/"> О проекте </router-link>
             <router-link class="footer__nav-item" to="/articles"> Блог </router-link>
@@ -27,7 +27,7 @@
       <hr class="footer__line" />
 
       <!-- bottom row -->
-      <div class="footer__bottom-row">
+      <div class="flex_row-center-between mtop-15">
         <span class="footer__copyright">
           <v-icon
             class="footer__icon-copyright"
@@ -44,8 +44,8 @@
         </span>
       </div>
       <!-- bottom row -->
-    </div>
-  </footer>
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -74,13 +74,12 @@ export default {
   font-size: 25px;
   color: white;
 
-  &__main {
+  &__nav {
     @extend .flex_row-center-between;
-  }
+    width: 340px;
 
-  &__copy-right {
-    @extend .flex_row-center-between;
-    margin-top: 15px;
+    font-size: 17px;
+    line-height: 18px;
   }
 
   &__line {
@@ -89,30 +88,7 @@ export default {
     margin-top: 50px;
     background-color: #444754;
   }
-}
 
-// footer__top-row
-.footer {
-  &__social {
-    @extend .flex_row-center-between;
-    min-width: 220px;
-  }
-
-  &__nav-wrap {
-    @extend .flex_row;
-  }
-
-  &__nav {
-    @extend .flex_row-center-between;
-    width: 340px;
-
-    font-size: 17px;
-    line-height: 18px;
-  }
-}
-
-// footer__bottom-row
-.footer {
   &__copyright {
     @extend .flex_row-center-between;
     width: 215px;
