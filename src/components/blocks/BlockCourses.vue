@@ -2,54 +2,34 @@
   <div class="courses__wrap">
     <div class="courses">
       <!-- Левая часть -->
-      <div class="cb_column">
-        <div class="courses__icon">
-          <icon-play />
-        </div>
+      <div class="courses__main">
+        <v-icon class="courses__icon-play" path="img/play.svg" width="24" height="26" />
 
-        <div class="courses__title">
+        <h1 class="courses__title">
           В нашем сервисе большинство курсов являются полностью бесплатными
-        </div>
+        </h1>
 
-        <div class="courses__subtitle">
+        <h2 class="courses__subtitle">
           Вы можете приступить к изучению как платных, так и бесплатных курсов прямо сейчас
-        </div>
+        </h2>
 
-        <v-button class="courses__button cb_top70" @click="$router.push('/courses')">
+        <v-button class="courses__button" @click="$router.push('/courses')">
           Все курсы
-          <icon-arrow class="cb_left9 cb_top3" width="24" height="24" />
+          <v-icon class="courses__icon-arrow" path="img/arrow.svg" />
         </v-button>
       </div>
       <!-- Левая часть -->
 
       <!-- Правая часть -->
-      <div class="cb_row">
-        <div class="cb_column">
-          <v-course-mini-card class="cb_top70">
-            <template #text>
-              Создание сайта с нуля на CMS WordPress
-            </template>
-          </v-course-mini-card>
-
-          <v-course-mini-card class="cb_top35">
-            <template #text>
-              Изучение языка Ruby для начинающих
-            </template>
-          </v-course-mini-card>
+      <div class="courses__cards">
+        <div class="flex_column">
+          <v-course-mini-card class="mtop-70" />
+          <v-course-mini-card class="mtop-35" />
         </div>
 
-        <div class="cb_column cb_left30">
-          <v-course-mini-card fire>
-            <template #text>
-              Изучение языка Си для начинающих
-            </template>
-          </v-course-mini-card>
-
-          <v-course-mini-card class="cb_top35" level="Intermediate">
-            <template #text>
-              Уроки Java Android программирования
-            </template>
-          </v-course-mini-card>
+        <div class="flex_column mleft-30">
+          <v-course-mini-card fire />
+          <v-course-mini-card class="mtop-35" level="Intermediate" />
         </div>
       </div>
       <!-- Правая часть -->
@@ -58,55 +38,41 @@
 </template>
 
 <script>
-import IconPlay from '@/icons/IconPlay.vue';
-import IconArrow from '@/icons/IconArrow.vue';
-
-import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue';
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
+import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue';
 
 export default {
   name: 'BlockCourses',
   components: {
-    IconPlay,
-    IconArrow,
-    VCourseMiniCard,
-    VButton
+    VIcon,
+    VButton,
+    VCourseMiniCard
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .courses__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
   background: #17191f;
 }
 
 .courses {
-  @extend .cb_row-between;
+  @extend .flex_row-center-between;
   width: 1160px;
   height: 1045px;
 
-  &__icon {
-    @extend .cb_center;
-    width: 90px;
-    height: 90px;
-
-    border: 2px solid #272a37;
-    border-radius: 20px;
-  }
-
   &__title {
     width: 450px;
-
     margin-top: 65px;
 
     font-family: 'ObjectSans';
     font-size: 40px;
     line-height: 48px;
     letter-spacing: -0.01em;
-
-    color: #ffffff;
+    color: $color-white;
 
     &:after {
       content: 'FREE';
@@ -115,7 +81,7 @@ export default {
       width: 56px;
       height: 29px;
 
-      background: #ee3465;
+      background: $color-pink;
       border-radius: 5px;
 
       display: inline-flex;
@@ -125,7 +91,7 @@ export default {
       font-weight: 500;
       font-size: 11px;
       line-height: 24px;
-      color: #ffffff;
+      color: $color-white;
 
       margin-top: 15px;
       margin-left: 10px;
@@ -134,37 +100,64 @@ export default {
 
   &__subtitle {
     width: 340px;
-
     margin-top: 35px;
 
     font-family: 'Circe';
     font-size: 22px;
     line-height: 29px;
     letter-spacing: -0.025em;
-
     color: #43485e;
   }
 
   &__button {
-    ::v-deep .button {
-      width: 200px;
-      height: 60px;
+    width: 200px;
+    height: 60px;
+    margin-top: 70px;
 
-      font-family: 'EuclidCircular';
-      font-size: 18px;
-      color: #ffffff;
-      border: 1px solid #256cfe;
-      background: transparent;
-    }
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: $color-white;
+    border: 1px solid $color-blue;
+    background: transparent;
+  }
+}
+
+// flex containers
+.courses {
+  &__main {
+    @extend .flex_column;
+  }
+
+  &__cards {
+    @extend .flex_row;
+  }
+}
+
+// icons
+.courses__icon {
+  &-play {
+    @extend .flex_row-center-center;
+    width: 90px;
+    height: 90px;
+
+    border: 2px solid $color-black;
+    border-radius: 20px;
+  }
+
+  &-arrow {
+    width: 24px;
+    height: 24px;
+
+    margin-top: 3px;
+    margin-left: 9px;
+    stroke: $color-white;
   }
 }
 
 // hovers
 :hover.courses {
   &__button {
-    ::v-deep .button {
-      background-color: #256cfe;
-    }
+    background-color: $color-blue;
   }
 }
 </style>

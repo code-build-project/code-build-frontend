@@ -139,6 +139,19 @@ $color-silver: #e4e4e4;
 $color-white:  #ffffff;
 $color-red:    #ff3300;
 
+// margin
+$sides: (top, bottom, left, right);
+
+@each $side in $sides {
+  @for $i from 1 through 100 {
+    @if $i % 5 == 0 { 
+      .m#{$side}-#{$i} {
+        margin-#{$side}: #{$i} + 'px';
+      }
+    }
+  }
+}
+
 // flex
 .flex {
   // row

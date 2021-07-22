@@ -15,7 +15,7 @@
 
       <!-- Иконки заднего фона -->
       <v-icon
-        class="actuality_icon"
+        class="actuality__icon"
         path="img/apple.svg"
         width="19px"
         height="24px"
@@ -23,97 +23,88 @@
         :style="[{ top: getIconPositionY(133, 30) }, { left: getIconPositionX(312, 30) }]"
       />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/codeBox.svg"
+        width="31px"
+        height="27px"
         style="left: 46%; top: 70px; padding: 32px 32px 32px 32px"
         :style="[{ top: getIconPositionY(70, 46) }, { left: getIconPositionX(877, 46) }]"
-      >
-        <icon-code-box />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/commandLine.svg"
+        width="35px"
+        height="35px"
         style="left: 76%; top: 135px; padding: 53px 53px 53px 53px"
         :style="[{ top: getIconPositionY(135, 70) }, { left: getIconPositionX(1462, 70) }]"
-      >
-        <icon-command-line />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/css3.svg"
+        width="29px"
+        height="27px"
         style="left: 14%; top: 379px; padding: 31px 32px 31px 32px"
         :style="[{ top: getIconPositionY(379, 45) }, { left: getIconPositionX(1751, 45) }]"
-      >
-        <icon-css3 />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/html.svg"
+        width="18px"
+        height="20px"
         style="left: 91%; top: 420px; padding: 20px 20px 20px 20px"
         :style="[{ top: getIconPositionY(420, 30) }, { left: getIconPositionX(267, 30) }]"
-      >
-        <icon-html />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/lock.svg"
+        width="18px"
+        height="20px"
         style="left: 5%; top: 631px; padding: 20px 20px 20px 20px"
         :style="[{ top: getIconPositionY(631, 30) }, { left: getIconPositionX(89, 30) }]"
-      >
-        <icon-lock />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/cursor.svg"
+        width="18px"
+        height="30px"
         style="left: 23%; top: 670px; padding: 32px 38px 32px 38px"
         :style="[{ top: getIconPositionY(670, 46) }, { left: getIconPositionX(448, 46) }]"
-      >
-        <icon-cursor />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/gitMerge.svg"
+        width="19px"
+        height="18px"
         style="left: 48%; top: 763px; padding: 20px 20px 20px 20px"
         :style="[{ top: getIconPositionY(763, 30) }, { left: getIconPositionX(912, 30) }]"
-      >
-        <icon-git-merge />
-      </div>
+      />
 
-      <div
-        class="actuality_icon"
+      <v-icon
+        class="actuality__icon"
+        path="img/bug.svg"
+        width="27px"
+        height="30px"
         style="left: 75%; top: 644px; padding: 32px 33px 32px 33px"
         :style="[{ top: getIconPositionY(631, 46) }, { left: getIconPositionX(1448, 46) }]"
-      >
-        <icon-bug />
-      </div>
+      />
       <!-- Иконки заднего фона -->
     </div>
   </div>
 </template>
 
 <script>
-import IconCodeBox from '@/icons/IconCodeBox.vue';
-import IconCommandLine from '@/icons/IconCommandLine.vue';
-import IconCss3 from '@/icons/IconCss3.vue';
-import IconHtml from '@/icons/IconHtml.vue';
-import IconLock from '@/icons/IconLock.vue';
-import IconCursor from '@/icons/IconCursor.vue';
-import IconGitMerge from '@/icons/IconGitMerge.vue';
-import IconBug from '@/icons/IconBug.vue';
-
 import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'BlockActuality',
   components: {
-    IconCodeBox,
-    IconCommandLine,
-    IconCss3,
-    IconHtml,
-    IconLock,
-    IconCursor,
-    IconGitMerge,
-    IconBug,
     VIcon
   },
   data() {
@@ -188,7 +179,7 @@ export default {
     letter-spacing: -0.025em;
   }
 
-  &_icon {
+  &__icon {
     @extend .flex_row-center-center;
     position: absolute;
 
