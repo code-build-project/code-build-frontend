@@ -2,42 +2,30 @@
   <div class="articles__wrap">
     <div class="articles">
       <!-- Левая часть -->
-      <div class="cb_row">
-        <div class="cb_column">
-          <v-article-mini-card class="cb_top70">
-            Новые открытия в сфере искусственного интеллекта
-          </v-article-mini-card>
-
-          <v-article-mini-card class="cb_top35">
-            Как повлияет коронавирус на it-сферу в 2021
-          </v-article-mini-card>
+      <div class="articles__cards">
+        <div class="flex_column">
+          <v-article-mini-card class="mtop-70" />
+          <v-article-mini-card class="mtop-35" />
         </div>
 
-        <div class="cb_column cb_left30">
-          <v-article-mini-card> 
-            Стоит ли открывать интернет-магазин в 2021 
-          </v-article-mini-card>
-
-          <v-article-mini-card class="cb_top35">
-            В какую страну переехать для роста в it-сфере
-          </v-article-mini-card>
+        <div class="flex_column mleft-30">
+          <v-article-mini-card />
+          <v-article-mini-card class="mtop-35" />
         </div>
       </div>
       <!-- Левая часть -->
 
       <!-- Правая часть -->
-      <div class="cb_column">
-        <div class="articles__icon">
-          <icon-list />
-        </div>
+      <div class="articles__main">
+        <v-icon class="articles__icon-list" path="img/list.svg" width="24" height="26" />
 
-        <div class="articles__title">Свежие новости и познавательные статьи из мира IT</div>
+        <h1 class="articles__title">Свежие новости и познавательные статьи из мира IT</h1>
 
-        <div class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</div>
+        <h2 class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</h2>
 
-        <v-button class="articles__button cb_top70" @click="$router.push('/articles')">
+        <v-button class="articles__button" @click="$router.push('/articles')">
           Все статьи
-          <icon-arrow class="cb_left9 cb_top3" width="24" height="24" />
+          <v-icon class="articles__icon-arrow" path="img/arrow.svg" />
         </v-button>
       </div>
       <!-- Правая часть -->
@@ -46,59 +34,45 @@
 </template>
 
 <script>
-import IconList from '@/icons/IconList.vue';
-import IconArrow from '@/icons/IconArrow.vue';
-
-import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue';
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
+import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue';
 
 export default {
   name: 'BlockArticles',
   components: {
-    IconList,
-    IconArrow,
-    VArticleMiniCard,
-    VButton
+    VIcon,
+    VButton,
+    VArticleMiniCard
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .articles__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
   background: #17191f;
 }
 
 .articles {
-  @extend .cb_row-between;
+  @extend .flex_row-center-between;
   width: 1160px;
   height: 1045px;
 
-  &__icon {
-    @extend .cb_center;
-    width: 90px;
-    height: 90px;
-
-    border: 2px solid #272a37;
-    border-radius: 20px;
-  }
-
   &__title {
     width: 360px;
-
     margin-top: 65px;
 
     font-family: 'ObjectSans';
     font-size: 40px;
     line-height: 48px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__subtitle {
     width: 340px;
-
     margin-top: 30px;
 
     font-family: 'Circe';
@@ -109,25 +83,54 @@ export default {
   }
 
   &__button {
-    ::v-deep .button {
-      width: 200px;
-      height: 60px;
+    width: 200px;
+    height: 60px;
+    margin-top: 70px;
 
-      font-family: 'EuclidCircular';
-      font-size: 18px;
-      color: #ffffff;
-      border: 1px solid #256cfe;
-      background: transparent;
-    }
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: $color-white;
+    border: 1px solid $color-blue;
+    background: transparent;
+  }
+}
+
+// flex containers
+.articles {
+  &__cards {
+    @extend .flex_row;
+  }
+
+  &__main {
+    @extend .flex_column;
+  }
+}
+
+// icons
+.articles__icon {
+  &-list {
+    @extend .flex_row-center-center;
+    width: 90px;
+    height: 90px;
+
+    border: 2px solid $color-black;
+    border-radius: 20px;
+  }
+
+  &-arrow {
+    width: 24px;
+    height: 24px;
+
+    margin-top: 3px;
+    margin-left: 9px;
+    stroke: $color-white;
   }
 }
 
 // hovers
 :hover.articles {
   &__button {
-    ::v-deep .button {
-      background-color: #256cfe;
-    }
+    background-color: $color-blue;
   }
 }
 </style>
