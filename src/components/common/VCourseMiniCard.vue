@@ -2,66 +2,53 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info">
+    <main class="card__main">
       <div class="card__level">
-        <span class="cb_right5">Сложность</span>
+        <span class="mright-5">Сложность</span>
 
-        <icon-ellipse
+        <div
           v-for="item in [1, 2, 3, 4, 5]"
           :key="item"
-          class="cb_left2"
-          width="6"
-          height="6"
-          :fill="level >= item ? '#EE3465' : '#3A3F4F'"
+          class="card__level-circle"
+          :style="{ background: level >= item ? '#EE3465' : '#3A3F4F' }"
         />
       </div>
 
-      <div class="card__title">
+      <h1 class="card__title">
         {{ title }}
-      </div>
+      </h1>
 
       <div class="card__footer">
         <div class="card__footer-item">
-          <icon-video />
-          <span class="cb_left5">{{ lessons }}</span>
+          <v-icon class="card__icon-footer" path="img/video.svg" />
+          {{ lessons }}
         </div>
 
         <div class="card__footer-item">
-          <icon-timer />
-          <span class="cb_left5">{{ time }}</span>
+          <v-icon class="card__icon-footer" path="img/timer.svg" />
+          {{ time }}
         </div>
 
         <div class="card__footer-item">
-          <icon-open-eye />
-          <span class="cb_left5">{{ views }}</span>
+          <v-icon class="card__icon-footer" path="img/openEye.svg" />
+          {{ views }}
         </div>
       </div>
-    </div>
+    </main>
 
-    <div
-      v-if="fire"
-      class="card__icon-fire"
-    >
-      <icon-fire />
-    </div>
+    <!-- иконка абсол. позиционирования -->
+    <v-icon v-if="fire" class="card__icon-fire" path="img/fire.svg" width="28" height="28" />
+    <!-- иконка абсол. позиционирования -->
   </div>
 </template>
 
 <script>
-import IconEllipse from '@/icons/IconEllipse.vue'
-import IconVideo from '@/icons/IconVideo.vue'
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
-import IconFire from '@/icons/IconFire.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VCourseMiniCard',
   components: {
-    IconEllipse,
-    IconVideo,
-    IconTimer,
-    IconOpenEye,
-    IconFire
+    VIcon
   },
   props: {
     // Уровень сложности
@@ -96,10 +83,10 @@ export default {
     }
   },
   data() {
-    return {}
+    return {};
   },
   computed: {}
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -110,12 +97,12 @@ export default {
     width: 268px;
     height: 208px;
 
-    background: #256cfe;
+    background: $color-blue;
     border-radius: 7px 7px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column-between;
+  &__main {
+    @extend .flex_column-between;
     align-items: stretch;
 
     width: 268px;
@@ -124,18 +111,23 @@ export default {
     padding: 17px;
     box-sizing: border-box;
 
-    background: #272a37;
+    background: $color-black;
     border-radius: 0px 0px 7px 7px;
   }
 
   &__level {
-    display: flex;
-    align-items: center;
+    @extend .flex_row-center;
 
     font-family: 'EuclidCircular';
     font-size: 11px;
-    line-height: 19px;
-    color: #ffffff;
+    color: $color-white;
+  }
+
+  &__level-circle {
+    width: 6px;
+    height: 6px;
+    margin-left: 2px;
+    border-radius: 4px;
   }
 
   &__title {
@@ -144,20 +136,20 @@ export default {
     font-family: 'EuclidCircular';
     font-size: 13px;
     line-height: 21px;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__footer {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
 
     font-family: 'Circe';
     font-size: 11px;
     line-height: 24px;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__footer-item {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
 
     padding-left: 10px;
     padding-right: 10px;
@@ -165,9 +157,12 @@ export default {
     border: 1px solid #383c4a;
     border-radius: 5px;
   }
+}
 
-  &__icon-fire {
-    @extend .cb_center;
+// icons
+.card__icon {
+  &-fire {
+    @extend .flex_row-center-center;
     position: absolute;
 
     top: -20px;
@@ -176,8 +171,15 @@ export default {
     width: 50px;
     height: 50px;
 
-    background: #ee3465;
+    background: $color-pink;
     border-radius: 50%;
+  }
+
+  &-footer {
+    width: 13px;
+    height: 13px;
+
+    margin-right: 5px;
   }
 }
 </style>
