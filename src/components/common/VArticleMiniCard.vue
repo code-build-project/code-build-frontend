@@ -2,55 +2,55 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info">
-      <div class="card__info-header">
-        <span>{{ date }}</span>
+    <main class="card__main">
+      <div class="card__date">
+        {{ date }}
       </div>
 
-      <div class="card__info-text">
-        <slot>
-          Новые открытия в сфере искусственного интеллекта
-        </slot>
-      </div>
+      <h1 class="card__title">
+        {{ title }}
+      </h1>
 
-      <!-- Footer -->
-      <div class="cb_row-between">
-        <div class="card__footer-item cb_width155">
-          <icon-timer />
-          <span class="cb_left5">Время прочтения: 15 м.</span>
+      <div class="card__footer">
+        <div class="card__footer-item" style="width: 155px">
+          <v-icon class="card__icon-footer" path="img/timer.svg" />
+          Время прочтения: 15 м.
         </div>
 
-        <div class="card__footer-item cb_width70">
-          <icon-open-eye width="12" height="10" />
-          <span class="cb_left5">1200</span>
+        <div class="card__footer-item" style="width: 70px">
+          <v-icon class="card__icon-footer" path="img/openEye.svg" />
+          1200
         </div>
       </div>
-      <!-- Footer -->
-    </div>
+    </main>
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VCourseCard',
   components: {
-    IconTimer,
-    IconOpenEye
+    VIcon
   },
   props: {
+    // Название стаьи
+    title: {
+      type: String,
+      default: 'Название статьи'
+    },
+    // Дата размещения статьи
     date: {
       type: String,
       default: '12 апреля 2021'
     }
   },
   data() {
-    return {}
+    return {};
   },
   computed: {}
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -61,12 +61,12 @@ export default {
     width: 268px;
     height: 208px;
 
-    background: #256cfe;
+    background: $color-blue;
     border-radius: 7px 7px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column-between;
+  &__main {
+    @extend .flex_column-between;
     align-items: stretch;
     width: 268px;
     height: 142px;
@@ -74,13 +74,12 @@ export default {
     padding: 17px;
     box-sizing: border-box;
 
-    background: #272a37;
+    background: $color-black;
     border-radius: 0px 0px 7px 7px;
   }
 
-  &__info-header {
-    display: flex;
-    align-items: center;
+  &__date {
+    @extend .flex_row-center;
 
     font-family: 'EuclidCircular';
     font-weight: 500;
@@ -89,27 +88,41 @@ export default {
     color: #4c5169;
   }
 
-  &__info-text {
+  &__title {
     width: 240px;
 
     font-family: 'EuclidCircular';
     font-weight: 500;
     font-size: 17px;
     line-height: 20px;
-    color: #ffffff;
+    color: $color-white;
+  }
+
+  &__footer {
+    @extend .flex_row-center-between;
   }
 
   &__footer-item {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     height: 28px;
 
     font-family: 'Circe';
     font-size: 11px;
     line-height: 24px;
-    color: #ffffff;
+    color: $color-white;
 
     border: 1px solid #383c4a;
     border-radius: 5px;
+  }
+}
+
+// icons
+.card__icon {
+  &-footer {
+    width: 13px;
+    height: 13px;
+
+    margin-right: 5px;
   }
 }
 </style>
