@@ -151,26 +151,22 @@ export default {
   }
 
   &__button {
-    ::v-deep .button {
-      width: 230px;
-      height: 60px;
+    width: 230px;
+    height: 60px;
 
-      font-family: 'EuclidCircular';
-      font-size: 18px;
-      color: #256cfe;
-      border: 1px solid #256cfe;
-      background: transparent;
-    }
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: #256cfe;
+    border: 1px solid #256cfe;
+    background: transparent;
   }
 }
 
 // hovers
 :hover.reviews {
   &__button {
-    ::v-deep .button {
-      color: #ffffff;
-      background: #256cfe;
-    }
+    color: #ffffff;
+    background: #256cfe;
   }
 }
 </style>

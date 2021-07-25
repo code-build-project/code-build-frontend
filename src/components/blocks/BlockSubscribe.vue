@@ -1,93 +1,62 @@
 <template>
   <div class="subscribe__wrap">
     <div class="subscribe">
-      <div class="subscribe__left-side">
-        <div class="subscribe__title">
-          Подпишись на codebuild
-        </div>
-        <div class="subscribe__subtitle">
+      <div class="subscribe__main">
+        <h1 class="subscribe__title">Подпишись на codebuild</h1>
+
+        <h2 class="subscribe__subtitle">
           Присоединяйся к сообществу программистов, узнавай много нового из мира IT и будь в курсе
           всех событий!
-        </div>
+        </h2>
       </div>
 
-      <div class="subscribe__right-side">
-        <div class="subscribe__icon">
-          <icon-you-tube
-            width="37"
-            height="37"
-          />
-        </div>
-
-        <div class="subscribe__icon">
-          <icon-vk
-            width="35"
-            height="35"
-          />
-        </div>
-
-        <div class="subscribe__icon">
-          <icon-instagram
-            width="37"
-            height="37"
-          />
-        </div>
-
-        <div class="subscribe__icon">
-          <icon-telegram
-            width="32"
-            height="32"
-          />
-        </div>
+      <div class="subscribe__social">
+        <v-icon class="subscribe__icon-social" path="img/youtube.svg" width="31px" height="25px" />
+        <v-icon class="subscribe__icon-social" path="img/vk.svg" width="35px" height="21px" />
+        <v-icon class="subscribe__icon-social" path="img/insta.svg" width="31px" height="31px" />
+        <v-icon class="subscribe__icon-social" path="img/telegram.svg" width="32px" height="27px" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IconYouTube from '@/icons/IconYouTube.vue'
-import IconVk from '@/icons/IconVk.vue'
-import IconInstagram from '@/icons/IconInstagram.vue'
-import IconTelegram from '@/icons/IconTelegram.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'BlockSubscribe',
   components: {
-    IconYouTube,
-    IconVk,
-    IconInstagram,
-    IconTelegram
+    VIcon
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .subscribe__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
-  background: #256cfe;
+  background: $color-blue;
 }
 
 .subscribe {
-  @extend .cb_row-between;
+  @extend .flex_row-center-between;
   width: 1160px;
   height: 315px;
 
-  &__left-side {
-    @extend .cb_column;
+  &__main {
+    @extend .flex_column;
   }
 
-  &__right-side {
-    @extend .cb_row-between;
+  &__social {
+    @extend .flex_row-center-between;
     width: 532px;
   }
 
   &__title {
     font-family: 'ObjectSans';
     font-size: 40px;
-    line-height: 48px;
     letter-spacing: -0.01em;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__subtitle {
@@ -97,25 +66,28 @@ export default {
     font-size: 20px;
     line-height: 31px;
     letter-spacing: -0.025em;
-    color: #ffffff;
+    color: $color-white;
   }
+}
 
-  &__icon {
-    @extend .cb_center;
+// icons
+.subscribe__icon {
+  &-social {
+    @extend .flex_row-center-center;
     width: 100px;
     height: 100px;
 
     border: 2px solid #3a7afe;
-    box-sizing: border-box;
     border-radius: 21px;
+    fill: $color-white;
   }
 }
 
 // hovers
 :hover.subscribe {
-  &__icon {
-    background: #3a7afe;
+  &__icon-social {
     cursor: pointer;
+    background: #3a7afe;
   }
 }
 </style>
