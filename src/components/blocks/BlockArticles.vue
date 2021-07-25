@@ -4,13 +4,13 @@
       <!-- Левая часть -->
       <div class="articles__cards">
         <div class="flex_column">
-          <v-article-mini-card class="mtop-70" />
-          <v-article-mini-card class="mtop-35" />
+          <v-article-mini-card class="mt-70" />
+          <v-article-mini-card class="mt-35" />
         </div>
 
-        <div class="flex_column mleft-30">
+        <div class="flex_column ml-30">
           <v-article-mini-card />
-          <v-article-mini-card class="mtop-35" />
+          <v-article-mini-card class="mt-35" />
         </div>
       </div>
       <!-- Левая часть -->

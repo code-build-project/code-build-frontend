@@ -15,17 +15,17 @@
           творческих проектов. Ему в этом помогают друзья, свахи и астролог.
         </div>
 
-        <div class="article__content-right cb_left108">
+        <div class="article__content-right">
           <img
-            class="article__avatar cb_top10"
+            class="article__avatar"
             src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
           />
 
-          <div class="article__author cb_top20">
+          <div class="article__author">
             МАРИЯ РОМАДАНОВА
           </div>
 
-          <div class="article__hobby cb_top10">
+          <div class="article__hobby">
             Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на
             Байкале.
           </div>
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="article__useful cb_top80">
+      <div class="article__useful">
         <div>Также стоит посмотреть</div>
 
         <div class="cb_row-between cb_top50">
@@ -123,16 +123,20 @@ export default {
     @extend .cb_column;
     width: 230px;
     height: 800px;
+    margin-left: 108px;
   }
 
   &__avatar {
     width: 100px;
     height: 100px;
+    margin-top: 10px;
+
     background: #83a7c9;
     border-radius: 50%;
   }
 
   &__author {
+    margin-top: 20px;
     font-family: 'Circe';
     font-weight: bold;
     font-size: 16px;
@@ -141,6 +145,7 @@ export default {
   }
 
   &__hobby {
+    margin-top: 10px;
     font-family: 'Circe';
     font-size: 14px;
     line-height: 20px;
@@ -166,6 +171,7 @@ export default {
   }
 
   &__useful {
+    margin-top: 80px;
     font-family: 'ObjectSans';
     font-size: 40px;
     line-height: 44px;

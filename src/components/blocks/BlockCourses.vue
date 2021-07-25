@@ -23,13 +23,13 @@
       <!-- Правая часть -->
       <div class="courses__cards">
         <div class="flex_column">
-          <v-course-mini-card class="mtop-70" />
-          <v-course-mini-card class="mtop-35" />
+          <v-course-mini-card class="mt-70" />
+          <v-course-mini-card class="mt-35" />
         </div>
 
-        <div class="flex_column mleft-30">
+        <div class="flex_column ml-30">
           <v-course-mini-card fire />
-          <v-course-mini-card class="mtop-35" level="Intermediate" />
+          <v-course-mini-card class="mt-35" level="Intermediate" />
         </div>
       </div>
       <!-- Правая часть -->

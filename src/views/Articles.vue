@@ -1,27 +1,25 @@
 <template>
   <div class="articles__wrap">
     <div class="articles">
-      <div class="articles__title">
-        Все статьи
-      </div>
+      <h1 class="articles__title">Все статьи</h1>
 
-      <div class="articles__filter cb_top30">
+      <div class="articles__filters">
         <div
           v-for="(item, index) in filterList"
           :key="index"
-          class="articles__filter-item"
-          :class="{ 'articles_filter-active': filterTag === item.tag }"
-          @click="filterTag = item.tag, getArticles()"
+          class="articles__filter"
+          :class="{ articles__filter_active: filterTag === item.tag }"
+          @click="(filterTag = item.tag), getArticles()"
         >
           {{ item.name }}
         </div>
       </div>
 
-      <div class="articles__list cb_top60">
+      <div class="articles__list">
         <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
-            class="cb_bottom30"
-            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            class="mb-30px"
+            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :id="item._id"
             :userId="user.id"
             :title="item.title"
@@ -59,7 +57,7 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user || {};
-    },
+    }
   },
   methods: {
     getArticles() {
@@ -96,23 +94,22 @@ export default {
   &__title {
     font-family: 'ObjectSans';
     font-size: 40px;
-    line-height: 44px;
     letter-spacing: -1px;
-    color: #272a37;
+    color: $color-black;
+  }
+
+  &__filters {
+    @extend .flex_row-center-between;
+    width: 800px;
+    height: 50px;
+    margin-top: 30px;
   }
 
   &__filter {
-    @extend .cb_row-between;
-    width: 800px;
-    height: 50px;
-  }
-
-  &__filter-item {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     font-family: 'Circe';
     font-size: 18px;
-    line-height: 18px;
-    color: #272a37;
+    color: $color-black;
 
     padding: 1em 1.7em 1em 1.7em;
     border: 1px solid #e2e2e2;
@@ -121,25 +118,25 @@ export default {
 
   &__list {
     display: flex;
-    // justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 60px;
   }
 }
 
-// Модификаторы
+// active
 .articles {
-  &_filter-active {
-    color: #ffffff;
-    background: #256cfe;
+  &__filter_active {
+    color: $color-white;
+    background: $color-blue;
   }
 }
 
 // hovers
 :hover.articles {
-  &__filter-item {
+  &__filter {
     cursor: pointer;
-    color: #ffffff;
-    background: #256cfe;
+    color: $color-white;
+    background: $color-blue;
   }
 }
 </style>

@@ -4,7 +4,7 @@
 
     <main class="card__main">
       <div class="card__level">
-        <span class="mright-5">Сложность</span>
+        <span class="mr-5">Сложность</span>
 
         <div
           v-for="item in [1, 2, 3, 4, 5]"
