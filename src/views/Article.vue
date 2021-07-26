@@ -1,126 +1,97 @@
 <template>
-  <div class="article__wrap">
-    <block-article-cover />
+  <div class="article">
+    <block-article-cover class="article__cover" />
 
-    <div class="article">
-      <div class="article__content">
-        <div class="article__content-left">
-          Этой весной в музее «Гараж» открылась выставка «Выбирая дистанцию: спекуляции, фейки,
-          прогнозы в эпоху коронацена». Её придумали в прошлом году, во время самоизоляции. Музей
-          предложил художникам переосмыслить локдаун и составить прогнозы возможных версий будущего,
-          прошлого или настоящего, используя инструмент спекуляции. Одним из 33 участников выставки
-          стала гибридная самоорганизация NONSNS: Мария Челоянц, Гоша Голицын и Руслан Поланин
-          по-своему пересняли четыре популярных телевизионных передачи. Первая уже вышла — это
-          ироничное шоу «Давай поджемимся!». В нём куратор ищет идеального художника для совместных
-          творческих проектов. Ему в этом помогают друзья, свахи и астролог.
+    <div class="article__main">
+      <article class="article__content">
+        Этой весной в музее «Гараж» открылась выставка «Выбирая дистанцию: спекуляции, фейки,
+        прогнозы в эпоху коронацена». Её придумали в прошлом году, во время самоизоляции. Музей
+        предложил художникам переосмыслить локдаун и составить прогнозы возможных версий будущего,
+        прошлого или настоящего, используя инструмент спекуляции. Одним из 33 участников выставки
+        стала гибридная самоорганизация NONSNS: Мария Челоянц, Гоша Голицын и Руслан Поланин
+        по-своему пересняли четыре популярных телевизионных передачи. Первая уже вышла — это
+        ироничное шоу «Давай поджемимся!». В нём куратор ищет идеального художника для совместных
+        творческих проектов. Ему в этом помогают друзья, свахи и астролог.
+      </article>
+
+      <aside class="article__aside">
+        <img
+          class="article__avatar"
+          src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
+        />
+
+        <div class="article__author">МАРИЯ РОМАДАНОВА</div>
+
+        <div class="article__hobby">
+          Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на
+          Байкале.
         </div>
 
-        <div class="article__content-right">
-          <img
-            class="article__avatar"
-            src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
+        <div class="article__social">
+          <v-icon class="article__icon-social" path="img/vk.svg" width="20px" height="11px" />
+          <v-icon
+            class="article__icon-social ml-10px"
+            path="img/insta.svg"
+            width="17px"
+            height="17px"
           />
-
-          <div class="article__author">
-            МАРИЯ РОМАДАНОВА
-          </div>
-
-          <div class="article__hobby">
-            Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на
-            Байкале.
-          </div>
-
-          <div class="cb_row cb_top15">
-            <div class="article__icon">
-              <icon-vk fill="#B1B8C6" />
-            </div>
-
-            <div class="article__icon cb_left10">
-              <icon-instagram fill="#B1B8C6" />
-            </div>
-          </div>
-
-          <div class="article__date cb_top535">
-            <icon-date />
-            <span class="cb_left10">12 апреля 2021</span>
-          </div>
         </div>
-      </div>
 
-      <div class="article__useful">
-        <div>Также стоит посмотреть</div>
-
-        <div class="cb_row-between cb_top50">
-          <v-article-card />
-
-          <v-article-card />
-
-          <v-article-card />
+        <div class="article__date">
+          <v-icon class="article__icon-date" path="img/date.svg" />
+          12 апреля 2021
         </div>
-      </div>
+      </aside>
     </div>
 
-    <block-subscribe />
+    <block-popular-articles class="article__popular" />
+
+    <block-subscribe class="article__subscribe" />
   </div>
 </template>
 
 <script>
-import IconVk from '@/icons/IconVk.vue'
-import IconInstagram from '@/icons/IconInstagram.vue'
-import IconDate from '@/icons/IconDate.vue'
-
-import VArticleCard from '@/components/common/VArticleCard.vue'
-
-import BlockArticleCover from '@/components/blocks/BlockArticleCover.vue'
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue'
+import VIcon from '@/components/common/VIcon.vue';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
+import BlockArticleCover from '@/components/blocks/BlockArticleCover.vue';
+import BlockPopularArticles from '@/components/blocks/BlockPopularArticles.vue';
 
 export default {
   name: 'Article',
   components: {
-    IconVk,
-    IconInstagram,
-    IconDate,
-    VArticleCard,
+    VIcon,
+    BlockSubscribe,
     BlockArticleCover,
-    BlockSubscribe
-  },
-  data() {
-    return {}
+    BlockPopularArticles
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.article__wrap {
-  background: #f4f4f4;
-}
-
 .article {
-  @extend .cb_column;
-  width: 1160px;
-  min-height: 1578px;
+  background: #f4f4f4;
 
-  padding: 109px 0px 110px 0px;
-  box-sizing: border-box;
-
-  &__content {
-    @extend .cb_row;
+  &__main {
+    @extend .flex_row;
+    width: 1160px;
     min-height: 710px;
+    margin-top: 65px;
 
     padding-bottom: 70px;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid $color-silver;
   }
 
-  &__content-left {
+  &__content {
     width: 786px;
+
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #272a37;
+    color: $color-black;
   }
 
-  &__content-right {
-    @extend .cb_column;
+  &__aside {
+    @extend .flex_column;
     width: 230px;
     height: 800px;
     margin-left: 108px;
@@ -137,46 +108,65 @@ export default {
 
   &__author {
     margin-top: 20px;
+
     font-family: 'Circe';
     font-weight: bold;
     font-size: 16px;
     line-height: 30px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__hobby {
     margin-top: 10px;
+
     font-family: 'Circe';
     font-size: 14px;
     line-height: 20px;
-    color: #272a37;
+    color: $color-black;
+  }
+
+  &__social {
+    @extend .flex_row;
+    margin-top: 15px;
   }
 
   &__date {
-    @extend .cb_row;
+    @extend .flex_row;
+    margin-top: 535px;
+
     font-family: 'Circe';
     font-size: 14px;
     line-height: 22px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
-  &__icon {
-    @extend .cb_center;
+  &__popular {
+    margin-top: 80px;
+  }
+
+  &__subscribe {
+    margin-top: 110px;
+  }
+}
+
+// icons
+.article__icon {
+  &-social {
+    @extend .flex_row-center-center;
     width: 44px;
     height: 44px;
 
     border: 1px solid #e4e4e4;
-    box-sizing: border-box;
     border-radius: 9px;
+    fill: $color-gray;
   }
 
-  &__useful {
-    margin-top: 80px;
-    font-family: 'ObjectSans';
-    font-size: 40px;
-    line-height: 44px;
-    letter-spacing: -1px;
-    color: #272a37;
+  &-date {
+    width: 20px;
+    height: 20px;
+
+    margin-right: 10px;
+    stroke: $color-gray;
   }
 }
 </style>

@@ -1,149 +1,169 @@
 <template>
   <div class="cover__wrap">
     <div class="cover">
-      <div class="cover__route cb_top86">
-        <div class="cb_row">
-          <div class="cb_center">
+      <div class="cover__header">
+        <div class="cover__route">
+          <div class="cover__route-item">
             Code build
-            <icon-arrow
-              class="cb_left20"
-              width="20"
-              height="20"
-            />
+            <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
-          <div class="cb_center cb_left20">
+
+          <div class="cover__route-item ml-20px">
             Статьи
-            <icon-arrow
-              class="cb_left20"
-              width="20"
-              height="20"
-            />
+            <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
-          <div class="cb_center cb_left20">
+
+          <div class="cover__route-item ml-20px">
             Make art NONSNS again. Как абсурд в искусстве придаёт смысл обыденным вещам
           </div>
         </div>
 
-        <div
+        <v-icon
           class="cover__icon-heart"
+          path="img/heart.svg"
+          :fill="isLike ? '#EE3465' : 'transparent'"
           @click="isLike = !isLike"
-        >
-          <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" />
-        </div>
+        />
       </div>
 
-      <div class="cover__title cb_top35">
+      <h1 class="cover__title">
         Make art NONSNS again.<br />
         Как абсурд в искусстве придаёт <br />
         смысл обыденным вещам
-      </div>
+      </h1>
 
-      <div class="cover__subtitle cb_top20">
+      <h2 class="cover__subtitle">
         Современное искусство, спекуляции и ирония. Группа NONSNS рассказала<br />
         о своём шоу для «Гаража» и дизайне, который сделал это шоу убедительным.
-      </div>
+      </h2>
 
-      <div class="cb_row cb_top30">
-        <div class="cover__attribute">
-          <icon-timer
-            width="22"
-            height="22"
-          />
-          <span class="cb_left10">Время прочтения: 15 м.</span>
+      <div class="cover__attributes">
+        <div class="cover__attributes-item">
+          <v-icon class="cover__icon-attribute" path="img/timer.svg" />
+          Время прочтения: 15 м.
         </div>
 
-        <div class="cover__attribute cb_left10">
-          <icon-open-eye
-            width="23"
-            height="20"
-          />
-          <span class="cb_left10">300</span>
+        <div class="cover__attributes-item ml-10px">
+          <v-icon class="cover__icon-attribute" path="img/openEye.svg" />
+          300
         </div>
 
-        <div class="cover__attribute cb_left10">
-          #Дизайн
-        </div>
+        <div class="cover__attributes-item ml-10px">#Дизайн</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IconArrow from '@/icons/IconArrow.vue'
-import IconHeart from '@/icons/IconHeart.vue'
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'BlockArticleCover',
   components: {
-    IconArrow,
-    IconHeart,
-    IconTimer,
-    IconOpenEye
+    VIcon
   },
   data() {
     return {
       isLike: false
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .cover__wrap {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   width: 100%;
-  background: #256cfe;
+  background: $color-blue;
 }
 
 .cover {
-  @extend .cb_column;
+  @extend .flex_column;
   width: 1160px;
   height: 600px;
 
-  &__route {
-    @extend .cb_row-between;
+  &__header {
+    @extend .flex_row-center-between;
+    margin-top: 86px;
+
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;
-    color: #ffffff;
+    color: $color-white;
+  }
+
+  &__route {
+    @extend .flex_row;
+  }
+
+  &__route-item {
+    @extend .flex_row-center-center;
   }
 
   &__title {
     width: 1030px;
     height: 217px;
+    margin-top: 35px;
 
     font-family: 'ObjectSans';
     font-size: 62px;
     line-height: 69px;
     letter-spacing: -1px;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__subtitle {
+    margin-top: 20px;
+
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #ffffff;
+    color: $color-white;
   }
 
-  &__attribute {
-    @extend .cb_row-between;
+  &__attributes {
+    @extend .flex_row;
+    margin-top: 30px;
+  }
+
+  &__attributes-item {
+    @extend .flex_row-center-between;
     font-family: 'Circe';
     font-size: 18px;
-    line-height: 16px;
-    color: #ffffff;
+    color: $color-white;
 
     padding: 17px 25px 17px 25px;
 
     border: 1px solid #4884fe;
     border-radius: 9px;
   }
+}
 
-  &__icon-heart {
-    @extend .cb_center;
+// icons
+.cover__icon {
+  &-arrow {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+
+    stroke: $color-white;
+  }
+
+  &-heart {
+    @extend .flex_row-center-center;
+    width: 18px;
+    height: 16px;
+
     cursor: pointer;
+    stroke: $color-white;
+  }
+
+  &-attribute {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+
+    fill: $color-white;
   }
 }
 </style>
