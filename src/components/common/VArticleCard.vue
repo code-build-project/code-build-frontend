@@ -2,64 +2,45 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div
-      class="card__info"
-      @click="$emit('click')"
-    >
+    <main class="card__main" @click="$emit('click')">
       <div class="card__date">
         {{ date }}
       </div>
 
-      <div class="card__title cb_top15">
+      <h1 class="card__title">
         {{ title }}
-      </div>
+      </h1>
 
-      <div class="card__footer cb_top15">
-        <div class="card__footer-item cb_width207">
-          <icon-timer
-            width="18"
-            height="18"
-            fill="#3A3F4F"
-          />
-          <span class="cb_left7"> Время прочтения: {{ time }}</span>
+      <div class="card__footer">
+        <div class="card__footer-item" style="width: 207px">
+          <v-icon class="card__icon-footer" path="img/timer.svg" />
+          Время прочтения: {{ time }}
         </div>
 
-        <div class="card__footer-item cb_width95">
-          <icon-open-eye
-            width="21"
-            height="18"
-            fill="#3A3F4F"
-          />
-          <span class="cb_left7">{{ views }}</span>
+        <div class="card__footer-item" style="width: 95px">
+          <v-icon class="card__icon-footer" path="img/openEye.svg" />
+          {{ views }}
         </div>
       </div>
-    </div>
+    </main>
 
-    <div
+    <v-icon
       v-if="userId"
       class="card__icon-heart"
+      path="img/heart.svg"
+      :fill="isLike ? '#EE3465' : 'transparent'"
       @click="onLike()"
-    >
-      <icon-heart
-        :fill="isLike ? '#EE3465' : 'transparent'"
-        width="26"
-        height="23"
-      />
-    </div>
+    />
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
-import IconHeart from '@/icons/IconHeart.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VArticleCard',
   components: {
-    IconTimer,
-    IconOpenEye,
-    IconHeart
+    VIcon
   },
   props: {
     // Id статьи
@@ -96,7 +77,7 @@ export default {
     likes: {
       type: Array,
       default() {
-        return []
+        return [];
       }
     }
   },
@@ -104,7 +85,7 @@ export default {
   data() {
     return {
       isLike: this.likes.includes(this.userId)
-    }
+    };
   },
 
   methods: {
@@ -126,12 +107,12 @@ export default {
         userId: this.userId
       };
 
-      if(this.isLike) {
+      if (this.isLike) {
         this.deleteLike(payload);
       } else this.addLike(payload);
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -146,26 +127,27 @@ export default {
     border-radius: 8px 8px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column;
+  &__main {
+    @extend .flex_column;
     height: 226px;
 
     padding: 21px 27px 27px 27px;
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 0px 0px 8px 8px;
   }
 
   &__date {
     font-family: 'EuclidCircular';
     font-size: 15px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__title {
     width: 314px;
     height: 95px;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 26px;
@@ -175,29 +157,44 @@ export default {
   }
 
   &__footer {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 14px;
-    line-height: 12px;
     color: #3a3f4f;
   }
 
   &__footer-item {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     height: 40px;
 
     border: 1px solid #ededed;
     border-radius: 7px;
   }
+}
 
-  &__icon-heart {
-    @extend .cb_center;
+// icons
+.card__icon {
+  &-footer {
+    width: 17px;
+    height: 17px;
+    margin-right: 7px;
+
+    fill: #3a3f4f;
+  }
+
+  &-heart {
+    @extend .flex_row-center-center;
     position: absolute;
+    width: 26px;
+    height: 23px;
 
     top: 20px;
     right: 20px;
     cursor: pointer;
+
+    stroke: $color-white;
   }
 }
 </style>

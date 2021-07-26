@@ -178,8 +178,9 @@ export default {
   &-footer {
     width: 13px;
     height: 13px;
-
     margin-right: 5px;
+
+    fill: $color-white;
   }
 }
 </style>
