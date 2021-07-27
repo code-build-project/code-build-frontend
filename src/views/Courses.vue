@@ -1,25 +1,25 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <div class="courses__title">Все видеокурсы</div>
+      <h1 class="courses__title">Все видеокурсы</h1>
 
-      <div class="courses__filter cb_top30">
+      <div class="courses__filters">
         <div
           v-for="(item, index) in filterList"
           :key="index"
-          class="courses__filter-item"
-          :class="{ 'courses_filter-active': filterTag === item.tag }"
+          class="courses__filter"
+          :class="{ courses__filter_active: filterTag === item.tag }"
           @click="(filterTag = item.tag), getCourses()"
         >
           {{ item.name }}
         </div>
       </div>
 
-      <div class="courses__list cb_top60">
+      <div class="courses__list">
         <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
-            class="cb_bottom30"
-            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            class="mb-30px"
+            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :id="item._id"
             :userId="user.id"
             :title="item.title"
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <block-registration />
+    <block-registration class="courses__reg" />
   </div>
 </template>
 
@@ -59,7 +59,7 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user || {};
-    },
+    }
   },
   methods: {
     getCourses() {
@@ -96,23 +96,22 @@ export default {
   &__title {
     font-family: 'ObjectSans';
     font-size: 40px;
-    line-height: 44px;
     letter-spacing: -1px;
-    color: #272a37;
+    color: $color-black;
+  }
+
+  &__filters {
+    @extend .flex_row-center-between;
+    width: 1000px;
+    height: 50px;
+    margin-top: 30px;
   }
 
   &__filter {
-    @extend .cb_row-between;
-    width: 1000px;
-    height: 50px;
-  }
-
-  &__filter-item {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     font-family: 'Circe';
     font-size: 18px;
-    line-height: 18px;
-    color: #272a37;
+    color: $color-black;
 
     padding: 1em 1.7em 1em 1.7em;
     border: 1px solid #e2e2e2;
@@ -121,25 +120,25 @@ export default {
 
   &__list {
     display: flex;
-    // justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 60px;
   }
 }
 
-// Модификаторы
+// actives
 .courses {
-  &_filter-active {
-    color: #ffffff;
-    background: #256cfe;
+  &__filter_active {
+    color: $color-white;
+    background: $color-blue;
   }
 }
 
 // hovers
 :hover.courses {
-  &__filter-item {
+  &__filter {
     cursor: pointer;
-    color: #ffffff;
-    background: #256cfe;
+    color: $color-white;
+    background: $color-blue;
   }
 }
 </style>

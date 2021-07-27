@@ -85,15 +85,15 @@ export default {
   &__header {
     @extend .flex_row-center-between;
     margin-top: 86px;
-
-    font-family: 'Circe';
-    font-size: 16px;
-    line-height: 27px;
-    color: $color-white;
   }
 
   &__route {
     @extend .flex_row;
+    
+    font-family: 'Circe';
+    font-size: 16px;
+    line-height: 27px;
+    color: $color-white;
   }
 
   &__route-item {

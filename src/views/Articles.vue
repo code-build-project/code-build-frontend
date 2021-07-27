@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <block-registration />
+    <block-registration class="articles__reg"/>
   </div>
 </template>
 
