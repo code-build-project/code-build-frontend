@@ -1,64 +1,51 @@
 <template>
-  <div class="course__wrap">
-    <block-course-cover />
+  <div class="course">
+    <block-course-cover class="course__cover" />
 
-    <div class="course">
-      <div class="course__lessons">
-        <div v-for="(item, index) in lessonList" :key="index">
-          <v-lesson-mini-card
-            class="cb_bottom30"
-            :class="[
-              { cb_left22: (index - 1) % 4 === 0 },
-              { 'cb_left22 cb_right22': (index - 1) % 2 === 0 }
-            ]"
-            :id="item._id"
-            :userId="user.id"
-            :title="item.title"
-            :lesson-number="item.lessonNumber"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
-            :courseName="item.courseName"
-            @click="isPlayer = true"
-          />
-        </div>
-      </div>
-
-      <div class="course__useful cb_top80">
-        <div>Также стоит посмотреть</div>
-
-        <div class="cb_row-between cb_top50">
-          <v-course-card />
-
-          <v-course-card />
-
-          <v-course-card />
-        </div>
+    <div class="course__lessons">
+      <div v-for="(item, index) in lessonList" :key="index">
+        <v-lesson-mini-card
+          :id="item._id"
+          class="mb-30px"
+          :class="[
+            { 'ml-22px': (index - 1) % 4 === 0 },
+            { 'ml-22px mr-22px': (index - 1) % 2 === 0 }
+          ]"
+          :user-id="user.id"
+          :title="item.title"
+          :lesson-number="item.lessonNumber"
+          :time="item.time"
+          :views="item.views"
+          :likes="item.likes"
+          :course-name="item.courseName"
+          @click="isPlayer = true"
+        />
       </div>
     </div>
 
-    <block-subscribe />
+    <block-popular-courses class="course__popular" />
+
+    <block-subscribe class="course__subscribe" />
 
     <v-media-player v-if="isPlayer" @close="isPlayer = false" />
   </div>
 </template>
 
 <script>
-import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
-import VCourseCard from '@/components/common/VCourseCard.vue';
 import VMediaPlayer from '@/components/common/VMediaPlayer.vue';
-
-import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
+import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
+import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
+import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
 
 export default {
   name: 'Course',
   components: {
-    VLessonMiniCard,
-    VCourseCard,
     VMediaPlayer,
+    BlockSubscribe,
+    VLessonMiniCard,
     BlockCourseCover,
-    BlockSubscribe
+    BlockPopularCourses
   },
   data() {
     return {
@@ -83,34 +70,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.course__wrap {
-  background: #f4f4f4;
-}
-
 .course {
-  @extend .cb_column;
-  width: 1160px;
-  min-height: 1578px;
-
-  padding: 109px 0px 110px 0px;
-  box-sizing: border-box;
+  background: #f4f4f4;
 
   &__lessons {
+    width: 1160px;
     min-height: 710px;
+    margin-top: 87px;
 
     display: flex;
     flex-wrap: wrap;
 
     padding-bottom: 70px;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid $color-silver;
   }
 
-  &__useful {
-    font-family: 'ObjectSans';
-    font-size: 40px;
-    line-height: 44px;
-    letter-spacing: -1px;
-    color: #272a37;
+  &__popular {
+    margin-top: 80px;
+  }
+
+  &__subscribe {
+    margin-top: 110px;
   }
 }
 </style>

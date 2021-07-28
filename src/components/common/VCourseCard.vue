@@ -2,63 +2,57 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info" @click="$emit('click')">
+    <main class="card__main" @click="$emit('click')">
       <div class="card__level">
-        <span class="cb_right5">Сложность</span>
+        <span class="mr-5px">Сложность</span>
 
-        <icon-ellipse
+        <div
           v-for="item in [1, 2, 3, 4, 5]"
           :key="item"
-          class="cb_left2"
-          width="8"
-          height="8"
-          :fill="level >= item ? '#EE3465' : '#EDEDED'"
+          class="card__level-circle"
+          :style="{ background: level >= item ? '#EE3465' : '#EDEDED' }"
         />
       </div>
 
-      <div class="card__title cb_top15">
+      <h1 class="card__title">
         {{ title }}
+      </h1>
+
+      <div class="card__attributes">
+        <div class="card__attributes-item" style="width: 112px">
+          <v-icon class="card__icon-attributes" path="img/video.svg" />
+          {{ lessons }}
+        </div>
+
+        <div class="card__attributes-item" style="width: 103px">
+          <v-icon class="card__icon-attributes" path="img/timer.svg" />
+          {{ time }}
+        </div>
+
+        <div class="card__attributes-item" style="width: 80px">
+          <v-icon class="card__icon-attributes" path="img/openEye.svg" />
+          {{ views }}
+        </div>
       </div>
+    </main>
 
-      <div class="card__footer cb_top35">
-        <div class="card__footer-item cb_width112">
-          <icon-video width="18" height="18" fill="#3A3F4F" />
-          <span class="cb_left8">{{ lessons }}</span>
-        </div>
-
-        <div class="card__footer-item cb_width103">
-          <icon-timer width="18" height="18" fill="#3A3F4F" />
-          <span class="cb_left8">{{ time }}</span>
-        </div>
-
-        <div class="card__footer-item cb_width80">
-          <icon-open-eye width="21" height="18" fill="#3A3F4F" />
-          <span class="cb_left8">{{ views }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="userId" class="card__icon-heart" @click="onLike()">
-      <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" width="26" height="23" />
-    </div>
+    <v-icon
+      v-if="userId"
+      class="card__icon-heart"
+      path="img/heart.svg"
+      :fill="isLike ? '#EE3465' : 'transparent'"
+      @click="onLike()"
+    />
   </div>
 </template>
 
 <script>
-import IconEllipse from '@/icons/IconEllipse.vue';
-import IconVideo from '@/icons/IconVideo.vue';
-import IconTimer from '@/icons/IconTimer.vue';
-import IconOpenEye from '@/icons/IconOpenEye.vue';
-import IconHeart from '@/icons/IconHeart.vue';
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VCourseCard',
   components: {
-    IconEllipse,
-    IconVideo,
-    IconTimer,
-    IconOpenEye,
-    IconHeart
+    VIcon
   },
   props: {
     // Id курса
@@ -149,29 +143,36 @@ export default {
     border-radius: 8px 8px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column;
+  &__main {
+    @extend .flex_column;
     height: 226px;
 
     padding: 21px 27px 27px 27px;
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 0px 0px 8px 8px;
   }
 
   &__level {
-    @extend .cb_row;
-    align-items: center;
+    @extend .flex_row-center;
 
     font-family: 'EuclidCircular';
     font-size: 15px;
     color: #3a3f4f;
   }
 
+  &__level-circle {
+    width: 8px;
+    height: 8px;
+    margin-left: 2px;
+    border-radius: 4px;
+  }
+
   &__title {
     width: 300px;
     height: 72px;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 26px;
@@ -180,30 +181,45 @@ export default {
     letter-spacing: -0.01em;
   }
 
-  &__footer {
-    @extend .cb_row-between;
+  &__attributes {
+    @extend .flex_row-center-between;
+    margin-top: 35px;
 
     font-family: 'Circe';
     font-size: 14px;
-    line-height: 12px;
     color: #3a3f4f;
   }
 
-  &__footer-item {
-    @extend .cb_center;
+  &__attributes-item {
+    @extend .flex_row-center-center;
     height: 40px;
 
     border: 1px solid #ededed;
     border-radius: 7px;
   }
+}
 
-  &__icon-heart {
-    @extend .cb_center;
+// icons
+.card__icon {
+  &-attributes {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+
+    fill: #3a3f4f;
+  }
+
+  &-heart {
+    @extend .flex_row-center-center;
     position: absolute;
+    width: 26px;
+    height: 23px;
 
     top: 20px;
     right: 20px;
     cursor: pointer;
+
+    stroke: $color-white;
   }
 }
 </style>

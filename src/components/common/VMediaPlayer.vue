@@ -51,11 +51,6 @@ export default {
     IconAngleBracket,
     VButton
   },
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {}
 }
 </script>
 
@@ -105,16 +100,14 @@ export default {
   }
 
   &__button {
-    ::v-deep .button {
-      width: 206px;
-      height: 53px;
+    width: 206px;
+    height: 53px;
 
-      font-family: 'Circe';
-      font-size: 15px;
-      color: #ffffff;
-      border: none;
-      background: #ee3465;
-    }
+    font-family: 'Circe';
+    font-size: 15px;
+    color: #ffffff;
+    border: none;
+    background: #ee3465;
   }
 
   &__icon {

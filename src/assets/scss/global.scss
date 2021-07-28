@@ -141,7 +141,7 @@ $color-red:    #ff3300;
 
 // margin
 /* EXAMPLE mt-10px */
-$spaceAmounts: (0px, 5px, 10px, 15px, 20px, 25px, 29px, 30px, 35px, 40px, 45px, 50px, 55px, 60px, 65px, 70px, 75px, 80px, 85px, 90px, 95px, 100px, auto);
+$spaceAmounts: (0px, 5px, 10px, 15px, 20px, 22px, 25px, 29px, 30px, 35px, 40px, 45px, 50px, 55px, 60px, 65px, 70px, 75px, 80px, 85px, 90px, 95px, 100px, auto);
 $sides: (top, bottom, left, right);
 
 @each $space in $spaceAmounts {

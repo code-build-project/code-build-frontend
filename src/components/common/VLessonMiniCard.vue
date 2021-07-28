@@ -2,43 +2,43 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div class="card__info" @click="$emit('click')">
+    <main class="card__main" @click="$emit('click')">
       <div class="card__lesson-number">Урок №{{ lessonNumber }}</div>
 
-      <div class="card__title">
+      <h1 class="card__title">
         {{ title }}
-      </div>
+      </h1>
 
-      <div class="card__footer">
-        <div class="card__footer-item cb_width126">
-          <icon-timer :fill="'#3A3F4F'" width="15" height="15" />
-          <span class="cb_left5">{{ time }}</span>
+      <div class="card__attributes">
+        <div class="card__attributes-item" style="width: 126px">
+          <v-icon class="card__icon-attributes" path="img/timer.svg" />
+          {{ time }}
         </div>
 
-        <div class="card__footer-item cb_width96">
-          <icon-open-eye :fill="'#3A3F4F'" width="17" height="14" />
-          <span class="cb_left5">{{ views }}</span>
+        <div class="card__attributes-item" style="width: 96px">
+          <v-icon class="card__icon-attributes" path="img/openEye.svg" />
+          {{ views }}
         </div>
       </div>
-    </div>
+    </main>
 
-    <div v-if="userId" class="card__icon-heart" @click="onLike()">
-      <icon-heart :fill="isLike ? '#EE3465' : 'transparent'" />
-    </div>
+    <v-icon
+      v-if="userId"
+      class="card__icon-heart"
+      path="img/heart.svg"
+      :fill="isLike ? '#EE3465' : 'transparent'"
+      @click="onLike()"
+    />
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue';
-import IconOpenEye from '@/icons/IconOpenEye.vue';
-import IconHeart from '@/icons/IconHeart.vue';
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VCourseCard',
   components: {
-    IconTimer,
-    IconOpenEye,
-    IconHeart
+    VIcon
   },
   props: {
     // Id урока
@@ -132,8 +132,8 @@ export default {
     border-radius: 8px 8px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column-between;
+  &__main {
+    @extend .flex_column-between-center;
     align-items: stretch;
 
     width: 268px;
@@ -142,7 +142,7 @@ export default {
     padding: 17px;
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 0px 0px 8px 8px;
   }
 
@@ -151,8 +151,7 @@ export default {
 
     font-family: 'Circe';
     font-size: 15px;
-    line-height: 18px;
-    color: #256cfe;
+    color: $color-blue;
   }
 
   &__title {
@@ -164,30 +163,44 @@ export default {
     color: #3a3f4f;
   }
 
-  &__footer {
-    @extend .cb_row-between;
+  &__attributes {
+    @extend .flex_row-center-between;
 
     font-family: 'Circe';
     font-size: 14px;
-    line-height: 12px;
     color: #3a3f4f;
   }
 
-  &__footer-item {
-    @extend .cb_center;
+  &__attributes-item {
+    @extend .flex_row-center-center;
     height: 40px;
 
     border: 1px solid #ededed;
     border-radius: 7px;
   }
+}
 
-  &__icon-heart {
-    @extend .cb_center;
+// icons
+.card__icon {
+  &-attributes {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+
+    fill: #3a3f4f;
+  }
+
+  &-heart {
+    @extend .flex_row-center-center;
     position: absolute;
+    width: 18px;
+    height: 16px;
 
     top: 19px;
     right: 19px;
     cursor: pointer;
+
+    stroke: $color-white;
   }
 }
 </style>

@@ -32,23 +32,23 @@
         В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
       </h2>
 
-      <div class="cb_row cb_top30">
-        <div class="cover__attribute">
-          <icon-video width="20" height="20" />
-          <span class="cb_left10">6 уроков</span>
+      <div class="cover__attributes">
+        <div class="cover__attributes-item">
+          <v-icon class="cover__icon-attribute" path="img/video.svg" />
+          6 уроков
         </div>
 
-        <div class="cover__attribute cb_left10">
-          <icon-timer width="22" height="22" />
-          <span class="cb_left10">1 ч. 25 м.</span>
+        <div class="cover__attributes-item ml-10px">
+          <v-icon class="cover__icon-attribute" path="img/timer.svg" />
+          1 ч. 25 м.
         </div>
 
-        <div class="cover__attribute cb_left10">
-          <icon-open-eye width="23" height="20" />
-          <span class="cb_left10">300</span>
+        <div class="cover__attributes-item ml-10px">
+          <v-icon class="cover__icon-attribute" path="img/openEye.svg" />
+          300
         </div>
 
-        <div class="cover__attribute cb_left10">#Сайты</div>
+        <div class="cover__attributes-item ml-10px">#Сайты</div>
       </div>
     </div>
   </div>
@@ -57,17 +57,10 @@
 <script>
 import VIcon from '@/components/common/VIcon.vue';
 
-import IconVideo from '@/icons/IconVideo.vue';
-import IconTimer from '@/icons/IconTimer.vue';
-import IconOpenEye from '@/icons/IconOpenEye.vue';
-
 export default {
   name: 'BlockCourseCover',
   components: {
-    VIcon,
-    IconVideo,
-    IconTimer,
-    IconOpenEye
+    VIcon
   },
   data() {
     return {
@@ -81,7 +74,7 @@ export default {
 .cover__wrap {
   @extend .flex_row-center-center;
   width: 100%;
-  background: #256cfe;
+  background: $color-blue;
 }
 
 .cover {
@@ -100,7 +93,7 @@ export default {
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__route-item {
@@ -115,7 +108,7 @@ export default {
     font-size: 62px;
     line-height: 69px;
     letter-spacing: -1px;
-    color: #ffffff;
+    color: $color-white;
   }
 
   &__subtitle {
@@ -124,15 +117,19 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
-    color: #ffffff;
+    color: $color-white;
   }
 
-  &__attribute {
-    @extend .cb_row-between;
+  &__attributes {
+    @extend .flex_row;
+    margin-top: 30px;
+  }
+
+  &__attributes-item {
+    @extend .flex_row-center-between;
     font-family: 'Circe';
     font-size: 18px;
-    line-height: 16px;
-    color: #ffffff;
+    color: $color-white;
 
     padding: 17px 25px 17px 25px;
 
