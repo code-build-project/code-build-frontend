@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="card"
-    :style="{ height: height + 'px' }"
-  >
+  <div class="card" :style="{ height: height + 'px' }">
     <div class="card__score">
       <icon-star />
       <span>{{ score }}</span>
@@ -28,7 +25,7 @@
 </template>
 
 <script>
-import IconStar from '@/icons/IconStar.vue'
+import IconStar from '@/icons/IconStar.vue';
 
 export default {
   name: 'VReviewCard',
@@ -67,7 +64,7 @@ export default {
       default: '21 января 2021'
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

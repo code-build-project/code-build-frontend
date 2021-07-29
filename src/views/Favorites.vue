@@ -2,15 +2,15 @@
   <div class="favorites__wrap">
     <div class="favorites">
       <!-- Фильтры -->
-      <div class="cb_row">
-        <div class="favorites__title">Избранное</div>
+      <div class="favorites__header">
+        <h1 class="favorites__title">Избранное</h1>
 
-        <div class="favorites__filter cb_left50">
+        <div class="favorites__filters">
           <div
             v-for="(item, index) in filterList"
             :key="index"
             class="favorites__filter-item"
-            :class="{ 'favorites_filter-active': filterId === item.filterId }"
+            :class="{ favorites__filter_active: filterId === item.filterId }"
             @click="changeFilter(item.filterId)"
           >
             {{ item.name }}
@@ -19,12 +19,12 @@
       </div>
       <!-- Фильтры -->
 
-      <div class="favorites__list cb_top60">
+      <div class="favorites__list">
         <div v-for="(item, index) in itemList" :key="index">
           <v-course-card
             v-if="filterId === 1"
-            class="cb_bottom30"
-            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            class="mb-30px"
+            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :id="item._id"
             :userId="user.id"
             :title="item.title"
@@ -38,8 +38,8 @@
 
           <v-lesson-card
             v-if="filterId === 2"
-            class="cb_bottom30"
-            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            class="mb-30px"
+            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :id="item._id"
             :userId="user.id"
             :title="item.title"
@@ -52,8 +52,8 @@
 
           <v-article-card
             v-if="filterId === 3"
-            class="cb_bottom30"
-            :class="{ 'cb_left29 cb_right29': (index - 1) % 3 === 0 }"
+            class="mb-30px"
+            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :id="item._id"
             :userId="user.id"
             :title="item.title"
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <block-subscribe />
+    <block-subscribe class="favorites__subscribe" />
   </div>
 </template>
 
@@ -136,15 +136,15 @@ export default {
       switch (this.filterId) {
         case 1:
           this.getCourses();
-          break
+          break;
         case 2:
           this.getLessons();
-          break
+          break;
         case 3:
           this.getArticles();
-          break
+          break;
         default:
-          break
+          break;
       }
     },
 
@@ -184,26 +184,29 @@ export default {
 
   padding: 100px 0px 110px 0px;
 
+  &__header {
+    @extend .flex_row;
+  }
+
   &__title {
     font-family: 'ObjectSans';
     font-size: 40px;
-    line-height: 44px;
     letter-spacing: -1px;
-    color: #272a37;
+    color: $color-black;
   }
 
-  &__filter {
-    @extend .cb_row-between;
+  &__filters {
+    @extend .flex_row-center-between;
     width: 380px;
     height: 50px;
+    margin-left: 50px;
   }
 
   &__filter-item {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     font-family: 'Circe';
     font-size: 18px;
-    line-height: 18px;
-    color: #272a37;
+    color: $color-black;
 
     padding: 1em 1.7em 1em 1.7em;
     border: 1px solid #e2e2e2;
@@ -213,14 +216,15 @@ export default {
   &__list {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 60px;
   }
 }
 
-// Модификаторы
+// actives
 .favorites {
-  &_filter-active {
-    color: #ffffff;
-    background: #256cfe;
+  &__filter_active {
+    color: $color-white;
+    background: $color-blue;
   }
 }
 
@@ -228,8 +232,8 @@ export default {
 :hover.favorites {
   &__filter-item {
     cursor: pointer;
-    color: #ffffff;
-    background: #256cfe;
+    color: $color-white;
+    background: $color-blue;
   }
 }
 </style>

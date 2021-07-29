@@ -18,7 +18,7 @@
     </div>
 
     <div class="reviews__footer">
-      <v-button class="reviews__button cb_top160">
+      <v-button class="reviews__button">
         Показать еще
       </v-button>
     </div>
@@ -153,6 +153,7 @@ export default {
   &__button {
     width: 230px;
     height: 60px;
+    margin-top: 160px;
 
     font-family: 'EuclidCircular';
     font-size: 18px;

@@ -1,14 +1,12 @@
 <template>
   <div class="auth">
-    <icon-logo class="auth__logo cb_top75" width="107" height="75" />
+    <v-icon class="auth__icon-logo" path="img/logo.svg" />
 
-    <div class="auth__title cb_top25">
-      Войдите, чтобы продолжить
-    </div>
+    <h1 class="auth__title">Войдите, чтобы продолжить</h1>
 
     <v-input
       v-model="email.name"
-      class="cb_top95"
+      class="mt-95px"
       :is-error="email.isError"
       :error-message="email.errorName"
       @blur="validateEmail"
@@ -18,7 +16,7 @@
 
     <v-input
       v-model="password.name"
-      class="cb_top40"
+      class="mt-40px"
       type="password"
       :is-error="password.isError"
       :error-message="password.errorName"
@@ -27,37 +25,30 @@
       Пароль
     </v-input>
 
-    <div class="auth__forget cb_top8">
-      Забыли пароль?
-    </div>
-
     <v-button
-      class="cb_top70"
-      :class="isDisable ? 'auth__button' : 'auth__button-disable'"
+      class="auth__button"
+      :class="isDisable ? 'auth__button-active' : 'auth__button-disable'"
       @click="onLogin"
     >
       Войти
     </v-button>
 
-    <div class="auth__footer cb_top30">
+    <div class="auth__footer">
       <span>Новый пользователь?</span>
-      <router-link class="auth__reg cb_left5" to="/reg" target="_blank">
-        Зарегистрируйтесь
-      </router-link>
+      <router-link class="auth__reg" to="/reg" target="_blank"> Зарегистрируйтесь </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import IconLogo from '@/icons/IconLogo.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'Authorization',
   components: {
-    IconLogo,
+    VIcon,
     VInput,
     VButton
   },
@@ -119,102 +110,85 @@ export default {
 
 <style lang="scss" scoped>
 .auth {
-  @extend .cb_column;
+  @extend .flex_column-start-center;
   font-family: 'Circe';
-  align-items: center;
 
   &__title {
+    margin-top: 25px;
+
     font-size: 22px;
-    line-height: 27px;
     text-align: center;
-    color: #272a37;
-  }
-
-  &__forget {
-    @extend .cb_row-end;
-    width: 374px;
-
-    font-size: 15px;
-    color: #b1b8c6;
+    color: $color-black;
   }
 
   &__footer {
+    margin-top: 30px;
+
     font-size: 16px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__reg {
-    @extend .cb_underline-blue;
+    @extend .underline-blue;
     position: relative;
+    margin-left: 5px;
 
     font-weight: bold;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__button {
-    ::v-deep .button {
-      width: 374px;
-      height: 70px;
+    width: 374px;
+    height: 70px;
+    margin-top: 100px;
 
-      font-family: 'EuclidCircular';
-      font-size: 20px;
-      color: #ffffff;
-      background: #256cfe;
-      border: none;
+    font-family: 'EuclidCircular';
+    font-size: 20px;
+  }
 
-      &:active {
-        background: #2468f2;
-      }
+  &__button-active {
+    color: $color-white;
+    background: $color-blue;
+    border: none;
+
+    &:active {
+      background: $color-navy;
     }
   }
 
   &__button-disable {
-    ::v-deep .button {
-      width: 374px;
-      height: 70px;
+    color: $color-black;
+    background: transparent;
+    border-color: $color-gray;
+    border-width: 1px;
 
-      font-family: 'EuclidCircular';
-      font-size: 20px;
-      color: #272a37;
-      background: transparent;
-      border-color: #b1b8c6;
-      border-width: 1px;
+    pointer-events: none;
+  }
+}
 
-      pointer-events: none;
-    }
+// icons
+.auth__icon {
+  &-logo {
+    @extend .flex_row-center-center;
+    width: 107px;
+    height: 75px;
+    margin-top: 75px;
+
+    border: 3px solid $color-blue;
+    border-radius: 6px;
+    fill: $color-blue;
   }
 }
 
 // hovers
 :hover.auth {
-  &__logo {
-    cursor: pointer;
-
-    ::v-deep {
-      path {
-        fill: #ffffff;
-      }
-
-      rect {
-        fill: #256cfe;
-      }
-    }
-  }
-
-  &__forget {
-    cursor: pointer;
-    color: #256cfe;
-  }
-
   &__reg {
     cursor: pointer;
-    color: #256cfe;
+    color: $color-blue;
   }
 
   &__button {
-    ::v-deep .button {
-      box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
-    }
+    box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
   }
 }
 </style>

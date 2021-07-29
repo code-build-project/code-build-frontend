@@ -1,18 +1,14 @@
 <template>
   <div class="reg">
-    <icon-logo class="reg__logo cb_top75" width="107" height="75" />
+    <v-icon class="reg__icon-logo" path="img/logo.svg" />
 
-    <div class="reg__title cb_top25">
-      Зарегистрируйтесь в Code Build
-    </div>
+    <h1 class="reg__title">Зарегистрируйтесь в Code Build</h1>
 
-    <v-input v-model="name" class="cb_top70">
-      Имя
-    </v-input>
+    <v-input v-model="name" class="mt-70px"> Имя </v-input>
 
-    <v-input 
-      v-model="email.name" 
-      class="cb_top40"    
+    <v-input
+      v-model="email.name"
+      class="mt-40px"
       :is-error="email.isError"
       :error-message="email.errorName"
       @blur="validateEmail"
@@ -20,41 +16,36 @@
       E-mail
     </v-input>
 
-    <div class="reg__consent cb_top40">
+    <div class="reg__consent">
       <v-check-box border-color="blue" />
 
-      <div class="cb_left10">
+      <div class="ml-10px">
         Я согласен с условиями обработки
         <v-underline>персональных данных</v-underline>
       </div>
     </div>
 
-    <v-button class="reg__button cb_top50">
-      Зарегистрироваться
-    </v-button>
+    <v-button class="reg__button"> Зарегистрироваться </v-button>
 
-    <div class="reg__footer cb_top25">
-      <span>У вас уже есть аккаунт?</span>
-      <router-link class="reg__entry cb_left5" to="/auth" target="_blank">
-        Войти
-      </router-link>
+    <div class="reg__footer">
+      У вас уже есть аккаунт?
+      <router-link class="reg__entry" to="/auth" target="_blank"> Войти </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import IconLogo from '@/icons/IconLogo.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
-import VUnderline from '@/components/common/VUnderline.vue'
+import VUnderline from '@/components/common/VUnderline.vue';
 
 export default {
   name: 'Registration',
 
   components: {
-    IconLogo,
+    VIcon,
     VInput,
     VButton,
     VCheckBox,
@@ -112,81 +103,81 @@ export default {
 
 <style lang="scss" scoped>
 .reg {
-  @extend .cb_column;
+  @extend .flex_column-start-center;
   font-family: 'Circe';
-  align-items: center;
 
   &__title {
+    margin-top: 25px;
+
     font-size: 22px;
-    line-height: 27px;
     text-align: center;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__consent {
-    @extend .cb_row;
-    align-items: center;
+    @extend .flex_row-center;
     width: 374px;
+    margin-top: 40px;
 
     font-size: 13px;
     line-height: 15px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__footer {
+    margin-top: 25px;
+
     font-size: 16px;
-    color: #b1b8c6;
+    color: $color-gray;
+  }
+
+  &__button {
+    width: 374px;
+    height: 70px;
+    margin-top: 50px;
+
+    font-family: 'EuclidCircular';
+    font-size: 20px;
+    color: $color-black;
+    border: 1px solid $color-gray;
+    background: transparent;
   }
 
   &__entry {
     @extend .cb_underline-blue;
     position: relative;
+    margin-left: 5px;
 
     font-size: 16px;
     font-weight: bold;
-    color: #272a37;
+    color: $color-black;
   }
+}
 
-  &__button {
-    ::v-deep .button {
-      width: 374px;
-      height: 70px;
+// icons
+.reg__icon {
+  &-logo {
+    @extend .flex_row-center-center;
+    width: 107px;
+    height: 75px;
+    margin-top: 75px;
 
-      font-family: 'EuclidCircular';
-      font-size: 20px;
-      color: #272a37;
-      border: 1px solid #b1b8c6;
-      background: transparent;
-    }
+    border: 3px solid $color-blue;
+    border-radius: 6px;
+    fill: $color-blue;
   }
 }
 
 // hovers
 :hover.reg {
-  &__logo {
-    cursor: pointer;
-
-    ::v-deep {
-      path {
-        fill: #ffffff;
-      }
-
-      rect {
-        fill: #256cfe;
-      }
-    }
-  }
-
   &__entry {
     cursor: pointer;
-    color: #256cfe;
+    color: $color-blue;
   }
 
   &__button {
-    ::v-deep .button {
-      color: #ffffff;
-      background: #256cfe;
-    }
+    color: $color-white;
+    background: $color-blue;
   }
 }
 </style>

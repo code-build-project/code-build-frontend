@@ -1,16 +1,14 @@
 <template>
   <div class="success">
-    <div class="success__title cb_top60">
-      Спасибо
-    </div>
+    <h1 class="success__title">Спасибо</h1>
 
-    <div class="success__subtitle cb_top60">
+    <h2 class="success__subtitle">
       Завершите регистрацию по ссылке<br />
       в письме, которое мы отправили на<br />
       {{ $route.params.email }}
-    </div>
+    </h2>
 
-    <div class="success__footer cb_top370">
+    <div class="success__footer">
       <div>
         Отправить<br />
         повторно через
@@ -20,9 +18,7 @@
         00:{{ interval > 9 ? interval : '0' + interval }}
       </v-button>
 
-      <v-button v-else class="success__button">
-        Отправить
-      </v-button>
+      <v-button v-else class="success__button"> Отправить </v-button>
     </div>
   </div>
 </template>
@@ -33,16 +29,17 @@ import VButton from '@/components/common/VButton.vue';
 export default {
   name: 'SuccessRegistration',
   components: { VButton },
-  props: {},
+
   data() {
     return {
       interval: 60
     };
   },
-  computed: {},
+
   mounted() {
     this.startTimer();
   },
+
   methods: {
     startTimer() {
       let timer = setInterval(() => {
@@ -77,16 +74,19 @@ export default {
 
 <style lang="scss" scoped>
 .success {
-  @extend .cb_column;
+  @extend .flex_column;
 
   &__title {
+    margin-top: 60px;
+
     font-family: 'Circe';
     font-size: 26px;
-    line-height: 28px;
     color: #272a37;
   }
 
   &__subtitle {
+    margin-top: 60px;
+
     font-family: 'Circe';
     font-size: 20px;
     line-height: 28px;
@@ -94,7 +94,9 @@ export default {
   }
 
   &__footer {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
+    margin-top: 370px;
+
     font-family: 'Circe';
     font-size: 20px;
     line-height: 24px;
@@ -102,17 +104,15 @@ export default {
   }
 
   &__button {
-    ::v-deep .button {
-      width: 190px;
-      height: 70px;
+    width: 190px;
+    height: 70px;
 
-      font-family: 'Circe';
-      font-size: 20px;
-      color: #ffffff;
-      border-color: #b1b8c6;
-      border-width: 1px;
-      background: #256cfe;
-    }
+    font-family: 'Circe';
+    font-size: 20px;
+    color: #ffffff;
+    border-color: #b1b8c6;
+    border-width: 1px;
+    background: #256cfe;
   }
 }
 </style>

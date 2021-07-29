@@ -1,25 +1,21 @@
 <template>
   <div class="underline">
-    <slot>Подчеркнутый текст</slot> 
+    <slot>Подчеркнутый текст</slot>
     <div class="underline__line" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'VUnderline',
-
-  props: {
-
-  }
-}
+  name: 'VUnderline'
+};
 </script>
 
 <style lang="scss" scoped>
 .underline {
   position: relative;
-  color: #256CFE;
-  width: fit-content; 
+  color: #256cfe;
+  width: fit-content;
 
   &__line {
     position: absolute;
@@ -27,17 +23,17 @@ export default {
     left: 0;
     width: 100%;
     height: 1px;
-    background: #256CFE;
+    background: #256cfe;
   }
 }
 
 // hovers
 :hover.underline {
   cursor: pointer;
-  color: #272A37;
+  color: #272a37;
 
   .underline__line {
-    background: #272A37;
+    background: #272a37;
   }
 }
 </style>

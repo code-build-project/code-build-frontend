@@ -57,11 +57,6 @@ export default {
   box-sizing: border-box;
   display: flex;
   
-  &__svg {
-    // width: inherit;
-    // height: inherit;
-  }
-  
   &__img {
     width: inherit; 
     height: inherit;

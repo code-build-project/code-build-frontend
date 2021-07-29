@@ -1,57 +1,47 @@
 <template>
   <div class="cabinet">
     <!-- Блок "Мой профиль" -->
-    <div class="cabinet__profile">
-      <div class="cabinet__profile-left">
+    <main class="cabinet__main">
+      <div class="cabinet__main-left">
         Мой<br />
         профиль
       </div>
 
-      <div class="cabinet__profile-right">
-        <div class="cabinet__label">
-          Имя
-        </div>
-        <div class="cabinet__input cb_top10">
+      <div class="cabinet__main-right">
+        <div class="cabinet__label">Имя</div>
+        <div class="cabinet__input">
           {{ user.name }}
         </div>
 
-        <div class="cabinet__label cb_top30">
-          E-mail
-        </div>
-        <div class="cabinet__input cb_top10">
+        <div class="cabinet__label mt-30px">E-mail</div>
+        <div class="cabinet__input">
           {{ user.email }}
         </div>
       </div>
-    </div>
+    </main>
     <!-- Блок "Мой профиль" -->
 
     <!-- Блок "Премиум" -->
-    <div class="cabinet__premium cb_top40" :class="{ cabinet__premium_active: user.isPremium }">
-      <div class="cabinet__premium-left">
+    <div class="cabinet__footer" :class="{ cabinet__footer_active: user.isPremium }">
+      <div class="cabinet__footer-left">
         Премиум
-        <div class="cabinet__premium-icon cb_left30">
-          <icon-premium width="20" height="20" />
-        </div>
+        <v-icon class="cabinet__icon-premium" path="img/premium.svg" width="20px" height="20px" />
       </div>
 
-      <div class="cabinet__premium-right cb_left240">
+      <div class="cabinet__footer-right">
         <div v-if="user.isPremium">
-          <div class="cb_color-pink">
-            Активен
-          </div>
+          <div style="color: #ee3465">Активен</div>
           <div>Подписка закончится 27 июля</div>
         </div>
 
-        <div v-else>
-          У вас нет активных подписок
-        </div>
+        <div v-else>У вас нет активных подписок</div>
 
         <v-button
-          class="cb_left90"
+          class="cabinet__button"
           :class="user.isPremium ? 'cabinet__button-cancel' : 'cabinet__button-buy'"
           @click="$router.push('/subscribe')"
         >
-          <icon-premium v-if="!user.isPremium" class="cb_right9" width="16" height="16" />
+          <v-icon v-if="!user.isPremium" class="cabinet__icon-premium-buy" path="img/premium.svg" />
           {{ user.isPremium ? 'Отменить подписку' : 'Купить премиум' }}
         </v-button>
       </div>
@@ -61,16 +51,12 @@
 </template>
 
 <script>
-import IconPremium from '@/icons/IconPremium.vue';
-
+import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'Cabinet',
-  components: { IconPremium, VButton },
-  data() {
-    return {};
-  },
+  components: { VIcon, VButton },
   computed: {
     user() {
       return this.$store.getters.user || {};
@@ -81,13 +67,13 @@ export default {
 
 <style lang="scss" scoped>
 .cabinet {
-  @extend .cb_column;
+  @extend .flex_column;
   padding: 40px;
   box-sizing: border-box;
   background: #f4f4f4;
 
-  &__profile {
-    @extend .cb_row-between;
+  &__main {
+    @extend .flex_row-center-between;
 
     width: 1160px;
     height: 403px;
@@ -95,20 +81,21 @@ export default {
     padding: 58px 80px 72px 72px;
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 29px;
   }
 
-  &__profile-left {
+  &__main-left {
     height: 100%;
+
     font-family: 'ObjectSans';
     font-size: 62px;
     line-height: 60px;
     letter-spacing: -1px;
-    color: #272a37;
+    color: $color-black;
   }
 
-  &__profile-right {
+  &__main-right {
     height: 100%;
   }
 
@@ -116,12 +103,13 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     letter-spacing: -0.01em;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__input {
     width: 550px;
     height: 80px;
+    margin-top: 10px;
 
     padding: 23px;
     box-sizing: border-box;
@@ -129,95 +117,100 @@ export default {
     font-family: 'Circe';
     font-size: 24px;
     letter-spacing: -0.01em;
-    color: #272a37;
+    color: $color-black;
 
-    border: 1px solid #e4e4e4;
+    border: 1px solid $color-silver;
     box-sizing: border-box;
     border-radius: 18px;
   }
 
-  &__premium {
-    @extend .cb_center;
+  &__footer {
+    @extend .flex_row-center-center;
     width: 1160px;
     height: 158px;
+    margin-top: 40px;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 29px;
   }
 
-  &__premium-left {
-    @extend .cb_row;
+  &__footer-left {
+    @extend .flex_row;
     font-family: 'ObjectSans';
     font-size: 30px;
-    color: #272a37;
+    color: $color-black;
   }
 
-  &__premium-right {
-    @extend .cb_row;
-    align-items: center;
+  &__footer-right {
+    @extend .flex_row-center-center;
+    margin-left: 240px;
+
     font-family: 'Circe';
     font-size: 20px;
-    color: #272a37;
+    color: $color-black;
   }
 
-  &__premium-icon {
-    @extend .cb_center;
-    width: 44px;
-    height: 44px;
+  &__button {
+    width: 204px;
+    height: 55px;
+    margin-left: 90px;
 
-    background: #ee3465;
-    box-shadow: 0px 11px 18px -9px #ee3465;
-    border-radius: 8px;
+    font-family: 'Circe';
+    font-size: 16px;
   }
 
   &__button-cancel {
-    ::v-deep .button {
-      width: 204px;
-      height: 55px;
-
-      font-family: 'Circe';
-      font-size: 16px;
-      color: #272a37;
-      border: 1px solid #e4e4e4;
-      border-radius: 8px;
-      background: #ffffff;
-    }
+    color: $color-black;
+    border: 1px solid $color-silver;
+    border-radius: 8px;
+    background: $color-white;
   }
 
   &__button-buy {
-    ::v-deep .button {
-      width: 204px;
-      height: 55px;
-
-      font-family: 'Circe';
-      font-size: 16px;
-      color: #ffffff;
-      border: none;
-      background: #ee3465;
-    }
+    color: $color-white;
+    border: none;
+    background: $color-pink;
   }
 }
 
-// Модификаторы
+// icons
+.cabinet__icon {
+  &-premium {
+    @extend .flex_row-center-center;
+    width: 44px;
+    height: 44px;
+    margin-left: 30px;
+
+    background: $color-pink;
+    box-shadow: 0px 11px 18px -9px $color-pink;
+    border-radius: 8px;
+    fill: $color-white;
+  }
+
+  &-premium-buy {
+    width: 17px;
+    height: 17px;
+    margin-right: 9px;
+    fill: $color-white;
+  }
+}
+
+// actives
 .cabinet {
-  &__premium_active {
-    border: 2px solid #ee3465;
+  &__footer_active {
+    border: 2px solid $color-pink;
   }
 }
 
 // hovers
 :hover.cabinet {
   &__button-cancel {
-    ::v-deep .button {
-      color: #ffffff;
-      background: #ee3465;
-    }
+    color: $color-white;
+    background: $color-pink;
   }
 
   &__button-buy {
-    ::v-deep .button {
-      box-shadow: 0px 12px 18px -13px #ee3465;
-    }
+    box-shadow: 0px 12px 18px -13px $color-pink;
   }
 }
 </style>

@@ -1,0 +1,6 @@
+<svg display="none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="close" viewBox="0 0 100 100">
+    <path d="M33.333 33.3335L66.6663 66.6668" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M66.6663 33.3335L33.333 66.6668" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  </symbol>
+</svg>

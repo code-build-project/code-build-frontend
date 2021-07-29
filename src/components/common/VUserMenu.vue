@@ -23,7 +23,7 @@
       {{ name }}
       <v-icon
         class="menu__icon-angle-bracket"
-        path="img/angleBracket.svg"
+        path="img/angleBracketMenu.svg"
         width="9px"
         height="7px"
         :style="isDropdown ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'"
@@ -194,6 +194,7 @@ export default {
   &-heart {
     width: 18px;
     height: 16px;
+    fill: transparent;
     stroke: $color-gray;
   }
 

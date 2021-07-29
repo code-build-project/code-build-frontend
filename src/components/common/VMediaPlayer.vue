@@ -3,60 +3,43 @@
     <div class="media__player">
       <div class="media__screen" />
 
-      <div class="cb_row-between cb_top29">
-        <div class="cb_column">
-          <div class="media__lesson-number">
-            Урок №1
-          </div>
-          <div class="media__title cb_top20">
-            Установка всего необходимого
-          </div>
+      <div class="media__footer">
+        <div class="media__footer-titles">
+          <div class="media__lesson-number">Урок №1</div>
+          <h1 class="media__title">Установка всего необходимого</h1>
         </div>
 
-        <div class="cb_row">
-          <div class="media__icon">
-            <icon-heart :stroke="'#DEDEDE'" />
-          </div>
-
-          <v-button class="media__button cb_left8">
-            Смотреть на YouTube
-          </v-button>
+        <div class="media__footer-buttons">
+          <v-icon class="media__icon-heart" path="img/heart.svg" width="16px" height="14px" />
+          <v-button class="media__button"> Смотреть на YouTube </v-button>
         </div>
       </div>
 
       <!-- Внешние кнопки -->
-      <icon-close
-        class="media__icon-close"
-        @click.native="$emit('close')"
-      />
-      <icon-angle-bracket class="media__icon-bracket-left" />
-      <icon-angle-bracket class="media__icon-bracket-right" />
+      <v-icon class="media__icon-close" path="img/close.svg" @click.native="$emit('close')" />
+      <v-icon class="media__icon-bracket-left" path="img/angleBracketMedia.svg" />
+      <v-icon class="media__icon-bracket-right" path="img/angleBracketMedia.svg" />
       <!-- Внешние кнопки -->
     </div>
   </div>
 </template>
 
 <script>
-import IconHeart from '@/icons/IconHeart.vue'
-import IconClose from '@/icons/IconClose.vue'
-import IconAngleBracket from '@/icons/IconAngleBracket.vue'
-
-import VButton from '@/components/common/VButton.vue'
+import VIcon from '@/components/common/VIcon.vue';
+import VButton from '@/components/common/VButton.vue';
 
 export default {
   name: 'VMediaPlayer',
   components: {
-    IconHeart,
-    IconClose,
-    IconAngleBracket,
+    VIcon,
     VButton
-  },
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .media {
-  @extend .cb_center;
+  @extend .flex_row-center-center;
   position: fixed;
   top: 0;
   left: 0;
@@ -74,7 +57,7 @@ export default {
     padding: 35px;
     box-sizing: border-box;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 8px;
   }
 
@@ -85,14 +68,28 @@ export default {
     background: #202020;
   }
 
+  &__footer {
+    @extend .flex_row-center-between;
+    margin-top: 29px;
+  }
+
+  &__footer-titles {
+    @extend .flex_column;
+  }
+
+  &__footer-buttons {
+    @extend .flex_row;
+  }
+
   &__lesson-number {
     font-family: 'Circe';
     font-size: 17px;
-    line-height: 16px;
-    color: #256cfe;
+    color: $color-blue;
   }
 
   &__title {
+    margin-top: 20px;
+
     font-family: 'Circe';
     font-size: 24px;
     line-height: 19px;
@@ -102,46 +99,62 @@ export default {
   &__button {
     width: 206px;
     height: 53px;
+    margin-left: 8px;
 
     font-family: 'Circe';
     font-size: 15px;
-    color: #ffffff;
+    color: $color-white;
     border: none;
-    background: #ee3465;
+    background: $color-pink;
   }
+}
 
-  &__icon {
-    @extend .cb_center;
+// icons
+.media__icon {
+  &-heart {
+    @extend .flex_row-center-center;
     width: 53px;
     height: 53px;
 
     border: 0.8px solid #dedede;
     border-radius: 8px;
+
+    fill: transparent;
+    stroke: #dedede;
   }
 
-  &__icon-close {
+  &-close {
     position: absolute;
-    cursor: pointer;
+    width: 100px;
+    height: 100px;
 
     top: -100px;
     right: -30px;
+    cursor: pointer;
   }
 
-  &__icon-bracket-left {
+  &-bracket-left {
     position: absolute;
-    cursor: pointer;
-    transform: rotate(180deg);
+    width: 20px;
+    height: 38px;
 
     top: 320px;
     left: -80px;
+    cursor: pointer;
+    stroke: $color-white;
+    transform: rotate(180deg);
   }
 
-  &__icon-bracket-right {
+  &-bracket-right {
     position: absolute;
-    cursor: pointer;
+    width: 20px;
+    height: 38px;
 
     top: 320px;
     right: -80px;
+    cursor: pointer;
+    stroke: $color-white;
+    transform: rotate(0deg);
   }
 }
 </style>

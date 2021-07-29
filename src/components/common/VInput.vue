@@ -19,7 +19,6 @@
     <div v-if="type === 'password'" class="input__icon">
       <icon-close-eye
         v-if="hidePassword"
-        class="cb_pointer"
         width="21"
         height="12"
         fill="#E4E4E4"
@@ -28,7 +27,6 @@
 
       <icon-open-eye
         v-else
-        class="cb_pointer"
         width="21"
         height="15"
         fill="#E4E4E4"
