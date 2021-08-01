@@ -16,18 +16,18 @@ export default {
     }
   },
 
-  created() {
-    // получаем названия все файлы в папке @/icons
-    const icons = require.context('@/icons', true, /^.*\.vue$/)
+  // created() {
+  //   // получаем названия все файлы в папке @/icons
+  //   const icons = require.context('@/icons', true, /^.*\.vue$/)
 
-    // заполняем массив импортами и названиями каждого компонента иконки
-    icons.keys().forEach((item) => {
-      this.iconsList.push({
-        component: () => import(`@/icons${item.substring(1)}`),
-        name: item.substring(2)
-      })
-    })
-  }
+  //   // заполняем массив импортами и названиями каждого компонента иконки
+  //   icons.keys().forEach((item) => {
+  //     this.iconsList.push({
+  //       component: () => import(`@/icons${item.substring(1)}`),
+  //       name: item.substring(2)
+  //     })
+  //   })
+  // }
 }
 </script>
 
