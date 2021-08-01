@@ -4,9 +4,15 @@
 
     <!-- navigation -->
     <nav class="header__nav">
-      <router-link class="header__nav-item" to="/"> О проекте </router-link>
-      <router-link class="header__nav-item" to="/articles"> Блог </router-link>
-      <router-link class="header__nav-item" to="/courses"> Видеокурсы </router-link>
+      <router-link class="header__nav-item" to="/">
+        О проекте
+      </router-link>
+      <router-link class="header__nav-item" to="/articles">
+        Блог
+      </router-link>
+      <router-link class="header__nav-item" to="/courses">
+        Видеокурсы
+      </router-link>
     </nav>
     <!-- navigation -->
 
@@ -15,7 +21,9 @@
       <v-user-menu v-if="user" :name="user.name" :is-premium="user.isPremium" />
 
       <div v-else class="header__buttons">
-        <router-link class="header__button-login" to="/auth" target="_blank"> Войти </router-link>
+        <router-link class="header__button-login" to="/auth" target="_blank">
+          Войти
+        </router-link>
 
         <v-button class="header__button-subscribe" @click="$router.push('/subscribe')">
           <v-icon class="header__icon-premium" path="img/premium.svg" />

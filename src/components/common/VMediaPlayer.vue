@@ -5,13 +5,19 @@
 
       <div class="media__footer">
         <div class="media__footer-titles">
-          <div class="media__lesson-number">Урок №1</div>
-          <h1 class="media__title">Установка всего необходимого</h1>
+          <div class="media__lesson-number">
+            Урок №1
+          </div>
+          <h1 class="media__title">
+            Установка всего необходимого
+          </h1>
         </div>
 
         <div class="media__footer-buttons">
           <v-icon class="media__icon-heart" path="img/heart.svg" width="16px" height="14px" />
-          <v-button class="media__button"> Смотреть на YouTube </v-button>
+          <v-button class="media__button">
+            Смотреть на YouTube
+          </v-button>
         </div>
       </div>
 

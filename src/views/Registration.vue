@@ -2,9 +2,13 @@
   <div class="reg">
     <v-icon class="reg__icon-logo" path="img/logo.svg" />
 
-    <h1 class="reg__title">Зарегистрируйтесь в Code Build</h1>
+    <h1 class="reg__title">
+      Зарегистрируйтесь в Code Build
+    </h1>
 
-    <v-input v-model="name" class="mt-70px"> Имя </v-input>
+    <v-input v-model="name" class="mt-70px">
+      Имя
+    </v-input>
 
     <v-input
       v-model="email.name"
@@ -25,11 +29,15 @@
       </div>
     </div>
 
-    <v-button class="reg__button"> Зарегистрироваться </v-button>
+    <v-button class="reg__button">
+      Зарегистрироваться
+    </v-button>
 
     <div class="reg__footer">
       У вас уже есть аккаунт?
-      <router-link class="reg__entry" to="/auth" target="_blank"> Войти </router-link>
+      <router-link class="reg__entry" to="/auth" target="_blank">
+        Войти
+      </router-link>
     </div>
   </div>
 </template>
@@ -144,7 +152,7 @@ export default {
   }
 
   &__entry {
-    @extend .cb_underline-blue;
+    @extend .underline-blue;
     position: relative;
     margin-left: 5px;
 

@@ -8,12 +8,16 @@
       </div>
 
       <div class="cabinet__main-right">
-        <div class="cabinet__label">Имя</div>
+        <div class="cabinet__label">
+          Имя
+        </div>
         <div class="cabinet__input">
           {{ user.name }}
         </div>
 
-        <div class="cabinet__label mt-30px">E-mail</div>
+        <div class="cabinet__label mt-30px">
+          E-mail
+        </div>
         <div class="cabinet__input">
           {{ user.email }}
         </div>
@@ -30,11 +34,15 @@
 
       <div class="cabinet__footer-right">
         <div v-if="user.isPremium">
-          <div style="color: #ee3465">Активен</div>
+          <div style="color: #ee3465">
+            Активен
+          </div>
           <div>Подписка закончится 27 июля</div>
         </div>
 
-        <div v-else>У вас нет активных подписок</div>
+        <div v-else>
+          У вас нет активных подписок
+        </div>
 
         <v-button
           class="cabinet__button"

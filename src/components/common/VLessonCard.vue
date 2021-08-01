@@ -2,64 +2,45 @@
   <div class="card">
     <div class="card__poster" />
 
-    <div
-      class="card__info"
-      @click="$emit('click')"
-    >
-      <div class="card__course-title">
+    <div class="card__main" @click="$emit('click')">
+      <h2 class="card__course-title">
         {{ courseTitle }}
-      </div>
+      </h2>
 
-      <div class="card__title cb_top15">
+      <h1 class="card__title">
         {{ title }}
-      </div>
+      </h1>
 
-      <div class="card__footer cb_top15">
-        <div class="card__footer-item cb_width170">
-          <icon-timer
-            width="18"
-            height="18"
-            fill="#3A3F4F"
-          />
-          <span class="cb_left7">{{ time }}</span>
+      <div class="card__attributes">
+        <div class="card__attributes-item" style="width: 170px">
+          <v-icon class="card__icon-attributes" path="img/timer.svg" />
+          {{ time }}
         </div>
 
-        <div class="card__footer-item cb_width130">
-          <icon-open-eye
-            width="21"
-            height="18"
-            fill="#3A3F4F"
-          />
-          <span class="cb_left7">{{ views }}</span>
+        <div class="card__attributes-item" style="width: 130px">
+          <v-icon class="card__icon-attributes" path="img/openEye.svg" />
+          {{ views }}>
         </div>
       </div>
     </div>
 
-    <div
+    <v-icon
       v-if="userId"
       class="card__icon-heart"
+      path="img/heart.svg"
+      :fill="isLike ? '#EE3465' : 'transparent'"
       @click="onLike()"
-    >
-      <icon-heart
-        :fill="isLike ? '#EE3465' : 'transparent'"
-        width="26"
-        height="23"
-      />
-    </div>
+    />
   </div>
 </template>
 
 <script>
-import IconTimer from '@/icons/IconTimer.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
-import IconHeart from '@/icons/IconHeart.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VLessonCard',
   components: {
-    IconTimer,
-    IconOpenEye,
-    IconHeart
+    VIcon
   },
   props: {
     // Id урока
@@ -102,15 +83,15 @@ export default {
     // Название курса(коллекции в бд)
     courseName: {
       type: String,
-      default: '',
+      default: ''
     }
   },
   data() {
     return {
       isLike: this.likes.includes(this.userId)
-    }
+    };
   },
-  
+
   methods: {
     addLike(payload) {
       this.axios.post('/lessons/add-like', payload).then((response) => {
@@ -128,7 +109,7 @@ export default {
       const payload = {
         lessonId: this.id,
         userId: this.userId,
-        courseName: this.courseName,
+        courseName: this.courseName
       };
 
       if (this.isLike) {
@@ -136,7 +117,7 @@ export default {
       } else this.addLike(payload);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -151,8 +132,8 @@ export default {
     border-radius: 8px 8px 0px 0px;
   }
 
-  &__info {
-    @extend .cb_column;
+  &__main {
+    @extend .flex_column;
     height: 226px;
 
     padding: 21px 27px 27px 27px;
@@ -173,6 +154,7 @@ export default {
   &__title {
     width: 314px;
     height: 95px;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 26px;
@@ -181,8 +163,9 @@ export default {
     letter-spacing: -0.01em;
   }
 
-  &__footer {
-    @extend .cb_row-between;
+  &__attributes {
+    @extend .flex_row-center-between;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 14px;
@@ -190,21 +173,36 @@ export default {
     color: #3a3f4f;
   }
 
-  &__footer-item {
-    @extend .cb_center;
+  &__attributes-item {
+    @extend .flex_row-center-center;
     height: 40px;
 
     border: 1px solid #ededed;
     border-radius: 7px;
   }
+}
 
-  &__icon-heart {
-    @extend .cb_center;
+// icons
+.card__icon {
+  &-attributes {
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+
+    fill: #3a3f4f;
+  }
+
+  &-heart {
+    @extend .flex_row-center-center;
     position: absolute;
+    width: 26px;
+    height: 23px;
 
     top: 20px;
     right: 20px;
     cursor: pointer;
+
+    stroke: $color-white;
   }
 }
 </style>

@@ -13,7 +13,9 @@
             <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
 
-          <div class="cover__route-item ml-20px">Создание сайта с нуля на CMS WordPress</div>
+          <div class="cover__route-item ml-20px">
+            Создание сайта с нуля на CMS WordPress
+          </div>
         </div>
 
         <v-icon
@@ -24,7 +26,9 @@
         />
       </div>
 
-      <h1 class="cover__title">Создание сайта с нуля на CMS WordPress</h1>
+      <h1 class="cover__title">
+        Создание сайта с нуля на CMS WordPress
+      </h1>
 
       <h2 class="cover__subtitle">
         Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на
@@ -48,7 +52,9 @@
           300
         </div>
 
-        <div class="cover__attributes-item ml-10px">#Сайты</div>
+        <div class="cover__attributes-item ml-10px">
+          #Сайты
+        </div>
       </div>
     </div>
   </div>

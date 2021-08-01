@@ -1,7 +1,9 @@
 <template>
   <div class="articles__wrap">
     <div class="articles">
-      <h1 class="articles__title">Все статьи</h1>
+      <h1 class="articles__title">
+        Все статьи
+      </h1>
 
       <div class="articles__filters">
         <div
@@ -18,10 +20,10 @@
       <div class="articles__list">
         <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
+            :id="item._id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :id="item._id"
-            :userId="user.id"
+            :user-id="user.id"
             :title="item.title"
             :time="item.time"
             :views="item.views"
@@ -32,7 +34,7 @@
       </div>
     </div>
 
-    <block-registration class="articles__reg"/>
+    <block-registration class="articles__reg" />
   </div>
 </template>
 
@@ -59,6 +61,11 @@ export default {
       return this.$store.getters.user || {};
     }
   },
+
+  created() {
+    this.getArticles();
+    this.getFilters();
+  },
   methods: {
     getArticles() {
       this.axios.get(`/articles?tag=${this.filterTag}`).then((response) => {
@@ -71,11 +78,6 @@ export default {
         this.filterList = response.data;
       });
     }
-  },
-
-  created() {
-    this.getArticles();
-    this.getFilters();
   }
 };
 </script>

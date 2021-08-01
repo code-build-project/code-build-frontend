@@ -14,9 +14,15 @@
 
         <div class="footer__nav-wrap">
           <nav class="footer__nav">
-            <router-link class="footer__nav-item" to="/"> О проекте </router-link>
-            <router-link class="footer__nav-item" to="/articles"> Блог </router-link>
-            <router-link class="footer__nav-item" to="/courses"> Видеокурсы </router-link>
+            <router-link class="footer__nav-item" to="/">
+              О проекте
+            </router-link>
+            <router-link class="footer__nav-item" to="/articles">
+              Блог
+            </router-link>
+            <router-link class="footer__nav-item" to="/courses">
+              Видеокурсы
+            </router-link>
           </nav>
 
           <v-icon class="footer__icon-flag" path="img/flag.svg" />

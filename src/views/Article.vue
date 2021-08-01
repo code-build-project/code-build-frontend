@@ -20,7 +20,9 @@
           src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
         />
 
-        <div class="article__author">МАРИЯ РОМАДАНОВА</div>
+        <div class="article__author">
+          МАРИЯ РОМАДАНОВА
+        </div>
 
         <div class="article__hobby">
           Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на

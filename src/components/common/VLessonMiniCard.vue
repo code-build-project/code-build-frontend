@@ -3,7 +3,9 @@
     <div class="card__poster" />
 
     <main class="card__main" @click="$emit('click')">
-      <div class="card__lesson-number">Урок №{{ lessonNumber }}</div>
+      <div class="card__lesson-number">
+        Урок №{{ lessonNumber }}
+      </div>
 
       <h1 class="card__title">
         {{ title }}

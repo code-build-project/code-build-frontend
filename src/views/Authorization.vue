@@ -2,7 +2,9 @@
   <div class="auth">
     <v-icon class="auth__icon-logo" path="img/logo.svg" />
 
-    <h1 class="auth__title">Войдите, чтобы продолжить</h1>
+    <h1 class="auth__title">
+      Войдите, чтобы продолжить
+    </h1>
 
     <v-input
       v-model="email.name"
@@ -35,7 +37,9 @@
 
     <div class="auth__footer">
       <span>Новый пользователь?</span>
-      <router-link class="auth__reg" to="/reg" target="_blank"> Зарегистрируйтесь </router-link>
+      <router-link class="auth__reg" to="/reg" target="_blank">
+        Зарегистрируйтесь
+      </router-link>
     </div>
   </div>
 </template>

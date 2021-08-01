@@ -135,6 +135,8 @@ export default {
   }
 
   &__footer {
+    @extend .flex_row-center-center;
+
     position: absolute;
     height: 300px;
     width: 1160px;
@@ -146,7 +148,6 @@ export default {
       #ffffff 100%
     );
 
-    @extend .cb_center;
     bottom: 0px;
   }
 

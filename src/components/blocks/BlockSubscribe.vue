@@ -2,7 +2,9 @@
   <div class="subscribe__wrap">
     <div class="subscribe">
       <div class="subscribe__main">
-        <h1 class="subscribe__title">Подпишись на codebuild</h1>
+        <h1 class="subscribe__title">
+          Подпишись на codebuild
+        </h1>
 
         <h2 class="subscribe__subtitle">
           Присоединяйся к сообществу программистов, узнавай много нового из мира IT и будь в курсе

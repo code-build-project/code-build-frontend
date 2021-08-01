@@ -19,9 +19,13 @@
       <div class="articles__main">
         <v-icon class="articles__icon-list" path="img/list.svg" width="24" height="26" />
 
-        <h1 class="articles__title">Свежие новости и познавательные статьи из мира IT</h1>
+        <h1 class="articles__title">
+          Свежие новости и познавательные статьи из мира IT
+        </h1>
 
-        <h2 class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</h2>
+        <h2 class="articles__subtitle">
+          Читай наши статьи и улучшай навыки программирования
+        </h2>
 
         <v-button class="articles__button" @click="$router.push('/articles')">
           Все статьи

@@ -17,36 +17,31 @@
     </div>
 
     <div v-if="type === 'password'" class="input__icon">
-      <icon-close-eye
+      <v-icon
         v-if="hidePassword"
-        width="21"
-        height="12"
-        fill="#E4E4E4"
-        @click.native="onIconClick(false)"
+        class="input__icon-close-eye"
+        path="img/closeEye.svg"
+        @click="onIconClick(false)"
       />
 
-      <icon-open-eye
+      <v-icon
         v-else
-        width="21"
-        height="15"
-        fill="#E4E4E4"
-        :is-background="false"
-        @click.native="onIconClick(true)"
+        class="input__icon-open-eye"
+        path="img/openEye.svg"
+        @click="onIconClick(true)"
       />
     </div>
   </div>
 </template>
 
 <script>
-import IconCloseEye from '@/icons/IconCloseEye.vue'
-import IconOpenEye from '@/icons/IconOpenEye.vue'
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VInput',
 
   components: {
-    IconCloseEye,
-    IconOpenEye
+    VIcon
   },
 
   model: {
@@ -80,32 +75,30 @@ export default {
   data() {
     return {
       isFocus: false,
-      hidePassword: true,
-    }
+      hidePassword: true
+    };
   },
-
-  computed: {},
 
   methods: {
     onFocus() {
-      this.isFocus = true
+      this.isFocus = true;
     },
 
     onBlur() {
-      this.isFocus = false
-      this.$emit('blur')
+      this.isFocus = false;
+      this.$emit('blur');
     },
 
     onInput(event) {
-      this.$emit('change', event)
+      this.$emit('change', event);
     },
 
     onIconClick(value) {
-      this.hidePassword = value
-      this.type = value ? 'password' : 'text'
+      this.hidePassword = value;
+      this.type = value ? 'password' : 'text';
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -154,6 +147,27 @@ export default {
     top: 60px;
     font-size: 13px;
     color: #ff3300;
+  }
+}
+
+// icons
+.input__icon {
+  position: absolute;
+  right: 0px;
+  top: 25px;
+
+  &-close-eye {
+    width: 21px;
+    height: 12px;
+
+    fill: #e4e4e4;
+  }
+
+  &-open-eye {
+    width: 21px;
+    height: 15px;
+
+    fill: #e4e4e4;
   }
 }
 

@@ -48,7 +48,9 @@
           300
         </div>
 
-        <div class="cover__attributes-item ml-10px">#Дизайн</div>
+        <div class="cover__attributes-item ml-10px">
+          #Дизайн
+        </div>
       </div>
     </div>
   </div>

@@ -43,14 +43,18 @@
             </div>
           </div>
 
-          <v-button class="subscribe__button"> Подключить </v-button>
+          <v-button class="subscribe__button">
+            Подключить
+          </v-button>
         </div>
       </div>
       <!-- Правая часть -->
     </main>
 
     <div class="subscribe__questions">
-      <div class="subscribe__questions-title">Часто задаваемые вопросы</div>
+      <div class="subscribe__questions-title">
+        Часто задаваемые вопросы
+      </div>
       <div class="subscribe__questions-list">
         <v-question />
       </div>

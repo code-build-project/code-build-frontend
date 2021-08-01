@@ -1,7 +1,9 @@
 <template>
   <div class="popular__wrap">
     <div class="popular">
-      <h1 class="popular__title">Также стоит посмотреть</h1>
+      <h1 class="popular__title">
+        Также стоит посмотреть
+      </h1>
 
       <div class="popular__articles">
         <v-article-card />

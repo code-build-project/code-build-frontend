@@ -6,7 +6,9 @@
       </h1>
 
       <div class="reg__input">
-        <div class="reg__input-legend">Email</div>
+        <div class="reg__input-legend">
+          Email
+        </div>
 
         <input class="reg__input-field" value="" placeholder="your.email@example.com" />
 

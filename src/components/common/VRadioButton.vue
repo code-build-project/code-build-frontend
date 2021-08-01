@@ -1,6 +1,6 @@
 <template>
-  <div class="radio" :class="{'radio__focus': picked === price}">
-    <div class="cb_row">
+  <div class="radio" :class="{ radio__focus: picked === price }">
+    <div class="radio__main">
       <input
         :id="keyField"
         class="radio__input"
@@ -9,19 +9,16 @@
         name="subscribe"
         @change="$emit('change', price)"
       />
-      <label
-        class="radio__label"
-        :for="keyField"
-      />
+      <label class="radio__label" :for="keyField" />
 
-      <div class="radio__title cb_left30">
+      <div class="radio__title">
         <slot>1 месяц подписки</slot>
         <div v-if="economy" class="radio__economy">
           Экономия — {{ economy }}₽
         </div>
       </div>
     </div>
-  
+
     <div class="radio__price">
       {{ price }}₽
     </div>
@@ -57,12 +54,12 @@ export default {
       default: ''
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .radio {
-  @extend .cb_row-between;
+  @extend .flex_row-center-between;
 
   width: 550px;
   height: 100px;
@@ -70,39 +67,45 @@ export default {
   padding: 0px 34px 0px 34px;
   box-sizing: border-box;
 
-  border: 1px solid #E4E4E4;
+  border: 1px solid #e4e4e4;
   border-radius: 18px;
 
+  &__main {
+    @extend .flex_row;
+  }
+
   &__title {
+    margin-left: 30px;
+
     font-family: 'Circe';
     font-size: 24px;
     letter-spacing: -0.01em;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__price {
     font-family: 'ObjectSans';
     font-size: 38px;
     letter-spacing: -0.01em;
-    color: #272A37;
+    color: #272a37;
   }
 
   &__economy {
-    @extend .cb_center;
+    @extend .flex_row-center-center;
     width: 108px;
     height: 28px;
 
     font-family: 'Circe';
     font-size: 12px;
     letter-spacing: -0.01em;
-    color: #EE3465;
+    color: #ee3465;
 
-    background: #FFF1F5;
+    background: #fff1f5;
     border-radius: 15px;
   }
 
   &__focus {
-    border-color: #EE3465;
+    border-color: #ee3465;
   }
 }
 
@@ -129,7 +132,7 @@ export default {
   height: 32px;
   flex-shrink: 0;
   flex-grow: 0;
-  border: 1px solid #E4E4E4;
+  border: 1px solid #e4e4e4;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -139,7 +142,7 @@ export default {
 
 /* стили при наведении курсора на radio */
 .radio__input:not(:disabled):not(:checked) + label:hover::before {
-  border-color: #EE3465;
+  border-color: #ee3465;
 }
 
 /* стили для активного чекбокса (при нажатии на него) */
@@ -150,13 +153,13 @@ export default {
 
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
 .radio__input:focus:not(:checked) + label::before {
-  border-color: #EE3465;
+  border-color: #ee3465;
 }
 
 /* стили для чекбокса, находящегося в состоянии checked */
 .radio__input:checked + label::before {
-  border-color: #EE3465;
-  background-color: #EE3465;
+  border-color: #ee3465;
+  background-color: #ee3465;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='white' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
 }
 
@@ -167,6 +170,6 @@ export default {
 
 // hovers
 :hover.radio {
-  border-color: #EE3465;
+  border-color: #ee3465;
 }
 </style>

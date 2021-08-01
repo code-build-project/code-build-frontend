@@ -1,7 +1,9 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <h1 class="courses__title">Все видеокурсы</h1>
+      <h1 class="courses__title">
+        Все видеокурсы
+      </h1>
 
       <div class="courses__filters">
         <div
@@ -18,10 +20,10 @@
       <div class="courses__list">
         <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
+            :id="item._id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :id="item._id"
-            :userId="user.id"
+            :user-id="user.id"
             :title="item.title"
             :level="item.level"
             :lessons="item.lessons"
@@ -61,6 +63,11 @@ export default {
       return this.$store.getters.user || {};
     }
   },
+
+  created() {
+    this.getCourses();
+    this.getFilters();
+  },
   methods: {
     getCourses() {
       this.axios.get(`/courses?tag=${this.filterTag}`).then((response) => {
@@ -73,11 +80,6 @@ export default {
         this.filterList = response.data;
       });
     }
-  },
-
-  created() {
-    this.getCourses();
-    this.getFilters();
   }
 };
 </script>

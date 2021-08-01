@@ -1,7 +1,7 @@
 <template>
   <div class="card" :style="{ height: height + 'px' }">
     <div class="card__score">
-      <icon-star />
+      <v-icon class="card__icon-star" path="img/star.svg" />
       <span>{{ score }}</span>
     </div>
 
@@ -9,13 +9,14 @@
       {{ text }}
     </div>
 
-    <div class="cb_row cb_top35">
+    <div class="card__avatar">
       <div class="card__avatar-img" />
 
-      <div class="cb_column-center cb_left17">
-        <div class="card__avatar-name">
+      <div class="card__avatar-info">
+        <h1 class="card__avatar-name">
           {{ name }}
-        </div>
+        </h1>
+
         <div class="card__avatar-date">
           {{ date }}
         </div>
@@ -25,12 +26,12 @@
 </template>
 
 <script>
-import IconStar from '@/icons/IconStar.vue';
+import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'VReviewCard',
   components: {
-    IconStar
+    VIcon
   },
   props: {
     // Высота карты
@@ -79,7 +80,7 @@ export default {
   border-radius: 8px;
 
   &__score {
-    @extend .cb_row-between;
+    @extend .flex_row-center-between;
     width: 60px;
     height: 30px;
 
@@ -100,19 +101,28 @@ export default {
     color: #3e4462;
   }
 
+  &__avatar {
+    @extend .flex_row;
+    margin-top: 35px;
+  }
+
   &__avatar-img {
     width: 56px;
     height: 56px;
 
-    background: #256cfe;
+    background: $color-blue;
     border-radius: 11.9226px;
+  }
+
+  &__avatar-info {
+    @extend .flex_column-center;
+    margin-left: 17px;
   }
 
   &__avatar-name {
     font-family: 'Circe';
     font-weight: bold;
     font-size: 20px;
-    line-height: 30px;
     letter-spacing: -0.55px;
     color: #18214d;
   }
@@ -120,9 +130,18 @@ export default {
   &__avatar-date {
     font-family: 'Circe';
     font-size: 14px;
-    line-height: 20px;
     letter-spacing: -0.4px;
     color: #b0b7c8;
+  }
+}
+
+// icons
+.card__icon {
+  &-star {
+    width: 15px;
+    height: 13px;
+
+    fill: $color-blue;
   }
 }
 

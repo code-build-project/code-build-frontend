@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" v-click-outside="onClickOutside">
+  <div v-click-outside="onClickOutside" class="menu">
     <!-- Иконка -->
     <v-icon
       v-if="isPremium"
