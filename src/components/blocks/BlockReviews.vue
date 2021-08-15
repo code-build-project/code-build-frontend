@@ -1,14 +1,14 @@
 <template>
   <div class="reviews">
-    <div class="reviews__title">
-      Отзывы о наших курсах
-    </div>
+    <h1 class="reviews__title">Отзывы о наших курсах</h1>
 
-    <div class="reviews__list">
-      <div v-for="(item, index) in reviewList" :key="index">
+    <div class="reviews__list" :class="{ reviews__list_open: isOpenList }">
+      <div class="reviews__box-list" v-for="(boxList, indexBox) in reviewList" :key="indexBox">
         <v-review-card
+          v-for="(item, index) in boxList"
+          :key="index"
           class="reviews__list-item"
-          :height="index === 1 ? '700' : '335'"
+          :height="index === 2 ? '700' : '335'"
           :score="item.score"
           :text="item.text"
           :name="item.name"
@@ -17,10 +17,8 @@
       </div>
     </div>
 
-    <div class="reviews__footer">
-      <v-button class="reviews__button">
-        Показать еще
-      </v-button>
+    <div v-if="!isOpenList" class="reviews__footer">
+      <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
     </div>
   </div>
 </template>
@@ -39,68 +37,39 @@ export default {
 
   data() {
     return {
-      reviewList: [
-        {
-          score: '3,2',
-
-          name: 'Кристина Белова',
-          date: '21 апреля 2012'
-        },
-        {
-          score: '2,2',
-          text: `Всем привет! Мне 27, я из Королёва.  
-            По окончании школы я связал свою жизнь 
-            с полиграфией и поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне надоело. Всем привет! Мне 27, я из. Всем привет! Мне 27, я из Королёва.  По окончании школы я связал свою жизнь 
-            с полиграфией и поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне надоело. Всем привет! Мне 27, я из.Всем привет! Мне 27, я из Королёва.  По окончании школы я связал свою жизнь 
-            с полиграфией и поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне надоело. Всем привет! Мне 27, я из. Всем привет! Мне 27, я из Королёва.  
-            По окончании школы я связал свою жизнь.`,
-          name: 'Виталий Пароходов',
-          date: '1 сентября 2019'
-        },
-        {
-          score: '1,2',
-
-          name: 'Дядя Степа',
-          date: '11 сентября 2015'
-        },
-        {
-          score: '4,2',
-
-          name: 'Жора Прохоров',
-          date: '6 мая 2018'
-        },
-        {
-          score: '1,3',
-
-          name: 'Арсений Белов',
-          date: '14 декабря 2021'
-        },
-        {
-          score: '3,2',
-
-          name: 'Федор Емельяненко',
-          date: '22 августа 2012'
-        },
-        {
-          score: '4,7',
-
-          name: 'Катя Старшова',
-          date: '16 июня 2011'
-        },
-        {
-          score: '2,8',
-
-          name: 'Арсений Белов',
-          date: '14 октября 2013'
-        },
-        {
-          score: '1,2',
-
-          name: 'Федор Емельяненко',
-          date: '2 января 2015'
-        }
-      ]
+      isOpenList: false,
+      reviewList: []
     };
+  },
+  created() {
+    this.getReviews();
+  },
+  methods: {
+    getReviews() {
+      this.axios.get('/reviews').then(({ data }) => {
+        // Количество коробок(отзывы по 5 штук)
+        const countBox = Math.ceil(data.length / 5);
+
+        for (let i = 0; i < countBox; i++) {
+          this.reviewList.push([]);
+        }
+
+        // Количество отзывов для одной коробки(максимум 5)
+        let count = 0;
+        // Индекс коробки
+        let index = 0;
+
+        for (let item of data) {
+          this.reviewList[index].push(item);
+          count++;
+
+          if (count === 5) {
+            count = 0;
+            index++;
+          }
+        }
+      });
+    }
   }
 };
 </script>
@@ -109,7 +78,7 @@ export default {
 .reviews {
   position: relative;
   width: 1160px;
-  padding-top: 100px;
+  padding: 100px 0px 100px 0px;
 
   &__title {
     font-family: 'ObjectSans';
@@ -120,18 +89,17 @@ export default {
   }
 
   &__list {
+    @extend .flex_column;
     height: 1060px;
-
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    margin-top: 50px;
+    margin-top: 20px;
     overflow: hidden;
   }
 
-  &__list-item {
-    margin-bottom: 30px;
+  &__box-list {
+    @extend .flex_column-between;
+    flex-wrap: wrap;
+    height: 700px;
+    margin-top: 30px;
   }
 
   &__footer {
@@ -158,8 +126,8 @@ export default {
 
     font-family: 'EuclidCircular';
     font-size: 18px;
-    color: #256cfe;
-    border: 1px solid #256cfe;
+    color: $color-blue;
+    border: 1px solid $color-blue;
     background: transparent;
   }
 }
@@ -167,8 +135,15 @@ export default {
 // hovers
 :hover.reviews {
   &__button {
-    color: #ffffff;
-    background: #256cfe;
+    color: $color-white;
+    background: $color-blue;
+  }
+}
+
+// actives
+.reviews {
+  &__list_open {
+    height: auto;
   }
 }
 </style>

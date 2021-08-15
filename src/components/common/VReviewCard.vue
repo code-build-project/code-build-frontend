@@ -9,7 +9,7 @@
       {{ text }}
     </div>
 
-    <div class="card__avatar">
+    <div class="card__footer">
       <div class="card__avatar-img" />
 
       <div class="card__avatar-info">
@@ -47,12 +47,7 @@ export default {
     // Текст
     text: {
       type: String,
-      default: `Всем привет! Мне 27, я из Королёва.  
-        По окончании школы я связал свою жизнь 
-        с полиграфией и поступил в Университет 
-        Печати им. Ивана Фёдорова. Работаю 
-        дизайнером наружной рекламы и мне 
-        надоело. Всем привет! Мне 27, я из.`
+      default: ''
     },
     // Имя автора
     name: {
@@ -70,7 +65,8 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  max-width: 367px;
+  @extend .flex_column;
+  width: 367px;
 
   padding: 30px;
   box-sizing: border-box;
@@ -93,6 +89,7 @@ export default {
 
   &__text {
     margin-top: 16px;
+    overflow: hidden;
 
     font-family: 'Circe';
     font-size: 16px;
@@ -101,9 +98,9 @@ export default {
     color: #3e4462;
   }
 
-  &__avatar {
+  &__footer {
     @extend .flex_row;
-    margin-top: 35px;
+    margin-top: auto;
   }
 
   &__avatar-img {
@@ -147,7 +144,7 @@ export default {
 
 // hovers
 :hover.card {
-  border-color: #256cfe;
+  border-color: $color-blue;
   cursor: pointer;
 }
 </style>

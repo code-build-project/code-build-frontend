@@ -61,7 +61,6 @@ export default {
       return this.$store.getters.user || {};
     }
   },
-
   created() {
     this.getArticles();
     this.getFilters();
