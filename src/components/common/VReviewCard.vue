@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :style="{ height: height + 'px' }">
+  <div class="card" :style="{ height: height + 'px' }" @click="openPopup()">
     <div class="card__score">
       <v-icon class="card__icon-star" path="img/star.svg" />
       <span>{{ score }}</span>
@@ -58,6 +58,11 @@ export default {
     date: {
       type: String,
       default: '21 января 2021'
+    }
+  },
+  methods: {
+    openPopup() {
+      this.$store.commit('openPopup', 'review');
     }
   }
 };

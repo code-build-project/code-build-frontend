@@ -18,7 +18,6 @@
           :views="item.views"
           :likes="item.likes"
           :course-name="item.courseName"
-          @click="isPlayer = true"
         />
       </div>
     </div>
@@ -26,13 +25,10 @@
     <block-popular-courses class="course__popular" />
 
     <block-subscribe class="course__subscribe" />
-
-    <v-media-player v-if="isPlayer" @close="isPlayer = false" />
   </div>
 </template>
 
 <script>
-import VMediaPlayer from '@/components/common/VMediaPlayer.vue';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
 import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
@@ -41,7 +37,6 @@ import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
 export default {
   name: 'Course',
   components: {
-    VMediaPlayer,
     BlockSubscribe,
     VLessonMiniCard,
     BlockCourseCover,
@@ -49,18 +44,14 @@ export default {
   },
   data() {
     return {
-      isPlayer: false,
-
       lessonList: []
     };
   },
-
   computed: {
     user() {
       return this.$store.getters.user || {};
     }
   },
-
   created() {
     this.axios.get(`/lessons?courseName=${this.$route.query.courseName}`).then((response) => {
       this.lessonList = response.data;

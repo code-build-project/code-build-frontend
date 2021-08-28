@@ -2,10 +2,8 @@
   <div class="card">
     <div class="card__poster" />
 
-    <main class="card__main" @click="$emit('click')">
-      <div class="card__lesson-number">
-        Урок №{{ lessonNumber }}
-      </div>
+    <main class="card__main" @click="openPopup()">
+      <div class="card__lesson-number">Урок №{{ lessonNumber }}</div>
 
       <h1 class="card__title">
         {{ title }}
@@ -115,6 +113,10 @@ export default {
       if (this.isLike) {
         this.deleteLike(payload);
       } else this.addLike(payload);
+    },
+
+    openPopup() {
+      this.$store.commit('openPopup', 'player');
     }
   }
 };
