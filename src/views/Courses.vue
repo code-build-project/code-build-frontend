@@ -1,9 +1,7 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <h1 class="courses__title">
-        Все видеокурсы
-      </h1>
+      <h1 class="courses__title">Все видеокурсы</h1>
 
       <div class="courses__filters">
         <div
@@ -41,14 +39,18 @@
 </template>
 
 <script>
+// Components
 import VCourseCard from '@/components/common/VCourseCard.vue';
 import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
 
 export default {
   name: 'Courses',
   components: {
-    BlockRegistration,
-    VCourseCard
+    VCourseCard,
+    BlockRegistration
   },
   data() {
     return {
@@ -63,22 +65,17 @@ export default {
       return this.$store.getters.user || {};
     }
   },
-
   created() {
     this.getCourses();
     this.getFilters();
   },
   methods: {
-    getCourses() {
-      this.axios.get(`/courses?tag=${this.filterTag}`).then((response) => {
-        this.courseList = response.data;
-      });
+    async getCourses() {
+      this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
     },
 
-    getFilters() {
-      this.axios.get('/filters/courses').then((response) => {
-        this.filterList = response.data;
-      });
+    async getFilters() {
+      this.filterList = await apiCourses.getFilters();
     }
   }
 };

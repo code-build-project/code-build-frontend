@@ -1,6 +1,12 @@
 <template>
   <div class="player">
-    <div class="player__screen" />
+    <iframe
+      class="player__screen"
+      src="https://youtu.be/DjeiLzaVQG0"
+      frameborder="0"
+      allow="fullscreen"
+      scrolling="no"
+    />
 
     <div class="player__footer">
       <div class="player__footer-titles">

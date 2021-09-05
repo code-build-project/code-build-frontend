@@ -29,10 +29,14 @@
 </template>
 
 <script>
+// Components
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
 import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
 import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
 
 export default {
   name: 'Course',
@@ -53,9 +57,12 @@ export default {
     }
   },
   created() {
-    this.axios.get(`/lessons?courseName=${this.$route.query.courseName}`).then((response) => {
-      this.lessonList = response.data;
-    });
+    this.getLessons();
+  },
+  methods: {
+    async getLessons() {
+      this.lessonList = await apiCourses.getLessons({ courseName: this.$route.query.courseName });
+    }
   }
 };
 </script>

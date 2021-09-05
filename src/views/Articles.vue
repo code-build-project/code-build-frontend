@@ -1,9 +1,7 @@
 <template>
   <div class="articles__wrap">
     <div class="articles">
-      <h1 class="articles__title">
-        Все статьи
-      </h1>
+      <h1 class="articles__title">Все статьи</h1>
 
       <div class="articles__filters">
         <div
@@ -28,6 +26,7 @@
             :time="item.time"
             :views="item.views"
             :likes="item.likes"
+            :image="item.image"
             @click="$router.push('/article')"
           />
         </div>
@@ -39,8 +38,12 @@
 </template>
 
 <script>
+// Components
 import VArticleCard from '@/components/common/VArticleCard.vue';
 import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
+
+// Services
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Articles',
@@ -66,16 +69,12 @@ export default {
     this.getFilters();
   },
   methods: {
-    getArticles() {
-      this.axios.get(`/articles?tag=${this.filterTag}`).then((response) => {
-        this.articleList = response.data;
-      });
+    async getArticles() {
+      this.articleList = await apiArticles.getArticles({ tag: this.filterTag })
     },
 
-    getFilters() {
-      this.axios.get('/filters/articles').then((response) => {
-        this.filterList = response.data;
-      });
+    async getFilters() {
+      this.filterList = await apiArticles.getFilters();
     }
   }
 };
