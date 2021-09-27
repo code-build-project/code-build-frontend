@@ -45,9 +45,13 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
+
+// Services
+import apiAuth from '@/services/auth.js';
 
 export default {
   name: 'Authorization',
@@ -90,23 +94,21 @@ export default {
       }
     },
 
-    onLogin() {
+    async onLogin() {
       const payload = {
         email: this.email.name,
         password: this.password.name
       };
 
-      this.axios
-        .post('/login', payload)
-        .then((response) => {
-          localStorage.token = response.data.token;
-          this.$router.push('/').then(() => location.reload());
-        })
-        .catch((error) => {
-          this.email.isError = true;
-          this.password.isError = true;
-          this.password.errorName = error.response.data.message;
-        });
+      try {
+        await apiAuth.logIn(payload);
+
+        this.$router.push('/').then(() => location.reload());
+      } catch (error) {
+        this.email.isError = true;
+        this.password.isError = true;
+        this.password.errorName = error.response.data.message;
+      }
     }
   }
 };

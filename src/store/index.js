@@ -1,6 +1,6 @@
-import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
+import request from '@/helpers/http';
 
 Vue.use(Vuex);
 
@@ -43,7 +43,7 @@ export default new Vuex.Store({
   actions: {
     // Получение данных пользователя по токену
     authorize({ commit }) {
-      axios.get('/user').then(response => {
+      request.get('/user').then(response => {
         commit('setUser', response.data);
       })
       .catch((err) => {

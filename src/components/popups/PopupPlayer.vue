@@ -10,13 +10,19 @@
 
     <div class="player__footer">
       <div class="player__footer-titles">
-        <div class="player__lesson-number">Урок №1</div>
-        <h1 class="player__title">Установка всего необходимого</h1>
+        <div class="player__lesson-number">
+          Урок №1
+        </div>
+        <h1 class="player__title">
+          Установка всего необходимого
+        </h1>
       </div>
 
       <div class="player__footer-buttons">
         <v-icon class="player__icon-heart" path="img/heart.svg" width="16px" height="14px" />
-        <v-button class="player__button"> Смотреть на YouTube </v-button>
+        <v-button class="player__button">
+          Смотреть на YouTube
+        </v-button>
       </div>
     </div>
 

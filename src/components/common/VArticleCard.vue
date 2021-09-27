@@ -35,7 +35,11 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
+
+// Services
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'VArticleCard',
@@ -95,13 +99,13 @@ export default {
 
   methods: {
     addLike(payload) {
-      this.axios.post('/articles/add-like', payload).then((response) => {
+      apiArticles.addLike(payload).then(() => {
         this.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      this.axios.post('/articles/delete-like', payload).then((response) => {
+      apiArticles.deleteLike(payload).then(() => {
         this.isLike = false;
       });
     },

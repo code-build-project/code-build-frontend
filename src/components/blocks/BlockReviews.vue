@@ -1,9 +1,11 @@
 <template>
   <div class="reviews">
-    <h1 class="reviews__title">Отзывы о наших курсах</h1>
+    <h1 class="reviews__title">
+      Отзывы о наших курсах
+    </h1>
 
     <div class="reviews__list" :class="{ reviews__list_open: isOpenList }">
-      <div class="reviews__box-list" v-for="(boxList, indexBox) in reviewList" :key="indexBox">
+      <div v-for="(boxList, indexBox) in reviewList" :key="indexBox" class="reviews__box-list">
         <v-review-card
           v-for="(item, index) in boxList"
           :key="index"
@@ -18,14 +20,20 @@
     </div>
 
     <div v-if="!isOpenList" class="reviews__footer">
-      <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
+      <v-button class="reviews__button" @click="isOpenList = true">
+        Показать еще
+      </v-button>
     </div>
   </div>
 </template>
 
 <script>
-import VReviewCard from '@/components/common/VReviewCard.vue';
+// Components
 import VButton from '@/components/common/VButton.vue';
+import VReviewCard from '@/components/common/VReviewCard.vue';
+
+// Services
+import apiReviews from '@/services/reviews.js';
 
 export default {
   name: 'BlockReviews',
@@ -46,7 +54,7 @@ export default {
   },
   methods: {
     getReviews() {
-      this.axios.get('/reviews').then(({ data }) => {
+      apiReviews.getReviews().then((data) => {
         // Количество коробок(отзывы по 5 штук)
         const countBox = Math.ceil(data.length / 5);
 

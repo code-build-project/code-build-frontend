@@ -36,7 +36,7 @@ import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
 import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
 
 // Services
-import apiCourses from '@/services/courses.js';
+import apiLessons from '@/services/lessons.js';
 
 export default {
   name: 'Course',
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     async getLessons() {
-      this.lessonList = await apiCourses.getLessons({ courseName: this.$route.query.courseName });
+      this.lessonList = await apiLessons.getLessons({ courseName: this.$route.query.courseName });
     }
   }
 };

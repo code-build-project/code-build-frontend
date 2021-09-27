@@ -47,7 +47,11 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
 
 export default {
   name: 'VCourseCard',
@@ -106,13 +110,13 @@ export default {
 
   methods: {
     addLike(payload) {
-      this.axios.post('/courses/add-like', payload).then((response) => {
+      apiCourses.addLike(payload).then(() => {
         this.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      this.axios.post('/courses/delete-like', payload).then((response) => {
+      apiCourses.deleteLike(payload).then(() => {
         this.isLike = false;
       });
     },

@@ -73,10 +73,16 @@
 </template>
 
 <script>
+// Components
 import VCourseCard from '@/components/common/VCourseCard.vue';
 import VLessonCard from '@/components/common/VLessonCard.vue';
 import VArticleCard from '@/components/common/VArticleCard.vue';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
+import apiLessons from '@/services/lessons.js';
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Favorites',
@@ -154,22 +160,16 @@ export default {
       }
     },
 
-    getCourses() {
-      this.axios.get(`/courses/favorites?userId=${this.user.id}`).then((response) => {
-        this.courseList = response.data;
-      });
+    async getCourses() {
+      this.courseList = await apiCourses.getFavoriteCourses({ userId: this.user.id });
     },
 
-    getLessons() {
-      this.axios.get(`/lessons/favorites?userId=${this.user.id}`).then((response) => {
-        this.lessonList = response.data;
-      });
+    async getLessons() {
+      this.lessonList = await apiLessons.getFavoriteLessons({ userId: this.user.id });
     },
 
-    getArticles() {
-      this.axios.get(`/articles/favorites?userId=${this.user.id}`).then((response) => {
-        this.articleList = response.data;
-      });
+    async getArticles() {
+      this.articleList = await apiArticles.getFavoriteArticles({ userId: this.user.id });
     }
   }
 };

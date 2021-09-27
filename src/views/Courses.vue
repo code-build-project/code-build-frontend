@@ -1,22 +1,14 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <h1 class="courses__title">Все видеокурсы</h1>
+      <h1 class="courses__title">
+        Все видеокурсы
+      </h1>
 
-      <div class="courses__filters">
-        <div
-          v-for="(item, index) in filterList"
-          :key="index"
-          class="courses__filter"
-          :class="{ courses__filter_active: filterTag === item.tag }"
-          @click="(filterTag = item.tag), getCourses()"
-        >
-          {{ item.name }}
-        </div>
-      </div>
+      <v-filter-group v-model="filterTag" class="courses__filters" :array="filterList" />
 
       <div class="courses__list">
-        <div v-for="(item, index) in courseList" :key="index">
+        <div v-for="(item, index) in filteredCourseList" :key="index">
           <v-course-card
             :id="item._id"
             class="mb-30px"
@@ -41,6 +33,7 @@
 <script>
 // Components
 import VCourseCard from '@/components/common/VCourseCard.vue';
+import VFilterGroup from '@/components/common/VFilterGroup.vue';
 import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
 
 // Services
@@ -50,6 +43,7 @@ export default {
   name: 'Courses',
   components: {
     VCourseCard,
+    VFilterGroup,
     BlockRegistration
   },
   data() {
@@ -63,20 +57,16 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user || {};
-    }
-  },
-  created() {
-    this.getCourses();
-    this.getFilters();
-  },
-  methods: {
-    async getCourses() {
-      this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
     },
 
-    async getFilters() {
-      this.filterList = await apiCourses.getFilters();
+    filteredCourseList() {
+      return this.courseList.filter((item) => item.tags.includes(this.filterTag));
     }
+  },
+  async created() {
+    this.filterList = await apiCourses.getFilters();
+
+    this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
   }
 };
 </script>
@@ -100,44 +90,14 @@ export default {
   }
 
   &__filters {
-    @extend .flex_row-center-between;
     width: 1000px;
-    height: 50px;
     margin-top: 30px;
-  }
-
-  &__filter {
-    @extend .flex_row-center-center;
-    font-family: 'Circe';
-    font-size: 18px;
-    color: $color-black;
-
-    padding: 1em 1.7em 1em 1.7em;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
     margin-top: 60px;
-  }
-}
-
-// actives
-.courses {
-  &__filter_active {
-    color: $color-white;
-    background: $color-blue;
-  }
-}
-
-// hovers
-:hover.courses {
-  &__filter {
-    cursor: pointer;
-    color: $color-white;
-    background: $color-blue;
   }
 }
 </style>

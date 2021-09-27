@@ -17,9 +17,13 @@
       <div class="card__avatar-img" />
 
       <div class="card__avatar-info">
-        <h1 class="card__avatar-name">Кристина Белова</h1>
+        <h1 class="card__avatar-name">
+          Кристина Белова
+        </h1>
 
-        <div class="card__avatar-date">21 января 2021</div>
+        <div class="card__avatar-date">
+          21 января 2021
+        </div>
       </div>
     </div>
 
