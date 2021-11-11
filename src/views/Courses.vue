@@ -20,6 +20,7 @@
             :time="item.time"
             :views="item.views"
             :likes="item.likes"
+            :image="item.image"
             @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
         </div>

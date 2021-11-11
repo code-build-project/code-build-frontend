@@ -84,7 +84,7 @@ export default {
         return [];
       }
     },
-    // Количество просмотров статьи
+    // Постер
     image: {
       type: String,
       default: ''

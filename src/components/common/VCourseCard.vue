@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card__poster" />
+    <img class="card__poster" alt="" :src="image" />
 
     <main class="card__main" @click="$emit('click')">
       <div class="card__level">
@@ -100,6 +100,11 @@ export default {
       default() {
         return [];
       }
+    },
+    // Постер
+    image: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -141,8 +146,9 @@ export default {
   width: 367px;
 
   &__poster {
+    width: 100%;
     height: 240px;
-
+    margin-bottom: -4px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
