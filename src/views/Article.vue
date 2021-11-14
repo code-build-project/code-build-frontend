@@ -20,9 +20,7 @@
           src="https://i.pinimg.com/originals/33/04/6a/33046a80394ab4e164c8a62fc5ae2e3b.jpg"
         />
 
-        <div class="article__author">
-          МАРИЯ РОМАДАНОВА
-        </div>
+        <div class="article__author">МАРИЯ РОМАДАНОВА</div>
 
         <div class="article__hobby">
           Журналистка. Из газеты — в digital. Пишет о дизайне, искусстве и красоте. Живёт на
@@ -53,10 +51,14 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import BlockArticleCover from '@/components/blocks/BlockArticleCover.vue';
 import BlockPopularArticles from '@/components/blocks/BlockPopularArticles.vue';
+
+// Services
+// import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Article',
@@ -65,6 +67,14 @@ export default {
     BlockSubscribe,
     BlockArticleCover,
     BlockPopularArticles
+  },
+  data() {
+    return {
+      article: {}
+    };
+  },
+  created() {
+    // this.article = await apiArticles.getArticles({ tag: this.filterTag });
   }
 };
 </script>

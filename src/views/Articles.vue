@@ -1,9 +1,7 @@
 <template>
   <div class="articles__wrap">
     <div class="articles">
-      <h1 class="articles__title">
-        Все статьи
-      </h1>
+      <h1 class="articles__title">Все статьи</h1>
 
       <v-filter-group v-model="filterTag" class="articles__filters" :array="filterList" />
 
@@ -64,8 +62,8 @@ export default {
   },
   async created() {
     this.filterList = await apiArticles.getFilters();
-     this.articleList = await apiArticles.getArticles({ tag: this.filterTag });
-  },
+    this.articleList = await apiArticles.getArticles({ tag: this.filterTag });
+  }
 };
 </script>
 
