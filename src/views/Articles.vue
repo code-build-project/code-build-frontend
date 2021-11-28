@@ -3,12 +3,17 @@
     <div class="articles">
       <h1 class="articles__title">Все статьи</h1>
 
-      <v-filter-group v-model="filterTag" class="articles__filters" :array="filterList" />
+      <v-filter-group
+        v-model="filterTag"
+        class="articles__filters"
+        :array="filterList"
+        @change="getArticles()"
+      />
 
       <div class="articles__list">
-        <div v-for="(item, index) in filteredArticleList" :key="index">
+        <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
-            :id="item._id"
+            :id="item.id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
@@ -45,7 +50,7 @@ export default {
   },
   data() {
     return {
-      filterTag: 'all',
+      filterTag: '',
 
       filterList: [],
       articleList: []
@@ -54,15 +59,16 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user || {};
-    },
-
-    filteredArticleList() {
-      return this.articleList.filter((item) => item.tags.includes(this.filterTag));
     }
   },
-  async created() {
-    this.filterList = await apiArticles.getFilters();
-    this.articleList = await apiArticles.getArticles({ tag: this.filterTag });
+  methods: {
+    async getArticles() {
+      this.articleList = await apiArticles.getArticles({ tag: this.filterTag });
+    }
+  },
+  created() {
+    this.filterList = apiArticles.getFilters();
+    this.getArticles();
   }
 };
 </script>

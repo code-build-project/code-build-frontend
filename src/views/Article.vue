@@ -58,7 +58,7 @@ import BlockArticleCover from '@/components/blocks/BlockArticleCover.vue';
 import BlockPopularArticles from '@/components/blocks/BlockPopularArticles.vue';
 
 // Services
-// import apiArticles from '@/services/articles.js';
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Article',
@@ -73,8 +73,8 @@ export default {
       article: {}
     };
   },
-  created() {
-    // this.article = await apiArticles.getArticles({ tag: this.filterTag });
+  async created() {
+    this.article = await apiArticles.getArticles({ tag: this.filterTag });
   }
 };
 </script>

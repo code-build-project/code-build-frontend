@@ -1,4 +1,5 @@
 import request from '@/helpers/http';
+import { Filters } from '@/models/courses';
 
 export default {
   // Получить список курсов
@@ -14,9 +15,8 @@ export default {
   },
 
   // Получить фильтры для курсов
-  getFilters: async () => {
-    const response = await request.get('/filters/courses');
-    return response.data;
+  getFilters: () => {
+    return Filters;
   },
 
   // Поставить лайк курсу и добавить в фавориты

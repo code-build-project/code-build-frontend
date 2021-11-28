@@ -1,8 +1,15 @@
 import request from '@/helpers/http';
+import { Filters } from '@/models/articles';
 
 export default {
   // Получить список статьей
   getArticles: async params => {
+    const response = await request.get(`/articles`, { params });
+    return response.data;
+  },
+
+  // Получить статью по id
+  getArticle: async params => {
     const response = await request.get(`/articles`, { params });
     return response.data;
   },
@@ -14,9 +21,8 @@ export default {
   },
 
   // Получить фильтры для статьей
-  getFilters: async () => {
-    const response = await request.get('/filters/articles');
-    return response.data;
+  getFilters: () => {
+    return Filters;
   },
 
   // Поставить лайк статье и добавить в фавориты

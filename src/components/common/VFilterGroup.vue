@@ -22,7 +22,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: 'all'
+      default: ''
     },
     array: {
       type: Array,

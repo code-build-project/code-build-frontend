@@ -1,16 +1,19 @@
 <template>
   <div class="courses__wrap">
     <div class="courses">
-      <h1 class="courses__title">
-        Все видеокурсы
-      </h1>
+      <h1 class="courses__title">Все видеокурсы</h1>
 
-      <v-filter-group v-model="filterTag" class="courses__filters" :array="filterList" />
+      <v-filter-group
+        v-model="filterTag"
+        class="courses__filters"
+        :array="filterList"
+        @change="getCourses()"
+      />
 
       <div class="courses__list">
-        <div v-for="(item, index) in filteredCourseList" :key="index">
+        <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
-            :id="item._id"
+            :id="item.id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
@@ -49,7 +52,7 @@ export default {
   },
   data() {
     return {
-      filterTag: 'all',
+      filterTag: '',
 
       filterList: [],
       courseList: []
@@ -58,16 +61,16 @@ export default {
   computed: {
     user() {
       return this.$store.getters.user || {};
-    },
-
-    filteredCourseList() {
-      return this.courseList.filter((item) => item.tags.includes(this.filterTag));
     }
   },
-  async created() {
-    this.filterList = await apiCourses.getFilters();
-
-    this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
+  methods: {
+    async getCourses() {
+      this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
+    }
+  },
+  created() {
+    this.filterList = apiCourses.getFilters();
+    this.getCourses();
   }
 };
 </script>
