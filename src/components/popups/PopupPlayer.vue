@@ -1,36 +1,32 @@
 <template>
-  <div class="player">
-    <iframe
-      class="player__screen"
-      src="https://youtu.be/DjeiLzaVQG0"
-      frameborder="0"
-      allow="fullscreen"
-      scrolling="no"
-    />
+  <div class="popup">
+    <div class="popup__player">
+      <iframe
+        class="popup__screen"
+        src="https://youtu.be/DjeiLzaVQG0"
+        frameborder="0"
+        allow="fullscreen"
+        scrolling="no"
+      />
 
-    <div class="player__footer">
-      <div class="player__footer-titles">
-        <div class="player__lesson-number">
-          Урок №1
+      <div class="popup__footer">
+        <div class="popup__footer-titles">
+          <div class="popup__lesson-number">Урок №1</div>
+          <h1 class="popup__title">Установка всего необходимого</h1>
         </div>
-        <h1 class="player__title">
-          Установка всего необходимого
-        </h1>
+
+        <div class="popup__footer-buttons">
+          <v-icon class="popup__icon-heart" path="img/heart.svg" width="16px" height="14px" />
+          <v-button class="popup__button"> Смотреть на YouTube </v-button>
+        </div>
       </div>
 
-      <div class="player__footer-buttons">
-        <v-icon class="player__icon-heart" path="img/heart.svg" width="16px" height="14px" />
-        <v-button class="player__button">
-          Смотреть на YouTube
-        </v-button>
-      </div>
+      <!-- Внешние кнопки -->
+      <v-icon class="popup__icon-close" path="img/close.svg" @click.native.stop="$emit('close')" />
+      <v-icon class="popup__icon-bracket-left" path="img/angleBracketPopup.svg" />
+      <v-icon class="popup__icon-bracket-right" path="img/angleBracketPopup.svg" />
+      <!-- Внешние кнопки -->
     </div>
-
-    <!-- Внешние кнопки -->
-    <v-icon class="player__icon-close" path="img/close.svg" @click="closePopup()" />
-    <v-icon class="player__icon-bracket-left" path="img/angleBracketPopup.svg" />
-    <v-icon class="player__icon-bracket-right" path="img/angleBracketPopup.svg" />
-    <!-- Внешние кнопки -->
   </div>
 </template>
 
@@ -43,26 +39,34 @@ export default {
   components: {
     VIcon,
     VButton
-  },
-  methods: {
-    closePopup() {
-      this.$store.commit('closePopup');
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.player {
-  position: relative;
-  width: 1022px;
-  height: 660px;
+.popup {
+  @extend .flex_row-center-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 
-  padding: 35px;
-  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
 
-  background: $color-white;
-  border-radius: 8px;
+  &__player {
+    position: relative;
+    width: 1022px;
+    height: 660px;
+
+    padding: 35px;
+    box-sizing: border-box;
+
+    background: $color-white;
+    border-radius: 8px;
+  }
 
   &__screen {
     width: 952px;
@@ -113,7 +117,7 @@ export default {
 }
 
 // icons
-.player__icon {
+.popup__icon {
   &-heart {
     @extend .flex_row-center-center;
     width: 53px;

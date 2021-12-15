@@ -13,16 +13,11 @@
       <div class="articles__list">
         <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
-            :id="item.id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
-            :title="item.title"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
-            :image="item.image"
-            @click="$router.push('/article')"
+            :article="item"
+            @click="$router.push(`/article?id=${item.id}`)"
           />
         </div>
       </div>
@@ -63,7 +58,7 @@ export default {
   },
   methods: {
     async getArticles() {
-      this.articleList = await apiArticles.getArticles({ tag: this.filterTag });
+      this.articleList = await apiArticles.getArticleList({ tag: this.filterTag });
     }
   },
   created() {

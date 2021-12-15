@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import axios from 'axios';
+import request from '@/helpers/http';
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -41,7 +41,7 @@ const routes = [
         component: () => import('@/views/Favorites.vue'),
         // Попытка перейти в избранное без авторизации
         beforeEnter: async (to, from, next) => {
-          await axios.get('/user')
+          await request.get('/user')
             .then(() => {
               next()
             })
@@ -56,7 +56,7 @@ const routes = [
         component: () => import('@/views/Cabinet.vue'),
         // Попытка перейти в личный кабинет без авторизации
         beforeEnter: async (to, from, next) => {
-          await axios.get('/user')
+          await request.get('/user')
             .then(() => {
               next()
             })
@@ -71,7 +71,7 @@ const routes = [
         component: () => import('@/views/Subscribe.vue'),
         // Попытка перейти на страницу покупки подписки, когда подписка уже имеется
         beforeEnter: async (to, from, next) => {
-          await axios.get('/user')
+          await request.get('/user')
             .then((res) => {
               if(res.data.isPremium) {
                 next({ name: 'Home' });

@@ -5,7 +5,7 @@
     <div class="course__lessons">
       <div v-for="(item, index) in lessonList" :key="index">
         <v-lesson-mini-card
-          :id="item._id"
+          :id="item.id"
           class="mb-30px"
           :class="[
             { 'ml-22px': (index - 1) % 4 === 0 },
@@ -36,6 +36,7 @@ import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
 import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
 
 // Services
+import apiCourses from '@/services/courses.js';
 import apiLessons from '@/services/lessons.js';
 
 export default {
@@ -48,7 +49,8 @@ export default {
   },
   data() {
     return {
-      lessonList: []
+      lessonList: [],
+      course: {}
     };
   },
   computed: {
@@ -62,6 +64,9 @@ export default {
   methods: {
     async getLessons() {
       this.lessonList = await apiLessons.getLessons({ courseName: this.$route.query.courseName });
+    },
+    async getCourse() {
+      this.course = await apiCourses.getCourse({ id: this.$route.query.id });
     }
   }
 };

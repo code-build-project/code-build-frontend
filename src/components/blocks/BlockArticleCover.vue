@@ -14,7 +14,7 @@
           </div>
 
           <div class="cover__route-item ml-20px">
-            Make art NONSNS again. Как абсурд в искусстве придаёт смысл обыденным вещам
+            {{ article.title }}
           </div>
         </div>
 
@@ -27,30 +27,25 @@
       </div>
 
       <h1 class="cover__title">
-        Make art NONSNS again.<br />
-        Как абсурд в искусстве придаёт <br />
-        смысл обыденным вещам
+        {{ article.title }}
       </h1>
 
       <h2 class="cover__subtitle">
-        Современное искусство, спекуляции и ирония. Группа NONSNS рассказала<br />
-        о своём шоу для «Гаража» и дизайне, который сделал это шоу убедительным.
+        {{ article.subtitle }}
       </h2>
 
       <div class="cover__attributes">
         <div class="cover__attributes-item">
           <v-icon class="cover__icon-attribute" path="img/timer.svg" />
-          Время прочтения: 15 м.
+          {{ article.date }}
         </div>
 
         <div class="cover__attributes-item ml-10px">
           <v-icon class="cover__icon-attribute" path="img/openEye.svg" />
-          300
+          {{ article.views }}
         </div>
 
-        <div class="cover__attributes-item ml-10px">
-          #Дизайн
-        </div>
+        <div class="cover__attributes-item ml-10px">#Дизайн</div>
       </div>
     </div>
   </div>
@@ -63,6 +58,13 @@ export default {
   name: 'BlockArticleCover',
   components: {
     VIcon
+  },
+  props: {
+    // Информация о статье
+    article: {
+      type: Object,
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -91,7 +93,7 @@ export default {
 
   &__route {
     @extend .flex_row;
-    
+
     font-family: 'Circe';
     font-size: 16px;
     line-height: 27px;

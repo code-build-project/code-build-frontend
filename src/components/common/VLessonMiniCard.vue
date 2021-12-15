@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card__poster" />
 
-    <main class="card__main" @click="openPopup()">
+    <main class="card__main" @click="isPopup = true">
       <div class="card__lesson-number">
         Урок №{{ lessonNumber }}
       </div>
@@ -31,12 +31,15 @@
       :fill="isLike ? '#EE3465' : 'transparent'"
       @click="onLike()"
     />
+
+    <popup-player v-if="isPopup" @close="isPopup = false" />
   </div>
 </template>
 
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import PopupPlayer from '@/components/popups/PopupPlayer.vue';
 
 // Services
 import apiLessons from '@/services/lessons.js';
@@ -44,7 +47,8 @@ import apiLessons from '@/services/lessons.js';
 export default {
   name: 'VCourseCard',
   components: {
-    VIcon
+    VIcon,
+    PopupPlayer
   },
   props: {
     // Id урока
@@ -92,7 +96,8 @@ export default {
   },
   data() {
     return {
-      isLike: this.likes.includes(this.userId)
+      isLike: this.likes.includes(this.userId),
+      isPopup: false,
     };
   },
 
@@ -120,10 +125,6 @@ export default {
         this.deleteLike(payload);
       } else this.addLike(payload);
     },
-
-    openPopup() {
-      this.$store.commit('openPopup', 'player');
-    }
   }
 };
 </script>

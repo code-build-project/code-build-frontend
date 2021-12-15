@@ -1,8 +1,6 @@
 <template>
   <div class="reviews">
-    <h1 class="reviews__title">
-      Отзывы о наших курсах
-    </h1>
+    <h1 class="reviews__title">Отзывы о наших курсах</h1>
 
     <div class="reviews__list" :class="{ reviews__list_open: isOpenList }">
       <div v-for="(boxList, indexBox) in reviewList" :key="indexBox" class="reviews__box-list">
@@ -20,10 +18,10 @@
     </div>
 
     <div v-if="!isOpenList" class="reviews__footer">
-      <v-button class="reviews__button" @click="isOpenList = true">
-        Показать еще
-      </v-button>
+      <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
     </div>
+
+    
   </div>
 </template>
 
@@ -53,30 +51,30 @@ export default {
     this.getReviews();
   },
   methods: {
-    getReviews() {
-      apiReviews.getReviews().then((data) => {
-        // Количество коробок(отзывы по 5 штук)
-        const countBox = Math.ceil(data.length / 5);
+    async getReviews() {
+      const response = await apiReviews.getReviews();
 
-        for (let i = 0; i < countBox; i++) {
-          this.reviewList.push([]);
+      // Количество коробок(отзывы по 5 штук)
+      const countBox = Math.ceil(response.length / 5);
+
+      for (let i = 0; i < countBox; i++) {
+        this.reviewList.push([]);
+      }
+
+      // Количество отзывов для одной коробки(максимум 5)
+      let count = 0;
+      // Индекс коробки
+      let index = 0;
+
+      for (let item of response) {
+        this.reviewList[index].push(item);
+        count++;
+
+        if (count === 5) {
+          count = 0;
+          index++;
         }
-
-        // Количество отзывов для одной коробки(максимум 5)
-        let count = 0;
-        // Индекс коробки
-        let index = 0;
-
-        for (let item of data) {
-          this.reviewList[index].push(item);
-          count++;
-
-          if (count === 5) {
-            count = 0;
-            index++;
-          }
-        }
-      });
+      }
     }
   }
 };

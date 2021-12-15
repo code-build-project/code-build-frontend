@@ -4,22 +4,22 @@
 
     <div class="card__main" @click="$emit('click')">
       <h2 class="card__course-title">
-        {{ courseTitle }}
+        {{ lesson.courseTitle }}
       </h2>
 
       <h1 class="card__title">
-        {{ title }}
+        {{ lesson.title }}
       </h1>
 
       <div class="card__attributes">
         <div class="card__attributes-item" style="width: 170px">
           <v-icon class="card__icon-attributes" path="img/timer.svg" />
-          {{ time }}
+          {{ lesson.time }}
         </div>
 
         <div class="card__attributes-item" style="width: 130px">
           <v-icon class="card__icon-attributes" path="img/openEye.svg" />
-          {{ views }}>
+          {{ lesson.views }}>
         </div>
       </div>
     </div>
@@ -47,52 +47,37 @@ export default {
     VIcon
   },
   props: {
-    // Id урока
-    id: {
-      type: String,
-      default: ''
+    // Информация о уроке
+    lesson: {
+      type: Object,
+      default: () => {
+        return {
+          // Id урока
+          id: '',
+          // Название урока
+          title: 'Название урока',
+          // Название курса
+          courseTitle: 'Название курса',
+          // Длительность по времени
+          time: '15 м.',
+          // Количество просмотров  видео
+          views: '300',
+          // Список id юзеров, лайкнувших урок
+          likes: [],
+          // Название курса(коллекции в бд)
+          courseName: ''
+        };
+      }
     },
     // Id юзера
     userId: {
-      type: String,
-      default: ''
-    },
-    // Название урока
-    title: {
-      type: String,
-      default: 'Название урока'
-    },
-    // Название курса
-    courseTitle: {
-      type: String,
-      default: 'Название курса'
-    },
-    // Длительность по времени
-    time: {
-      type: String,
-      default: '15 м.'
-    },
-    // Количество просмотров  видео
-    views: {
-      type: String,
-      default: '300'
-    },
-    // Список id юзеров, лайкнувших урок
-    likes: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    // Название курса(коллекции в бд)
-    courseName: {
       type: String,
       default: ''
     }
   },
   data() {
     return {
-      isLike: this.likes.includes(this.userId)
+      isLike: this.lesson.likes.includes(this.userId)
     };
   },
 
@@ -111,9 +96,9 @@ export default {
 
     onLike() {
       const payload = {
-        lessonId: this.id,
+        lessonId: this.lesson.id,
         userId: this.userId,
-        courseName: this.courseName
+        courseName: this.lesson.courseName
       };
 
       if (this.isLike) {

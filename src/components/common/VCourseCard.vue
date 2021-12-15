@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img class="card__poster" alt="" :src="image" />
+    <img class="card__poster" alt="" :src="course.image" />
 
     <main class="card__main" @click="$emit('click')">
       <div class="card__level">
@@ -10,28 +10,28 @@
           v-for="item in [1, 2, 3, 4, 5]"
           :key="item"
           class="card__level-circle"
-          :style="{ background: level >= item ? '#EE3465' : '#EDEDED' }"
+          :style="{ background: course.level >= item ? '#EE3465' : '#EDEDED' }"
         />
       </div>
 
       <h1 class="card__title">
-        {{ title }}
+        {{ course.title }}
       </h1>
 
       <div class="card__attributes">
         <div class="card__attributes-item" style="width: 112px">
           <v-icon class="card__icon-attributes" path="img/video.svg" />
-          {{ lessons }}
+          {{ course.lessons }}
         </div>
 
         <div class="card__attributes-item" style="width: 103px">
           <v-icon class="card__icon-attributes" path="img/timer.svg" />
-          {{ time }}
+          {{ course.time }}
         </div>
 
         <div class="card__attributes-item" style="width: 80px">
           <v-icon class="card__icon-attributes" path="img/openEye.svg" />
-          {{ views }}
+          {{ course.views }}
         </div>
       </div>
     </main>
@@ -59,57 +59,39 @@ export default {
     VIcon
   },
   props: {
-    // Id курса
-    id: {
-      type: String,
-      default: ''
+    // Информация о курсе
+    course: {
+      type: Object,
+      default: () => {
+        return {
+          // Id курса
+          id: '',
+          // Название курса
+          title: 'Название курса',
+          // Уровень сложности
+          level: '1',
+          // Количество уроков
+          lessons: '6 уроков',
+          // Общее время курса
+          time: '1 ч. 25 м.',
+          // Количество просмотров курса
+          views: '300',
+          // Список id юзеров, лайкнувших курс
+          likes: [],
+          // Постер
+          image: ''
+        };
+      }
     },
     // Id юзера
     userId: {
-      type: String,
-      default: ''
-    },
-    // Название курса
-    title: {
-      type: String,
-      default: 'Название курса'
-    },
-    // Уровень сложности
-    level: {
-      type: String,
-      default: '1'
-    },
-    // Количество уроков
-    lessons: {
-      type: String,
-      default: '6 уроков'
-    },
-    // Общее время курса
-    time: {
-      type: String,
-      default: '1 ч. 25 м.'
-    },
-    // Количество просмотров курса
-    views: {
-      type: String,
-      default: '300'
-    },
-    // Список id юзеров, лайкнувших курс
-    likes: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    // Постер
-    image: {
       type: String,
       default: ''
     }
   },
   data() {
     return {
-      isLike: this.likes.includes(this.userId)
+      isLike: this.course.likes.includes(this.userId)
     };
   },
 
@@ -128,7 +110,7 @@ export default {
 
     onLike() {
       const payload = {
-        courseId: this.id,
+        courseId: this.course.id,
         userId: this.userId
       };
 

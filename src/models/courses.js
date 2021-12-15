@@ -7,3 +7,18 @@ export const Filters = [
   { id: 6, name: 'Платные', tag: 'paid' },
   { id: 7, name: 'Бесплатные', tag: 'free' }
 ];
+
+export class Course {
+  constructor(course) {
+    this.id = course.id;
+    this.title = course.title;
+    this.level = course.level;
+    this.lessons = course.lessons;
+    this.time = course.time;
+    this.views = course.views;
+    this.tags = course.tags;
+    this.likes = course.likes;
+    this.courseName = course.courseName;
+    this.image = course.image;
+  }
+}

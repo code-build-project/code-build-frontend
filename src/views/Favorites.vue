@@ -3,9 +3,7 @@
     <div class="favorites">
       <!-- Фильтры -->
       <div class="favorites__header">
-        <h1 class="favorites__title">
-          Избранное
-        </h1>
+        <h1 class="favorites__title">Избранное</h1>
 
         <div class="favorites__filters">
           <div
@@ -25,43 +23,27 @@
         <div v-for="(item, index) in itemList" :key="index">
           <v-course-card
             v-if="filterId === 1"
-            :id="item._id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
-            :title="item.title"
-            :level="item.level"
-            :lessons="item.lessons"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
+            :course="item"
             @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
 
           <v-lesson-card
             v-if="filterId === 2"
-            :id="item._id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
-            :title="item.title"
-            :course-title="item.courseTitle"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
-            :course-name="item.courseName"
+            :lesson="item"
           />
 
           <v-article-card
             v-if="filterId === 3"
-            :id="item._id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
-            :title="item.title"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
+            :article="item"
             @click="$router.push('/article')"
           />
         </div>
@@ -161,7 +143,7 @@ export default {
     },
 
     async getCourses() {
-      this.courseList = await apiCourses.getFavoriteCourses({ userId: this.user.id });
+      this.courseList = await apiCourses.getFavoriteCourseList({ userId: this.user.id });
     },
 
     async getLessons() {

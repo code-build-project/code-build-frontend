@@ -1,35 +1,33 @@
 <template>
-  <div class="card">
-    <v-icon class="card__icon-close" path="img/close.svg" @click="closePopup()" />
+  <div class="popup">
+    <div class="popup__form">
+      <v-icon class="popup__icon-close" path="img/close.svg" @click.native.stop="$emit('close')" />
 
-    <div class="card__score">
-      <v-icon class="card__icon-star" path="img/star.svg" />
-      <span>4,5</span>
-    </div>
+      <div class="popup__score">
+        <v-icon class="popup__icon-star" path="img/star.svg" />
+        <span>4,5</span>
+      </div>
 
-    <div class="card__text">
-      Всем привет! Мне 27, я из Королёва. По окончании школы я связал свою жизнь с полиграфией и
-      поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне
-      надоело. Всем привет! Мне 27, я из.
-    </div>
+      <div class="popup__text">
+        Всем привет! Мне 27, я из Королёва. По окончании школы я связал свою жизнь с полиграфией и
+        поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне
+        надоело. Всем привет! Мне 27, я из.
+      </div>
 
-    <div class="card__footer">
-      <div class="card__avatar-img" />
+      <div class="popup__footer">
+        <div class="popup__avatar-img" />
 
-      <div class="card__avatar-info">
-        <h1 class="card__avatar-name">
-          Кристина Белова
-        </h1>
+        <div class="popup__avatar-info">
+          <h1 class="popup__avatar-name">Кристина Белова</h1>
 
-        <div class="card__avatar-date">
-          21 января 2021
+          <div class="popup__avatar-date">21 января 2021</div>
         </div>
       </div>
     </div>
 
     <!-- Внешние кнопки -->
-    <v-icon class="card__icon-bracket-left" path="img/angleBracketPopup.svg" />
-    <v-icon class="card__icon-bracket-right" path="img/angleBracketPopup.svg" />
+    <v-icon class="popup__icon-bracket-left" path="img/angleBracketPopup.svg" />
+    <v-icon class="popup__icon-bracket-right" path="img/angleBracketPopup.svg" />
     <!-- Внешние кнопки -->
   </div>
 </template>
@@ -41,28 +39,36 @@ export default {
   name: 'PopupReview',
   components: {
     VIcon
-  },
-  methods: {
-    closePopup() {
-      this.$store.commit('closePopup');
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.card {
-  @extend .flex_column-start-center;
-  position: relative;
-  width: 764px;
-  height: 600px;
-  padding: 40px;
-  box-sizing: border-box;
+.popup {
+  @extend .flex_row-center-center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 
-  font-family: 'Circe';
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
 
-  background: $color-white;
-  border-radius: 29px;
+  &__form {
+    @extend .flex_column-start-center;
+    position: relative;
+    width: 764px;
+    height: 600px;
+    padding: 40px;
+    box-sizing: border-box;
+
+    font-family: 'Circe';
+
+    background: $color-white;
+    border-radius: 29px;
+  }
 
   &__score {
     @extend .flex_row-center-center;
@@ -125,7 +131,7 @@ export default {
 }
 
 // icons
-.card__icon {
+.popup__icon {
   &-close {
     width: 23px;
     height: 23px;
@@ -149,18 +155,17 @@ export default {
     width: 23px;
     height: 39px;
 
-    top: 300px;
     cursor: pointer;
     stroke: $color-white;
   }
 
   &-bracket-left {
-    left: -100px;
+    left: 500px;
     transform: rotate(180deg);
   }
 
   &-bracket-right {
-    right: -100px;
+    right: 500px;
     transform: rotate(0deg);
   }
 }

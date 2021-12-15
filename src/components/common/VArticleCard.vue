@@ -1,25 +1,25 @@
 <template>
   <div class="card">
-    <img class="card__poster" alt="" :src="image" />
+    <img class="card__poster" alt="" :src="article.image" />
 
     <main class="card__main" @click="$emit('click')">
       <div class="card__date">
-        {{ date }}
+        {{ article.date }}
       </div>
 
       <h1 class="card__title">
-        {{ title }}
+        {{ article.title }}
       </h1>
 
       <div class="card__footer">
         <div class="card__footer-item" style="width: 207px">
           <v-icon class="card__icon-footer" path="img/timer.svg" />
-          Время прочтения: {{ time }}
+          Время прочтения: {{ article.time }}
         </div>
 
         <div class="card__footer-item" style="width: 95px">
           <v-icon class="card__icon-footer" path="img/openEye.svg" />
-          {{ views }}
+          {{ article.views }}
         </div>
       </div>
     </main>
@@ -47,45 +47,30 @@ export default {
     VIcon
   },
   props: {
-    // Id статьи
-    id: {
-      type: String,
-      default: ''
+    // Информация о статье
+    article: {
+      type: Object,
+      default: () => {
+        return {
+          // Id статьи
+          id: '',
+          // Название статьи
+          title: 'Название статьи',
+          // Дата публикации
+          date: '12 апреля 2021',
+          // Среднее время прочтения
+          time: '15 м.',
+          // Количество просмотров статьи
+          views: '300',
+          // Список id юзеров, лайкнувших статью
+          likes: [],
+          // Постер
+          image: ''
+        };
+      }
     },
     // Id юзера
     userId: {
-      type: String,
-      default: ''
-    },
-    // Название статьи
-    title: {
-      type: String,
-      default: 'Название статьи'
-    },
-    // Дата публикации
-    date: {
-      type: String,
-      default: '12 апреля 2021'
-    },
-    // Среднее время прочтения
-    time: {
-      type: String,
-      default: '15 м.'
-    },
-    // Количество просмотров статьи
-    views: {
-      type: String,
-      default: '300'
-    },
-    // Список id юзеров, лайкнувших статью
-    likes: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    // Постер
-    image: {
       type: String,
       default: ''
     }
@@ -93,7 +78,7 @@ export default {
 
   data() {
     return {
-      isLike: this.likes.includes(this.userId)
+      isLike: this.article.likes.includes(this.userId)
     };
   },
 
@@ -112,7 +97,7 @@ export default {
 
     onLike() {
       const payload = {
-        articleId: this.id,
+        articleId: this.article.id,
         userId: this.userId
       };
 

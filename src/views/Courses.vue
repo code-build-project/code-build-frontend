@@ -13,17 +13,10 @@
       <div class="courses__list">
         <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
-            :id="item.id"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :user-id="user.id"
-            :title="item.title"
-            :level="item.level"
-            :lessons="item.lessons"
-            :time="item.time"
-            :views="item.views"
-            :likes="item.likes"
-            :image="item.image"
+            :course="item"
             @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
         </div>
@@ -65,7 +58,7 @@ export default {
   },
   methods: {
     async getCourses() {
-      this.courseList = await apiCourses.getCourses({ tag: this.filterTag });
+      this.courseList = await apiCourses.getCoursesList({ tag: this.filterTag });
     }
   },
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :style="{ height: height + 'px' }" @click="openPopup()">
+  <div class="card" :style="{ height: height + 'px' }" @click="isPopup = true">
     <div class="card__score">
       <v-icon class="card__icon-star" path="img/star.svg" />
       <span>{{ score }}</span>
@@ -22,16 +22,20 @@
         </div>
       </div>
     </div>
+
+    <popup-review v-if="isPopup" @close="isPopup = false" />
   </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon.vue';
+import PopupReview from '@/components/popups/PopupReview.vue';
 
 export default {
   name: 'VReviewCard',
   components: {
-    VIcon
+    VIcon,
+    PopupReview
   },
   props: {
     // Высота карты
@@ -60,10 +64,10 @@ export default {
       default: '21 января 2021'
     }
   },
-  methods: {
-    openPopup() {
-      this.$store.commit('openPopup', 'review');
-    }
+  data() {
+    return {
+      isPopup: false
+    };
   }
 };
 </script>
