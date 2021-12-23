@@ -1,23 +1,18 @@
 <template>
   <div class="course">
-    <block-course-cover class="course__cover" />
+    <block-course-cover class="course__cover" :course="course" />
 
     <div class="course__lessons">
       <div v-for="(item, index) in lessonList" :key="index">
         <v-lesson-mini-card
-          :id="item.id"
           class="mb-30px"
           :class="[
             { 'ml-22px': (index - 1) % 4 === 0 },
             { 'ml-22px mr-22px': (index - 1) % 2 === 0 }
           ]"
           :user-id="user.id"
-          :title="item.title"
-          :lesson-number="item.lessonNumber"
-          :time="item.time"
-          :views="item.views"
-          :likes="item.likes"
-          :course-name="item.courseName"
+          :lesson="item"
+          @click="selectedLesson = item"
         />
       </div>
     </div>
@@ -25,11 +20,20 @@
     <block-popular-courses class="course__popular" />
 
     <block-subscribe class="course__subscribe" />
+
+    <popup-player
+      v-if="selectedLesson.id"
+      :lesson="selectedLesson"
+      @close="selectedLesson = {}"
+      @clickLeft="setLesson('decrement')"
+      @clickRight="setLesson('increment')"
+    />
   </div>
 </template>
 
 <script>
 // Components
+import PopupPlayer from '@/components/popups/PopupPlayer.vue';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
 import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
@@ -42,6 +46,7 @@ import apiLessons from '@/services/lessons.js';
 export default {
   name: 'Course',
   components: {
+    PopupPlayer,
     BlockSubscribe,
     VLessonMiniCard,
     BlockCourseCover,
@@ -50,7 +55,8 @@ export default {
   data() {
     return {
       lessonList: [],
-      course: {}
+      course: {},
+      selectedLesson: {}
     };
   },
   computed: {
@@ -60,13 +66,26 @@ export default {
   },
   created() {
     this.getLessons();
+    this.getCourse();
   },
   methods: {
     async getLessons() {
       this.lessonList = await apiLessons.getLessons({ courseName: this.$route.query.courseName });
     },
     async getCourse() {
-      this.course = await apiCourses.getCourse({ id: this.$route.query.id });
+      this.course = await apiCourses.getCourse({ courseName: this.$route.query.courseName });
+    },
+    setLesson(operator) {
+      let index = this.lessonList.indexOf(this.selectedLesson);
+      const lastIndex = this.lessonList.length - 1;
+
+      if (operator === 'increment') index++;
+      if (operator === 'decrement') index--;
+
+      if (index > lastIndex) index = 0;
+      if (index < 0) index = lastIndex;
+
+      this.selectedLesson = this.lessonList[index];
     }
   }
 };

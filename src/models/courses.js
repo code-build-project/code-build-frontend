@@ -1,17 +1,18 @@
 export const Filters = [
-  { id: 1, name: 'Все курсы', tag: '' },
-  { id: 2, name: 'Игры', tag: 'game' },
-  { id: 3, name: 'Сайты', tag: 'web' },
-  { id: 4, name: 'Языки', tag: 'language' },
-  { id: 5, name: 'Прочее', tag: 'other' },
-  { id: 6, name: 'Платные', tag: 'paid' },
-  { id: 7, name: 'Бесплатные', tag: 'free' }
+  { id: '', name: 'Все курсы' },
+  { id: '1', name: 'Игры' },
+  { id: '2', name: 'Сайты' },
+  { id: '3', name: 'Языки' },
+  { id: '4', name: 'Прочее' },
+  { id: '5', name: 'Платные' },
+  { id: '6', name: 'Бесплатные' }
 ];
 
 export class Course {
   constructor(course) {
     this.id = course.id;
     this.title = course.title;
+    this.subtitle = course.subtitle;
     this.level = course.level;
     this.lessons = course.lessons;
     this.time = course.time;

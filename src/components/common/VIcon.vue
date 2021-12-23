@@ -54,7 +54,6 @@ export default {
 
 <style lang="scss" scoped>
 .icon {
-  box-sizing: border-box;
   display: flex;
   
   &__img {

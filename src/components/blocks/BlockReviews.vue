@@ -9,10 +9,8 @@
           :key="index"
           class="reviews__list-item"
           :height="index === 2 ? '700' : '335'"
-          :score="item.score"
-          :text="item.text"
-          :name="item.name"
-          :date="item.date"
+          :review="item"
+          @click="selectedReview = item"
         />
       </div>
     </div>
@@ -21,7 +19,13 @@
       <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
     </div>
 
-    
+    <popup-review
+      v-if="selectedReview.id"
+      :review="selectedReview"
+      @close="selectedReview = {}"
+      @clickLeft="setReview('decrement')"
+      @clickRight="setReview('increment')"
+    />
   </div>
 </template>
 
@@ -29,6 +33,7 @@
 // Components
 import VButton from '@/components/common/VButton.vue';
 import VReviewCard from '@/components/common/VReviewCard.vue';
+import PopupReview from '@/components/popups/PopupReview.vue';
 
 // Services
 import apiReviews from '@/services/reviews.js';
@@ -37,25 +42,30 @@ export default {
   name: 'BlockReviews',
 
   components: {
+    VButton,
     VReviewCard,
-    VButton
+    PopupReview
   },
 
   data() {
     return {
       isOpenList: false,
-      reviewList: []
+      allReviews: [],
+      reviewList: [],
+      selectedReview: {}
     };
   },
+
   created() {
     this.getReviews();
   },
+
   methods: {
     async getReviews() {
-      const response = await apiReviews.getReviews();
+      this.allReviews = await apiReviews.getReviews();
 
       // Количество коробок(отзывы по 5 штук)
-      const countBox = Math.ceil(response.length / 5);
+      const countBox = Math.ceil(this.allReviews.length / 5);
 
       for (let i = 0; i < countBox; i++) {
         this.reviewList.push([]);
@@ -66,7 +76,7 @@ export default {
       // Индекс коробки
       let index = 0;
 
-      for (let item of response) {
+      for (let item of this.allReviews) {
         this.reviewList[index].push(item);
         count++;
 
@@ -75,6 +85,19 @@ export default {
           index++;
         }
       }
+    },
+
+    setReview(operator) {
+      let index = this.allReviews.indexOf(this.selectedReview);
+      const lastIndex = this.allReviews.length - 1;
+
+      if (operator === 'increment') index++;
+      if (operator === 'decrement') index--;
+
+      if (index > lastIndex) index = 0;
+      if (index < 0) index = lastIndex;
+
+      this.selectedReview = this.allReviews[index];
     }
   }
 };

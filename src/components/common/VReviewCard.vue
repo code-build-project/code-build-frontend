@@ -1,12 +1,12 @@
 <template>
-  <div class="card" :style="{ height: height + 'px' }" @click="isPopup = true">
+  <div class="card" :style="{ height: height + 'px' }" @click="$emit('click')">
     <div class="card__score">
       <v-icon class="card__icon-star" path="img/star.svg" />
-      <span>{{ score }}</span>
+      <span>{{ review.score }}</span>
     </div>
 
     <div class="card__text">
-      {{ text }}
+      {{ review.text }}
     </div>
 
     <div class="card__footer">
@@ -14,60 +14,47 @@
 
       <div class="card__avatar-info">
         <h1 class="card__avatar-name">
-          {{ name }}
+          {{ review.name }}
         </h1>
 
         <div class="card__avatar-date">
-          {{ date }}
+          {{ review.date }}
         </div>
       </div>
     </div>
-
-    <popup-review v-if="isPopup" @close="isPopup = false" />
   </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon.vue';
-import PopupReview from '@/components/popups/PopupReview.vue';
 
 export default {
   name: 'VReviewCard',
   components: {
-    VIcon,
-    PopupReview
+    VIcon
   },
   props: {
+    // Информация об отзыве
+    review: {
+      type: Object,
+      default: () => {
+        return {
+          // Оценка
+          score: '',
+          // Текст
+          text: '',
+          // Имя автора
+          name: '',
+          // Дата публикации
+          date: ''
+        };
+      }
+    },
     // Высота карты
     height: {
       type: String,
       default: '335'
-    },
-    // Оценка
-    score: {
-      type: String,
-      default: '4,5'
-    },
-    // Текст
-    text: {
-      type: String,
-      default: ''
-    },
-    // Имя автора
-    name: {
-      type: String,
-      default: 'Автор'
-    },
-    // Дата публикации
-    date: {
-      type: String,
-      default: '21 января 2021'
     }
-  },
-  data() {
-    return {
-      isPopup: false
-    };
   }
 };
 </script>
@@ -78,7 +65,6 @@ export default {
   width: 367px;
 
   padding: 30px;
-  box-sizing: border-box;
   overflow: hidden;
 
   border: 1.5px solid #dce7ff;
@@ -90,7 +76,6 @@ export default {
     height: 30px;
 
     padding: 0px 10px 0px 10px;
-    box-sizing: border-box;
 
     background: #ecf2ff;
     border-radius: 5px;

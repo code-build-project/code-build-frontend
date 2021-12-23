@@ -4,7 +4,7 @@
       <h1 class="articles__title">Все статьи</h1>
 
       <v-filter-group
-        v-model="filterTag"
+        v-model="filterId"
         class="articles__filters"
         :array="filterList"
         @change="getArticles()"
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      filterTag: '',
+      filterId: '',
 
       filterList: [],
       articleList: []
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     async getArticles() {
-      this.articleList = await apiArticles.getArticleList({ tag: this.filterTag });
+      this.articleList = await apiArticles.getArticleList({ tag: this.filterId });
     }
   },
   created() {

@@ -98,7 +98,6 @@ export default {
 .subscribe {
   @extend .flex_column;
   padding: 40px;
-  box-sizing: border-box;
   background: #f4f4f4;
 
   // Верхний блок подписки
@@ -108,7 +107,6 @@ export default {
     height: 591px;
 
     padding: 73px 80px 72px 77px;
-    box-sizing: border-box;
 
     background: #ffffff;
     border-radius: 29px;
@@ -162,7 +160,6 @@ export default {
     margin-top: 40px;
 
     padding: 73px 80px 72px 77px;
-    box-sizing: border-box;
 
     background: #ffffff;
     border-radius: 29px;

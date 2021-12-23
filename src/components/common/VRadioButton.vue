@@ -65,7 +65,6 @@ export default {
   height: 100px;
 
   padding: 0px 34px 0px 34px;
-  box-sizing: border-box;
 
   border: 1px solid #e4e4e4;
   border-radius: 18px;

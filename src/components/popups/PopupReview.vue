@@ -5,29 +5,35 @@
 
       <div class="popup__score">
         <v-icon class="popup__icon-star" path="img/star.svg" />
-        <span>4,5</span>
+        <span>{{ review.score }}</span>
       </div>
 
       <div class="popup__text">
-        Всем привет! Мне 27, я из Королёва. По окончании школы я связал свою жизнь с полиграфией и
-        поступил в Университет Печати им. Ивана Фёдорова. Работаю дизайнером наружной рекламы и мне
-        надоело. Всем привет! Мне 27, я из.
+        {{ review.text }}
       </div>
 
       <div class="popup__footer">
         <div class="popup__avatar-img" />
 
         <div class="popup__avatar-info">
-          <h1 class="popup__avatar-name">Кристина Белова</h1>
+          <h1 class="popup__avatar-name">{{ review.name }}</h1>
 
-          <div class="popup__avatar-date">21 января 2021</div>
+          <div class="popup__avatar-date">{{ review.date }}</div>
         </div>
       </div>
     </div>
 
     <!-- Внешние кнопки -->
-    <v-icon class="popup__icon-bracket-left" path="img/angleBracketPopup.svg" />
-    <v-icon class="popup__icon-bracket-right" path="img/angleBracketPopup.svg" />
+    <v-icon
+      class="popup__icon-bracket-left"
+      path="img/angleBracketPopup.svg"
+      @click.native.stop="$emit('clickLeft')"
+    />
+    <v-icon
+      class="popup__icon-bracket-right"
+      path="img/angleBracketPopup.svg"
+      @click.native.stop="$emit('clickRight')"
+    />
     <!-- Внешние кнопки -->
   </div>
 </template>
@@ -39,6 +45,24 @@ export default {
   name: 'PopupReview',
   components: {
     VIcon
+  },
+  props: {
+    // Информация об отзыве
+    review: {
+      type: Object,
+      default: () => {
+        return {
+          // Оценка
+          score: '',
+          // Текст
+          text: '',
+          // Имя автора
+          name: '',
+          // Дата публикации
+          date: ''
+        };
+      }
+    }
   }
 };
 </script>
@@ -62,7 +86,6 @@ export default {
     width: 764px;
     height: 600px;
     padding: 40px;
-    box-sizing: border-box;
 
     font-family: 'Circe';
 
@@ -73,15 +96,12 @@ export default {
   &__score {
     @extend .flex_row-center-center;
     width: 116px;
-    height: 58px;
+    min-height: 58px;
     margin-top: 38px;
 
     font-size: 29px;
     letter-spacing: -0.9px;
     color: #3e4462;
-
-    padding: 0px 10px 0px 10px;
-    box-sizing: border-box;
 
     background: #ecf2ff;
     border-radius: 9px;
@@ -89,9 +109,10 @@ export default {
 
   &__text {
     width: 615px;
+    height: 100%;
     text-align: center;
     margin-top: 40px;
-    overflow: hidden;
+    overflow: auto;
 
     font-size: 25px;
     line-height: 36px;

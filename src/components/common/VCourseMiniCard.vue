@@ -109,7 +109,6 @@ export default {
     height: 142px;
 
     padding: 17px;
-    box-sizing: border-box;
 
     background: $color-black;
     border-radius: 0px 0px 7px 7px;

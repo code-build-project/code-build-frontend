@@ -1,10 +1,10 @@
 export const Filters = [
-  { id: 1, name: 'Все статьи', tag: '' },
-  { id: 2, name: 'Игры', tag: 'game' },
-  { id: 3, name: 'Сайты', tag: 'web' },
-  { id: 4, name: 'Языки', tag: 'language' },
-  { id: 5, name: 'Прочее', tag: 'other' },
-  { id: 6, name: 'Лучшее', tag: 'best' }
+  { id: '', name: 'Все статьи' },
+  { id: '1', name: 'Игры' },
+  { id: '2', name: 'Сайты' },
+  { id: '3', name: 'Языки' },
+  { id: '4', name: 'Прочее' },
+  { id: '5', name: 'Лучшее' }
 ];
 
 export class Article {

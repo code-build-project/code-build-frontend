@@ -127,7 +127,6 @@ export default {
     height: 226px;
 
     padding: 21px 27px 27px 27px;
-    box-sizing: border-box;
 
     background: $color-white;
     border-radius: 0px 0px 8px 8px;

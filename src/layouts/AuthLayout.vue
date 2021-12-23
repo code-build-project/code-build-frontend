@@ -23,7 +23,6 @@ export default {
     border-radius: 8px;
 
     padding: 0px 58px 0px 58px;
-    box-sizing: border-box;
   }
 }
 </style>

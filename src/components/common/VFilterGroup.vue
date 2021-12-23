@@ -4,8 +4,8 @@
       v-for="(item, index) in array"
       :key="index"
       class="filters__item"
-      :class="{ filters__item_active: value === item.tag }"
-      @click="changeFilter(item.tag)"
+      :class="{ filters__item_active: value === item.id }"
+      @click="changeFilter(item.id)"
     >
       {{ item.name }}
     </div>
@@ -30,8 +30,8 @@ export default {
     }
   },
   methods: {
-    changeFilter(tag) {
-      this.$emit('change', tag);
+    changeFilter(id) {
+      this.$emit('change', id);
     }
   }
 };

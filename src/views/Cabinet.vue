@@ -77,7 +77,6 @@ export default {
 .cabinet {
   @extend .flex_column;
   padding: 40px;
-  box-sizing: border-box;
   background: #f4f4f4;
 
   &__main {
@@ -87,8 +86,6 @@ export default {
     height: 403px;
 
     padding: 58px 80px 72px 72px;
-    box-sizing: border-box;
-
     background: $color-white;
     border-radius: 29px;
   }
@@ -119,8 +116,7 @@ export default {
     height: 80px;
     margin-top: 10px;
 
-    padding: 23px;
-    box-sizing: border-box;
+    padding: 23px;;
 
     font-family: 'Circe';
     font-size: 24px;
@@ -128,7 +124,6 @@ export default {
     color: $color-black;
 
     border: 1px solid $color-silver;
-    box-sizing: border-box;
     border-radius: 18px;
   }
 

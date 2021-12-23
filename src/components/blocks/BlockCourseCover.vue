@@ -13,9 +13,7 @@
             <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
 
-          <div class="cover__route-item ml-20px">
-            Создание сайта с нуля на CMS WordPress
-          </div>
+          <div class="cover__route-item ml-20px">{{ course.title }}</div>
         </div>
 
         <v-icon
@@ -26,34 +24,34 @@
         />
       </div>
 
-      <h1 class="cover__title">
-        Создание сайта с нуля на CMS WordPress
-      </h1>
+      <h1 class="cover__title">{{ course.title }}</h1>
 
       <h2 class="cover__subtitle">
-        Представляем вам курс по изучению CMS WordPress, а также созданию сайта с полного нуля на
-        движке WordPress.<br />
-        В курсе мы научимся работать с движком, а также создадим небольшой сайт на его основе.
+        {{ course.subtitle }}
       </h2>
 
       <div class="cover__attributes">
         <div class="cover__attributes-item">
           <v-icon class="cover__icon-attribute" path="img/video.svg" />
-          6 уроков
+          {{ course.lessons }}
         </div>
 
         <div class="cover__attributes-item ml-10px">
           <v-icon class="cover__icon-attribute" path="img/timer.svg" />
-          1 ч. 25 м.
+          {{ course.time }}
         </div>
 
         <div class="cover__attributes-item ml-10px">
           <v-icon class="cover__icon-attribute" path="img/openEye.svg" />
-          300
+          {{ course.views }}
         </div>
 
-        <div class="cover__attributes-item ml-10px">
-          #Сайты
+        <div
+          v-for="(tag, index) in course.tags"
+          :key="index"
+          class="cover__attributes-item ml-10px"
+        >
+          {{ tag }}
         </div>
       </div>
     </div>
@@ -67,6 +65,25 @@ export default {
   name: 'BlockCourseCover',
   components: {
     VIcon
+  },
+  props: {
+    course: {
+      type: Object,
+      default: () => {
+        return {
+          // Название курса
+          title: '',
+          // Подзаголовок курса
+          subtitle: '',
+          // Количество уроков в курсе
+          lessons: '',
+          // Количество времени всех уроков вместе
+          time: '',
+          // Количество просмотров данного курса
+          views: ''
+        };
+      }
+    }
   },
   data() {
     return {
@@ -87,10 +104,10 @@ export default {
   @extend .flex_column;
   width: 1160px;
   height: 532px;
+  padding: 85px 0px;
 
   &__header {
     @extend .flex_row-center-between;
-    margin-top: 86px;
   }
 
   &__route {
@@ -118,6 +135,7 @@ export default {
   }
 
   &__subtitle {
+    flex: 1;
     margin-top: 20px;
 
     font-family: 'Circe';

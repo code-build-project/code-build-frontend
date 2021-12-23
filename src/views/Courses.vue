@@ -4,7 +4,7 @@
       <h1 class="courses__title">Все видеокурсы</h1>
 
       <v-filter-group
-        v-model="filterTag"
+        v-model="filterId"
         class="courses__filters"
         :array="filterList"
         @change="getCourses()"
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      filterTag: '',
+      filterId: '',
 
       filterList: [],
       courseList: []
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     async getCourses() {
-      this.courseList = await apiCourses.getCoursesList({ tag: this.filterTag });
+      this.courseList = await apiCourses.getCoursesList({ tag: this.filterId });
     }
   },
   created() {

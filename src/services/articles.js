@@ -12,6 +12,15 @@ export default {
   // Получить статью по id
   getArticle: async params => {
     const { data } = await request.get(`/article`, { params });
+
+    let tags = [];
+
+    Filters.forEach(item => {
+      const isTag = data.tags.includes(item.id);
+      if(isTag) tags.push('#' + item.name)
+    });
+
+    data.tags = tags;
     return new Article(data);
   },
 

@@ -45,7 +45,13 @@
           {{ article.views }}
         </div>
 
-        <div class="cover__attributes-item ml-10px">#Дизайн</div>
+        <div
+          v-for="(tag, index) in article.tags"
+          :key="index"
+          class="cover__attributes-item ml-10px"
+        >
+          {{ tag }}
+        </div>
       </div>
     </div>
   </div>
@@ -85,10 +91,10 @@ export default {
   @extend .flex_column;
   width: 1160px;
   height: 600px;
+  padding: 85px 0px;
 
   &__header {
     @extend .flex_row-center-between;
-    margin-top: 86px;
   }
 
   &__route {
@@ -106,7 +112,6 @@ export default {
 
   &__title {
     width: 1030px;
-    height: 217px;
     margin-top: 35px;
 
     font-family: 'ObjectSans';
@@ -117,6 +122,7 @@ export default {
   }
 
   &__subtitle {
+    flex: 1;
     margin-top: 20px;
 
     font-family: 'Circe';

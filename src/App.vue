@@ -60,6 +60,7 @@ body,
   margin: 0;
   padding: 0;
   text-align: left;
+  box-sizing: border-box;
 }
 
 a {

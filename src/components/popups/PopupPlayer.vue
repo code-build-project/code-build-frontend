@@ -3,28 +3,38 @@
     <div class="popup__player">
       <iframe
         class="popup__screen"
-        src="https://youtu.be/DjeiLzaVQG0"
+        :src="lesson.video"
         frameborder="0"
-        allow="fullscreen"
         scrolling="no"
+        allowfullscreen
       />
 
       <div class="popup__footer">
         <div class="popup__footer-titles">
-          <div class="popup__lesson-number">Урок №1</div>
-          <h1 class="popup__title">Установка всего необходимого</h1>
+          <div class="popup__lesson-number">Урок №{{ lesson.number }}</div>
+          <h1 class="popup__title">{{ lesson.title }}</h1>
         </div>
 
         <div class="popup__footer-buttons">
           <v-icon class="popup__icon-heart" path="img/heart.svg" width="16px" height="14px" />
-          <v-button class="popup__button"> Смотреть на YouTube </v-button>
+          <v-button class="popup__button">
+            <a :href="lesson.video" target="_blank">Смотреть на YouTube</a>
+          </v-button>
         </div>
       </div>
 
       <!-- Внешние кнопки -->
       <v-icon class="popup__icon-close" path="img/close.svg" @click.native.stop="$emit('close')" />
-      <v-icon class="popup__icon-bracket-left" path="img/angleBracketPopup.svg" />
-      <v-icon class="popup__icon-bracket-right" path="img/angleBracketPopup.svg" />
+      <v-icon
+        class="popup__icon-bracket-left"
+        path="img/angleBracketPopup.svg"
+        @click.native.stop="$emit('clickLeft')"
+      />
+      <v-icon
+        class="popup__icon-bracket-right"
+        path="img/angleBracketPopup.svg"
+        @click.native.stop="$emit('clickRight')"
+      />
       <!-- Внешние кнопки -->
     </div>
   </div>
@@ -39,6 +49,34 @@ export default {
   components: {
     VIcon,
     VButton
+  },
+  props: {
+    // Информация о уроке
+    lesson: {
+      type: Object,
+      default: () => {
+        return {
+          // Id урока
+          id: '',
+          // Название урока
+          title: 'Название урока',
+          // Номер урока
+          number: '1',
+          // Длительность по времени
+          time: '15 м.',
+          // Количество просмотров  видео
+          views: '300',
+          // Список id юзеров, лайкнувших урок
+          likes: [],
+          // Название курса(коллекции в бд)
+          courseName: '',
+          // Ссылка на изображение постера
+          image: '',
+          // Ссылка на видео
+          video: ''
+        };
+      }
+    }
   }
 };
 </script>
@@ -62,7 +100,6 @@ export default {
     height: 660px;
 
     padding: 35px;
-    box-sizing: border-box;
 
     background: $color-white;
     border-radius: 8px;
