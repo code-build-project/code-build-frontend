@@ -25,7 +25,6 @@
             v-if="filterId === 1"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :user-id="user.id"
             :course="item"
             @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
@@ -34,7 +33,6 @@
             v-if="filterId === 2"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :user-id="user.id"
             :lesson="item"
           />
 
@@ -42,7 +40,6 @@
             v-if="filterId === 3"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :user-id="user.id"
             :article="item"
             @click="$router.push('/article')"
           />
@@ -65,6 +62,9 @@ import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import apiCourses from '@/services/courses.js';
 import apiLessons from '@/services/lessons.js';
 import apiArticles from '@/services/articles.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'Favorites',
@@ -97,7 +97,7 @@ export default {
 
       lessonList: [],
 
-      articleList: []
+      articleList: [],
     };
   },
   computed: {
@@ -113,10 +113,6 @@ export default {
           return this.courseList;
       }
     },
-
-    user() {
-      return this.$store.getters.user || {};
-    }
   },
 
   created() {
@@ -143,15 +139,15 @@ export default {
     },
 
     async getCourses() {
-      this.courseList = await apiCourses.getFavoriteCourseList({ userId: this.user.id });
+      this.courseList = await apiCourses.getFavoriteCourseList();
     },
 
     async getLessons() {
-      this.lessonList = await apiLessons.getFavoriteLessons({ userId: this.user.id });
+      this.lessonList = await apiLessons.getFavoriteLessons();
     },
 
     async getArticles() {
-      this.articleList = await apiArticles.getFavoriteArticles({ userId: this.user.id });
+      this.articleList = await apiArticles.getFavoriteArticles();
     }
   }
 };

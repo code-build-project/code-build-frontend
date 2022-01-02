@@ -25,7 +25,7 @@
     </main>
 
     <v-icon
-      v-if="userId"
+      v-if="user.id"
       class="card__icon-heart"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
@@ -40,6 +40,9 @@ import VIcon from '@/components/common/VIcon.vue';
 
 // Services
 import apiArticles from '@/services/articles.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'VArticleCard',
@@ -68,18 +71,18 @@ export default {
           image: ''
         };
       }
-    },
-    // Id юзера
-    userId: {
-      type: String,
-      default: ''
     }
   },
 
   data() {
     return {
-      isLike: this.article.likes.includes(this.userId)
+      isLike: false,
+      user: storage.getUser('local')
     };
+  },
+
+  mounted() {
+    this.isLike = this.article.likes.includes(this.user.id);
   },
 
   methods: {
@@ -98,7 +101,6 @@ export default {
     onLike() {
       const payload = {
         articleId: this.article.id,
-        userId: this.userId
       };
 
       if (this.isLike) {

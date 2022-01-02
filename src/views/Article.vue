@@ -9,7 +9,7 @@
       </div>
     </article>
 
-    <block-popular-articles class="article__popular" />
+    <block-popular-articles class="article__popular" :articleId="this.$route.query.id" />
 
     <block-subscribe class="article__subscribe" />
   </div>

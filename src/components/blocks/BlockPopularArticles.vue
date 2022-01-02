@@ -1,26 +1,50 @@
 <template>
   <div class="popular__wrap">
     <div class="popular">
-      <h1 class="popular__title">
-        Также стоит посмотреть
-      </h1>
+      <h1 class="popular__title">Также стоит посмотреть</h1>
 
       <div class="popular__articles">
-        <v-article-card />
-        <v-article-card />
-        <v-article-card />
+        <v-article-card
+          v-for="(item, index) in articleList"
+          :key="index"
+          :article="item"
+          @click="$router.push(`/article?id=${item.id}`)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// Components
 import VArticleCard from '@/components/common/VArticleCard.vue';
+
+// Services
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'BlockPopularArticles',
   components: {
     VArticleCard
+  },
+  props: {
+    articleId: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      articleList: [],
+    };
+  },
+  methods: {
+    async getPopularArticleList() {
+      this.articleList = await apiArticles.getPopularArticleList({ id: this.articleId });
+    }
+  },
+  created() {
+    this.getPopularArticleList();
   }
 };
 </script>

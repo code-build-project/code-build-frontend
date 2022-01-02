@@ -18,7 +18,7 @@
 
     <!-- right side -->
     <div class="header__right-side">
-      <v-user-menu v-if="user" :name="user.name" :is-premium="user.isPremium" />
+      <v-user-menu v-if="user.id" :name="user.name" :is-premium="user.isPremium" />
 
       <div v-else class="header__buttons">
         <router-link class="header__button-login" to="/auth" target="_blank">
@@ -36,9 +36,13 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 import VUserMenu from '@/components/common/VUserMenu.vue';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'Header',
@@ -49,10 +53,10 @@ export default {
     VUserMenu
   },
 
-  computed: {
-    user() {
-      return this.$store.getters.user;
-    }
+  data() {
+    return {
+      user: storage.getUser('local')
+    };
   }
 };
 </script>

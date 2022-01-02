@@ -1,23 +1,23 @@
-import request from '@/helpers/http';
 import { Filters } from '@/models/articles';
-import { Article } from "../models/articles.js";
+import { Article } from '../models/articles.js';
+import { request, requestAccess } from '@/helpers/http';
 
 export default {
   // Получить список статьей
   getArticleList: async params => {
-    const { data } = await request.get(`/articles`, { params });
-    return data.map((item) => new Article(item));
+    const { data } = await request.get('/articles', { params });
+    return data.map(item => new Article(item));
   },
 
   // Получить статью по id
   getArticle: async params => {
-    const { data } = await request.get(`/article`, { params });
+    const { data } = await request.get('/article', { params });
 
     let tags = [];
 
     Filters.forEach(item => {
       const isTag = data.tags.includes(item.id);
-      if(isTag) tags.push('#' + item.name)
+      if (isTag) tags.push('#' + item.name);
     });
 
     data.tags = tags;
@@ -25,9 +25,9 @@ export default {
   },
 
   // Получить список пролайканных статьей
-  getFavoriteArticles: async params => {
-    const { data } = await request.get(`/articles/favorites`, { params });
-    return data.map((item) => new Article(item));
+  getFavoriteArticles: async () => {
+    const { data } = await requestAccess.get('/articles/favorites');
+    return data.map(item => new Article(item));
   },
 
   // Получить фильтры для статьей
@@ -37,13 +37,19 @@ export default {
 
   // Поставить лайк статье и добавить в фавориты
   addLike: async params => {
-    const { data } = await request.post('/articles/add-like', params);
+    const { data } = await requestAccess.post('/articles/add-like', params);
     return data;
   },
 
   // Убрать лайк у статьи и удалить из фаворитов
   deleteLike: async params => {
-    const { data } = await request.post('/articles/delete-like', params);
+    const { data } = await requestAccess.post('/articles/delete-like', params);
     return data;
+  },
+
+  // Получить список популярных статьей
+  getPopularArticleList: async (params) => {
+    const { data } = await request.get('/articles/popular-articles', { params });
+    return data.map(item => new Article(item));
   }
 };

@@ -65,10 +65,10 @@ import VButton from '@/components/common/VButton.vue';
 export default {
   name: 'Cabinet',
   components: { VIcon, VButton },
-  computed: {
-    user() {
-      return this.$store.getters.user || {};
-    }
+  data() {
+    return {
+      user: storage.getUser('local')
+    };
   }
 };
 </script>

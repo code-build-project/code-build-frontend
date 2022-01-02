@@ -15,7 +15,6 @@
           <v-course-card
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :user-id="user.id"
             :course="item"
             @click="$router.push(`/course?courseName=${item.courseName}`)"
           />
@@ -50,11 +49,6 @@ export default {
       filterList: [],
       courseList: []
     };
-  },
-  computed: {
-    user() {
-      return this.$store.getters.user || {};
-    }
   },
   methods: {
     async getCourses() {

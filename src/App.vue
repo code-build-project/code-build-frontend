@@ -5,12 +5,15 @@
 </template>
 
 <script>
+// Services
+import apiAuth from '@/services/auth.js';
+
 export default {
   name: 'App',
 
   created() {
     // Перед отрисовкой страницы, получать данные пользователя 
-    this.$store.dispatch('authorize');
+    apiAuth.setUser();
   }
 }
 </script>

@@ -10,14 +10,13 @@
             { 'ml-22px': (index - 1) % 4 === 0 },
             { 'ml-22px mr-22px': (index - 1) % 2 === 0 }
           ]"
-          :user-id="user.id"
           :lesson="item"
           @click="selectedLesson = item"
         />
       </div>
     </div>
 
-    <block-popular-courses class="course__popular" />
+    <block-popular-courses v-if="course.id" class="course__popular" :courseId="course.id" />
 
     <block-subscribe class="course__subscribe" />
 
@@ -58,11 +57,6 @@ export default {
       course: {},
       selectedLesson: {}
     };
-  },
-  computed: {
-    user() {
-      return this.$store.getters.user || {};
-    }
   },
   created() {
     this.getLessons();

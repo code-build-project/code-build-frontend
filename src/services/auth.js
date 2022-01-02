@@ -1,13 +1,24 @@
-import request from '@/helpers/http';
 import storage from '@/helpers/storage';
+import { request, requestAccess } from '@/helpers/http';
 
 export default {
   // Авторизоваться и получить токен
   logIn: async params => {
-    const response = await request.post(`/login`, params);
+    const { data } = await request.post('/login', params);
     
-    storage.setTokens('local', response.data);
-    return response.data;
+    storage.setTokens('local', data);
+    return data;
+  },
+
+  // Получить данные пользователя
+  setUser: async () => {
+    try {
+      const { data } = await requestAccess.get('/user');
+      storage.setUser('local', data);
+    } catch {
+      storage.setUser('local', {});
+      console.log('Пользователь не авторизован!')
+    }
   },
 
   // Выйти из под своего пользователя

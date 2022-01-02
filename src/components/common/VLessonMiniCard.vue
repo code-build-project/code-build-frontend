@@ -23,7 +23,7 @@
     </main>
 
     <v-icon
-      v-if="userId"
+      v-if="user.id"
       class="card__icon-heart"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
@@ -38,6 +38,9 @@ import VIcon from '@/components/common/VIcon.vue';
 
 // Services
 import apiLessons from '@/services/lessons.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'VLessonMiniCard',
@@ -68,17 +71,17 @@ export default {
           image: ''
         };
       }
-    },
-    // Id юзера
-    userId: {
-      type: String,
-      default: ''
     }
   },
   data() {
     return {
-      isLike: this.lesson.likes.includes(this.userId)
+      isLike: false,
+      user: storage.getUser('local')
     };
+  },
+
+  mounted() {
+    this.isLike = this.lesson.likes.includes(this.user.id);
   },
 
   methods: {
@@ -97,7 +100,6 @@ export default {
     onLike() {
       const payload = {
         lessonId: this.lesson.id,
-        userId: this.userId,
         courseName: this.lesson.courseName
       };
 

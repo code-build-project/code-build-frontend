@@ -15,7 +15,6 @@
           <v-article-card
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :user-id="user.id"
             :article="item"
             @click="$router.push(`/article?id=${item.id}`)"
           />
@@ -50,11 +49,6 @@ export default {
       filterList: [],
       articleList: []
     };
-  },
-  computed: {
-    user() {
-      return this.$store.getters.user || {};
-    }
   },
   methods: {
     async getArticles() {
