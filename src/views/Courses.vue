@@ -16,7 +16,7 @@
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :course="item"
-            @click="$router.push(`/course?courseName=${item.courseName}`)"
+            @click="$router.push(`/course?id=${item.id}`)"
           />
         </div>
       </div>

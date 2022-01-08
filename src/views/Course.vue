@@ -1,6 +1,6 @@
 <template>
   <div class="course">
-    <block-course-cover class="course__cover" :course="course" />
+    <block-course-cover v-if="course.id" class="course__cover" :course="course" />
 
     <div class="course__lessons">
       <div v-for="(item, index) in lessonList" :key="index">
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <block-popular-courses v-if="course.id" class="course__popular" :courseId="course.id" />
+    <block-popular-courses v-if="course.id" class="course__popular" :courseList="courseList" />
 
     <block-subscribe class="course__subscribe" />
 
@@ -54,20 +54,34 @@ export default {
   data() {
     return {
       lessonList: [],
+      courseList: [],
       course: {},
       selectedLesson: {}
     };
   },
+  watch: {
+    '$route.query.id': {
+      handler() {
+        this.getLessons();
+        this.getCourse();
+        this.getPopularCourseList();
+      }
+    }
+  },
   created() {
     this.getLessons();
     this.getCourse();
+    this.getPopularCourseList();
   },
   methods: {
     async getLessons() {
-      this.lessonList = await apiLessons.getLessons({ courseName: this.$route.query.courseName });
+      this.lessonList = await apiLessons.getLessons({ courseId: this.$route.query.id });
     },
     async getCourse() {
-      this.course = await apiCourses.getCourse({ courseName: this.$route.query.courseName });
+      this.course = await apiCourses.getCourse({ id: this.$route.query.id });
+    },
+    async getPopularCourseList() {
+      this.courseList = await apiCourses.getPopularCourseList({ id: this.$route.query.id });
     },
     setLesson(operator) {
       let index = this.lessonList.indexOf(this.selectedLesson);

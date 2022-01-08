@@ -1,5 +1,5 @@
 <template>
-  <div class="cover__wrap">
+  <div class="cover__wrap" :style="{ background: course.gradient }">
     <div class="cover">
       <div class="cover__header">
         <div class="cover__route">
@@ -17,10 +17,11 @@
         </div>
 
         <v-icon
+          v-if="user.id"
           class="cover__icon-heart"
           path="img/heart.svg"
           :fill="isLike ? '#EE3465' : 'transparent'"
-          @click="isLike = !isLike"
+          @click="onLike()"
         />
       </div>
 
@@ -59,7 +60,14 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'BlockCourseCover',
@@ -80,15 +88,46 @@ export default {
           // Количество времени всех уроков вместе
           time: '',
           // Количество просмотров данного курса
-          views: ''
+          views: '',
+          // Список id юзеров, лайкнувших курс
+          likes: []
         };
       }
     }
   },
   data() {
     return {
-      isLike: false
+      isLike: false,
+      user: storage.getUser('local')
     };
+  },
+
+  mounted() {
+    this.isLike = this.course.likes.includes(this.user.id);
+  },
+
+  methods: {
+    addLike(payload) {
+      apiCourses.addLike(payload).then(() => {
+        this.isLike = true;
+      });
+    },
+
+    deleteLike(payload) {
+      apiCourses.deleteLike(payload).then(() => {
+        this.isLike = false;
+      });
+    },
+
+    onLike() {
+      const payload = {
+        courseId: this.course.id
+      };
+
+      if (this.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
+    }
   }
 };
 </script>
@@ -157,7 +196,7 @@ export default {
 
     padding: 17px 25px 17px 25px;
 
-    border: 1px solid #4884fe;
+    border: 1px solid $color-white;
     border-radius: 9px;
   }
 }

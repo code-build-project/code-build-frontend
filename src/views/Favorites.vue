@@ -26,7 +26,7 @@
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :course="item"
-            @click="$router.push(`/course?courseName=${item.courseName}`)"
+            @click="$router.push(`/course?id=${item.id}`)"
           />
 
           <v-lesson-card
@@ -62,9 +62,6 @@ import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
 import apiCourses from '@/services/courses.js';
 import apiLessons from '@/services/lessons.js';
 import apiArticles from '@/services/articles.js';
-
-// Helpers
-import storage from '@/helpers/storage.js';
 
 export default {
   name: 'Favorites',

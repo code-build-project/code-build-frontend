@@ -1,25 +1,25 @@
 <template>
   <div class="card">
-    <div class="card__poster" />
+    <img class="card__poster" alt="" :src="article.image" />
 
     <main class="card__main">
       <div class="card__date">
-        {{ date }}
+        {{ article.date }}
       </div>
 
       <h1 class="card__title">
-        {{ title }}
+        {{ article.title }}
       </h1>
 
       <div class="card__footer">
         <div class="card__footer-item" style="width: 155px">
           <v-icon class="card__icon-footer" path="img/timer.svg" />
-          Время прочтения: 15 м.
+          Время прочтения: {{ article.time }}
         </div>
 
         <div class="card__footer-item" style="width: 70px">
           <v-icon class="card__icon-footer" path="img/openEye.svg" />
-          1200
+          {{ article.views }}
         </div>
       </div>
     </main>
@@ -35,15 +35,27 @@ export default {
     VIcon
   },
   props: {
-    // Название стаьи
-    title: {
-      type: String,
-      default: 'Название статьи'
-    },
-    // Дата размещения статьи
-    date: {
-      type: String,
-      default: '12 апреля 2021'
+    // Информация о статье
+    article: {
+      type: Object,
+      default: () => {
+        return {
+          // Id статьи
+          id: '',
+          // Название статьи
+          title: 'Название статьи',
+          // Дата публикации
+          date: '12 апреля 2021',
+          // Среднее время прочтения
+          time: '15 м.',
+          // Количество просмотров статьи
+          views: '300',
+          // Список id юзеров, лайкнувших статью
+          likes: [],
+          // Постер
+          image: ''
+        };
+      }
     }
   },
   data() {
@@ -60,7 +72,7 @@ export default {
   &__poster {
     width: 268px;
     height: 208px;
-
+    margin-bottom: -4px;
     background: $color-blue;
     border-radius: 7px 7px 0px 0px;
   }

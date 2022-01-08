@@ -6,23 +6,21 @@
         <v-icon class="footer__icon-logo" path="img/logo.svg" @click.native="$router.push('/')" />
 
         <div class="footer__social">
-          <v-icon class="footer__icon-social" path="img/youtube.svg" width="17px" height="13px" />
-          <v-icon class="footer__icon-social" path="img/vk.svg" width="20px" height="11px" />
-          <v-icon class="footer__icon-social" path="img/insta.svg" width="17px" height="17px" />
-          <v-icon class="footer__icon-social" path="img/telegram.svg" width="18px" height="15px" />
+          <a
+            v-for="(item, index) in $options.socialList"
+            :key="index"
+            :href="item.url"
+            target="_blank"
+          >
+            <v-icon class="footer__icon-social" :path="item.path" />
+          </a>
         </div>
 
         <div class="footer__nav-wrap">
           <nav class="footer__nav">
-            <router-link class="footer__nav-item" to="/">
-              О проекте
-            </router-link>
-            <router-link class="footer__nav-item" to="/articles">
-              Блог
-            </router-link>
-            <router-link class="footer__nav-item" to="/courses">
-              Видеокурсы
-            </router-link>
+            <router-link class="footer__nav-item" to="/"> О проекте </router-link>
+            <router-link class="footer__nav-item" to="/articles"> Блог </router-link>
+            <router-link class="footer__nav-item" to="/courses"> Видеокурсы </router-link>
           </nav>
 
           <v-icon class="footer__icon-flag" path="img/flag.svg" />
@@ -55,7 +53,25 @@ import VIcon from '@/components/common/VIcon.vue';
 export default {
   components: {
     VIcon
-  }
+  },
+  socialList: [
+    {
+      url: 'https://example.ru',
+      path: 'img/youtube.svg'
+    },
+    {
+      url: 'https://vk.com/shkiper195',
+      path: 'img/vk.svg'
+    },
+    {
+      url: 'https://instagram.com/code__build',
+      path: 'img/insta.svg'
+    },
+    {
+      url: 'https://t.me/codebuild',
+      path: 'img/telegram.svg'
+    }
+  ]
 };
 </script>
 
@@ -135,6 +151,7 @@ export default {
     @extend .flex_row-center-center;
     width: 44px;
     height: 44px;
+    padding: 12px;
 
     border: 1px solid $color-black;
     border-radius: 9px;

@@ -1,41 +1,43 @@
 <template>
   <div class="success">
-    <h1 class="success__title">
-      Спасибо
-    </h1>
+    <h1 class="success__title">Введите код</h1>
 
     <h2 class="success__subtitle">
-      Завершите регистрацию по ссылке<br />
-      в письме, которое мы отправили на<br />
-      {{ $route.params.email }}
+      Мы отправили письмо с паролем<br />
+      на почту {{ $route.params.email }},<br />
+      введите пароль из письма<br />
     </h2>
 
-    <div class="success__footer">
-      <div>
-        Отправить<br />
-        повторно через
+    <v-input v-model="password" class="mt-20px"> Пароль </v-input>
+
+    <div class="success__send">
+      <div v-if="interval">
+        Отправить новый пароль через 00:{{ interval > 9 ? interval : '0' + interval }}
       </div>
-
-      <v-button v-if="interval" button-type="interval">
-        00:{{ interval > 9 ? interval : '0' + interval }}
-      </v-button>
-
-      <v-button v-else class="success__button">
-        Отправить
-      </v-button>
+      <div v-else class="success__send-again" @click="sendCodeAgain()">Отправить пароль повторно</div>
     </div>
+
+    <v-button class="success__button mt-auto" @click="confirmRegistration()">
+      Подтвердить
+    </v-button>
   </div>
 </template>
 
 <script>
+// Components
+import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
+
+// Services
+import apiAuth from '@/services/auth.js';
 
 export default {
   name: 'SuccessRegistration',
-  components: { VButton },
+  components: { VInput, VButton },
 
   data() {
     return {
+      password: null,
       interval: 60
     };
   },
@@ -53,24 +55,19 @@ export default {
       }, 1000);
     },
 
-    onSign() {
+    async sendCodeAgain() {
+      await apiAuth.signIn(this.$route.params);
       this.interval = 60;
       this.startTimer();
+    },
 
+    async confirmRegistration() {
       const payload = {
-        name: this.$route.params.name,
-        surname: this.$route.params.surname,
-        email: this.$route.params.email
+        email: this.$route.params.email,
+        password: this.password
       };
 
-      this.axios
-        .post('/reg', payload)
-        .then(() => {
-          console.log('Успешно');
-        })
-        .catch(() => {
-          console.log('Ошибка');
-        });
+      await apiAuth.completionSignIn(payload);
     }
   }
 };
@@ -79,10 +76,9 @@ export default {
 <style lang="scss" scoped>
 .success {
   @extend .flex_column;
+  padding: 60px;
 
   &__title {
-    margin-top: 60px;
-
     font-family: 'Circe';
     font-size: 26px;
     color: #272a37;
@@ -97,14 +93,24 @@ export default {
     color: #272a37;
   }
 
-  &__footer {
+  &__send {
     @extend .flex_row-center-between;
-    margin-top: 370px;
+    margin-top: 40px;
 
     font-family: 'Circe';
     font-size: 20px;
     line-height: 24px;
     color: #272a37;
+  }
+
+  &__send-again {
+    cursor: pointer;
+    color: #256cfe;
+    border-bottom: 1px dashed #256cfe;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   &__button {

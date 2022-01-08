@@ -1,5 +1,5 @@
 <template>
-  <div class="cover__wrap">
+  <div class="cover__wrap" :style="{ background: article.gradient }">
     <div class="cover">
       <div class="cover__header">
         <div class="cover__route">
@@ -19,10 +19,11 @@
         </div>
 
         <v-icon
+          v-if="user.id"
           class="cover__icon-heart"
           path="img/heart.svg"
           :fill="isLike ? '#EE3465' : 'transparent'"
-          @click="isLike = !isLike"
+          @click="onLike()"
         />
       </div>
 
@@ -58,7 +59,14 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
+
+// Services
+import apiArticles from '@/services/articles.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'BlockArticleCover',
@@ -69,13 +77,59 @@ export default {
     // Информация о статье
     article: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          // Id статьи
+          id: '',
+          // Название статьи
+          title: 'Название статьи',
+          // Подзаголовок статьи
+          subtitle: 'Подзаголовок статьи',
+          // Дата публикации
+          date: '12 апреля 2021',
+          // Среднее время прочтения
+          time: '15 м.',
+          // Количество просмотров статьи
+          views: '300',
+          // Список id юзеров, лайкнувших статью
+          likes: [],
+          // Постер
+          image: ''
+        };
+      }
     }
   },
   data() {
     return {
-      isLike: false
+      isLike: false,
+      user: storage.getUser('local')
     };
+  },
+  mounted() {
+    this.isLike = this.article.likes.includes(this.user.id);
+  },
+  methods: {
+    addLike(payload) {
+      apiArticles.addLike(payload).then(() => {
+        this.isLike = true;
+      });
+    },
+
+    deleteLike(payload) {
+      apiArticles.deleteLike(payload).then(() => {
+        this.isLike = false;
+      });
+    },
+
+    onLike() {
+      const payload = {
+        articleId: this.article.id
+      };
+
+      if (this.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
+    }
   }
 };
 </script>
@@ -144,7 +198,7 @@ export default {
 
     padding: 17px 25px 17px 25px;
 
-    border: 1px solid #4884fe;
+    border: 1px solid $color-white;
     border-radius: 9px;
   }
 }

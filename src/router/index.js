@@ -7,7 +7,6 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'MainLayout',
     component: () => import('@/layouts/MainLayout.vue'),
     children: [
       {
@@ -41,8 +40,8 @@ const routes = [
         component: () => import('@/views/Favorites.vue'),
         // Попытка перейти в избранное без авторизации
         beforeEnter: async (to, from, next) => {
-          const access = storage.getUser('local').id;
-          access ? next() : next({ name: 'Home' });
+          const { id } = storage.getUser('local');
+          id ? next() : next({ name: 'Home' });
         }
       },
       {
@@ -51,8 +50,8 @@ const routes = [
         component: () => import('@/views/Cabinet.vue'),
         // Попытка перейти в личный кабинет без авторизации
         beforeEnter: async (to, from, next) => {
-          const access = storage.getUser('local').id;
-          access ? next() : next({ name: 'Home' });
+          const { id } = storage.getUser('local');
+          id ? next() : next({ name: 'Home' });
         }
       },
       {
@@ -86,13 +85,15 @@ const routes = [
         path: 'reg',
         name: 'Registration',
         component: () => import('@/views/Registration.vue'),
-        props: true
       },
       {
         path: 'reg/confirm',
         name: 'SuccessRegistration',
         component: () => import('@/views/SuccessRegistration.vue'),
-        props: true
+        // Попытка перейти в подтверждение регистрации напрямую
+        beforeEnter: async (to, from, next) => {
+          to.params.email ? next() : next({ name: 'Registration' });
+        }
       }
     ]
   }

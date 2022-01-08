@@ -14,13 +14,18 @@ export default {
     const { data } = await request.get('/article', { params });
 
     let tags = [];
+    let gradient = '';
 
     Filters.forEach(item => {
       const isTag = data.tags.includes(item.id);
-      if (isTag) tags.push('#' + item.name);
+      if (isTag) {
+        tags.push('#' + item.name);
+        if(!gradient)  gradient = item.gradient;
+      }
     });
 
     data.tags = tags;
+    data.gradient = gradient;
     return new Article(data);
   },
 
@@ -48,7 +53,7 @@ export default {
   },
 
   // Получить список популярных статьей
-  getPopularArticleList: async (params) => {
+  getPopularArticleList: async params => {
     const { data } = await request.get('/articles/popular-articles', { params });
     return data.map(item => new Article(item));
   }

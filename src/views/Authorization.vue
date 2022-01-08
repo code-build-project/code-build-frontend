@@ -2,18 +2,17 @@
   <div class="auth">
     <v-icon class="auth__icon-logo" path="img/logo.svg" />
 
-    <h1 class="auth__title">
-      Войдите, чтобы продолжить
-    </h1>
+    <h1 class="auth__title">Войдите, чтобы продолжить</h1>
 
     <v-input
       v-model="email.name"
       class="mt-95px"
       :is-error="email.isError"
       :error-message="email.errorName"
+      @change="email.isError = false"
       @blur="validateEmail"
     >
-      Логин или E-mail
+      E-mail или телефон
     </v-input>
 
     <v-input
@@ -27,6 +26,8 @@
       Пароль
     </v-input>
 
+    <div class="auth__forget">Забыли пароль?</div>
+
     <v-button
       class="auth__button"
       :class="isDisable ? 'auth__button-active' : 'auth__button-disable'"
@@ -37,9 +38,7 @@
 
     <div class="auth__footer">
       <span>Новый пользователь?</span>
-      <router-link class="auth__reg" to="/reg" target="_blank">
-        Зарегистрируйтесь
-      </router-link>
+      <router-link class="auth__reg" to="/reg" target="_blank"> Зарегистрируйтесь </router-link>
     </div>
   </div>
 </template>
@@ -78,20 +77,24 @@ export default {
   computed: {
     // Флаг дизейбла кнопки
     isDisable() {
-      return this.email.name && !this.email.isError && this.password.name && !this.password.isError;
+      const { email, password } = this;
+      const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      return regex.test(email.name) && !email.isError && password.name && !password.isError;
     }
   },
   methods: {
     validateEmail() {
-      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      let regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-      if (reg.test(this.email.name) === false) {
+      if (regex.test(this.email.name) === false) {
         this.email.isError = true;
         this.email.errorName = 'Неверный формат';
       } else {
         this.email.isError = false;
         this.email.errorName = '';
       }
+
+      return regex.test(this.email.name);
     },
 
     async onLogin() {
@@ -127,6 +130,21 @@ export default {
     color: $color-black;
   }
 
+  &__forget {
+    margin-top: 15px;
+    align-self: flex-end;
+
+    font-family: 'EuclidCircular';
+    font-size: 15px;
+    color: $color-black;
+    text-decoration: 2px underline $color-blue;
+
+    &:hover {
+      cursor: pointer;
+      color: $color-blue;
+    }
+  }
+
   &__footer {
     margin-top: 30px;
 
@@ -146,7 +164,7 @@ export default {
   &__button {
     width: 374px;
     height: 70px;
-    margin-top: 100px;
+    margin-top: auto;
 
     font-family: 'EuclidCircular';
     font-size: 20px;
@@ -178,7 +196,6 @@ export default {
     @extend .flex_row-center-center;
     width: 107px;
     height: 75px;
-    margin-top: 75px;
 
     border: 3px solid $color-blue;
     border-radius: 6px;

@@ -1,3 +1,4 @@
+import router from '@/router';
 import storage from '@/helpers/storage';
 import { request, requestAccess } from '@/helpers/http';
 
@@ -10,7 +11,19 @@ export default {
     return data;
   },
 
-  // Получить данные пользователя
+  // Регистрация
+  signIn: async (params) => {
+    await request.post('/sign', params);
+  },
+
+  // Подтверждение регистрации
+  completionSignIn: async (params) => {
+    const { data } = await request.post('/completion-registration', params);
+    storage.setTokens('local', data);
+    router.push('/').then(() => location.reload());
+  },
+
+  // Записать данные пользователя в сторадж
   setUser: async () => {
     try {
       const { data } = await requestAccess.get('/user');
@@ -24,6 +37,6 @@ export default {
   // Выйти из под своего пользователя
   logOut: () => {
     storage.clearTokens('local');
-    window.location.href = '/auth';
+    window.location.href = '/';
   },
 };

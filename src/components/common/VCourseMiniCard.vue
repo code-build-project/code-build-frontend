@@ -1,37 +1,37 @@
 <template>
   <div class="card">
-    <div class="card__poster" />
+    <img class="card__poster" alt="" :src="course.image" />
 
     <main class="card__main">
       <div class="card__level">
-        <span class="mr-5">Сложность</span>
+        <span class="mr-5px">Сложность</span>
 
         <div
           v-for="item in [1, 2, 3, 4, 5]"
           :key="item"
           class="card__level-circle"
-          :style="{ background: level >= item ? '#EE3465' : '#3A3F4F' }"
+          :style="{ background: course.level >= item ? '#EE3465' : '#3A3F4F' }"
         />
       </div>
 
       <h1 class="card__title">
-        {{ title }}
+        {{ course.title }}
       </h1>
 
       <div class="card__footer">
         <div class="card__footer-item">
           <v-icon class="card__icon-footer" path="img/video.svg" />
-          {{ lessons }}
+          {{ course.lessons }}
         </div>
 
         <div class="card__footer-item">
           <v-icon class="card__icon-footer" path="img/timer.svg" />
-          {{ time }}
+          {{ course.time }}
         </div>
 
         <div class="card__footer-item">
           <v-icon class="card__icon-footer" path="img/openEye.svg" />
-          {{ views }}
+          {{ course.views }}
         </div>
       </div>
     </main>
@@ -51,41 +51,36 @@ export default {
     VIcon
   },
   props: {
-    // Уровень сложности
-    level: {
-      type: String,
-      default: '1'
-    },
-    // Название курса
-    title: {
-      type: String,
-      default: 'Название курса'
-    },
-    // Количество уроков
-    lessons: {
-      type: String,
-      default: '6 уроков'
-    },
-    // Общее время курса
-    time: {
-      type: String,
-      default: '1 ч. 25 м.'
-    },
-    // Количество просмотров курса
-    views: {
-      type: String,
-      default: '300'
+    // Информация о курсе
+    course: {
+      type: Object,
+      default: () => {
+        return {
+          // Id курса
+          id: '',
+          // Название курса
+          title: 'Название курса',
+          // Уровень сложности
+          level: '1',
+          // Количество уроков
+          lessons: '6 уроков',
+          // Общее время курса
+          time: '1 ч. 25 м.',
+          // Количество просмотров курса
+          views: '300',
+          // Список id юзеров, лайкнувших курс
+          likes: [],
+          // Постер
+          image: ''
+        };
+      }
     },
     // Метка о популярности курса
     fire: {
       type: Boolean,
       default: false
     }
-  },
-  data() {
-    return {};
-  },
-  computed: {}
+  }
 };
 </script>
 
@@ -96,6 +91,7 @@ export default {
   &__poster {
     width: 268px;
     height: 208px;
+    margin-bottom: -4px;
 
     background: $color-blue;
     border-radius: 7px 7px 0px 0px;

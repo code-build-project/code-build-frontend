@@ -23,13 +23,13 @@
       <!-- Правая часть -->
       <div class="courses__cards">
         <div class="flex_column">
-          <v-course-mini-card class="mt-70px" />
-          <v-course-mini-card class="mt-35px" />
+          <v-course-mini-card class="mt-70px" :course="courseList[0]" />
+          <v-course-mini-card class="mt-35px" :course="courseList[1]" />
         </div>
 
         <div class="flex_column ml-30px">
-          <v-course-mini-card fire />
-          <v-course-mini-card class="mt-35px" level="Intermediate" />
+          <v-course-mini-card fire :course="courseList[2]" />
+          <v-course-mini-card class="mt-35px" level="Intermediate" :course="courseList[3]" />
         </div>
       </div>
       <!-- Правая часть -->
@@ -38,9 +38,13 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue';
+
+// Services
+import apiCourses from '@/services/courses.js';
 
 export default {
   name: 'BlockCourses',
@@ -48,6 +52,19 @@ export default {
     VIcon,
     VButton,
     VCourseMiniCard
+  },
+  data() {
+    return {
+      courseList: []
+    };
+  },
+  methods: {
+    async getCourses() {
+      this.courseList = await apiCourses.getCoursesList();
+    }
+  },
+  created() {
+    this.getCourses();
   }
 };
 </script>

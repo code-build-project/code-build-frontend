@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <block-article-cover class="article__cover" :article="article" />
+    <block-article-cover v-if="article.id" class="article__cover" :article="article" />
 
     <article class="article__content">
       <div v-for="(item, index) in article.content" :key="index" class="article__content-item">
@@ -9,7 +9,7 @@
       </div>
     </article>
 
-    <block-popular-articles class="article__popular" :articleId="this.$route.query.id" />
+    <block-popular-articles class="article__popular" :articleList="popularArticleList" />
 
     <block-subscribe class="article__subscribe" />
   </div>
@@ -33,11 +33,29 @@ export default {
   },
   data() {
     return {
-      article: {}
+      article: {},
+      popularArticleList: []
     };
   },
-  async created() {
-    this.article = await apiArticles.getArticle({ id: this.$route.query.id });
+  methods: {
+    async setArticle() {
+      this.article = await apiArticles.getArticle({ id: this.$route.query.id });
+    },
+    async setPopularArticleList() {
+      this.popularArticleList = await apiArticles.getPopularArticleList({ id: this.$route.query.id });
+    }
+  },
+  watch: {
+    '$route.query.id': {
+      handler() {
+        this.setArticle();
+        this.setPopularArticleList();
+      }
+    }
+  },
+  created() {
+    this.setArticle();
+    this.setPopularArticleList();
   }
 };
 </script>

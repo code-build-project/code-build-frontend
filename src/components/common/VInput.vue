@@ -4,7 +4,7 @@
       class="input__field"
       :value="value"
       :style="{ paddingRight: $slots.rightIcon ? '60px' : '' }"
-      :type="type"
+      :type="isPassword ? 'password' : 'text'"
       required="true"
       @input="onInput($event.target.value)"
       @focus="onFocus"
@@ -18,7 +18,7 @@
 
     <div v-if="type === 'password'" class="input__icon">
       <v-icon
-        v-if="hidePassword"
+        v-if="isPassword"
         class="input__icon-close-eye"
         path="img/closeEye.svg"
         @click="onIconClick(false)"
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       isFocus: false,
-      hidePassword: true
+      isPassword: this.type === 'password',
     };
   },
 
@@ -94,8 +94,7 @@ export default {
     },
 
     onIconClick(value) {
-      this.hidePassword = value;
-      this.type = value ? 'password' : 'text';
+      this.isPassword = value;
     }
   }
 };

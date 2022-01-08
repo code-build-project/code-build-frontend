@@ -8,7 +8,7 @@
           v-for="(item, index) in articleList"
           :key="index"
           :article="item"
-          @click="$router.push(`/article?id=${item.id}`)"
+          @click="openArticle(item.id)"
         />
       </div>
     </div>
@@ -19,32 +19,22 @@
 // Components
 import VArticleCard from '@/components/common/VArticleCard.vue';
 
-// Services
-import apiArticles from '@/services/articles.js';
-
 export default {
   name: 'BlockPopularArticles',
   components: {
     VArticleCard
   },
   props: {
-    articleId: {
-      type: String,
-      default: ''
+    articleList: {
+      type: Array,
+      default: () => []
     }
-  },
-  data() {
-    return {
-      articleList: [],
-    };
   },
   methods: {
-    async getPopularArticleList() {
-      this.articleList = await apiArticles.getPopularArticleList({ id: this.articleId });
+    openArticle(id) {
+      this.$router.push(`/article?id=${id}`);
+      // location.reload();
     }
-  },
-  created() {
-    this.getPopularArticleList();
   }
 };
 </script>

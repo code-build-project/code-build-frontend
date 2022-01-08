@@ -68,7 +68,7 @@ export default {
           // Список id юзеров, лайкнувших урок
           likes: [],
           // Название курса(коллекции в бд)
-          courseName: ''
+          courseId: ''
         };
       }
     }
@@ -100,7 +100,7 @@ export default {
     onLike() {
       const payload = {
         lessonId: this.lesson.id,
-        courseName: this.lesson.courseName
+        courseId: this.lesson.courseId
       };
 
       if (this.isLike) {

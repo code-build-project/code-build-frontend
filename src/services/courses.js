@@ -16,13 +16,18 @@ export default {
     const { data } = await request.get(`/course`, { params });
 
     let tags = [];
+    let gradient = '';
 
     Filters.forEach(item => {
       const isTag = data.tags.includes(item.id);
-      if (isTag) tags.push('#' + item.name);
+      if (isTag) {
+        tags.push('#' + item.name);
+        if(!gradient) gradient = item.gradient;
+      }
     });
 
     data.tags = tags;
+    data.gradient = gradient;
     return new Course(data);
   },
 

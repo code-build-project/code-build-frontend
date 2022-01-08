@@ -22,7 +22,7 @@ export default {
     border: 2px solid $color-blue;
     border-radius: 8px;
 
-    padding: 0px 58px 0px 58px;
+    padding: 75px 58px;
   }
 }
 </style>

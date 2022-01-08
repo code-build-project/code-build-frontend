@@ -2,19 +2,16 @@
   <div class="reg">
     <v-icon class="reg__icon-logo" path="img/logo.svg" />
 
-    <h1 class="reg__title">
-      Зарегистрируйтесь в Code Build
-    </h1>
+    <h1 class="reg__title">Зарегистрируйтесь в Code Build</h1>
 
-    <v-input v-model="name" class="mt-70px">
-      Имя
-    </v-input>
+    <v-input v-model="name" class="mt-70px"> Имя </v-input>
 
     <v-input
       v-model="email.name"
       class="mt-40px"
       :is-error="email.isError"
       :error-message="email.errorName"
+      @change="email.isError = false"
       @blur="validateEmail"
     >
       E-mail
@@ -29,25 +26,27 @@
       </div>
     </div>
 
-    <v-button class="reg__button">
+    <v-button class="reg__button" :class="{ 'reg__button-disable': !isDisable }" @click="onSign()">
       Зарегистрироваться
     </v-button>
 
     <div class="reg__footer">
       У вас уже есть аккаунт?
-      <router-link class="reg__entry" to="/auth" target="_blank">
-        Войти
-      </router-link>
+      <router-link class="reg__entry" to="/auth" target="_blank"> Войти </router-link>
     </div>
   </div>
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
 import VUnderline from '@/components/common/VUnderline.vue';
+
+// Services
+import apiAuth from '@/services/auth.js';
 
 export default {
   name: 'Registration',
@@ -60,7 +59,13 @@ export default {
     VUnderline
   },
 
-  props: {},
+  computed: {
+    // Флаг дизейбла кнопки
+    isDisable() {
+      const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      return this.name && regex.test(this.email.name) && !this.email.isError;
+    }
+  },
 
   data() {
     return {
@@ -89,21 +94,19 @@ export default {
       }
     },
 
-    onSign() {
+    async onSign() {
       const payload = {
         name: this.name,
-        surname: this.surname,
-        email: this.email
+        email: this.email.name
       };
 
-      this.axios
-        .post('/reg', payload)
-        .then(() => {
-          this.$router.push({ name: 'SuccessRegistration', params: payload });
-        })
-        .catch(() => {
-          this.emailError = true;
-        });
+      try {
+        await apiAuth.signIn(payload);
+        this.$router.push({ name: 'SuccessRegistration', params: payload });
+      } catch (error) {
+        this.email.isError = true;
+        this.email.errorName = error.response.data.message;
+      }
     }
   }
 };
@@ -139,18 +142,6 @@ export default {
     color: $color-gray;
   }
 
-  &__button {
-    width: 374px;
-    height: 70px;
-    margin-top: 50px;
-
-    font-family: 'EuclidCircular';
-    font-size: 20px;
-    color: $color-black;
-    border: 1px solid $color-gray;
-    background: transparent;
-  }
-
   &__entry {
     @extend .underline-blue;
     position: relative;
@@ -159,6 +150,33 @@ export default {
     font-size: 16px;
     font-weight: bold;
     color: $color-black;
+  }
+}
+
+.reg__button {
+  width: 374px;
+  height: 70px;
+  margin-top: 100px;
+
+  font-family: 'EuclidCircular';
+  font-size: 20px;
+
+  color: $color-white;
+  background: $color-blue;
+  border-color: transparent;
+  border-width: 0px;
+
+  &:active {
+    background: $color-navy;
+  }
+
+  &-disable {
+    color: $color-black;
+    background: transparent;
+    border-color: $color-gray;
+    border-width: 1px;
+
+    pointer-events: none;
   }
 }
 

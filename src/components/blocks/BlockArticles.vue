@@ -4,13 +4,13 @@
       <!-- Левая часть -->
       <div class="articles__cards">
         <div class="flex_column">
-          <v-article-mini-card class="mt-70px" />
-          <v-article-mini-card class="mt-35px" />
+          <v-article-mini-card class="mt-70px" :article="articleList[0]" />
+          <v-article-mini-card class="mt-35px"  :article="articleList[0]" />
         </div>
 
         <div class="flex_column ml-30px">
-          <v-article-mini-card />
-          <v-article-mini-card class="mt-35px" />
+          <v-article-mini-card  :article="articleList[1]" />
+          <v-article-mini-card class="mt-35px"  :article="articleList[1]" />
         </div>
       </div>
       <!-- Левая часть -->
@@ -19,13 +19,9 @@
       <div class="articles__main">
         <v-icon class="articles__icon-list" path="img/list.svg" width="24" height="26" />
 
-        <h1 class="articles__title">
-          Свежие новости и познавательные статьи из мира IT
-        </h1>
+        <h1 class="articles__title">Свежие новости и познавательные статьи из мира IT</h1>
 
-        <h2 class="articles__subtitle">
-          Читай наши статьи и улучшай навыки программирования
-        </h2>
+        <h2 class="articles__subtitle">Читай наши статьи и улучшай навыки программирования</h2>
 
         <v-button class="articles__button" @click="$router.push('/articles')">
           Все статьи
@@ -38,9 +34,13 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue';
+
+// Services
+import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'BlockArticles',
@@ -48,6 +48,19 @@ export default {
     VIcon,
     VButton,
     VArticleMiniCard
+  },
+  data() {
+    return {
+      articleList: []
+    };
+  },
+  methods: {
+    async getPopularArticleList() {
+      this.articleList = await apiArticles.getPopularArticleList();
+    }
+  },
+  created() {
+    this.getPopularArticleList();
   }
 };
 </script>

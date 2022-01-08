@@ -59,8 +59,12 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'Cabinet',

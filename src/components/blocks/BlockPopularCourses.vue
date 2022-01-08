@@ -8,7 +8,7 @@
           v-for="(item, index) in courseList"
           :key="index"
           :course="item"
-          @click="$router.push(`/course?courseName=${item.courseName}`)"
+          @click="openCourse(item.id)"
         />
       </div>
     </div>
@@ -19,32 +19,22 @@
 // Components
 import VCourseCard from '@/components/common/VCourseCard.vue';
 
-// Services
-import apiCourses from '@/services/courses.js';
-
 export default {
   name: 'BlockPopularCourses',
   components: {
     VCourseCard
   },
   props: {
-    courseId: {
-      type: String,
-      default: ''
+    courseList: {
+      type: Array,
+      default: () => []
     }
-  },
-  data() {
-    return {
-      courseList: []
-    };
   },
   methods: {
-    async getPopularCourseList() {
-      this.courseList = await apiCourses.getPopularCourseList({ id: this.courseId });
+    openCourse(id) {
+      this.$router.push(`/course?id=${id}`);
+      // location.reload();
     }
-  },
-  created() {
-    this.getPopularCourseList();
   }
 };
 </script>
