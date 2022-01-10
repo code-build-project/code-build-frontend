@@ -8,16 +8,12 @@
       </div>
 
       <div class="cabinet__main-right">
-        <div class="cabinet__label">
-          Имя
-        </div>
+        <div class="cabinet__label">Имя</div>
         <div class="cabinet__input">
           {{ user.name }}
         </div>
 
-        <div class="cabinet__label mt-30px">
-          E-mail
-        </div>
+        <div class="cabinet__label mt-30px">E-mail</div>
         <div class="cabinet__input">
           {{ user.email }}
         </div>
@@ -34,23 +30,29 @@
 
       <div class="cabinet__footer-right">
         <div v-if="user.isPremium">
-          <div style="color: #ee3465">
-            Активен
-          </div>
+          <div style="color: #ee3465">Активен</div>
           <div>Подписка закончится 27 июля</div>
         </div>
 
-        <div v-else>
-          У вас нет активных подписок
-        </div>
+        <div v-else>У вас нет активных подписок</div>
 
         <v-button
-          class="cabinet__button"
-          :class="user.isPremium ? 'cabinet__button-cancel' : 'cabinet__button-buy'"
+          v-if="user.isPremium"
+          class="cabinet__button cabinet__button-cancel"
+          type="normal"
           @click="$router.push('/subscribe')"
         >
-          <v-icon v-if="!user.isPremium" class="cabinet__icon-premium-buy" path="img/premium.svg" />
-          {{ user.isPremium ? 'Отменить подписку' : 'Купить премиум' }}
+          Отменить подписку
+        </v-button>
+
+        <v-button
+          v-else
+          class="cabinet__button cabinet__button-buy"
+          type="active"
+          @click="$router.push('/subscribe')"
+        >
+          <v-icon class="cabinet__icon-premium-buy" path="img/premium.svg" />
+          Купить премиум
         </v-button>
       </div>
     </div>
@@ -120,7 +122,7 @@ export default {
     height: 80px;
     margin-top: 10px;
 
-    padding: 23px;;
+    padding: 23px;
 
     font-family: 'Circe';
     font-size: 24px;
@@ -164,19 +166,6 @@ export default {
 
     font-family: 'Circe';
     font-size: 16px;
-  }
-
-  &__button-cancel {
-    color: $color-black;
-    border: 1px solid $color-silver;
-    border-radius: 8px;
-    background: $color-white;
-  }
-
-  &__button-buy {
-    color: $color-white;
-    border: none;
-    background: $color-pink;
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <router-view class="layout__form" />
+    <router-view />
   </div>
 </template>
 
@@ -12,17 +12,6 @@ export default {
 
 <style lang="scss" scoped>
 .layout {
-  @extend .flex_row-center-center;
   height: 100%;
-
-  &__form {
-    width: 490px;
-    height: 735px;
-
-    border: 2px solid $color-blue;
-    border-radius: 8px;
-
-    padding: 75px 58px;
-  }
 }
 </style>

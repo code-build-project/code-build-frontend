@@ -48,7 +48,7 @@
         <v-icon class="menu__icon-exit" path="img/exit.svg" />
       </li>
 
-      <v-button v-if="!isPremium" class="menu__button" @click="setRoute('subscribe')">
+      <v-button v-if="!isPremium" class="menu__button" type="active" @click="setRoute('subscribe')">
         <v-icon class="menu__icon-buy-premium" path="img/premium.svg" />
         Купить премиум
       </v-button>
@@ -154,9 +154,6 @@ export default {
 
     font-family: 'Circe';
     font-size: 16px;
-    color: $color-white;
-    border: none;
-    background: $color-pink;
   }
 }
 

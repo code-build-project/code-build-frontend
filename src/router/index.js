@@ -85,15 +85,6 @@ const routes = [
         path: 'reg',
         name: 'Registration',
         component: () => import('@/views/Registration.vue'),
-      },
-      {
-        path: 'reg/confirm',
-        name: 'SuccessRegistration',
-        component: () => import('@/views/SuccessRegistration.vue'),
-        // Попытка перейти в подтверждение регистрации напрямую
-        beforeEnter: async (to, from, next) => {
-          to.params.email ? next() : next({ name: 'Registration' });
-        }
       }
     ]
   }

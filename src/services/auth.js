@@ -6,21 +6,26 @@ export default {
   // Авторизоваться и получить токен
   logIn: async params => {
     const { data } = await request.post('/login', params);
-    
+
     storage.setTokens('local', data);
     return data;
   },
 
   // Регистрация
-  signIn: async (params) => {
+  signIn: async params => {
     await request.post('/sign', params);
   },
 
   // Подтверждение регистрации
-  completionSignIn: async (params) => {
+  completionSignIn: async params => {
     const { data } = await request.post('/completion-registration', params);
     storage.setTokens('local', data);
     router.push('/').then(() => location.reload());
+  },
+
+  // Подтверждение регистрации
+  recoveryPassword: async params => {
+    await request.post('/recovery-password', params);
   },
 
   // Записать данные пользователя в сторадж
@@ -30,7 +35,7 @@ export default {
       storage.setUser('local', data);
     } catch {
       storage.setUser('local', {});
-      console.log('Пользователь не авторизован!')
+      console.log('Пользователь не авторизован!');
     }
   },
 
@@ -38,5 +43,5 @@ export default {
   logOut: () => {
     storage.clearTokens('local');
     window.location.href = '/';
-  },
+  }
 };

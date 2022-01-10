@@ -17,7 +17,7 @@
 
         <div class="popup__footer-buttons">
           <v-icon class="popup__icon-heart" path="img/heart.svg" width="16px" height="14px" />
-          <v-button class="popup__button">
+          <v-button class="popup__button" type="active">
             <a :href="lesson.video" target="_blank">Смотреть на YouTube</a>
           </v-button>
         </div>
@@ -147,9 +147,6 @@ export default {
 
     font-family: 'Circe';
     font-size: 15px;
-    color: $color-white;
-    border: none;
-    background: $color-pink;
   }
 }
 

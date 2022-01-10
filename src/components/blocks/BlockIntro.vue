@@ -88,7 +88,6 @@ export default {
     font-size: 24px;
     color: $color-blue;
     border: 2px solid $color-blue;
-    background: transparent;
   }
 }
 

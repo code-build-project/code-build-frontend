@@ -1,23 +1,35 @@
 <template>
-  <div class="success">
-    <h1 class="success__title">Введите код</h1>
+  <div class="form">
+    <h1 class="form__title">Введите код</h1>
 
-    <h2 class="success__subtitle">
+    <h2 class="form__subtitle">
       Мы отправили письмо с паролем<br />
-      на почту {{ $route.params.email }},<br />
+      на почту {{ form.email }},<br />
       введите пароль из письма<br />
     </h2>
 
-    <v-input v-model="password" class="mt-20px"> Пароль </v-input>
+    <v-input
+      v-model="password.name"
+      class="mt-20px"
+      :error-message="password.errorName"
+      @change="password.errorName = ''"
+    >
+      Пароль
+    </v-input>
 
-    <div class="success__send">
+    <div class="form__send">
       <div v-if="interval">
         Отправить новый пароль через 00:{{ interval > 9 ? interval : '0' + interval }}
       </div>
-      <div v-else class="success__send-again" @click="sendCodeAgain()">Отправить пароль повторно</div>
+      <div v-else class="form__send-again" @click="sendCodeAgain()">Отправить пароль повторно</div>
     </div>
 
-    <v-button class="success__button mt-auto" @click="confirmRegistration()">
+    <v-button
+      class="form__button mt-auto"
+      type="primary"
+      :isLoaded="isPageLoaded"
+      @click="confirmRegistration()"
+    >
       Подтвердить
     </v-button>
   </div>
@@ -32,12 +44,27 @@ import VButton from '@/components/common/VButton.vue';
 import apiAuth from '@/services/auth.js';
 
 export default {
-  name: 'SuccessRegistration',
+  name: 'RegistrationConfirm',
   components: { VInput, VButton },
+
+  props: {
+    form: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }
+  },
 
   data() {
     return {
-      password: null,
+      isPageLoaded: true,
+
+      password: {
+        name: '',
+        errorName: ''
+      },
+
       interval: 60
     };
   },
@@ -56,25 +83,33 @@ export default {
     },
 
     async sendCodeAgain() {
-      await apiAuth.signIn(this.$route.params);
+      await apiAuth.signIn(this.form);
       this.interval = 60;
       this.startTimer();
     },
 
     async confirmRegistration() {
+      this.isPageLoaded = false;
+
       const payload = {
-        email: this.$route.params.email,
-        password: this.password
+        email: this.form.email,
+        password: this.password.name
       };
 
-      await apiAuth.completionSignIn(payload);
+      try {
+        await apiAuth.completionSignIn(payload);
+      } catch (err) {
+        this.password.errorName = err.response.data.message;
+      } finally {
+        this.isPageLoaded = true;
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.success {
+.form {
   @extend .flex_column;
   padding: 60px;
 
@@ -114,15 +149,10 @@ export default {
   }
 
   &__button {
-    width: 190px;
     height: 70px;
 
-    font-family: 'Circe';
+    font-family: 'EuclidCircular';
     font-size: 20px;
-    color: #ffffff;
-    border-color: #b1b8c6;
-    border-width: 1px;
-    background: #256cfe;
   }
 }
 </style>

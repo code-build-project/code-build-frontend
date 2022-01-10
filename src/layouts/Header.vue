@@ -25,7 +25,7 @@
           Войти
         </router-link>
 
-        <v-button class="header__button-subscribe" @click="$router.push('/subscribe')">
+        <v-button class="header__button-subscribe" type="active" @click="$router.push('/subscribe')">
           <v-icon class="header__icon-premium" path="img/premium.svg" />
           Премиум
         </v-button>
@@ -83,10 +83,6 @@ export default {
     width: 168px;
     height: 60px;
     margin-left: 45px;
-
-    color: $color-white;
-    border: none;
-    background: $color-pink;
   }
 }
 

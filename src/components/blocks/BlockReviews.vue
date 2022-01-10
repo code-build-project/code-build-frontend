@@ -157,7 +157,6 @@ export default {
     font-size: 18px;
     color: $color-blue;
     border: 1px solid $color-blue;
-    background: transparent;
   }
 }
 

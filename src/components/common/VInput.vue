@@ -1,5 +1,5 @@
 <template>
-  <div class="input" :class="[{ input_focus: isFocus || value }, { input_error: isError }]">
+  <div class="input" :class="[{ input_focus: isFocus || value }, { input_error: error }]">
     <input
       class="input__field"
       :value="value"
@@ -12,7 +12,7 @@
     />
     <label class="input__label"><slot>Label</slot></label>
 
-    <div v-if="isError" class="input__error">
+    <div v-if="error" class="input__error">
       {{ errorMessage }}
     </div>
 
@@ -72,10 +72,16 @@ export default {
     }
   },
 
+  computed: {
+    error() {
+      return this.isError || this.errorMessage;
+    }
+  },
+
   data() {
     return {
       isFocus: false,
-      isPassword: this.type === 'password',
+      isPassword: this.type === 'password'
     };
   },
 

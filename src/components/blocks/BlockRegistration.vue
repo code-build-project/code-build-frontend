@@ -6,13 +6,17 @@
       </h1>
 
       <div class="reg__input">
-        <div class="reg__input-legend">
-          Email
-        </div>
+        <div class="reg__input-legend">Email</div>
 
-        <input class="reg__input-field" value="" placeholder="your.email@example.com" />
+        <input class="reg__input-field" v-model="email" placeholder="your.email@example.com" />
 
-        <v-icon class="reg__icon-arrow" path="img/arrow.svg" width="23px" height="23px" />
+        <v-icon
+          class="reg__icon-arrow"
+          path="img/arrow.svg"
+          width="23px"
+          height="23px"
+          @click="openRegistration()"
+        />
       </div>
     </div>
   </div>
@@ -23,7 +27,17 @@ import VIcon from '@/components/common/VIcon.vue';
 
 export default {
   name: 'BlockRegistration',
-  components: { VIcon }
+  components: { VIcon },
+  data() {
+    return {
+      email: '',
+    };
+  },
+  methods: {
+    openRegistration() {
+      this.$router.push('/reg')
+    }
+  }
 };
 </script>
 

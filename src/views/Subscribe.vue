@@ -185,11 +185,6 @@ export default {
 
     font-family: 'Circe';
     font-size: 18px;
-    color: #272a37;
-    background: transparent;
-
-    border: 1px solid #e4e4e4;
-    border-radius: 8px;
   }
 }
 
