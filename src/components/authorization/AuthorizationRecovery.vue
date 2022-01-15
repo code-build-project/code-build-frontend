@@ -10,6 +10,7 @@
         class="mt-20px"
         :error-message="email.errorName"
         @change="email.isError = false"
+        @keyup.enter.native="send()"
       >
         E-mail
       </v-input>

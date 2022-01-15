@@ -27,7 +27,7 @@
       class="card__icon-heart"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
-      @click="onLike()"
+      @click.native.stop="onLike()"
     />
   </div>
 </template>
@@ -116,6 +116,7 @@ export default {
   position: relative;
   width: 268px;
   height: 338px;
+  transition: all 0.4s ease;
 
   &__poster {
     width: 268px;
@@ -194,5 +195,11 @@ export default {
 
     stroke: $color-white;
   }
+}
+
+// hovers
+:hover.card {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 </style>

@@ -20,13 +20,14 @@
       type="password"
       :error-message="password.errorName"
       @change="password.errorName = ''"
+      @keyup.enter.native="onLogin()"
     >
       Пароль
     </v-input>
 
     <div class="auth__forget" @click="$emit('changeForm')">Забыли пароль?</div>
 
-    <v-button class="auth__button" :type="typeButton" :isLoaded="isPageLoaded" @click="onLogin">
+    <v-button class="auth__button" :type="typeButton" :isLoaded="isPageLoaded" @click="onLogin()">
       Войти
     </v-button>
 

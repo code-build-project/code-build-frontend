@@ -13,7 +13,7 @@ export default {
 
   created() {
     // Перед отрисовкой страницы, получать данные пользователя 
-    apiAuth.setUser();
+    apiAuth.getUser();
   }
 }
 </script>

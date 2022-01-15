@@ -10,7 +10,11 @@
         @change="getArticles()"
       />
 
-      <div class="articles__list">
+      <div v-if="pageLoading" class="articles__preloader">
+        <div v-for="(item, index) in new Array(6)" :key="index" class="articles__preloader-item" />
+      </div>
+
+      <div v-else class="articles__list">
         <div v-for="(item, index) in articleList" :key="index">
           <v-article-card
             class="mb-30px"
@@ -47,12 +51,16 @@ export default {
       filterId: '',
 
       filterList: [],
-      articleList: []
+      articleList: [],
+
+      pageLoading: false
     };
   },
   methods: {
     async getArticles() {
+      this.pageLoading = true;
       this.articleList = await apiArticles.getArticleList({ tag: this.filterId });
+      this.pageLoading = false;
     }
   },
   created() {
@@ -89,6 +97,21 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin-top: 60px;
+  }
+}
+
+.articles__preloader {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 60px;
+  justify-content: space-between;
+
+  &-item {
+    width: 367px;
+    height: 465px;
+    margin-bottom: 30px;
+    background: $color-silver;
+    border-radius: 8px;
   }
 }
 </style>

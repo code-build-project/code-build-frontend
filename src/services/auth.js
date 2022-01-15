@@ -29,7 +29,7 @@ export default {
   },
 
   // Записать данные пользователя в сторадж
-  setUser: async () => {
+  getUser: async () => {
     try {
       const { data } = await requestAccess.get('/user');
       storage.setUser('local', data);
@@ -37,6 +37,13 @@ export default {
       storage.setUser('local', {});
       console.log('Пользователь не авторизован!');
     }
+  },
+
+  // Изменить имя пользователя
+  changeUserName: async (params) => {
+    const { data } = await requestAccess.put('/user-change-name', params);
+    storage.setTokens('local', data);
+    window.location.reload();
   },
 
   // Выйти из под своего пользователя

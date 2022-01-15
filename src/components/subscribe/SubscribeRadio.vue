@@ -1,11 +1,12 @@
 <template>
-  <div class="radio" :class="{ radio__focus: picked === price }">
+  <div class="radio" :class="{ radio__focus: picked === price }" @click="$emit('change', price)">
     <div class="radio__main">
       <input
         :id="keyField"
         class="radio__input"
         type="radio"
         :value="price"
+        :checked="picked === price"
         name="subscribe"
         @change="$emit('change', price)"
       />
@@ -13,15 +14,11 @@
 
       <div class="radio__title">
         <slot>1 месяц подписки</slot>
-        <div v-if="economy" class="radio__economy">
-          Экономия — {{ economy }}₽
-        </div>
+        <div v-if="economy" class="radio__economy">Экономия — {{ economy }}₽</div>
       </div>
     </div>
 
-    <div class="radio__price">
-      {{ price }}₽
-    </div>
+    <div class="radio__price">{{ price }}₽</div>
   </div>
 </template>
 
@@ -53,7 +50,7 @@ export default {
       type: [Number, String],
       default: ''
     }
-  }
+  },
 };
 </script>
 
@@ -74,6 +71,7 @@ export default {
   }
 
   &__title {
+    @extend .flex_column-center;
     margin-left: 30px;
 
     font-family: 'Circe';
@@ -170,5 +168,10 @@ export default {
 // hovers
 :hover.radio {
   border-color: #ee3465;
+  cursor: pointer;
+
+  .radio__label:before {
+    border-color: #ee3465;
+  }
 }
 </style>

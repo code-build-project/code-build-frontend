@@ -23,13 +23,30 @@
       <!-- Правая часть -->
       <div class="courses__cards">
         <div class="flex_column">
-          <v-course-mini-card class="mt-70px" :course="courseList[0]" />
-          <v-course-mini-card class="mt-35px" :course="courseList[1]" />
+          <v-course-mini-card
+            class="mt-70px"
+            :course="courseList[0]"
+            @click="$router.push(`/course?id=${courseList[0].id}`)"
+          />
+          <v-course-mini-card
+            class="mt-35px"
+            :course="courseList[1]"
+            @click="$router.push(`/course?id=${courseList[1].id}`)"
+          />
         </div>
 
         <div class="flex_column ml-30px">
-          <v-course-mini-card fire :course="courseList[2]" />
-          <v-course-mini-card class="mt-35px" level="Intermediate" :course="courseList[3]" />
+          <v-course-mini-card
+            fire
+            :course="courseList[2]"
+            @click="$router.push(`/course?id=${courseList[2].id}`)"
+          />
+          <v-course-mini-card
+            class="mt-35px"
+            level="Intermediate"
+            :course="courseList[3]"
+            @click="$router.push(`/course?id=${courseList[3].id}`)"
+          />
         </div>
       </div>
       <!-- Правая часть -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="$emit('click')">
     <img class="card__poster" alt="" :src="article.image" />
 
     <main class="card__main">
@@ -58,16 +58,13 @@ export default {
       }
     }
   },
-  data() {
-    return {};
-  },
-  computed: {}
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
   position: relative;
+  transition: all 0.4s ease;
 
   &__poster {
     width: 268px;
@@ -136,5 +133,11 @@ export default {
 
     fill: $color-white;
   }
+}
+
+// hovers
+:hover.card {
+  cursor: pointer;
+  transform: translateY(-10px);
 }
 </style>

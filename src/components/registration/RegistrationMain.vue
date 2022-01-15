@@ -75,7 +75,7 @@ export default {
       name: '',
 
       email: {
-        name: '',
+        name: this.$route.params.email,
         errorName: ''
       },
 
@@ -109,6 +109,9 @@ export default {
         this.isPageLoaded = true;
       }
     }
+  },
+  created() {
+    console.log(this.$route.params.email);
   }
 };
 </script>

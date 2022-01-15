@@ -21,7 +21,7 @@
 
       <!-- Правая часть -->
       <div class="subscribe__main-right-side">
-        <v-radio-button
+        <subscribe-radio
           v-for="(item, index) in radioList"
           :key="index"
           v-model="radioValue"
@@ -31,7 +31,7 @@
           :economy="item.economy"
         >
           {{ item.title }}
-        </v-radio-button>
+        </subscribe-radio>
 
         <div class="subscribe__consent">
           <div class="flex_row-center-center">
@@ -43,42 +43,42 @@
             </div>
           </div>
 
-          <v-button class="subscribe__button">
-            Подключить
-          </v-button>
+          <v-button class="subscribe__button" @click="isPopup = true"> Подключить </v-button>
         </div>
       </div>
       <!-- Правая часть -->
     </main>
 
     <div class="subscribe__questions">
-      <div class="subscribe__questions-title">
-        Часто задаваемые вопросы
-      </div>
+      <div class="subscribe__questions-title">Часто задаваемые вопросы</div>
       <div class="subscribe__questions-list">
-        <v-question />
+        <subscribe-question />
       </div>
     </div>
+
+    <popup-subscribe v-if="isPopup" @close="isPopup = false" />
   </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
-import VQuestion from '@/components/common/VQuestion.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
 import VUnderline from '@/components/common/VUnderline.vue';
-import VRadioButton from '@/components/common/VRadioButton.vue';
+import PopupSubscribe from '@/components/popups/PopupSubscribe.vue';
+import SubscribeRadio from '@/components/subscribe/SubscribeRadio.vue';
+import SubscribeQuestion from '@/components/subscribe/SubscribeQuestion.vue';
 
 export default {
   name: 'Subscribe',
   components: {
     VIcon,
     VButton,
-    VQuestion,
     VCheckBox,
     VUnderline,
-    VRadioButton
+    PopupSubscribe,
+    SubscribeRadio,
+    SubscribeQuestion
   },
   data() {
     return {
@@ -88,7 +88,9 @@ export default {
         { title: '1 месяц подписки', price: '99', economy: undefined },
         { title: '3 месяца подписки', price: '239', economy: '58' },
         { title: '1 год подписки', price: '799', economy: '389' }
-      ]
+      ],
+
+      isPopup: false
     };
   }
 };

@@ -10,7 +10,11 @@
         @change="getCourses()"
       />
 
-      <div class="courses__list">
+      <div v-if="pageLoading" class="courses__preloader">
+        <div v-for="(item, index) in new Array(6)" :key="index" class="courses__preloader-item" />
+      </div>
+
+      <div v-else class="courses__list">
         <div v-for="(item, index) in courseList" :key="index">
           <v-course-card
             class="mb-30px"
@@ -47,12 +51,16 @@ export default {
       filterId: '',
 
       filterList: [],
-      courseList: []
+      courseList: [],
+
+      pageLoading: false
     };
   },
   methods: {
     async getCourses() {
+      this.pageLoading = true;
       this.courseList = await apiCourses.getCoursesList({ tag: this.filterId });
+      this.pageLoading = false;
     }
   },
   created() {
@@ -89,6 +97,21 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin-top: 60px;
+  }
+}
+
+.courses__preloader {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 60px;
+  justify-content: space-between;
+
+  &-item {
+    width: 367px;
+    height: 465px;
+    margin-bottom: 30px;
+    background: $color-silver;
+    border-radius: 8px;
   }
 }
 </style>

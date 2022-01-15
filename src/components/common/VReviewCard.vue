@@ -62,6 +62,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   @extend .flex_column;
+  position: relative;
   width: 367px;
 
   padding: 30px;
@@ -73,7 +74,8 @@ export default {
   &__score {
     @extend .flex_row-center-between;
     width: 60px;
-    height: 30px;
+    min-height: 30px;
+    line-height: 0;
 
     padding: 0px 10px 0px 10px;
 
@@ -93,8 +95,19 @@ export default {
   }
 
   &__footer {
-    @extend .flex_row;
-    margin-top: auto;
+    @extend .flex_row-center;
+    position: absolute;
+    width: 100%;
+    height: 110px;
+    bottom: 30px;
+    padding-top: 60px;
+
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.95) 29.69%,
+      #ffffff 100%
+    );
   }
 
   &__avatar-img {

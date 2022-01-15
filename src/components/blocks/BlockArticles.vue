@@ -4,13 +4,28 @@
       <!-- Левая часть -->
       <div class="articles__cards">
         <div class="flex_column">
-          <v-article-mini-card class="mt-70px" :article="articleList[0]" />
-          <v-article-mini-card class="mt-35px"  :article="articleList[0]" />
+          <v-article-mini-card
+            class="mt-70px"
+            :article="articleList[0]"
+            @click="$router.push(`/article?id=${articleList[0].id}`)"
+          />
+          <v-article-mini-card
+            class="mt-35px"
+            :article="articleList[0]"
+            @click="$router.push(`/article?id=${articleList[0].id}`)"
+          />
         </div>
 
         <div class="flex_column ml-30px">
-          <v-article-mini-card  :article="articleList[1]" />
-          <v-article-mini-card class="mt-35px"  :article="articleList[1]" />
+          <v-article-mini-card
+            :article="articleList[1]"
+            @click="$router.push(`/article?id=${articleList[1].id}`)"
+          />
+          <v-article-mini-card
+            class="mt-35px"
+            :article="articleList[1]"
+            @click="$router.push(`/article?id=${articleList[1].id}`)"
+          />
         </div>
       </div>
       <!-- Левая часть -->

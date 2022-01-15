@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
+  <div class="card" @click="$emit('click')">
     <img class="card__poster" alt="" :src="course.image" />
 
-    <main class="card__main" @click="$emit('click')">
+    <main class="card__main">
       <div class="card__level">
         <span class="mr-5px">Сложность</span>
 
@@ -41,7 +41,7 @@
       class="card__icon-heart"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
-      @click="onLike()"
+      @click.native.stop="onLike()"
     />
   </div>
 </template>
@@ -113,7 +113,7 @@ export default {
 
     onLike() {
       const payload = {
-        courseId: this.course.id,
+        courseId: this.course.id
       };
 
       if (this.isLike) {
@@ -128,6 +128,7 @@ export default {
 .card {
   position: relative;
   width: 367px;
+  transition: all 0.4s ease;
 
   &__poster {
     width: 100%;
@@ -214,5 +215,11 @@ export default {
 
     stroke: $color-white;
   }
+}
+
+// hovers
+:hover.card {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 </style>

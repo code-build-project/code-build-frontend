@@ -12,10 +12,11 @@
 
         <v-icon
           class="reg__icon-arrow"
+          :class="{'reg__icon-arrow_disable': isDisable}"
           path="img/arrow.svg"
           width="23px"
           height="23px"
-          @click="openRegistration()"
+          @click="openPageRegistration()"
         />
       </div>
     </div>
@@ -23,19 +24,28 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
+
+// Constants
+const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
 export default {
   name: 'BlockRegistration',
   components: { VIcon },
+  computed: {
+    isDisable() {
+      return !regex.test(this.email);
+    }
+  },
   data() {
     return {
-      email: '',
+      email: ''
     };
   },
   methods: {
-    openRegistration() {
-      this.$router.push('/reg')
+    openPageRegistration() {
+      this.$router.push({ name: 'Registration', params: { email: this.email } });
     }
   }
 };
@@ -108,9 +118,13 @@ export default {
     right: 0px;
     bottom: 20px;
 
-    border: 2px solid #3a7afe;
+    border: 1px solid #3a7afe;
     border-radius: 10px;
     stroke: $color-white;
+  }
+
+  &-arrow_disable {
+    pointer-events: none;
   }
 }
 

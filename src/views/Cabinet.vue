@@ -8,15 +8,11 @@
       </div>
 
       <div class="cabinet__main-right">
-        <div class="cabinet__label">Имя</div>
-        <div class="cabinet__input">
-          {{ user.name }}
-        </div>
+        <cabinet-input :value="user.name" @change="changeName($event)" @blur="getPopup()">
+          Имя
+        </cabinet-input>
 
-        <div class="cabinet__label mt-30px">E-mail</div>
-        <div class="cabinet__input">
-          {{ user.email }}
-        </div>
+        <cabinet-input class="mt-30px" :value="user.email" readonly> E-mail </cabinet-input>
       </div>
     </main>
     <!-- Блок "Мой профиль" -->
@@ -57,6 +53,8 @@
       </div>
     </div>
     <!-- Блок "Премиум" -->
+
+    <popup-cabinet v-if="isPopup" :newName="newName" @close="isPopup = false" />
   </div>
 </template>
 
@@ -64,17 +62,40 @@
 // Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
+import PopupCabinet from '@/components/popups/PopupCabinet.vue';
+import CabinetInput from '@/components/cabinet/CabinetInput.vue';
 
 // Helpers
 import storage from '@/helpers/storage.js';
 
 export default {
   name: 'Cabinet',
-  components: { VIcon, VButton },
+  components: {
+    VIcon,
+    VButton,
+    PopupCabinet,
+    CabinetInput
+  },
   data() {
     return {
-      user: storage.getUser('local')
+      user: storage.getUser('local'),
+      newName: '',
+      isPopup: false,
+      isChange: false
     };
+  },
+  methods: {
+    getPopup() {
+      if (this.isChange) {
+        this.isPopup = true;
+        this.isChange = false;
+      }
+    },
+
+    changeName(name) {
+      this.isChange = true;
+      this.newName = name;
+    }
   }
 };
 </script>
