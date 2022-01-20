@@ -4,12 +4,12 @@
       <div class="cover__header">
         <div class="cover__route">
           <div class="cover__route-item">
-            Code build
+            <span class="cover__route-link" @click="$router.push('/')">Code build</span>
             <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
 
           <div class="cover__route-item ml-20px">
-            Видеокурсы
+            <span class="cover__route-link" @click="$router.push('/courses')">Видеокурсы</span>
             <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
           </div>
 
@@ -226,6 +226,14 @@ export default {
     margin-right: 10px;
 
     fill: $color-white;
+  }
+}
+
+// hovers
+:hover.cover {
+  &__route-link {
+    cursor: pointer;
+    color: $color-navy;
   }
 }
 </style>

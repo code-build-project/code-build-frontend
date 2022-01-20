@@ -16,7 +16,16 @@
         </div>
 
         <div class="popup__footer-buttons">
-          <v-icon class="popup__icon-heart" path="img/heart.svg" width="16px" height="14px" />
+          <v-icon
+            v-if="user.id"
+            class="popup__icon-heart"
+            path="img/heart.svg"
+            :style="heartAnimation"
+            :fill="lesson.isLike ? '#EE3465' : 'transparent'"
+            @click="onLike()"
+            @mousedown="isHeartAnimation = true"
+            @mouseup="isHeartAnimation = false"
+          />
           <v-button class="popup__button" type="active">
             <a :href="lesson.video" target="_blank">Смотреть на YouTube</a>
           </v-button>
@@ -28,12 +37,12 @@
       <v-icon
         class="popup__icon-bracket-left"
         path="img/angleBracketPopup.svg"
-        @click.native.stop="$emit('clickLeft')"
+        @click="$emit('clickLeft')"
       />
       <v-icon
         class="popup__icon-bracket-right"
         path="img/angleBracketPopup.svg"
-        @click.native.stop="$emit('clickRight')"
+        @click="$emit('clickRight')"
       />
       <!-- Внешние кнопки -->
     </div>
@@ -41,8 +50,15 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
+
+// Services
+import apiLessons from '@/services/lessons.js';
+
+// Helpers
+import storage from '@/helpers/storage.js';
 
 export default {
   name: 'PopupPlayer',
@@ -73,9 +89,49 @@ export default {
           // Ссылка на изображение постера
           image: '',
           // Ссылка на видео
-          video: ''
+          video: '',
+          // Флаг лайка
+          isLike: false
         };
       }
+    }
+  },
+  computed: {
+    heartAnimation() {
+      if (this.isHeartAnimation) {
+        return { padding: '22px' };
+      }
+      return '';
+    }
+  },
+  data() {
+    return {
+      user: storage.getUser('local'),
+      isHeartAnimation: false
+    };
+  },
+  methods: {
+    addLike(payload) {
+      apiLessons.addLike(payload).then(() => {
+        this.lesson.isLike = true;
+      });
+    },
+
+    deleteLike(payload) {
+      apiLessons.deleteLike(payload).then(() => {
+        this.lesson.isLike = false;
+      });
+    },
+
+    onLike() {
+      const payload = {
+        lessonId: this.lesson.id,
+        courseId: this.lesson.courseId
+      };
+
+      if (this.lesson.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
     }
   }
 };
@@ -156,12 +212,15 @@ export default {
     @extend .flex_row-center-center;
     width: 53px;
     height: 53px;
+    padding: 15px;
 
     border: 0.8px solid #dedede;
     border-radius: 8px;
 
     fill: transparent;
     stroke: #dedede;
+    cursor: pointer;
+    transition: all 0.1s ease;
   }
 
   &-close {

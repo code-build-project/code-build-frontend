@@ -13,7 +13,7 @@
       </div>
 
       <div class="popup__footer">
-        <div class="popup__avatar-img" />
+        <img class="popup__avatar-img" alt="" :src="review.image" />
 
         <div class="popup__avatar-info">
           <h1 class="popup__avatar-name">{{ review.name }}</h1>
@@ -59,7 +59,9 @@ export default {
           // Имя автора
           name: '',
           // Дата публикации
-          date: ''
+          date: '',
+          // Аватарка пользователя
+          image: ''
         };
       }
     }

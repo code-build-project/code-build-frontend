@@ -10,7 +10,7 @@
     </div>
 
     <div class="card__footer">
-      <div class="card__avatar-img" />
+      <img class="card__avatar-img" alt="" :src="review.image" />
 
       <div class="card__avatar-info">
         <h1 class="card__avatar-name">
@@ -46,7 +46,9 @@ export default {
           // Имя автора
           name: '',
           // Дата публикации
-          date: ''
+          date: '',
+          // Аватарка пользователя
+          image: ''
         };
       }
     },

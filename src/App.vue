@@ -14,6 +14,15 @@ export default {
   created() {
     // Перед отрисовкой страницы, получать данные пользователя 
     apiAuth.getUser();
+
+    try {
+      throw {
+        code: 'asdas',
+        name: 'Parameter is not a number!'
+      }
+    } catch(err) {
+      console.log(err)
+    }
   }
 }
 </script>

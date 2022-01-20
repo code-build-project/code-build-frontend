@@ -23,12 +23,12 @@
       <!-- Правая часть -->
       <div class="courses__cards">
         <div class="flex_column">
-          <v-course-mini-card
+          <home-course-card
             class="mt-70px"
             :course="courseList[0]"
             @click="$router.push(`/course?id=${courseList[0].id}`)"
           />
-          <v-course-mini-card
+          <home-course-card
             class="mt-35px"
             :course="courseList[1]"
             @click="$router.push(`/course?id=${courseList[1].id}`)"
@@ -36,12 +36,12 @@
         </div>
 
         <div class="flex_column ml-30px">
-          <v-course-mini-card
+          <home-course-card
             fire
             :course="courseList[2]"
             @click="$router.push(`/course?id=${courseList[2].id}`)"
           />
-          <v-course-mini-card
+          <home-course-card
             class="mt-35px"
             level="Intermediate"
             :course="courseList[3]"
@@ -58,7 +58,7 @@
 // Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
-import VCourseMiniCard from '@/components/common/VCourseMiniCard.vue';
+import HomeCourseCard from '@/components/home/HomeCourseCard.vue';
 
 // Services
 import apiCourses from '@/services/courses.js';
@@ -68,7 +68,7 @@ export default {
   components: {
     VIcon,
     VButton,
-    VCourseMiniCard
+    HomeCourseCard
   },
   data() {
     return {

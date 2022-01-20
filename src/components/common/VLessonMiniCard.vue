@@ -26,8 +26,8 @@
       v-if="user.id"
       class="card__icon-heart"
       path="img/heart.svg"
-      :fill="isLike ? '#EE3465' : 'transparent'"
-      @click.native.stop="onLike()"
+      :fill="lesson.isLike ? '#EE3465' : 'transparent'"
+      @click="onLike()"
     />
   </div>
 </template>
@@ -68,32 +68,28 @@ export default {
           // Название курса(коллекции в бд)
           courseId: '',
           // Ссылка на изображение постера
-          image: ''
+          image: '',
+          // Флаг лайка
+          isLike: false
         };
       }
     }
   },
   data() {
     return {
-      isLike: false,
       user: storage.getUser('local')
     };
   },
-
-  mounted() {
-    this.isLike = this.lesson.likes.includes(this.user.id);
-  },
-
   methods: {
     addLike(payload) {
       apiLessons.addLike(payload).then(() => {
-        this.isLike = true;
+        this.lesson.isLike = true;
       });
     },
 
     deleteLike(payload) {
       apiLessons.deleteLike(payload).then(() => {
-        this.isLike = false;
+        this.lesson.isLike = false;
       });
     },
 
@@ -103,7 +99,7 @@ export default {
         courseId: this.lesson.courseId
       };
 
-      if (this.isLike) {
+      if (this.lesson.isLike) {
         this.deleteLike(payload);
       } else this.addLike(payload);
     }

@@ -104,7 +104,7 @@ export default {
         await apiAuth.signIn(payload);
         this.$emit('changeForm', payload);
       } catch (error) {
-        this.email.errorName = error.response.data.message;
+        this.email.errorName = error.data.message;
       } finally {
         this.isPageLoaded = true;
       }

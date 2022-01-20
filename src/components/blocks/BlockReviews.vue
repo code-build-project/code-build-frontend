@@ -2,7 +2,7 @@
   <div class="reviews">
     <h1 class="reviews__title">Отзывы о наших курсах</h1>
 
-    <div class="reviews__list" :class="{ reviews__list_open: isOpenList }">
+    <div class="reviews__list" :style="heightList">
       <div v-for="(boxList, indexBox) in reviewList" :key="indexBox" class="reviews__box-list">
         <v-review-card
           v-for="(item, index) in boxList"
@@ -46,7 +46,13 @@ export default {
     VReviewCard,
     PopupReview
   },
-
+  computed: {
+    heightList() {
+      const { length } = this.reviewList;
+      const height = this.isOpenList && length > 1 ? 750 * length + 'px' : '1060px';
+      return { height };
+    }
+  },
   data() {
     return {
       isOpenList: false,
@@ -122,6 +128,7 @@ export default {
     height: 1060px;
     margin-top: 20px;
     overflow: hidden;
+    transition: all 0.7s linear;
   }
 
   &__box-list {
@@ -165,13 +172,6 @@ export default {
   &__button {
     color: $color-white;
     background: $color-blue;
-  }
-}
-
-// actives
-.reviews {
-  &__list_open {
-    height: auto;
   }
 }
 </style>

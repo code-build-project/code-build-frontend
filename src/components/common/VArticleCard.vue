@@ -27,9 +27,12 @@
     <v-icon
       v-if="user.id"
       class="card__icon-heart"
+      :style="heartAnimation"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
-      @click.native.stop="onLike()"
+      @click="onLike()"
+      @mousedown.native="isHeartAnimation = true"
+      @mouseup.native="isHeartAnimation = false"
     />
   </div>
 </template>
@@ -73,11 +76,20 @@ export default {
       }
     }
   },
-
+  computed: {
+    heartAnimation() {
+      if (this.isHeartAnimation) {
+        return { padding: '8px' };
+      }
+      return '';
+    }
+  },
   data() {
     return {
       isLike: false,
-      user: storage.getUser('local')
+      user: storage.getUser('local'),
+
+      isHeartAnimation: false
     };
   },
 
@@ -100,7 +112,7 @@ export default {
 
     onLike() {
       const payload = {
-        articleId: this.article.id,
+        articleId: this.article.id
       };
 
       if (this.isLike) {
@@ -192,6 +204,7 @@ export default {
     cursor: pointer;
 
     stroke: $color-white;
+    transition: all 0.1s ease;
   }
 }
 

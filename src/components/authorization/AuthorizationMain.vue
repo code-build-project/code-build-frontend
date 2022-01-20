@@ -10,6 +10,7 @@
       :error-message="email.errorName"
       @change="email.errorName = ''"
       @blur="validateEmail"
+      @keyup.enter.native="onLogin()"
     >
       E-mail
     </v-input>
@@ -73,9 +74,11 @@ export default {
     };
   },
   computed: {
+    isValid() {
+      return regex.test(this.email.name) && this.password.name;
+    },
     typeButton() {
-      const isValid = regex.test(this.email.name) && this.password.name;
-      return isValid ? 'primary' : 'disabled';
+      return this.isValid ? 'primary' : 'disabled';
     }
   },
   methods: {
@@ -85,11 +88,10 @@ export default {
       } else {
         this.email.errorName = '';
       }
-
-      return regex.test(this.email.name);
     },
 
     async onLogin() {
+      if(!this.isValid) return;
       this.isPageLoaded = false;
 
       const payload = {
@@ -100,8 +102,12 @@ export default {
       try {
         await apiAuth.logIn(payload);
         this.$router.push('/').then(() => location.reload());
-      } catch (error) {
-        this.password.errorName = error.response.data.message;
+      } catch ({ data }) {
+        if (data.name === 'IncorrectEmail') {
+          this.email.errorName = data.message;
+        } else {
+          this.password.errorName = data.message;
+        }
       } finally {
         this.isPageLoaded = true;
       }

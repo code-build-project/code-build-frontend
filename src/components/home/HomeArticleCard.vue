@@ -30,7 +30,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 
 export default {
-  name: 'VCourseCard',
+  name: 'HomeArticleCard',
   components: {
     VIcon
   },

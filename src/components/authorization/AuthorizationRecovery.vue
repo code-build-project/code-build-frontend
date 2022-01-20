@@ -10,6 +10,7 @@
         class="mt-20px"
         :error-message="email.errorName"
         @change="email.isError = false"
+        @blur="validateEmail"
         @keyup.enter.native="send()"
       >
         E-mail
@@ -17,7 +18,7 @@
 
       <v-button
         class="recovery__button"
-        type="primary"
+        :type="typeButton"
         :isLoaded="isPageLoaded"
         @click="send()"
       >
@@ -30,7 +31,7 @@
         По вашему запросу на адрес {{ email.name }} было отправлено письмо с новым паролем.
       </h2>
 
-      <v-button class="recovery__button" @click="$emit('changeForm')"> Авторизоваться </v-button>
+      <v-button class="recovery__button"  type="primary" @click="$emit('changeForm')"> Авторизоваться </v-button>
     </template>
   </div>
 </template>
@@ -43,10 +44,20 @@ import VButton from '@/components/common/VButton.vue';
 // Services
 import apiAuth from '@/services/auth.js';
 
+// Constants
+const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
 export default {
   name: 'AuthorizationRecovery',
   components: { VInput, VButton },
-
+  computed: {
+    isValid() {
+      return regex.test(this.email.name);
+    },
+    typeButton() {
+      return this.isValid ? 'primary' : 'disabled';
+    }
+  },
   data() {
     return {
       isPageLoaded: true,
@@ -59,16 +70,24 @@ export default {
       isSuccess: false
     };
   },
-
   methods: {
+    validateEmail() {
+      if (regex.test(this.email.name) === false) {
+        this.email.errorName = 'Неверный формат';
+      } else {
+        this.email.errorName = '';
+      }
+    },
+
     async send() {
+      if(!this.isValid) return;
       this.isPageLoaded = false;
 
       try {
         await apiAuth.recoveryPassword({ email: this.email.name });
         this.isSuccess = true;
-      } catch (error) {
-        this.email.errorName = error.response.data.message;
+      } catch ({ data }) {
+        this.email.errorName = data.message;
       } finally {
         this.isPageLoaded = true;
       }

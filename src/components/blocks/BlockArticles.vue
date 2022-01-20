@@ -4,12 +4,12 @@
       <!-- Левая часть -->
       <div class="articles__cards">
         <div class="flex_column">
-          <v-article-mini-card
+          <home-article-card
             class="mt-70px"
             :article="articleList[0]"
             @click="$router.push(`/article?id=${articleList[0].id}`)"
           />
-          <v-article-mini-card
+          <home-article-card
             class="mt-35px"
             :article="articleList[0]"
             @click="$router.push(`/article?id=${articleList[0].id}`)"
@@ -17,11 +17,11 @@
         </div>
 
         <div class="flex_column ml-30px">
-          <v-article-mini-card
+          <home-article-card
             :article="articleList[1]"
             @click="$router.push(`/article?id=${articleList[1].id}`)"
           />
-          <v-article-mini-card
+          <home-article-card
             class="mt-35px"
             :article="articleList[1]"
             @click="$router.push(`/article?id=${articleList[1].id}`)"
@@ -52,7 +52,7 @@
 // Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
-import VArticleMiniCard from '@/components/common/VArticleMiniCard.vue';
+import HomeArticleCard from '@/components/home/HomeArticleCard.vue';
 
 // Services
 import apiArticles from '@/services/articles.js';
@@ -62,7 +62,7 @@ export default {
   components: {
     VIcon,
     VButton,
-    VArticleMiniCard
+    HomeArticleCard
   },
   data() {
     return {

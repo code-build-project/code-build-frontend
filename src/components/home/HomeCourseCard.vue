@@ -46,7 +46,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 
 export default {
-  name: 'VCourseMiniCard',
+  name: 'HomeCourseCard',
   components: {
     VIcon
   },
