@@ -29,7 +29,7 @@
       class="card__icon-heart"
       :style="heartAnimation"
       path="img/heart.svg"
-      :fill="isLike ? '#EE3465' : 'transparent'"
+      :fill="article.isLike ? '#EE3465' : 'transparent'"
       @click="onLike()"
       @mousedown.native="isHeartAnimation = true"
       @mouseup.native="isHeartAnimation = false"
@@ -42,7 +42,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 
 // Services
-import apiArticles from '@/services/articles.js';
+import apiLikes from '@/services/likes.js';
 
 // Helpers
 import storage from '@/helpers/storage.js';
@@ -71,7 +71,9 @@ export default {
           // Список id юзеров, лайкнувших статью
           likes: [],
           // Постер
-          image: ''
+          image: '',
+          // Флаг лайка
+          isLike: false
         };
       }
     }
@@ -86,36 +88,31 @@ export default {
   },
   data() {
     return {
-      isLike: false,
       user: storage.getUser('local'),
 
       isHeartAnimation: false
     };
   },
-
-  mounted() {
-    this.isLike = this.article.likes.includes(this.user.id);
-  },
-
   methods: {
     addLike(payload) {
-      apiArticles.addLike(payload).then(() => {
-        this.isLike = true;
+      apiLikes.addLike(payload).then(() => {
+        this.article.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      apiArticles.deleteLike(payload).then(() => {
-        this.isLike = false;
+      apiLikes.deleteLike(payload).then(() => {
+        this.article.isLike = false;
       });
     },
 
     onLike() {
       const payload = {
-        articleId: this.article.id
+        id: this.article.id,
+        field: 'articles'
       };
 
-      if (this.isLike) {
+      if (this.article.isLike) {
         this.deleteLike(payload);
       } else this.addLike(payload);
     }

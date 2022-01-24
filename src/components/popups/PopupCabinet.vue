@@ -31,7 +31,7 @@ import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 // Services
-import apiAuth from '@/services/auth.js';
+import apiUsers from '@/services/users.js';
 
 export default {
   name: 'PopupCabinet',
@@ -53,7 +53,7 @@ export default {
   methods: {
     async save() {
       this.isPageLoaded = false;
-      await apiAuth.changeUserName({ name: this.newName });
+      await apiUsers.changeUserName({ name: this.newName });
       this.isPageLoaded = true;
     }
   }

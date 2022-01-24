@@ -33,7 +33,7 @@
       </div>
 
       <!-- Внешние кнопки -->
-      <v-icon class="popup__icon-close" path="img/close.svg" @click.native.stop="$emit('close')" />
+      <v-icon class="popup__icon-close" path="img/close.svg" @click="$emit('close')" />
       <v-icon
         class="popup__icon-bracket-left"
         path="img/angleBracketPopup.svg"
@@ -55,7 +55,7 @@ import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 
 // Services
-import apiLessons from '@/services/lessons.js';
+import apiLikes from '@/services/likes.js';
 
 // Helpers
 import storage from '@/helpers/storage.js';
@@ -112,21 +112,21 @@ export default {
   },
   methods: {
     addLike(payload) {
-      apiLessons.addLike(payload).then(() => {
+      apiLikes.addLike(payload).then(() => {
         this.lesson.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      apiLessons.deleteLike(payload).then(() => {
+      apiLikes.deleteLike(payload).then(() => {
         this.lesson.isLike = false;
       });
     },
 
     onLike() {
       const payload = {
-        lessonId: this.lesson.id,
-        courseId: this.lesson.courseId
+        id: this.lesson.id,
+        field: 'lessons'
       };
 
       if (this.lesson.isLike) {

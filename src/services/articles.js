@@ -1,3 +1,4 @@
+import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/articles';
 import { Article } from '../models/articles.js';
 import { request, requestAccess } from '@/helpers/http';
@@ -5,8 +6,10 @@ import { request, requestAccess } from '@/helpers/http';
 export default {
   // Получить список статьей
   getArticleList: async params => {
+    const likes = await apiLikes.getLikeList('articles');
+
     const { data } = await request.get('/articles', { params });
-    return data.map(item => new Article(item));
+    return data.map(item => new Article(item, likes));
   },
 
   // Получить статью по id
@@ -38,18 +41,6 @@ export default {
   // Получить фильтры для статьей
   getFilters: () => {
     return Filters;
-  },
-
-  // Поставить лайк статье и добавить в фавориты
-  addLike: async params => {
-    const { data } = await requestAccess.post('/articles/add-like', params);
-    return data;
-  },
-
-  // Убрать лайк у статьи и удалить из фаворитов
-  deleteLike: async params => {
-    const { data } = await requestAccess.post('/articles/delete-like', params);
-    return data;
   },
 
   // Получить список популярных статьей

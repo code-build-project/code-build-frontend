@@ -1,14 +1,15 @@
+import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/courses';
 import { Course } from '../models/courses.js';
 import { request, requestAccess } from '@/helpers/http';
 
-const vm = this;
-
 export default {
   // Получить список курсов
   getCoursesList: async params => {
+    const likes = await apiLikes.getLikeList('courses');
+
     const { data } = await request.get(`/courses`, { params });
-    return data.map(item => new Course(item));
+    return data.map(item => new Course(item, likes));
   },
 
   // Получить статью по id
@@ -40,18 +41,6 @@ export default {
   // Получить фильтры для курсов
   getFilters: () => {
     return Filters;
-  },
-
-  // Поставить лайк курсу и добавить в фавориты
-  addLike: async params => {
-    const { data } = await requestAccess.post('/courses/add-like', params);
-    return data;
-  },
-
-  // Убрать лайк у курса и удалить из фаворитов
-  deleteLike: async params => {
-    const { data } = await requestAccess.post('/courses/delete-like', params);
-    return data;
   },
 
   // Получить список популярных статьей

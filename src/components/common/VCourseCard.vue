@@ -40,8 +40,8 @@
       v-if="user.id"
       class="card__icon-heart"
       path="img/heart.svg"
-      :fill="isLike ? '#EE3465' : 'transparent'"
-      @click.native.stop="onLike()"
+      :fill="course.isLike ? '#EE3465' : 'transparent'"
+      @click="onLike()"
     />
   </div>
 </template>
@@ -51,7 +51,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 
 // Services
-import apiCourses from '@/services/courses.js';
+import apiLikes from '@/services/likes.js';
 
 // Helpers
 import storage from '@/helpers/storage.js';
@@ -82,41 +82,38 @@ export default {
           // Список id юзеров, лайкнувших курс
           likes: [],
           // Постер
-          image: ''
+          image: '',
+          // Флаг лайка
+          isLike: false
         };
       }
     }
   },
   data() {
     return {
-      isLike: false,
       user: storage.getUser('local')
     };
   },
-
-  mounted() {
-    this.isLike = this.course.likes.includes(this.user.id);
-  },
-
   methods: {
     addLike(payload) {
-      apiCourses.addLike(payload).then(() => {
-        this.isLike = true;
+      apiLikes.addLike(payload).then(() => {
+        this.course.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      apiCourses.deleteLike(payload).then(() => {
-        this.isLike = false;
+      apiLikes.deleteLike(payload).then(() => {
+        this.course.isLike = false;
       });
     },
 
     onLike() {
       const payload = {
-        courseId: this.course.id
+        id: this.course.id,
+        field: 'courses'
       };
 
-      if (this.isLike) {
+      if (this.course.isLike) {
         this.deleteLike(payload);
       } else this.addLike(payload);
     }

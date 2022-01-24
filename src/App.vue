@@ -1,35 +1,36 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view v-if="isPageLoaded" />
+    <v-preloader v-else class="app__preloader" />
   </div>
 </template>
 
 <script>
+// Components
+import VPreloader from '@/components/common/VPreloader.vue';
+
 // Services
-import apiAuth from '@/services/auth.js';
+import apiUsers from '@/services/users.js';
 
 export default {
   name: 'App',
-
-  created() {
-    // Перед отрисовкой страницы, получать данные пользователя 
-    apiAuth.getUser();
-
-    try {
-      throw {
-        code: 'asdas',
-        name: 'Parameter is not a number!'
-      }
-    } catch(err) {
-      console.log(err)
-    }
+  components: { VPreloader },
+  data() {
+    return {
+      isPageLoaded: false
+    };
+  },
+  async created() {
+    // Перед отрисовкой страницы, получать данные пользователя
+    await apiUsers.getUser();
+    this.isPageLoaded = true;
   }
-}
+};
 </script>
 
 <style lang="scss">
 @import '~@/assets/scss/fonts.scss';
-@import "~normalize.css/normalize.css";
+@import '~normalize.css/normalize.css';
 
 #app {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
@@ -67,6 +68,14 @@ body,
   height: 100%;
 }
 
+.app__preloader {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+}
+
 // Отлючение дефолтных свойст браузера для тегов
 * {
   margin: 0;
@@ -90,7 +99,8 @@ ul {
   list-style: none;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-size: 100%;
   font-weight: normal;
   margin: 0%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="$emit('click')" >
+  <div class="card" @click="$emit('click')">
     <img class="card__poster" alt="" :src="lesson.image" />
 
     <main class="card__main">
@@ -37,7 +37,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 
 // Services
-import apiLessons from '@/services/lessons.js';
+import apiLikes from '@/services/likes.js';
 
 // Helpers
 import storage from '@/helpers/storage.js';
@@ -82,21 +82,21 @@ export default {
   },
   methods: {
     addLike(payload) {
-      apiLessons.addLike(payload).then(() => {
+      apiLikes.addLike(payload).then(() => {
         this.lesson.isLike = true;
       });
     },
 
     deleteLike(payload) {
-      apiLessons.deleteLike(payload).then(() => {
+      apiLikes.deleteLike(payload).then(() => {
         this.lesson.isLike = false;
       });
     },
 
     onLike() {
       const payload = {
-        lessonId: this.lesson.id,
-        courseId: this.lesson.courseId
+        id: this.lesson.id,
+        field: 'lessons'
       };
 
       if (this.lesson.isLike) {

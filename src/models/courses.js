@@ -9,7 +9,7 @@ export const Filters = [
 ];
 
 export class Course {
-  constructor(course) {
+  constructor(course, likes) {
     this.id = course.id;
     this.title = course.title;
     this.subtitle = course.subtitle;
@@ -18,8 +18,8 @@ export class Course {
     this.time = course.time;
     this.views = course.views;
     this.tags = course.tags;
+    this.isLike = likes.includes(course.id);
     this.gradient = course.gradient;
-    this.likes = course.likes;
     this.image = course.image;
   }
 }

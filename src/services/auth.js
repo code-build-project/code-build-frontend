@@ -1,6 +1,6 @@
 import router from '@/router';
 import storage from '@/helpers/storage';
-import { request, requestAccess } from '@/helpers/http';
+import { request } from '@/helpers/http';
 
 export default {
   // Авторизоваться и получить токен
@@ -26,24 +26,6 @@ export default {
   // Подтверждение регистрации
   recoveryPassword: async params => {
     await request.post('/recovery-password', params);
-  },
-
-  // Записать данные пользователя в сторадж
-  getUser: async () => {
-    try {
-      const { data } = await requestAccess.get('/user');
-      storage.setUser('local', data);
-    } catch {
-      storage.setUser('local', {});
-      console.log('Пользователь не авторизован!');
-    }
-  },
-
-  // Изменить имя пользователя
-  changeUserName: async (params) => {
-    const { data } = await requestAccess.put('/user-change-name', params);
-    storage.setTokens('local', data);
-    window.location.reload();
   },
 
   // Выйти из под своего пользователя

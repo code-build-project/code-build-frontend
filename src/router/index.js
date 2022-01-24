@@ -99,11 +99,11 @@ const router = new VueRouter({
   }
 });
 
-router.beforeEach(async (to, from, next) => {
-  // При переходе на странциу MainLayout по дефолту открывается главная страница
-  if (to.name !== 'Home' && to.path === '/') {
-    next({ name: 'Home' });
-  } else next();
-});
+// router.beforeEach(async (to, from, next) => {
+//   // При переходе на странциу MainLayout по дефолту открывается главная страница
+//   if (to.name !== 'Home' && to.path === '/') {
+//     next({ name: 'Home' });
+//   } else next();
+// });
 
 export default router;
