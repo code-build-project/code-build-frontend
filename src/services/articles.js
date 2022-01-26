@@ -1,12 +1,16 @@
+import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/articles';
 import { Article } from '../models/articles.js';
 import { request, requestAccess } from '@/helpers/http';
 
+const token = storage.getTokens('local').token;
+
 export default {
   // Получить список статьей
   getArticleList: async params => {
-    const likes = await apiLikes.getLikeList('articles');
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('articles');
 
     const { data } = await request.get('/articles', { params });
     return data.map(item => new Article(item, likes));

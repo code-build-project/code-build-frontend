@@ -1,9 +1,13 @@
 import storage from '@/helpers/storage';
 import { requestAccess } from '@/helpers/http';
 
+const token = storage.getTokens('local').token;
+
 export default {
   // Записать данные пользователя в сторадж
   getUser: async () => {
+    if(!token) return;
+
     try {
       const { data } = await requestAccess.get('/user');
       storage.setUser('local', data);
@@ -15,7 +19,8 @@ export default {
 
   // Изменить имя пользователя
   changeUserName: async params => {
-    await requestAccess.put('/user/change-name', params);
+    const { data } = await requestAccess.put('/user/change-name', params);
+    storage.setTokens('local', data);
     window.location.reload();
   }
 };

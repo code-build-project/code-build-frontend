@@ -1,5 +1,5 @@
 export class Lesson {
-  constructor(lesson, likes) {
+  constructor(lesson, likes = []) {
     this.id = lesson.id;
     this.number = lesson.number;
     this.title = lesson.title;

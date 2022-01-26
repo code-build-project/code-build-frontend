@@ -8,7 +8,7 @@ export const Filters = [
 ];
 
 export class Article {
-  constructor(article, likes) {
+  constructor(article, likes = []) {
     this.id = article.id;
     this.title = article.title;
     this.subtitle = article.subtitle;

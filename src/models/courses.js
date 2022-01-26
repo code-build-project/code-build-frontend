@@ -9,7 +9,7 @@ export const Filters = [
 ];
 
 export class Course {
-  constructor(course, likes) {
+  constructor(course, likes = []) {
     this.id = course.id;
     this.title = course.title;
     this.subtitle = course.subtitle;

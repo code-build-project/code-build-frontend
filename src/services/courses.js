@@ -1,12 +1,16 @@
+import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/courses';
 import { Course } from '../models/courses.js';
 import { request, requestAccess } from '@/helpers/http';
 
+const token = storage.getTokens('local').token;
+
 export default {
   // Получить список курсов
   getCoursesList: async params => {
-    const likes = await apiLikes.getLikeList('courses');
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('courses');
 
     const { data } = await request.get(`/courses`, { params });
     return data.map(item => new Course(item, likes));

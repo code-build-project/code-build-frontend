@@ -21,7 +21,7 @@
       <v-user-menu v-if="user.id" :name="user.name" :is-premium="user.isPremium" />
 
       <div v-else class="header__buttons">
-        <router-link class="header__button-login" to="/auth" target="_blank">
+        <router-link class="header__button-login" to="/auth">
           Войти
         </router-link>
 
