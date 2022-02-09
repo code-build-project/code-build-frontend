@@ -18,6 +18,9 @@ export default {
 
   // Получить статью по id
   getArticle: async params => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('articles');
+    
     const { data } = await request.get('/article', { params });
 
     let tags = [];
@@ -33,13 +36,16 @@ export default {
 
     data.tags = tags;
     data.gradient = gradient;
-    return new Article(data);
+    return new Article(data, likes);
   },
 
   // Получить список пролайканных статьей
   getFavoriteArticles: async () => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('articles');
+
     const { data } = await requestAccess.get('/articles/favorites');
-    return data.map(item => new Article(item));
+    return data.map(item => new Article(item, likes));
   },
 
   // Получить фильтры для статьей
@@ -49,7 +55,10 @@ export default {
 
   // Получить список популярных статьей
   getPopularArticleList: async params => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('articles');
+
     const { data } = await request.get('/articles/popular-articles', { params });
-    return data.map(item => new Article(item));
+    return data.map(item => new Article(item, likes));
   }
 };

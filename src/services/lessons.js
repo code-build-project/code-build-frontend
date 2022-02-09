@@ -17,7 +17,10 @@ export default {
 
   // Получить список пролайканных уроков для курса
   getFavoriteLessons: async () => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('lessons');
+
     const { data } = await requestAccess.get('/lessons/favorites');
-    return data.map(item => new Lesson(item));
+    return data.map(item => new Lesson(item, likes));
   },
 };

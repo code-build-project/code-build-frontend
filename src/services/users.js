@@ -1,13 +1,9 @@
 import storage from '@/helpers/storage';
 import { requestAccess } from '@/helpers/http';
 
-const token = storage.getTokens('local').token;
-
 export default {
   // Записать данные пользователя в сторадж
   getUser: async () => {
-    if(!token) return;
-
     try {
       const { data } = await requestAccess.get('/user');
       storage.setUser('local', data);

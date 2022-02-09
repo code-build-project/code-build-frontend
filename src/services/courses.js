@@ -18,6 +18,9 @@ export default {
 
   // Получить статью по id
   getCourse: async params => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('courses');
+
     const { data } = await request.get(`/course`, { params });
 
     let tags = [];
@@ -33,13 +36,16 @@ export default {
 
     data.tags = tags;
     data.gradient = gradient;
-    return new Course(data);
+    return new Course(data, likes);
   },
 
   // Получить список пролайканных курсов
   getFavoriteCourseList: async () => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('courses');
+
     const { data } = await requestAccess.get(`/courses/favorites`);
-    return data.map(item => new Course(item));
+    return data.map(item => new Course(item, likes));
   },
 
   // Получить фильтры для курсов
@@ -49,7 +55,10 @@ export default {
 
   // Получить список популярных статьей
   getPopularCourseList: async (params) => {
+    let likes = [];
+    if(token) likes = await apiLikes.getLikeList('courses');
+
     const { data } = await request.get('/courses/popular-courses', { params });
-    return data.map(item => new Course(item));
+    return data.map(item => new Course(item, likes));
   }
 };
