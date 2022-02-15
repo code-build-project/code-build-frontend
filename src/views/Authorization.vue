@@ -1,12 +1,12 @@
 <template>
   <div class="page">
-    <authorization-main
+    <form-main
       v-if="openForm === 'main'"
       class="page__form"
       @changeForm="openForm = 'recovery'"
     />
 
-    <authorization-recovery
+    <form-recovery
       v-else-if="openForm === 'recovery'"
       class="page__form"
       @changeForm="openForm = 'main'"
@@ -16,14 +16,14 @@
 
 <script>
 // Components
-import AuthorizationMain from '@/components/authorization/AuthorizationMain.vue';
-import AuthorizationRecovery from '@/components/authorization/AuthorizationRecovery.vue';
+import FormMain from '@/components/pageAuth/FormMain';
+import FormRecovery from '@/components/pageAuth/FormRecovery';
 
 export default {
   name: 'Authorization',
   components: {
-    AuthorizationMain,
-    AuthorizationRecovery
+    FormMain,
+    FormRecovery
   },
   data() {
     return {

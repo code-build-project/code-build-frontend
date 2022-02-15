@@ -66,8 +66,8 @@ import VButton from '@/components/common/VButton.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
 import VUnderline from '@/components/common/VUnderline.vue';
 import PopupSubscribe from '@/components/popups/PopupSubscribe.vue';
-import SubscribeRadio from '@/components/subscribe/SubscribeRadio.vue';
-import SubscribeQuestion from '@/components/subscribe/SubscribeQuestion.vue';
+import SubscribeRadio from '@/components/pageSubscribe/Radio';
+import SubscribeQuestion from '@/components/pageSubscribe/Question';
 
 export default {
   name: 'Subscribe',

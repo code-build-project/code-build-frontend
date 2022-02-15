@@ -16,16 +16,14 @@
         </div>
 
         <div class="popup__footer-buttons">
-          <v-icon
-            v-if="user.id"
-            class="popup__icon-heart"
-            path="img/heart.svg"
-            :style="heartAnimation"
-            :fill="lesson.isLike ? '#EE3465' : 'transparent'"
-            @click="onLike()"
-            @mousedown="isHeartAnimation = true"
-            @mouseup="isHeartAnimation = false"
-          />
+          <div class="popup__icon-heart">
+            <v-like
+              v-if="user.id"
+              stroke="secondary"
+              :isLike="lesson.isLike"
+              @click="onLike()"
+            />
+          </div>
           <v-button class="popup__button" type="active">
             <a :href="lesson.video" target="_blank">Смотреть на YouTube</a>
           </v-button>
@@ -52,6 +50,7 @@
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import VLike from '@/components/common/VLike.vue';
 import VButton from '@/components/common/VButton.vue';
 
 // Services
@@ -64,6 +63,7 @@ export default {
   name: 'PopupPlayer',
   components: {
     VIcon,
+    VLike,
     VButton
   },
   props: {
@@ -96,18 +96,9 @@ export default {
       }
     }
   },
-  computed: {
-    heartAnimation() {
-      if (this.isHeartAnimation) {
-        return { padding: '22px' };
-      }
-      return '';
-    }
-  },
   data() {
     return {
       user: storage.getUser('local'),
-      isHeartAnimation: false
     };
   },
   methods: {
@@ -216,11 +207,6 @@ export default {
 
     border: 0.8px solid #dedede;
     border-radius: 8px;
-
-    fill: transparent;
-    stroke: #dedede;
-    cursor: pointer;
-    transition: all 0.1s ease;
   }
 
   &-close {

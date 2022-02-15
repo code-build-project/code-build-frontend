@@ -24,15 +24,11 @@
       </div>
     </main>
 
-    <v-icon
+    <v-like
       v-if="user.id"
       class="card__icon-heart"
-      :style="heartAnimation"
-      path="img/heart.svg"
-      :fill="article.isLike ? '#EE3465' : 'transparent'"
+      :isLike="article.isLike"
       @click="onLike()"
-      @mousedown.native="isHeartAnimation = true"
-      @mouseup.native="isHeartAnimation = false"
     />
   </div>
 </template>
@@ -40,6 +36,7 @@
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import VLike from '@/components/common/VLike.vue';
 
 // Services
 import apiLikes from '@/services/likes.js';
@@ -50,7 +47,8 @@ import storage from '@/helpers/storage.js';
 export default {
   name: 'VArticleCard',
   components: {
-    VIcon
+    VIcon,
+    VLike
   },
   props: {
     // Информация о статье
@@ -78,19 +76,9 @@ export default {
       }
     }
   },
-  computed: {
-    heartAnimation() {
-      if (this.isHeartAnimation) {
-        return { padding: '8px' };
-      }
-      return '';
-    }
-  },
   data() {
     return {
       user: storage.getUser('local'),
-
-      isHeartAnimation: false
     };
   },
   methods: {
@@ -191,17 +179,12 @@ export default {
   }
 
   &-heart {
-    @extend .flex_row-center-center;
     position: absolute;
     width: 26px;
     height: 23px;
 
     top: 20px;
     right: 20px;
-    cursor: pointer;
-
-    stroke: $color-white;
-    transition: all 0.1s ease;
   }
 }
 

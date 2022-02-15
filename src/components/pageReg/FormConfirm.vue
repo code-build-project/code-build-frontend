@@ -44,7 +44,7 @@ import VButton from '@/components/common/VButton.vue';
 import apiAuth from '@/services/auth.js';
 
 export default {
-  name: 'RegistrationConfirm',
+  name: 'FormRegConfirm',
   components: { VInput, VButton },
 
   props: {

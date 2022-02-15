@@ -18,11 +18,10 @@
           </div>
         </div>
 
-        <v-icon
+        <v-like
           v-if="user.id"
           class="cover__icon-heart"
-          path="img/heart.svg"
-          :fill="article.isLike ? '#EE3465' : 'transparent'"
+          :isLike="article.isLike"
           @click="onLike()"
         />
       </div>
@@ -61,6 +60,7 @@
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import VLike from '@/components/common/VLike.vue';
 
 // Services
 import apiLikes from '@/services/likes.js';
@@ -71,7 +71,8 @@ import storage from '@/helpers/storage.js';
 export default {
   name: 'BlockArticleCover',
   components: {
-    VIcon
+    VIcon,
+    VLike
   },
   props: {
     // Информация о статье
@@ -213,12 +214,8 @@ export default {
   }
 
   &-heart {
-    @extend .flex_row-center-center;
     width: 18px;
     height: 16px;
-
-    cursor: pointer;
-    stroke: $color-white;
   }
 
   &-attribute {

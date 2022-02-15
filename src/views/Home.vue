@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import BlockIntro from '@/components/blocks/BlockIntro.vue';
-import BlockActuality from '@/components/blocks/BlockActuality.vue';
-import BlockCourses from '@/components/blocks/BlockCourses.vue';
-import BlockArticles from '@/components/blocks/BlockArticles.vue';
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
-import BlockReviews from '@/components/blocks/BlockReviews.vue';
-import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
+import BlockIntro from '@/components/blocks/BlockIntro';
+import BlockActuality from '@/components/blocks/BlockActuality';
+import BlockCourses from '@/components/pageHome/BlockCourses';
+import BlockArticles from '@/components/pageHome/BlockArticles';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe';
+import BlockReviews from '@/components/blocks/BlockReviews';
+import BlockRegistration from '@/components/blocks/BlockRegistration';
 
 export default {
   name: 'Home',

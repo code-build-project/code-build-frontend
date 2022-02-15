@@ -63,7 +63,7 @@
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
 import PopupCabinet from '@/components/popups/PopupCabinet.vue';
-import CabinetInput from '@/components/cabinet/CabinetInput.vue';
+import CabinetInput from '@/components/pageCabinet/CabinetInput';
 
 // Helpers
 import storage from '@/helpers/storage.js';

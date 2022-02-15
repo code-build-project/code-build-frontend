@@ -36,11 +36,10 @@
       </div>
     </main>
 
-    <v-icon
+    <v-like
       v-if="user.id"
       class="card__icon-heart"
-      path="img/heart.svg"
-      :fill="course.isLike ? '#EE3465' : 'transparent'"
+      :isLike="course.isLike"
       @click="onLike()"
     />
   </div>
@@ -49,6 +48,7 @@
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import VLike from '@/components/common/VLike.vue';
 
 // Services
 import apiLikes from '@/services/likes.js';
@@ -59,7 +59,8 @@ import storage from '@/helpers/storage.js';
 export default {
   name: 'VCourseCard',
   components: {
-    VIcon
+    VIcon,
+    VLike
   },
   props: {
     // Информация о курсе
@@ -201,16 +202,12 @@ export default {
   }
 
   &-heart {
-    @extend .flex_row-center-center;
     position: absolute;
     width: 26px;
     height: 23px;
 
     top: 20px;
     right: 20px;
-    cursor: pointer;
-
-    stroke: $color-white;
   }
 }
 

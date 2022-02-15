@@ -34,6 +34,7 @@
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :lesson="item"
+            @click="$router.push(`/course?id=${item.courseId}`)"
           />
 
           <v-article-card
@@ -41,7 +42,7 @@
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :article="item"
-            @click="$router.push('/article')"
+            @click="$router.push(`/article?id=${item.id}`)"
           />
         </div>
       </div>

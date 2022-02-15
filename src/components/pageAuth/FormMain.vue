@@ -52,7 +52,7 @@ import apiAuth from '@/services/auth.js';
 const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
 export default {
-  name: 'AuthorizationMain',
+  name: 'FormAuthMain',
   components: {
     VIcon,
     VInput,

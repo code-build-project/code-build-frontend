@@ -1,7 +1,7 @@
 import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/articles';
-import { Article } from '../models/articles.js';
+import { Article } from '@/models/articles.js';
 import { request, requestAccess } from '@/helpers/http';
 
 const token = storage.getTokens('local').token;

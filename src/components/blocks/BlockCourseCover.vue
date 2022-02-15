@@ -16,11 +16,10 @@
           <div class="cover__route-item ml-20px">{{ course.title }}</div>
         </div>
 
-        <v-icon
+        <v-like
           v-if="user.id"
           class="cover__icon-heart"
-          path="img/heart.svg"
-          :fill="course.isLike ? '#EE3465' : 'transparent'"
+          :isLike="course.isLike"
           @click="onLike()"
         />
       </div>
@@ -62,6 +61,7 @@
 <script>
 // Components
 import VIcon from '@/components/common/VIcon.vue';
+import VLike from '@/components/common/VLike.vue';
 
 // Services
 import apiLikes from '@/services/likes.js';
@@ -72,7 +72,8 @@ import storage from '@/helpers/storage.js';
 export default {
   name: 'BlockCourseCover',
   components: {
-    VIcon
+    VIcon,
+    VLike
   },
   props: {
     course: {
@@ -209,12 +210,8 @@ export default {
   }
 
   &-heart {
-    @extend .flex_row-center-center;
     width: 18px;
     height: 16px;
-
-    cursor: pointer;
-    stroke: $color-white;
   }
 
   &-attribute {

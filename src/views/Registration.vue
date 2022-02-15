@@ -1,25 +1,25 @@
 <template>
   <div class="page">
-    <registration-main
+    <form-main
       v-if="openForm === 'main'"
       class="page__form"
       @changeForm="changeForm($event)"
     />
 
-    <registration-confirm v-else-if="openForm === 'confirm'" class="page__form" :form="form" />
+    <form-confirm v-else-if="openForm === 'confirm'" class="page__form" :form="form" />
   </div>
 </template>
 
 <script>
 // Components
-import RegistrationMain from '@/components/registration/RegistrationMain.vue';
-import RegistrationConfirm from '@/components/registration/RegistrationConfirm.vue';
+import FormMain from '@/components/pageReg/FormMain';
+import FormConfirm from '@/components/pageReg/FormConfirm';
 
 export default {
   name: 'Registration',
   components: {
-    RegistrationMain,
-    RegistrationConfirm
+    FormMain,
+    FormConfirm
   },
   data() {
     return {
