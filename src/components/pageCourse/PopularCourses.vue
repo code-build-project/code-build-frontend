@@ -20,7 +20,7 @@
 import VCourseCard from '@/components/common/VCourseCard.vue';
 
 export default {
-  name: 'BlockPopularCourses',
+  name: 'PopularCourses',
   components: {
     VCourseCard
   },

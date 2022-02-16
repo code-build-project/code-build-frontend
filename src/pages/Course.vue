@@ -1,6 +1,6 @@
 <template>
   <div class="course">
-    <block-course-cover v-if="course.id" class="course__cover" :course="course" />
+    <course-cover v-if="course.id" class="course__cover" :course="course" />
 
     <div class="course__lessons">
       <div v-for="(item, index) in lessonList" :key="index">
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <block-popular-courses v-if="course.id" class="course__popular" :courseList="courseList" />
+    <popular-courses v-if="course.id" class="course__popular" :courseList="courseList" />
 
     <block-subscribe class="course__subscribe" />
 
@@ -32,11 +32,11 @@
 
 <script>
 // Components
-import PopupPlayer from '@/components/popups/PopupPlayer.vue';
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
-import VLessonMiniCard from '@/components/common/VLessonMiniCard.vue';
-import BlockCourseCover from '@/components/blocks/BlockCourseCover.vue';
-import BlockPopularCourses from '@/components/blocks/BlockPopularCourses.vue';
+import PopupPlayer from '@/components/pageCourse/PopupPlayer';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe';
+import VLessonMiniCard from '@/components/common/VLessonMiniCard';
+import CourseCover from '@/components/pageCourse/Cover';
+import PopularCourses from '@/components/pageCourse/PopularCourses';
 
 // Services
 import apiCourses from '@/services/courses.js';
@@ -48,8 +48,8 @@ export default {
     PopupPlayer,
     BlockSubscribe,
     VLessonMiniCard,
-    BlockCourseCover,
-    BlockPopularCourses
+    CourseCover,
+    PopularCourses
   },
   data() {
     return {

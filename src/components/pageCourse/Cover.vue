@@ -70,7 +70,7 @@ import apiLikes from '@/services/likes.js';
 import storage from '@/helpers/storage.js';
 
 export default {
-  name: 'BlockCourseCover',
+  name: 'CourseCover',
   components: {
     VIcon,
     VLike

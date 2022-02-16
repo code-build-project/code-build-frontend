@@ -33,7 +33,7 @@
 // Components
 import VButton from '@/components/common/VButton.vue';
 import VReviewCard from '@/components/common/VReviewCard.vue';
-import PopupReview from '@/components/popups/PopupReview.vue';
+import PopupReview from '@/components/pageHome/PopupReview.vue';
 
 // Services
 import apiReviews from '@/services/reviews.js';

@@ -12,32 +12,32 @@ const routes = [
       {
         path: '/',
         name: 'Home',
-        component: () => import('@/views/Home.vue')
+        component: () => import('@/pages/Home.vue')
       },
       {
         path: 'courses',
         name: 'Courses',
-        component: () => import('@/views/Courses.vue')
+        component: () => import('@/pages/Courses.vue')
       },
       {
         path: 'course',
         name: 'Course',
-        component: () => import('@/views/Course.vue')
+        component: () => import('@/pages/Course.vue')
       },
       {
         path: 'articles',
         name: 'Articles',
-        component: () => import('@/views/Articles.vue')
+        component: () => import('@/pages/Articles.vue')
       },
       {
         path: 'article',
         name: 'Article',
-        component: () => import('@/views/Article.vue')
+        component: () => import('@/pages/Article.vue')
       },
       {
         path: 'favorites',
         name: 'Favorites',
-        component: () => import('@/views/Favorites.vue'),
+        component: () => import('@/pages/Favorites.vue'),
         // Попытка перейти в избранное без авторизации
         beforeEnter: async (to, from, next) => {
           const { id } = storage.getUser('local');
@@ -47,7 +47,7 @@ const routes = [
       {
         path: 'cabinet',
         name: 'Cabinet',
-        component: () => import('@/views/Cabinet.vue'),
+        component: () => import('@/pages/Cabinet.vue'),
         // Попытка перейти в личный кабинет без авторизации
         beforeEnter: async (to, from, next) => {
           const { id } = storage.getUser('local');
@@ -57,7 +57,7 @@ const routes = [
       {
         path: 'subscribe',
         name: 'Subscribe',
-        component: () => import('@/views/Subscribe.vue'),
+        component: () => import('@/pages/Subscribe.vue'),
         // Попытка перейти на страницу покупки подписки, когда подписка уже имеется
         beforeEnter: async (to, from, next) => {
           const { isPremium } = storage.getUser('local');
@@ -67,7 +67,7 @@ const routes = [
       {
         path: 'icons',
         name: 'Icons',
-        component: () => import('@/views/Icons.vue')
+        component: () => import('@/pages/Icons.vue')
       }
     ]
   },
@@ -79,12 +79,12 @@ const routes = [
       {
         path: 'auth',
         name: 'Authorization',
-        component: () => import('@/views/Authorization.vue')
+        component: () => import('@/pages/Authorization.vue')
       },
       {
         path: 'reg',
         name: 'Registration',
-        component: () => import('@/views/Registration.vue'),
+        component: () => import('@/pages/Registration.vue'),
       }
     ]
   }

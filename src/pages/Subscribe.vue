@@ -61,11 +61,11 @@
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon.vue';
-import VButton from '@/components/common/VButton.vue';
-import VCheckBox from '@/components/common/VCheckBox.vue';
-import VUnderline from '@/components/common/VUnderline.vue';
-import PopupSubscribe from '@/components/popups/PopupSubscribe.vue';
+import VIcon from '@/components/common/VIcon';
+import VButton from '@/components/common/VButton';
+import VCheckBox from '@/components/common/VCheckBox';
+import VUnderline from '@/components/common/VUnderline';
+import PopupSubscribe from '@/components/pageSubscribe/Popup';
 import SubscribeRadio from '@/components/pageSubscribe/Radio';
 import SubscribeQuestion from '@/components/pageSubscribe/Question';
 

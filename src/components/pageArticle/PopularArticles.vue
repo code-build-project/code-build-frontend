@@ -20,7 +20,7 @@
 import VArticleCard from '@/components/common/VArticleCard.vue';
 
 export default {
-  name: 'BlockPopularArticles',
+  name: 'PopularArticles',
   components: {
     VArticleCard
   },

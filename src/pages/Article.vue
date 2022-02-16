@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <block-article-cover v-if="article.id" class="article__cover" :article="article" />
+    <article-cover v-if="article.id" class="article__cover" :article="article" />
 
     <article class="article__content">
       <div v-for="(item, index) in article.content" :key="index" class="article__content-item">
@@ -9,7 +9,7 @@
       </div>
     </article>
 
-    <block-popular-articles class="article__popular" :articleList="popularArticleList" />
+    <popular-articles class="article__popular" :articleList="popularArticleList" />
 
     <block-subscribe class="article__subscribe" />
   </div>
@@ -17,9 +17,9 @@
 
 <script>
 // Components
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
-import BlockArticleCover from '@/components/blocks/BlockArticleCover.vue';
-import BlockPopularArticles from '@/components/blocks/BlockPopularArticles.vue';
+import ArticleCover from '@/components/pageArticle/Cover';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe';
+import PopularArticles from '@/components/pageArticle/PopularArticles';
 
 // Services
 import apiArticles from '@/services/articles.js';
@@ -27,9 +27,9 @@ import apiArticles from '@/services/articles.js';
 export default {
   name: 'Article',
   components: {
+    ArticleCover,
     BlockSubscribe,
-    BlockArticleCover,
-    BlockPopularArticles
+    PopularArticles
   },
   data() {
     return {

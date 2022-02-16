@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import BlockIntro from '@/components/blocks/BlockIntro';
-import BlockActuality from '@/components/blocks/BlockActuality';
+import BlockIntro from '@/components/pageHome/BlockIntro';
+import BlockActuality from '@/components/pageHome/BlockActuality';
 import BlockCourses from '@/components/pageHome/BlockCourses';
 import BlockArticles from '@/components/pageHome/BlockArticles';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
-import BlockReviews from '@/components/blocks/BlockReviews';
+import BlockReviews from '@/components/pageHome/BlockReviews';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
 
 export default {

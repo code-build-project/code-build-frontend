@@ -60,9 +60,9 @@
 
 <script>
 // Components
-import VIcon from '@/components/common/VIcon.vue';
-import VButton from '@/components/common/VButton.vue';
-import PopupCabinet from '@/components/popups/PopupCabinet.vue';
+import VIcon from '@/components/common/VIcon';
+import VButton from '@/components/common/VButton';
+import PopupCabinet from '@/components/pageCabinet/Popup';
 import CabinetInput from '@/components/pageCabinet/CabinetInput';
 
 // Helpers
