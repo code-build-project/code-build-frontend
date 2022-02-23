@@ -5,13 +5,20 @@
       :class="'stroke-' + stroke"
       path="img/heart.svg"
       :fill="isLike ? '#EE3465' : 'transparent'"
-      @click="$emit('click')"
+      @click="onLike"
     />
   </a>
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon.vue';
+// Components
+import VIcon from '@/components/common/VIcon';
+
+// Services
+import apiLikes from '@/services/likes.js';
+
+// Helpers
+import { debounce } from 'lodash';
 
 export default {
   name: 'VLike',
@@ -20,17 +27,61 @@ export default {
     VIcon
   },
 
+  model: {
+    prop: 'isLike',
+    event: 'change'
+  },
+
   props: {
+    // Id контента 
+    contentId: {
+      type: [String, Number],
+      default: ''
+    },
+
+    // Название раздела контента
+    fieldName: {
+      type: String,
+      default: ''
+    },
+
+    // Флаг автивности лайка
     isLike: {
       type: Boolean,
       default: false
     },
 
+    // Цыет бордера лайка
     stroke: {
       type: String,
       default: 'primary'
-    }
+    },
   },
+
+  methods: {
+    onLike: debounce(function() {
+      const payload = {
+        id: this.contentId,
+        field: this.fieldName
+      };
+
+      if (this.isLike) {
+        this.deleteLike(payload);
+      } else this.addLike(payload);
+    }, 500),
+
+    addLike(payload) {
+      apiLikes.addLike(payload).then(() => {
+        this.$emit('change', true);
+      });
+    },
+
+    deleteLike(payload) {
+      apiLikes.deleteLike(payload).then(() => {
+        this.$emit('change', false);
+      });
+    }
+  }
 };
 </script>
 

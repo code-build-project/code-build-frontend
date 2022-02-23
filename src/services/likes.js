@@ -1,10 +1,15 @@
+import store from '@/store';
 import { requestAccess } from '@/helpers/http';
 
 export default {
   // Получить список лайков для данного пользователя
   getLikeList: async field => {
-    const { data } = await requestAccess.get('/likes', { params: { field } });
-    return data;
+    if (store.getters.isAuth) {
+      const { data } = await requestAccess.get('/likes', { params: { field } });
+      return data;
+    }
+
+    return [];
   },
 
   // Поставить лайк

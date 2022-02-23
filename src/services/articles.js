@@ -1,16 +1,13 @@
-import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/articles';
 import { Article } from '@/models/articles.js';
 import { request, requestAccess } from '@/helpers/http';
 
-const token = storage.getTokens('local').token;
 
 export default {
   // Получить список статьей
   getArticleList: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('articles');
+    let likes = await apiLikes.getLikeList('articles');
 
     const { data } = await request.get('/articles', { params });
     return data.map(item => new Article(item, likes));
@@ -18,8 +15,7 @@ export default {
 
   // Получить статью по id
   getArticle: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('articles');
+    let likes = await apiLikes.getLikeList('articles');
     
     const { data } = await request.get('/article', { params });
 
@@ -41,8 +37,7 @@ export default {
 
   // Получить список пролайканных статьей
   getFavoriteArticles: async () => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('articles');
+    let likes = await apiLikes.getLikeList('articles');
 
     const { data } = await requestAccess.get('/articles/favorites');
     return data.map(item => new Article(item, likes));
@@ -55,8 +50,7 @@ export default {
 
   // Получить список популярных статьей
   getPopularArticleList: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('articles');
+    let likes = await apiLikes.getLikeList('articles');
 
     const { data } = await request.get('/articles/popular-articles', { params });
     return data.map(item => new Article(item, likes));

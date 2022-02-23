@@ -36,13 +36,9 @@
 </template>
 
 <script>
-// Components
-import VIcon from '@/components/common/VIcon.vue';
-import VButton from '@/components/common/VButton.vue';
-import VUserMenu from '@/components/common/VUserMenu.vue';
-
-// Helpers
-import storage from '@/helpers/storage.js';
+import VIcon from '@/components/common/VIcon';
+import VButton from '@/components/common/VButton';
+import VUserMenu from '@/components/common/VUserMenu';
 
 export default {
   name: 'Header',
@@ -55,7 +51,7 @@ export default {
 
   data() {
     return {
-      user: storage.getUser('local')
+      user: this.$store.getters.user
     };
   }
 };

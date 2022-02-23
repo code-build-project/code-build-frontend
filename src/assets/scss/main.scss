@@ -4,7 +4,6 @@
 @import '~@/assets/scss/generate.scss';
 @import '~@/assets/scss/notification.scss';
 
-// underline
 .underline-blue {
   position: relative;
   &:after {
@@ -29,4 +28,10 @@
     height: 1px;
     background: #256cfe;
   }
+}
+
+.container {
+  width: 1160px;
+  min-height: 820px;
+  padding: 100px 0px 110px 0px;
 }

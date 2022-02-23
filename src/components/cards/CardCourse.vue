@@ -37,27 +37,21 @@
     </main>
 
     <v-like
-      v-if="user.id"
+      v-if="isAuth"
+      v-model="course.isLike"
       class="card__icon-heart"
-      :isLike="course.isLike"
-      @click="onLike()"
+      :contentId="course.id"
+      fieldName="courses"
     />
   </div>
 </template>
 
 <script>
-// Components
-import VIcon from '@/components/common/VIcon.vue';
-import VLike from '@/components/common/VLike.vue';
-
-// Services
-import apiLikes from '@/services/likes.js';
-
-// Helpers
-import storage from '@/helpers/storage.js';
+import VIcon from '@/components/common/VIcon';
+import VLike from '@/components/common/VLike';
 
 export default {
-  name: 'VCourseCard',
+  name: 'CardCourse',
   components: {
     VIcon,
     VLike
@@ -92,33 +86,9 @@ export default {
   },
   data() {
     return {
-      user: storage.getUser('local')
+      isAuth: this.$store.getters.isAuth
     };
   },
-  methods: {
-    addLike(payload) {
-      apiLikes.addLike(payload).then(() => {
-        this.course.isLike = true;
-      });
-    },
-
-    deleteLike(payload) {
-      apiLikes.deleteLike(payload).then(() => {
-        this.course.isLike = false;
-      });
-    },
-
-    onLike() {
-      const payload = {
-        id: this.course.id,
-        field: 'courses'
-      };
-
-      if (this.course.isLike) {
-        this.deleteLike(payload);
-      } else this.addLike(payload);
-    }
-  }
 };
 </script>
 

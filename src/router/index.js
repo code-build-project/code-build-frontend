@@ -1,6 +1,6 @@
 import Vue from 'vue';
+import store from '@/store';
 import VueRouter from 'vue-router';
-import storage from '@/helpers/storage.js';
 
 Vue.use(VueRouter);
 
@@ -40,8 +40,8 @@ const routes = [
         component: () => import('@/pages/Favorites.vue'),
         // Попытка перейти в избранное без авторизации
         beforeEnter: async (to, from, next) => {
-          const { id } = storage.getUser('local');
-          id ? next() : next({ name: 'Home' });
+          const isAuth = store.getters.isAuth;
+          isAuth ? next() : next({ name: 'Home' });
         }
       },
       {
@@ -50,8 +50,8 @@ const routes = [
         component: () => import('@/pages/Cabinet.vue'),
         // Попытка перейти в личный кабинет без авторизации
         beforeEnter: async (to, from, next) => {
-          const { id } = storage.getUser('local');
-          id ? next() : next({ name: 'Home' });
+          const isAuth = store.getters.isAuth;
+          isAuth ? next() : next({ name: 'Home' });
         }
       },
       {
@@ -60,7 +60,7 @@ const routes = [
         component: () => import('@/pages/Subscribe.vue'),
         // Попытка перейти на страницу покупки подписки, когда подписка уже имеется
         beforeEnter: async (to, from, next) => {
-          const { isPremium } = storage.getUser('local');
+          const { isPremium } = store.getters.user;
           isPremium ? next({ name: 'Home' }) : next();
         }
       },
@@ -99,11 +99,11 @@ const router = new VueRouter({
   }
 });
 
-// router.beforeEach(async (to, from, next) => {
-//   // При переходе на странциу MainLayout по дефолту открывается главная страница
-//   if (to.name !== 'Home' && to.path === '/') {
-//     next({ name: 'Home' });
-//   } else next();
-// });
+router.beforeEach(async (to, from, next) => {
+  // При переходе на странциу MainLayout по дефолту открывается главная страница
+  if (to.name !== 'Home' && to.path === '/') {
+    next({ name: 'Home' });
+  } else next();
+});
 
 export default router;

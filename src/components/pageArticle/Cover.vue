@@ -19,10 +19,11 @@
         </div>
 
         <v-like
-          v-if="user.id"
+          v-if="isAuth"
+          v-model="article.isLike"
           class="cover__icon-heart"
-          :isLike="article.isLike"
-          @click="onLike()"
+          :contentId="article.id"
+          fieldName="articles"
         />
       </div>
 
@@ -59,21 +60,17 @@
 
 <script>
 // Components
-import VIcon from '@/components/common/VIcon.vue';
-import VLike from '@/components/common/VLike.vue';
-
-// Services
-import apiLikes from '@/services/likes.js';
-
-// Helpers
-import storage from '@/helpers/storage.js';
+import VIcon from '@/components/common/VIcon';
+import VLike from '@/components/common/VLike';
 
 export default {
   name: 'ArticleCover',
+
   components: {
     VIcon,
     VLike
   },
+
   props: {
     // Информация о статье
     article: {
@@ -102,35 +99,12 @@ export default {
       }
     }
   },
+
   data() {
     return {
-      user: storage.getUser('local')
+      isAuth: this.$store.getters.isAuth
     };
   },
-  methods: {
-    addLike(payload) {
-      apiLikes.addLike(payload).then(() => {
-        this.article.isLike = true;
-      });
-    },
-
-    deleteLike(payload) {
-      apiLikes.deleteLike(payload).then(() => {
-        this.article.isLike = false;
-      });
-    },
-
-    onLike() {
-      const payload = {
-        id: this.article.id,
-        field: 'articles'
-      };
-
-      if (this.article.isLike) {
-        this.deleteLike(payload);
-      } else this.addLike(payload);
-    }
-  }
 };
 </script>
 

@@ -14,12 +14,15 @@ import apiUsers from '@/services/users.js';
 
 export default {
   name: 'App',
+  
   components: { VPreloader },
+
   data() {
     return {
       isPageLoaded: false
     };
   },
+
   async created() {
     // Перед отрисовкой страницы, получать данные пользователя
     await apiUsers.getUser();

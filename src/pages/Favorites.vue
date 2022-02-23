@@ -5,23 +5,20 @@
       <div class="favorites__header">
         <h1 class="favorites__title">Избранное</h1>
 
-        <div class="favorites__filters">
-          <div
-            v-for="(item, index) in filterList"
-            :key="index"
-            class="favorites__filter-item"
-            :class="{ favorites__filter_active: filterId === item.filterId }"
-            @click="changeFilter(item.filterId)"
-          >
-            {{ item.name }}
-          </div>
-        </div>
+        <v-filter-group
+          v-model="filterId"
+          class="favorites__filters"
+          :array="filterList"
+          @change="setFavoriteList"
+        />
       </div>
       <!-- Фильтры -->
 
+      <card-preloader v-if="pageLoading" class="favorites__preloader" />
+
       <div class="favorites__list">
-        <div v-for="(item, index) in itemList" :key="index">
-          <v-course-card
+        <div v-for="(item, index) in favoriteList" :key="index">
+          <card-course
             v-if="filterId === 1"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
@@ -29,7 +26,7 @@
             @click="$router.push(`/course?id=${item.id}`)"
           />
 
-          <v-lesson-card
+          <card-lesson
             v-if="filterId === 2"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
@@ -37,7 +34,7 @@
             @click="$router.push(`/course?id=${item.courseId}`)"
           />
 
-          <v-article-card
+          <card-article
             v-if="filterId === 3"
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
@@ -54,10 +51,12 @@
 
 <script>
 // Components
-import VCourseCard from '@/components/common/VCourseCard.vue';
-import VLessonCard from '@/components/common/VLessonCard.vue';
-import VArticleCard from '@/components/common/VArticleCard.vue';
-import BlockSubscribe from '@/components/blocks/BlockSubscribe.vue';
+import CardCourse from '@/components/cards/CardCourse';
+import CardLesson from '@/components/cards/CardLesson';
+import CardArticle from '@/components/cards/CardArticle';
+import CardPreloader from '@/components/cards/CardPreloader';
+import BlockSubscribe from '@/components/blocks/BlockSubscribe';
+import VFilterGroup from '@/components/common/VFilterGroup';
 
 // Services
 import apiCourses from '@/services/courses.js';
@@ -67,10 +66,12 @@ import apiArticles from '@/services/articles.js';
 export default {
   name: 'Favorites',
   components: {
-    VCourseCard,
-    VLessonCard,
-    VArticleCard,
-    BlockSubscribe
+    CardCourse,
+    CardLesson,
+    CardArticle,
+    CardPreloader,
+    BlockSubscribe,
+    VFilterGroup
   },
   data() {
     return {
@@ -78,76 +79,51 @@ export default {
 
       filterList: [
         {
+          id: 1,
           name: 'Курсы',
-          filterId: 1
         },
         {
+          id: 2,
           name: 'Уроки',
-          filterId: 2
         },
         {
+          id: 3,
           name: 'Статьи',
-          filterId: 3
         }
       ],
 
-      courseList: [],
+      favoriteList: [],
 
-      lessonList: [],
-
-      articleList: [],
+      pageLoading: true
     };
   },
-  computed: {
-    itemList() {
+
+  methods: {
+    async setFavoriteList(filterId) {
+      this.pageLoading = true;
+      this.filterId = filterId;
+    
       switch (this.filterId) {
         case 1:
-          return this.courseList;
+          this.favoriteList = await apiCourses.getFavoriteCourseList();
+          break;
         case 2:
-          return this.lessonList;
+          this.favoriteList = await apiLessons.getFavoriteLessons();
+          break;
         case 3:
-          return this.articleList;
+          this.favoriteList = await apiArticles.getFavoriteArticles();
+          break;
         default:
-          return this.courseList;
+          this.favoriteList = await apiCourses.getFavoriteCourseList();
       }
+
+      this.pageLoading = false;
     },
   },
 
   created() {
-    this.getCourses();
+    this.setFavoriteList(this.filterId);
   },
-
-  methods: {
-    changeFilter(filterId) {
-      this.filterId = filterId;
-
-      switch (this.filterId) {
-        case 1:
-          this.getCourses();
-          break;
-        case 2:
-          this.getLessons();
-          break;
-        case 3:
-          this.getArticles();
-          break;
-        default:
-          break;
-      }
-    },
-
-    async getCourses() {
-      this.courseList = await apiCourses.getFavoriteCourseList();
-    },
-
-    async getLessons() {
-      this.lessonList = await apiLessons.getFavoriteLessons();
-    },
-
-    async getArticles() {
-      this.articleList = await apiArticles.getFavoriteArticles();
-    }
-  }
 };
 </script>
 
@@ -157,10 +133,7 @@ export default {
 }
 
 .favorites {
-  width: 1160px;
-  min-height: 1600px;
-
-  padding: 100px 0px 110px 0px;
+  @extend .container;
 
   &__header {
     @extend .flex_row;
@@ -174,44 +147,18 @@ export default {
   }
 
   &__filters {
-    @extend .flex_row-center-between;
     width: 380px;
-    height: 50px;
     margin-left: 50px;
   }
 
-  &__filter-item {
-    @extend .flex_row-center-center;
-    font-family: 'Circe';
-    font-size: 18px;
-    color: $color-black;
-
-    padding: 1em 1.7em 1em 1.7em;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
+  &__preloader {
+    margin-top: 60px;
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
     margin-top: 60px;
-  }
-}
-
-// actives
-.favorites {
-  &__filter_active {
-    color: $color-white;
-    background: $color-blue;
-  }
-}
-
-// hovers
-:hover.favorites {
-  &__filter-item {
-    cursor: pointer;
-    color: $color-white;
-    background: $color-blue;
   }
 }
 </style>

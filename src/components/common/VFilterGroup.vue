@@ -5,7 +5,7 @@
       :key="index"
       class="filters__item"
       :class="{ filters__item_active: value === item.id }"
-      @click="changeFilter(item.id)"
+      @click="$emit('change', item.id)"
     >
       {{ item.name }}
     </div>
@@ -15,13 +15,15 @@
 <script>
 export default {
   name: 'VFilterGroup',
+
   model: {
     prop: 'value',
     event: 'change'
   },
+
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     array: {
@@ -29,11 +31,6 @@ export default {
       default: () => []
     }
   },
-  methods: {
-    changeFilter(id) {
-      this.$emit('change', id);
-    }
-  }
 };
 </script>
 

@@ -4,7 +4,7 @@
 
     <div class="course__lessons">
       <div v-for="(item, index) in lessonList" :key="index">
-        <v-lesson-mini-card
+        <card-mini-lesson
           class="mb-30px"
           :class="[
             { 'ml-22px': (index - 1) % 4 === 0 },
@@ -34,7 +34,7 @@
 // Components
 import PopupPlayer from '@/components/pageCourse/PopupPlayer';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
-import VLessonMiniCard from '@/components/common/VLessonMiniCard';
+import CardMiniLesson from '@/components/cards/CardMiniLesson';
 import CourseCover from '@/components/pageCourse/Cover';
 import PopularCourses from '@/components/pageCourse/PopularCourses';
 
@@ -47,7 +47,7 @@ export default {
   components: {
     PopupPlayer,
     BlockSubscribe,
-    VLessonMiniCard,
+    CardMiniLesson,
     CourseCover,
     PopularCourses
   },

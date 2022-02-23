@@ -1,3 +1,4 @@
+import store from '@/store';
 import storage from '@/helpers/storage';
 import { User } from '@/models/users.js';
 import { requestAccess } from '@/helpers/http';
@@ -7,9 +8,9 @@ export default {
   getUser: async () => {
     try {
       const { data } = await requestAccess.get('/user');
-      storage.setUser('local', new User(data));
+      store.commit('setUser', new User(data))
     } catch {
-      storage.setUser('local', {});
+      store.commit('setUser', {})
       console.log('Пользователь не авторизован!');
     }
   },
@@ -17,7 +18,7 @@ export default {
   // Изменить имя пользователя
   changeUserName: async params => {
     const { data } = await requestAccess.put('/user/change-name', params);
-    storage.setTokens('local', new User(data));
+    storage.setTokens('local', data);
     window.location.reload();
   }
 };

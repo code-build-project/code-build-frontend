@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon.vue';
+import VIcon from '@/components/common/VIcon';
 
 export default {
   name: 'BlockSubscribe',

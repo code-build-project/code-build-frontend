@@ -4,7 +4,7 @@
       <h1 class="popular__title">Также стоит посмотреть</h1>
 
       <div class="popular__courses">
-        <v-course-card
+        <card-course
           v-for="(item, index) in courseList"
           :key="index"
           :course="item"
@@ -17,12 +17,12 @@
 
 <script>
 // Components
-import VCourseCard from '@/components/common/VCourseCard.vue';
+import CardCourse from '@/components/cards/CardCourse';
 
 export default {
   name: 'PopularCourses',
   components: {
-    VCourseCard
+    CardCourse
   },
   props: {
     courseList: {

@@ -1,15 +1,11 @@
-import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Lesson } from '../models/lessons.js';
 import { request, requestAccess } from '@/helpers/http';
 
-const token = storage.getTokens('local').token;
-
 export default {
   // Получить список уроков для курса
   getLessons: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('lessons');
+    let likes = await apiLikes.getLikeList('lessons');
 
     const { data } = await request.get('/lessons', { params });
     return data.map(item => new Lesson(item, likes));
@@ -17,8 +13,7 @@ export default {
 
   // Получить список пролайканных уроков для курса
   getFavoriteLessons: async () => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('lessons');
+    let likes = await apiLikes.getLikeList('lessons');
 
     const { data } = await requestAccess.get('/lessons/favorites');
     return data.map(item => new Lesson(item, likes));

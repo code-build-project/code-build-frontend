@@ -2,52 +2,50 @@
   <div class="card" @click="$emit('click')">
     <img class="card__poster" alt="" :src="lesson.image" />
 
-    <main class="card__main">
-      <div class="card__lesson-number">Урок №{{ lesson.number }}</div>
+    <div class="card__main">
+      <h2 class="card__course-title">
+        {{ lesson.courseTitle }}
+      </h2>
 
       <h1 class="card__title">
         {{ lesson.title }}
       </h1>
 
       <div class="card__attributes">
-        <div class="card__attributes-item" style="width: 126px">
+        <div class="card__attributes-item" style="width: 170px">
           <v-icon class="card__icon-attributes" path="img/timer.svg" />
           {{ lesson.time }}
         </div>
 
-        <div class="card__attributes-item" style="width: 96px">
+        <div class="card__attributes-item" style="width: 130px">
           <v-icon class="card__icon-attributes" path="img/openEye.svg" />
-          {{ lesson.views }}
+          {{ lesson.views }}>
         </div>
       </div>
-    </main>
+    </div>
 
     <v-like
-      v-if="user.id"
+      v-if="isAuth"
+      v-model="lesson.isLike"
       class="card__icon-heart"
-      :isLike="lesson.isLike"
-      @click="onLike()"
+      :contentId="lesson.id"
+      fieldName="lessons"
     />
   </div>
 </template>
 
 <script>
-// Components
-import VIcon from '@/components/common/VIcon.vue';
-import VLike from '@/components/common/VLike.vue';
-
-// Services
-import apiLikes from '@/services/likes.js';
-
-// Helpers
-import storage from '@/helpers/storage.js';
+import VIcon from '@/components/common/VIcon';
+import VLike from '@/components/common/VLike';
 
 export default {
-  name: 'VLessonMiniCard',
+  name: 'CardLesson',
+
   components: {
     VIcon,
     VLike
   },
+
   props: {
     // Информация о уроке
     lesson: {
@@ -58,8 +56,8 @@ export default {
           id: '',
           // Название урока
           title: 'Название урока',
-          // Номер урока
-          number: '1',
+          // Название курса
+          courseTitle: 'Название курса',
           // Длительность по времени
           time: '15 м.',
           // Количество просмотров  видео
@@ -68,42 +66,17 @@ export default {
           likes: [],
           // Название курса(коллекции в бд)
           courseId: '',
-          // Ссылка на изображение постера
-          image: '',
           // Флаг лайка
           isLike: false
         };
       }
     }
   },
+
   data() {
     return {
-      user: storage.getUser('local')
+      isAuth: this.$store.getters.isAuth
     };
-  },
-  methods: {
-    addLike(payload) {
-      apiLikes.addLike(payload).then(() => {
-        this.lesson.isLike = true;
-      });
-    },
-
-    deleteLike(payload) {
-      apiLikes.deleteLike(payload).then(() => {
-        this.lesson.isLike = false;
-      });
-    },
-
-    onLike() {
-      const payload = {
-        id: this.lesson.id,
-        field: 'lessons'
-      };
-
-      if (this.lesson.isLike) {
-        this.deleteLike(payload);
-      } else this.addLike(payload);
-    }
   }
 };
 </script>
@@ -111,53 +84,54 @@ export default {
 <style lang="scss" scoped>
 .card {
   position: relative;
-  width: 268px;
-  height: 338px;
+  width: 367px;
   transition: all 0.4s ease;
 
   &__poster {
-    width: 268px;
-    height: 181px;
+    width: 100%;
+    height: 240px;
     margin-bottom: -4px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
   }
 
   &__main {
-    @extend .flex_column-between-center;
-    align-items: stretch;
+    @extend .flex_column;
+    height: 226px;
 
-    width: 268px;
-    height: 157px;
+    padding: 21px 27px 27px 27px;
 
-    padding: 17px;
-
-    background: $color-white;
+    background: #ffffff;
     border-radius: 0px 0px 8px 8px;
   }
 
-  &__lesson-number {
-    cursor: pointer;
-
-    font-family: 'Circe';
+  &__course-title {
+    width: 200px;
+    font-family: 'EuclidCircular';
     font-size: 15px;
-    color: $color-blue;
+    line-height: 20px;
+    color: #b1b8c6;
   }
 
   &__title {
-    width: 200px;
+    width: 314px;
+    height: 95px;
+    margin-top: 15px;
 
     font-family: 'Circe';
-    font-size: 20px;
-    line-height: 21px;
+    font-size: 26px;
+    line-height: 31px;
     color: #3a3f4f;
+    letter-spacing: -0.01em;
   }
 
   &__attributes {
     @extend .flex_row-center-between;
+    margin-top: 15px;
 
     font-family: 'Circe';
     font-size: 14px;
+    line-height: 12px;
     color: #3a3f4f;
   }
 
@@ -173,20 +147,20 @@ export default {
 // icons
 .card__icon {
   &-attributes {
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
 
     fill: #3a3f4f;
   }
 
   &-heart {
     position: absolute;
-    width: 18px;
-    height: 16px;
+    width: 26px;
+    height: 23px;
 
-    top: 19px;
-    right: 19px;
+    top: 20px;
+    right: 20px;
   }
 }
 

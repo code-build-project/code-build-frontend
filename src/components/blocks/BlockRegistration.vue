@@ -25,7 +25,7 @@
 
 <script>
 // Components
-import VIcon from '@/components/common/VIcon.vue';
+import VIcon from '@/components/common/VIcon';
 
 // Constants
 const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;

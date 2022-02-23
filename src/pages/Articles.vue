@@ -10,13 +10,11 @@
         @change="getArticles()"
       />
 
-      <div v-if="pageLoading" class="articles__preloader">
-        <div v-for="(item, index) in new Array(6)" :key="index" class="articles__preloader-item" />
-      </div>
+      <card-preloader v-if="pageLoading" class="articles__preloader" />
 
       <div v-else class="articles__list">
         <div v-for="(item, index) in articleList" :key="index">
-          <v-article-card
+          <card-article
             class="mb-30px"
             :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
             :article="item"
@@ -32,9 +30,10 @@
 
 <script>
 // Components
-import VArticleCard from '@/components/common/VArticleCard.vue';
-import VFilterGroup from '@/components/common/VFilterGroup.vue';
-import BlockRegistration from '@/components/blocks/BlockRegistration.vue';
+import CardArticle from '@/components/cards/CardArticle';
+import CardPreloader from '@/components/cards/CardPreloader';
+import VFilterGroup from '@/components/common/VFilterGroup';
+import BlockRegistration from '@/components/blocks/BlockRegistration';
 
 // Services
 import apiArticles from '@/services/articles.js';
@@ -42,7 +41,8 @@ import apiArticles from '@/services/articles.js';
 export default {
   name: 'Articles',
   components: {
-    VArticleCard,
+    CardArticle,
+    CardPreloader,
     VFilterGroup,
     BlockRegistration
   },
@@ -76,10 +76,7 @@ export default {
 }
 
 .articles {
-  width: 1160px;
-  min-height: 1840px;
-
-  padding: 100px 0px 110px 0px;
+  @extend .container;
 
   &__title {
     font-family: 'ObjectSans';
@@ -93,25 +90,14 @@ export default {
     margin-top: 30px;
   }
 
+  &__preloader {
+    margin-top: 60px;
+  }
+
   &__list {
     display: flex;
     flex-wrap: wrap;
     margin-top: 60px;
-  }
-}
-
-.articles__preloader {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 60px;
-  justify-content: space-between;
-
-  &-item {
-    width: 367px;
-    height: 465px;
-    margin-bottom: 30px;
-    background: $color-silver;
-    border-radius: 8px;
   }
 }
 </style>

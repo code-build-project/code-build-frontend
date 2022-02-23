@@ -1,16 +1,12 @@
-import storage from '@/helpers/storage.js';
 import apiLikes from '@/services/likes.js';
 import { Filters } from '@/models/courses';
 import { Course } from '../models/courses.js';
 import { request, requestAccess } from '@/helpers/http';
 
-const token = storage.getTokens('local').token;
-
 export default {
   // Получить список курсов
   getCoursesList: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('courses');
+    let likes = await apiLikes.getLikeList('courses');
 
     const { data } = await request.get(`/courses`, { params });
     return data.map(item => new Course(item, likes));
@@ -18,8 +14,7 @@ export default {
 
   // Получить статью по id
   getCourse: async params => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('courses');
+    let likes = await apiLikes.getLikeList('courses');
 
     const { data } = await request.get(`/course`, { params });
 
@@ -41,8 +36,7 @@ export default {
 
   // Получить список пролайканных курсов
   getFavoriteCourseList: async () => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('courses');
+    let likes = await apiLikes.getLikeList('courses');
 
     const { data } = await requestAccess.get(`/courses/favorites`);
     return data.map(item => new Course(item, likes));
@@ -55,8 +49,7 @@ export default {
 
   // Получить список популярных статьей
   getPopularCourseList: async (params) => {
-    let likes = [];
-    if(token) likes = await apiLikes.getLikeList('courses');
+    let likes = await apiLikes.getLikeList('courses');
 
     const { data } = await request.get('/courses/popular-courses', { params });
     return data.map(item => new Course(item, likes));

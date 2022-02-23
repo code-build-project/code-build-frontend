@@ -59,31 +59,30 @@
 </template>
 
 <script>
-// Components
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
 import PopupCabinet from '@/components/pageCabinet/Popup';
 import CabinetInput from '@/components/pageCabinet/CabinetInput';
 
-// Helpers
-import storage from '@/helpers/storage.js';
-
 export default {
   name: 'Cabinet',
+
   components: {
     VIcon,
     VButton,
     PopupCabinet,
     CabinetInput
   },
+
   data() {
     return {
-      user: storage.getUser('local'),
+      user: this.$store.getters.user,
       newName: '',
       isPopup: false,
       isChange: false
     };
   },
+  
   methods: {
     getPopup() {
       if (this.isChange) {

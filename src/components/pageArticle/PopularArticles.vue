@@ -4,7 +4,7 @@
       <h1 class="popular__title">Также стоит посмотреть</h1>
 
       <div class="popular__articles">
-        <v-article-card
+        <card-article
           v-for="(item, index) in articleList"
           :key="index"
           :article="item"
@@ -17,12 +17,12 @@
 
 <script>
 // Components
-import VArticleCard from '@/components/common/VArticleCard.vue';
+import CardArticle from '@/components/cards/CardArticle';
 
 export default {
   name: 'PopularArticles',
   components: {
-    VArticleCard
+    CardArticle
   },
   props: {
     articleList: {

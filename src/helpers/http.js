@@ -6,6 +6,7 @@ import { createNotification } from '@/helpers/notification';
 const token = storage.getTokens('local').token;
 
 const request = axios.create({
+  // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
   // baseURL: process.env.VUE_APP_API_BASE_URL,
   baseURL: 'http://127.0.1.1:5000/'
 });
@@ -23,7 +24,7 @@ request.interceptors.response.use(
 );
 
 const requestAccess = axios.create({
-  // baseURL: process.env.VUE_APP_API_BASE_URL,
+  // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
   baseURL: 'http://127.0.1.1:5000/',
   headers: {
     Authorization: token ? token.substring(7) : ''

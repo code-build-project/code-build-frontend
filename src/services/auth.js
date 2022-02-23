@@ -18,7 +18,7 @@ export default {
 
   // Подтверждение регистрации
   completionSignIn: async params => {
-    const { data } = await request.post('/completion-registration', params);
+    const { data } = await request.post('/confirm-sign', params);
     storage.setTokens('local', data);
     router.push('/').then(() => location.reload());
   },

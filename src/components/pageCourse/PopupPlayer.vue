@@ -2,12 +2,16 @@
   <div class="popup">
     <div class="popup__player">
       <iframe
+        v-show="isPageLoaded"
         class="popup__screen"
         :src="lesson.video"
         frameborder="0"
         scrolling="no"
         allowfullscreen
+        @load="load"
       />
+
+      <v-preloader v-if="!isPageLoaded" class="popup__preloader" />
 
       <div class="popup__footer">
         <div class="popup__footer-titles">
@@ -16,12 +20,12 @@
         </div>
 
         <div class="popup__footer-buttons">
-          <div class="popup__icon-heart">
+          <div v-if="isAuth" class="popup__icon-heart">
             <v-like
-              v-if="user.id"
+              v-model="lesson.isLike"
               stroke="secondary"
-              :isLike="lesson.isLike"
-              @click="onLike()"
+              :contentId="lesson.id"
+              fieldName="lessons"
             />
           </div>
           <v-button class="popup__button" type="active">
@@ -35,12 +39,12 @@
       <v-icon
         class="popup__icon-bracket-left"
         path="img/angleBracketPopup.svg"
-        @click="$emit('clickLeft')"
+        @click="changeVideo('clickLeft')"
       />
       <v-icon
         class="popup__icon-bracket-right"
         path="img/angleBracketPopup.svg"
-        @click="$emit('clickRight')"
+        @click="changeVideo('clickRight')"
       />
       <!-- Внешние кнопки -->
     </div>
@@ -49,22 +53,21 @@
 
 <script>
 // Components
-import VIcon from '@/components/common/VIcon.vue';
-import VLike from '@/components/common/VLike.vue';
-import VButton from '@/components/common/VButton.vue';
-
-// Services
-import apiLikes from '@/services/likes.js';
+import VIcon from '@/components/common/VIcon';
+import VLike from '@/components/common/VLike';
+import VButton from '@/components/common/VButton';
+import VPreloader from '@/components/common/VPreloader';
 
 // Helpers
-import storage from '@/helpers/storage.js';
+import { debounce } from 'lodash';
 
 export default {
   name: 'PopupPlayer',
   components: {
     VIcon,
     VLike,
-    VButton
+    VButton,
+    VPreloader
   },
   props: {
     // Информация о уроке
@@ -98,32 +101,19 @@ export default {
   },
   data() {
     return {
-      user: storage.getUser('local'),
+      isAuth: this.$store.getters.isAuth,
+      isPageLoaded: false
     };
   },
   methods: {
-    addLike(payload) {
-      apiLikes.addLike(payload).then(() => {
-        this.lesson.isLike = true;
-      });
+    load() {
+      this.isPageLoaded = true;
     },
 
-    deleteLike(payload) {
-      apiLikes.deleteLike(payload).then(() => {
-        this.lesson.isLike = false;
-      });
-    },
-
-    onLike() {
-      const payload = {
-        id: this.lesson.id,
-        field: 'lessons'
-      };
-
-      if (this.lesson.isLike) {
-        this.deleteLike(payload);
-      } else this.addLike(payload);
-    }
+    changeVideo: debounce(function (click) {
+      this.$emit(click);
+      this.isPageLoaded = false;
+    }, 500)
   }
 };
 </script>
@@ -142,6 +132,7 @@ export default {
   backdrop-filter: blur(18px);
 
   &__player {
+    @extend .flex_column;
     position: relative;
     width: 1022px;
     height: 660px;
@@ -157,19 +148,6 @@ export default {
     height: 498px;
 
     background: #202020;
-  }
-
-  &__footer {
-    @extend .flex_row-center-between;
-    margin-top: 29px;
-  }
-
-  &__footer-titles {
-    @extend .flex_column;
-  }
-
-  &__footer-buttons {
-    @extend .flex_row;
   }
 
   &__lesson-number {
@@ -194,6 +172,27 @@ export default {
 
     font-family: 'Circe';
     font-size: 15px;
+  }
+}
+
+.popup__preloader {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+}
+
+.popup__footer {
+  @extend .flex_row-center-between;
+  margin-top: auto;
+  width: 100%;
+
+  &-titles {
+    @extend .flex_column;
+  }
+  &-buttons {
+    @extend .flex_row;
   }
 }
 
