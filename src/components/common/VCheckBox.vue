@@ -67,7 +67,7 @@ export default {
     background-position: center center;
     cursor: pointer;
 
-    border: 1px solid #E4E4E4;
+    border: 1px solid $color-silver;
     background-size: 60% 60%;
   }
 
@@ -84,7 +84,7 @@ export default {
 
   /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
   .checkbox-input:focus:not(:checked) + label::before {
-    border-color: #E4E4E4;
+    border-color: $color-silver;
   }
 
   /* стили для чекбокса, находящегося в состоянии checked */
@@ -95,12 +95,12 @@ export default {
   &__border-pink {
     /* стили при наведении курсора на checkbox */
     .checkbox-input:not(:disabled):not(:checked) + label:hover::before {
-      border-color: #EE3465;
+      border-color: $color-pink;
     }
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .checkbox-input:checked + label::before {
-      border-color: #EE3465;
+      border-color: $color-pink;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='rgb(238,52,101)' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
     }
   }
@@ -108,12 +108,12 @@ export default {
   &__border-blue {
     /* стили при наведении курсора на checkbox */
     .checkbox-input:not(:disabled):not(:checked) + label:hover::before {
-      border-color: #256CFE;
+      border-color: $color-blue;
     }
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .checkbox-input:checked + label::before {
-      border-color: #256CFE;
+      border-color: $color-blue;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='rgb(37,108,254)' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
     }
   }

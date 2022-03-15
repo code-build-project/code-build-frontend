@@ -89,7 +89,7 @@ export default {
     margin-top: 10px;
     font-family: 'ObjectSans';
     font-size: 22px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__button-group {

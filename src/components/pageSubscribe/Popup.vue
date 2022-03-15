@@ -57,7 +57,7 @@ export default {
     margin-top: 15px;
     font-family: 'ObjectSans';
     font-size: 34px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__text {
@@ -66,7 +66,7 @@ export default {
     font-size: 25px;
     line-height: 33px;
 
-    color: #272a37;
+    color: $color-black;
   }
 
   &__button {

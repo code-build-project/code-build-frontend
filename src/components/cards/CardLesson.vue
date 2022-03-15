@@ -101,7 +101,7 @@ export default {
 
     padding: 21px 27px 27px 27px;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 0px 0px 8px 8px;
   }
 
@@ -110,7 +110,7 @@ export default {
     font-family: 'EuclidCircular';
     font-size: 15px;
     line-height: 20px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__title {

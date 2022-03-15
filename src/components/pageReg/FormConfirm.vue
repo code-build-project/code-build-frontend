@@ -116,7 +116,7 @@ export default {
   &__title {
     font-family: 'Circe';
     font-size: 26px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__subtitle {
@@ -125,7 +125,7 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 28px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__send {
@@ -135,13 +135,13 @@ export default {
     font-family: 'Circe';
     font-size: 20px;
     line-height: 24px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__send-again {
     cursor: pointer;
-    color: #256cfe;
-    border-bottom: 1px dashed #256cfe;
+    color: $color-blue;
+    border-bottom: 1px dashed $color-blue;
 
     &:hover {
       opacity: 0.7;

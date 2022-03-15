@@ -110,7 +110,7 @@ export default {
 
     padding: 73px 80px 72px 77px;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 29px;
   }
 
@@ -126,7 +126,7 @@ export default {
     font-size: 62px;
     line-height: 60px;
     letter-spacing: -1px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__main-subtitle {
@@ -151,7 +151,7 @@ export default {
     font-family: 'Circe';
     font-size: 14px;
     line-height: 15px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   // Нижний блок
@@ -163,7 +163,7 @@ export default {
 
     padding: 73px 80px 72px 77px;
 
-    background: #ffffff;
+    background: $color-white;
     border-radius: 29px;
   }
 
@@ -173,12 +173,12 @@ export default {
     font-family: 'ObjectSans';
     font-size: 30px;
     line-height: 30px;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__questions-list {
     margin-top: 10px;
-    border-top: 1px solid #e4e4e4;
+    border-top: 1px solid $color-silver;
   }
 
   &__button {
@@ -201,8 +201,8 @@ export default {
     height: 44px;
     margin-left: 30px;
 
-    background: #ee3465;
-    box-shadow: 0px 11px 18px -9px #ee3465;
+    background: $color-pink;
+    box-shadow: 0px 11px 18px -9px $color-pink;
     border-radius: 8px;
     fill: $color-white;
   }
@@ -212,9 +212,9 @@ export default {
 :hover.subscribe {
   &__button {
     border: none;
-    color: #ffffff;
-    background: #ee3465;
-    box-shadow: 0px 12px 18px -13px #ee3465;
+    color: $color-white;
+    background: $color-pink;
+    box-shadow: 0px 12px 18px -13px $color-pink;
   }
 }
 </style>

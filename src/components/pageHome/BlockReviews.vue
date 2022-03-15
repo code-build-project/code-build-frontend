@@ -149,7 +149,7 @@ export default {
       180deg,
       rgba(255, 255, 255, 0) 0%,
       rgba(255, 255, 255, 0.95) 29.69%,
-      #ffffff 100%
+      $color-white 100%
     );
 
     bottom: 0px;

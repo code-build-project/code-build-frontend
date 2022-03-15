@@ -113,7 +113,7 @@ export default {
   height: 55px;
 
   font-family: 'Circe';
-  border-bottom: 1px solid #b1b8c6;
+  border-bottom: 1px solid $color-gray;
 
   &__label {
     pointer-events: none;
@@ -124,7 +124,7 @@ export default {
 
     font-family: 'Circe';
     font-size: 17px;
-    color: #b1b8c6;
+    color: $color-gray;
   }
 
   &__field {
@@ -135,7 +135,7 @@ export default {
 
     border: none;
     background: transparent;
-    color: #272a37;
+    color: $color-black;
 
     outline: none;
   }
@@ -151,7 +151,7 @@ export default {
     position: absolute;
     top: 60px;
     font-size: 13px;
-    color: #ff3300;
+    color: $color-red;
   }
 }
 
@@ -165,21 +165,21 @@ export default {
     width: 21px;
     height: 12px;
 
-    fill: #e4e4e4;
+    fill: $color-silver;
   }
 
   &-open-eye {
     width: 21px;
     height: 15px;
 
-    fill: #e4e4e4;
+    fill: $color-silver;
   }
 }
 
 // Модификаторы
 .input {
   &_focus {
-    border-color: #256cfe;
+    border-color: $color-blue;
 
     .input__label {
       font-size: 13px;
@@ -188,7 +188,7 @@ export default {
   }
 
   &_error {
-    border-color: #ff3300;
+    border-color: $color-red;
   }
 }
 </style>

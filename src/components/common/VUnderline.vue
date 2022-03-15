@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .underline {
   position: relative;
-  color: #256cfe;
+  color: $color-blue;
   width: fit-content;
 
   &__line {
@@ -23,17 +23,17 @@ export default {
     left: 0;
     width: 100%;
     height: 1px;
-    background: #256cfe;
+    background: $color-blue;
   }
 }
 
 // hovers
 :hover.underline {
   cursor: pointer;
-  color: #272a37;
+  color: $color-black;
 
   .underline__line {
-    background: #272a37;
+    background: $color-black;
   }
 }
 </style>

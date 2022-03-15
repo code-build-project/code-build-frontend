@@ -63,7 +63,7 @@ export default {
 
   padding: 0px 34px 0px 34px;
 
-  border: 1px solid #e4e4e4;
+  border: 1px solid $color-silver;
   border-radius: 18px;
 
   &__main {
@@ -77,14 +77,14 @@ export default {
     font-family: 'Circe';
     font-size: 24px;
     letter-spacing: -0.01em;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__price {
     font-family: 'ObjectSans';
     font-size: 38px;
     letter-spacing: -0.01em;
-    color: #272a37;
+    color: $color-black;
   }
 
   &__economy {
@@ -95,14 +95,14 @@ export default {
     font-family: 'Circe';
     font-size: 12px;
     letter-spacing: -0.01em;
-    color: #ee3465;
+    color: $color-pink;
 
     background: #fff1f5;
     border-radius: 15px;
   }
 
   &__focus {
-    border-color: #ee3465;
+    border-color: $color-pink;
   }
 }
 
@@ -129,7 +129,7 @@ export default {
   height: 32px;
   flex-shrink: 0;
   flex-grow: 0;
-  border: 1px solid #e4e4e4;
+  border: 1px solid $color-silver;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -139,7 +139,7 @@ export default {
 
 /* стили при наведении курсора на radio */
 .radio__input:not(:disabled):not(:checked) + label:hover::before {
-  border-color: #ee3465;
+  border-color: $color-pink;
 }
 
 /* стили для активного чекбокса (при нажатии на него) */
@@ -150,13 +150,13 @@ export default {
 
 /* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
 .radio__input:focus:not(:checked) + label::before {
-  border-color: #ee3465;
+  border-color: $color-pink;
 }
 
 /* стили для чекбокса, находящегося в состоянии checked */
 .radio__input:checked + label::before {
-  border-color: #ee3465;
-  background-color: #ee3465;
+  border-color: $color-pink;
+  background-color: $color-pink;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 11'%3e%3cpath fill='white' d='M5.75014 8.2755L13.7931 0.231628L15.0313 1.46888L5.75014 10.75L0.181641 5.1815L1.41889 3.94425L5.75014 8.2755Z'/%3e%3c/svg%3e");
 }
 
@@ -167,11 +167,11 @@ export default {
 
 // hovers
 :hover.radio {
-  border-color: #ee3465;
+  border-color: $color-pink;
   cursor: pointer;
 
   .radio__label:before {
-    border-color: #ee3465;
+    border-color: $color-pink;
   }
 }
 </style>
