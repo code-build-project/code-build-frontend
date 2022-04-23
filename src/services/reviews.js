@@ -1,10 +1,12 @@
-import request from '@/helpers/http';
 import { Review } from "../models/reviews.js";
+import AbstractService from '@/services/abstractService.js';
 
-export default {
-  // Получить список отзывов
-  getReviews: async () => {
-    const { data } = await request.get('/reviews');
+export default class Reviews extends AbstractService {
+  /**
+   * Получение списка отзывов
+   */
+  async getReviewList() {
+    const { data } = await this.api.get('/reviews');
     return data.map((item) => new Review(item));
-  },
-};
+  }
+}

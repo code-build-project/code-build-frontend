@@ -41,9 +41,6 @@
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 
-// Services
-import apiAuth from '@/services/auth.js';
-
 // Constants
 const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
@@ -84,7 +81,7 @@ export default {
       this.isPageLoaded = false;
 
       try {
-        await apiAuth.recoveryPassword({ email: this.email.name });
+        await this.$service.auth.recoveryPassword({ email: this.email.name });
         this.isSuccess = true;
       } catch ({ data }) {
         this.email.errorName = data.message;

@@ -14,9 +14,6 @@
 // Components
 import VIcon from '@/components/common/VIcon';
 
-// Services
-import apiLikes from '@/services/likes.js';
-
 // Helpers
 import { debounce } from 'lodash';
 
@@ -71,13 +68,13 @@ export default {
     }, 500),
 
     addLike(payload) {
-      apiLikes.addLike(payload).then(() => {
+      this.$service.likes.add(payload).then(() => {
         this.$emit('change', true);
       });
     },
 
     deleteLike(payload) {
-      apiLikes.deleteLike(payload).then(() => {
+      this.$service.likes.delete(payload).then(() => {
         this.$emit('change', false);
       });
     }

@@ -31,16 +31,11 @@
 </template>
 
 <script>
-// Components
 import PopupPlayer from '@/components/pageCourse/PopupPlayer';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import CardMiniLesson from '@/components/cards/CardMiniLesson';
 import CourseCover from '@/components/pageCourse/Cover';
 import PopularCourses from '@/components/pageCourse/PopularCourses';
-
-// Services
-import apiCourses from '@/services/courses.js';
-import apiLessons from '@/services/lessons.js';
 
 export default {
   name: 'Course',
@@ -75,13 +70,13 @@ export default {
   },
   methods: {
     async getLessons() {
-      this.lessonList = await apiLessons.getLessons({ courseId: this.$route.query.id });
+      this.lessonList = await this.$service.lessons.getLessonList({ courseId: this.$route.query.id });
     },
     async getCourse() {
-      this.course = await apiCourses.getCourse({ id: this.$route.query.id });
+      this.course = await this.$service.courses.getCourse({ id: this.$route.query.id });
     },
     async getPopularCourseList() {
-      this.courseList = await apiCourses.getPopularCourseList({ id: this.$route.query.id });
+      this.courseList = await this.$service.courses.getPopulars({ id: this.$route.query.id });
     },
     setLesson(operator) {
       let index = this.lessonList.indexOf(this.selectedLesson);

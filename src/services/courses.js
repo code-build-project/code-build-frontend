@@ -1,22 +1,30 @@
-import apiLikes from '@/services/likes.js';
+import Likes from '@/services/likes.js';
 import { Filters } from '@/models/courses';
 import { Course } from '../models/courses.js';
-import { request, requestAccess } from '@/helpers/http';
+import AbstractService from '@/services/abstractService.js';
 
-export default {
-  // Получить список курсов
-  getCoursesList: async params => {
+const apiLikes = new Likes();
+
+export default class Courses extends AbstractService {
+  /**
+   * Получение списка курсов
+   * @param {string} tag - тег курсов по которым идёт фильтрация
+   */
+  async getCoursesList(params) {
     let likes = await apiLikes.getLikeList('courses');
 
-    const { data } = await request.get(`/courses`, { params });
+    const { data } = await this.api.get(`/courses`, { params });
     return data.map(item => new Course(item, likes));
-  },
+  }
 
-  // Получить статью по id
-  getCourse: async params => {
+  /**
+   * Получение курса
+   * @param {string} id - id курса
+   */
+  async getCourse(params) {
     let likes = await apiLikes.getLikeList('courses');
 
-    const { data } = await request.get(`/course`, { params });
+    const { data } = await this.api.get(`/course`, { params });
 
     let tags = [];
     let gradient = '';
@@ -32,26 +40,33 @@ export default {
     data.tags = tags;
     data.gradient = gradient;
     return new Course(data, likes);
-  },
+  }
 
-  // Получить список пролайканных курсов
-  getFavoriteCourseList: async () => {
+  /**
+   * Получение списка пролайканных курсов
+   */
+  async getFavorites() {
     let likes = await apiLikes.getLikeList('courses');
 
-    const { data } = await requestAccess.get(`/courses/favorites`);
-    return data.map(item => new Course(item, likes));
-  },
-
-  // Получить фильтры для курсов
-  getFilters: () => {
-    return Filters;
-  },
-
-  // Получить список популярных статьей
-  getPopularCourseList: async (params) => {
-    let likes = await apiLikes.getLikeList('courses');
-
-    const { data } = await request.get('/courses/popular-courses', { params });
+    const { data } = await this.apiAccess.get(`/courses/favorites`);
     return data.map(item => new Course(item, likes));
   }
-};
+
+  /**
+   * Получение фильтров курсов
+   */
+  getFilters() {
+    return Filters;
+  }
+
+  /**
+   * Получение списка популярных курсов
+   * @param {string} id - id курса которого не должно быть в списке
+   */
+  async getPopulars(params) {
+    let likes = await apiLikes.getLikeList('courses');
+
+    const { data } = await this.api.get('/courses/popular-courses', { params });
+    return data.map(item => new Course(item, likes));
+  }
+}

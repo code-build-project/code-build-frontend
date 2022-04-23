@@ -35,9 +35,6 @@ import CardPreloader from '@/components/cards/CardPreloader';
 import VFilterGroup from '@/components/common/VFilterGroup';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
 
-// Services
-import apiArticles from '@/services/articles.js';
-
 export default {
   name: 'Articles',
   components: {
@@ -59,12 +56,12 @@ export default {
   methods: {
     async getArticles() {
       this.pageLoading = true;
-      this.articleList = await apiArticles.getArticleList({ tag: this.filterId });
+      this.articleList = await this.$service.articles.getArticleList({ tag: this.filterId });
       this.pageLoading = false;
     }
   },
   created() {
-    this.filterList = apiArticles.getFilters();
+    this.filterList = this.$service.articles.getFilters();
     this.getArticles();
   }
 };

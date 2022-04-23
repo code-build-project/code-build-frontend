@@ -36,12 +36,8 @@
 </template>
 
 <script>
-// Components
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
-
-// Services
-import apiAuth from '@/services/auth.js';
 
 export default {
   name: 'FormRegConfirm',
@@ -83,7 +79,7 @@ export default {
     },
 
     async sendCodeAgain() {
-      await apiAuth.signIn(this.form);
+      await this.$service.auth.signIn(this.form);
       this.interval = 60;
       this.startTimer();
     },
@@ -97,7 +93,7 @@ export default {
       };
 
       try {
-        await apiAuth.completionSignIn(payload);
+        await this.$service.auth.completionSignIn(payload);
       } catch (err) {
         this.password.errorName = err.response.data.message;
       } finally {

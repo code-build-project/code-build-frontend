@@ -44,9 +44,6 @@ import VButton from '@/components/common/VButton.vue';
 import VCheckBox from '@/components/common/VCheckBox.vue';
 import VUnderline from '@/components/common/VUnderline.vue';
 
-// Services
-import apiAuth from '@/services/auth.js';
-
 // Constants
 const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
@@ -101,7 +98,7 @@ export default {
       };
 
       try {
-        await apiAuth.signIn(payload);
+        await this.$service.auth.signIn(payload);
         this.$emit('changeForm', payload);
       } catch (error) {
         this.email.errorName = error.data.message;

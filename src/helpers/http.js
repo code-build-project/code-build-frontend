@@ -1,6 +1,5 @@
 import axios from 'axios';
 import storage from '@/helpers/storage';
-import apiAuth from '@/services/auth';
 import { createNotification } from '@/helpers/notification';
 
 const token = storage.getTokens('local').token;
@@ -37,7 +36,8 @@ requestAccess.interceptors.response.use(
     const { status, data } = err.response;
 
     if (status === 401 && data.name === 'TokenExpiredError') {
-      apiAuth.logOut();
+      storage.clearTokens('local');
+      window.location.href = '/';
     } else if (status !== 401 && data.name !== 'JsonWebTokenError') {
       createNotification({
         text: data.message,

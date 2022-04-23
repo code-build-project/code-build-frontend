@@ -6,11 +6,7 @@
 </template>
 
 <script>
-// Components
 import VPreloader from '@/components/common/VPreloader.vue';
-
-// Services
-import apiUsers from '@/services/users.js';
 
 export default {
   name: 'App',
@@ -25,7 +21,7 @@ export default {
 
   async created() {
     // Перед отрисовкой страницы, получать данные пользователя
-    await apiUsers.getUser();
+    await this.$service.users.getUser();
     this.isPageLoaded = true;
   }
 };

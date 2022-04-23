@@ -3,8 +3,10 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 import './directives/clickOutside';
+import services from './plugins/services';
 
 Vue.config.productionTip = false;
+Vue.use(services);
 
 new Vue({
   router,

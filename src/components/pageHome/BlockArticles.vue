@@ -49,13 +49,9 @@
 </template>
 
 <script>
-// Components
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
 import CardArticle from '@/components/pageHome/CardArticle';
-
-// Services
-import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'BlockArticles',
@@ -71,7 +67,7 @@ export default {
   },
   methods: {
     async getPopularArticleList() {
-      this.articleList = await apiArticles.getPopularArticleList();
+      this.articleList = await this.$service.articles.getPopulars();
     }
   },
   created() {

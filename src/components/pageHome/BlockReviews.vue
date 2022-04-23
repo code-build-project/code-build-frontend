@@ -30,13 +30,9 @@
 </template>
 
 <script>
-// Components
 import VButton from '@/components/common/VButton.vue';
 import VReviewCard from '@/components/common/VReviewCard.vue';
 import PopupReview from '@/components/pageHome/PopupReview.vue';
-
-// Services
-import apiReviews from '@/services/reviews.js';
 
 export default {
   name: 'BlockReviews',
@@ -68,7 +64,7 @@ export default {
 
   methods: {
     async getReviews() {
-      this.allReviews = await apiReviews.getReviews();
+      this.allReviews = await this.$service.reviews.getReviewList();
 
       // Количество коробок(отзывы по 5 штук)
       const countBox = Math.ceil(this.allReviews.length / 5);

@@ -55,13 +55,9 @@
 </template>
 
 <script>
-// Components
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
 import CardCourse from '@/components/pageHome/CardCourse';
-
-// Services
-import apiCourses from '@/services/courses.js';
 
 export default {
   name: 'BlockCourses',
@@ -77,7 +73,7 @@ export default {
   },
   methods: {
     async getCourses() {
-      this.courseList = await apiCourses.getCoursesList();
+      this.courseList = await this.$service.courses.getCoursesList();
     }
   },
   created() {

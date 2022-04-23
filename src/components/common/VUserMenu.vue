@@ -58,12 +58,8 @@
 </template>
 
 <script>
-// Components
 import VIcon from '@/components/common/VIcon.vue';
 import VButton from '@/components/common/VButton.vue';
-
-// Services
-import apiAuth from '@/services/auth.js';
 
 export default {
   name: 'VUserMenu',
@@ -99,7 +95,7 @@ export default {
     },
 
     onExit() {
-      apiAuth.logOut();
+      this.$service.auth.logOut();
     }
   }
 };

@@ -45,9 +45,6 @@ import VIcon from '@/components/common/VIcon.vue';
 import VInput from '@/components/common/VInput.vue';
 import VButton from '@/components/common/VButton.vue';
 
-// Services
-import apiAuth from '@/services/auth.js';
-
 // Constants
 const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
@@ -100,7 +97,7 @@ export default {
       };
 
       try {
-        await apiAuth.logIn(payload);
+        await this.$service.auth.logIn(payload);
         this.$router.push('/').then(() => location.reload());
       } catch ({ data }) {
         if (data.name === 'IncorrectEmail') {

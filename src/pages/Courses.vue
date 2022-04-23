@@ -35,9 +35,6 @@ import CardPreloader from '@/components/cards/CardPreloader';
 import VFilterGroup from '@/components/common/VFilterGroup';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
 
-// Services
-import apiCourses from '@/services/courses.js';
-
 export default {
   name: 'Courses',
   components: {
@@ -59,12 +56,12 @@ export default {
   methods: {
     async getCourses() {
       this.pageLoading = true;
-      this.courseList = await apiCourses.getCoursesList({ tag: this.filterId });
+      this.courseList = await this.$service.courses.getCoursesList({ tag: this.filterId });
       this.pageLoading = false;
     }
   },
   created() {
-    this.filterList = apiCourses.getFilters();
+    this.filterList = this.$service.courses.getFilters();
     this.getCourses();
   }
 };

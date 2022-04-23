@@ -1,36 +1,53 @@
 import router from '@/router';
 import storage from '@/helpers/storage';
-import { request } from '@/helpers/http';
+import AbstractService from '@/services/abstractService.js';
 
-export default {
-  // Авторизоваться и получить токен
-  logIn: async params => {
-    const { data } = await request.post('/login', params);
+export default class Auth extends AbstractService { 
+  /**
+   * Авторизовация. Получение токена
+   * @param {string} email - почта пользователя
+   * @param {string} password - почта пользователя
+   */
+  async logIn(params) {
+    const { data } = await this.api.post('/login', params);
 
     storage.setTokens('local', data);
     return data;
-  },
+  }
 
-  // Регистрация
-  signIn: async params => {
-    await request.post('/sign', params);
-  },
+  /**
+   * Регистрация
+   * @param {string} name - имя пользователя
+   * @param {string} email - почта пользователя
+   */
+  async signIn(params) {
+    await this.api.post('/sign', params);
+  }
 
-  // Подтверждение регистрации
-  completionSignIn: async params => {
-    const { data } = await request.post('/confirm-sign', params);
+  /**
+   * Подтверждение регистрации. Получение токена
+   * @param {string} email - почта пользователя
+   * @param {string} password - пароль который пришел на почту
+   */
+  async completionSignIn(params) {
+    const { data } = await this.api.post('/confirm-sign', params);
     storage.setTokens('local', data);
     router.push('/').then(() => location.reload());
-  },
+  }
 
-  // Подтверждение регистрации
-  recoveryPassword: async params => {
-    await request.post('/recovery-password', params);
-  },
+  /**
+   * Восстановление пароля
+   * @param {string} email - почта пользователя
+   */
+  async recoveryPassword(params) {
+    await this.api.post('/recovery-password', params);
+  }
 
-  // Выйти из под своего пользователя
-  logOut: () => {
+  /**
+   * Выйти из личного кабинета
+   */
+  logOut() {
     storage.clearTokens('local');
     window.location.href = '/';
   }
-};
+}

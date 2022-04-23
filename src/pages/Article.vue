@@ -16,13 +16,9 @@
 </template>
 
 <script>
-// Components
 import ArticleCover from '@/components/pageArticle/Cover';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import PopularArticles from '@/components/pageArticle/PopularArticles';
-
-// Services
-import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Article',
@@ -39,10 +35,10 @@ export default {
   },
   methods: {
     async setArticle() {
-      this.article = await apiArticles.getArticle({ id: this.$route.query.id });
+      this.article = await this.$service.articles.getArticle({ id: this.$route.query.id });
     },
     async setPopularArticleList() {
-      this.popularArticleList = await apiArticles.getPopularArticleList({ id: this.$route.query.id });
+      this.popularArticleList = await this.$service.articles.getPopulars({ id: this.$route.query.id });
     }
   },
   watch: {

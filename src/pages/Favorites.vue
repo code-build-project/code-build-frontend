@@ -50,18 +50,12 @@
 </template>
 
 <script>
-// Components
 import CardCourse from '@/components/cards/CardCourse';
 import CardLesson from '@/components/cards/CardLesson';
 import CardArticle from '@/components/cards/CardArticle';
 import CardPreloader from '@/components/cards/CardPreloader';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import VFilterGroup from '@/components/common/VFilterGroup';
-
-// Services
-import apiCourses from '@/services/courses.js';
-import apiLessons from '@/services/lessons.js';
-import apiArticles from '@/services/articles.js';
 
 export default {
   name: 'Favorites',
@@ -105,16 +99,16 @@ export default {
     
       switch (this.filterId) {
         case 1:
-          this.favoriteList = await apiCourses.getFavoriteCourseList();
+          this.favoriteList = await this.$service.courses.getFavorites();
           break;
         case 2:
-          this.favoriteList = await apiLessons.getFavoriteLessons();
+          this.favoriteList = await this.$service.lessons.getFavorites();
           break;
         case 3:
-          this.favoriteList = await apiArticles.getFavoriteArticles();
+          this.favoriteList = await this.$service.articles.getFavorites();
           break;
         default:
-          this.favoriteList = await apiCourses.getFavoriteCourseList();
+          this.favoriteList = await this.$service.courses.getFavorites();
       }
 
       this.pageLoading = false;

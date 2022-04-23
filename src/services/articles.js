@@ -1,23 +1,30 @@
-import apiLikes from '@/services/likes.js';
+import Likes from '@/services/likes.js';
 import { Filters } from '@/models/articles';
 import { Article } from '@/models/articles.js';
-import { request, requestAccess } from '@/helpers/http';
+import AbstractService from '@/services/abstractService.js';
 
+const apiLikes = new Likes();
 
-export default {
-  // Получить список статьей
-  getArticleList: async params => {
+export default class Articles extends AbstractService {
+  /**
+   * Получение списка статьей
+   * @param {string} tag - тег статьей по которым идёт фильтрация
+   */
+  async getArticleList(params) {
     let likes = await apiLikes.getLikeList('articles');
 
-    const { data } = await request.get('/articles', { params });
+    const { data } = await this.api.get('/articles', { params });
     return data.map(item => new Article(item, likes));
-  },
+  }
 
-  // Получить статью по id
-  getArticle: async params => {
+  /**
+   * Получение статьи
+   * @param {string} id - id статьи
+   */
+  async getArticle(params) {
     let likes = await apiLikes.getLikeList('articles');
     
-    const { data } = await request.get('/article', { params });
+    const { data } = await this.api.get('/article', { params });
 
     let tags = [];
     let gradient = '';
@@ -33,26 +40,33 @@ export default {
     data.tags = tags;
     data.gradient = gradient;
     return new Article(data, likes);
-  },
+  }
 
-  // Получить список пролайканных статьей
-  getFavoriteArticles: async () => {
+  /**
+   * Получение списка пролайканных статьей
+   */
+  async getFavorites() {
     let likes = await apiLikes.getLikeList('articles');
 
-    const { data } = await requestAccess.get('/articles/favorites');
-    return data.map(item => new Article(item, likes));
-  },
-
-  // Получить фильтры для статьей
-  getFilters: () => {
-    return Filters;
-  },
-
-  // Получить список популярных статьей
-  getPopularArticleList: async params => {
-    let likes = await apiLikes.getLikeList('articles');
-
-    const { data } = await request.get('/articles/popular-articles', { params });
+    const { data } = await this.apiAccess.get('/articles/favorites');
     return data.map(item => new Article(item, likes));
   }
-};
+
+  /**
+   * Получение фильтров статьей
+   */
+  getFilters() {
+    return Filters;
+  }
+
+  /**
+   * Получение списка популярных статьей
+   * @param {string} id - id статьи которой не должно быть в списке
+   */
+  async getPopulars(params) {
+    let likes = await apiLikes.getLikeList('articles');
+
+    const { data } = await this.api.get('/articles/popular-articles', { params });
+    return data.map(item => new Article(item, likes));
+  }
+}
