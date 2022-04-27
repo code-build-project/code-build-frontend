@@ -60,8 +60,8 @@ export default {
       this.pageLoading = false;
     }
   },
-  created() {
-    this.filterList = this.$service.articles.getFilters();
+  async created() {
+    this.filterList = await this.$service.articles.getTags();
     this.getArticles();
   }
 };

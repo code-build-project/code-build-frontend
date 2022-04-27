@@ -48,11 +48,11 @@
         </div>
 
         <div
-          v-for="(tag, index) in course.tags"
+          v-for="(tag, index) in tagList"
           :key="index"
           class="cover__attributes-item ml-10px"
         >
-          {{ tag }}
+          {{ '#' + tag.name }}
         </div>
       </div>
     </div>
@@ -90,7 +90,9 @@ export default {
           // Список id юзеров, лайкнувших курс
           likes: [],
           // Флаг лайка
-          isLike: false
+          isLike: false,
+          // Список id тегов
+          tags: [],
         };
       }
     }
@@ -98,9 +100,18 @@ export default {
 
   data() {
     return {
+      tagList: [],
       isAuth: this.$store.getters.isAuth
     };
   },
+
+  async created() {
+    const response = await this.$service.courses.getTags();
+
+    this.tagList = response.filter(item => {
+      return this.course.tags.includes(item.id);
+    })
+  }
 };
 </script>
 

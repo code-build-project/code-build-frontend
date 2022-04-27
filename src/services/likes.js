@@ -2,7 +2,6 @@ import store from '@/store';
 import AbstractService from '@/services/abstractService.js';
 
 export default class Likes extends AbstractService {
-  // TO DO - доделать в конце
   /**
    *  Получение списка лайков для пользователя
    *  @param {string} field - название коллекции(articels, courses, lessons)

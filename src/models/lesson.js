@@ -1,4 +1,4 @@
-export class Lesson {
+export default class Lesson {
   constructor(lesson, likes = []) {
     this.id = lesson.id;
     this.number = lesson.number;

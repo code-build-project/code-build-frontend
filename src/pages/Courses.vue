@@ -29,7 +29,6 @@
 </template>
 
 <script>
-// Components
 import CardCourse from '@/components/cards/CardCourse';
 import CardPreloader from '@/components/cards/CardPreloader';
 import VFilterGroup from '@/components/common/VFilterGroup';
@@ -37,12 +36,14 @@ import BlockRegistration from '@/components/blocks/BlockRegistration';
 
 export default {
   name: 'Courses',
+
   components: {
     CardCourse,
     CardPreloader,
     VFilterGroup,
     BlockRegistration
   },
+
   data() {
     return {
       filterId: '',
@@ -53,6 +54,7 @@ export default {
       pageLoading: false
     };
   },
+
   methods: {
     async getCourses() {
       this.pageLoading = true;
@@ -60,8 +62,9 @@ export default {
       this.pageLoading = false;
     }
   },
-  created() {
-    this.filterList = this.$service.courses.getFilters();
+  
+  async created() {
+    this.filterList = await this.$service.courses.getTags();
     this.getCourses();
   }
 };

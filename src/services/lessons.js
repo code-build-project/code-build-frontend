@@ -1,5 +1,5 @@
 import Likes from '@/services/likes.js';
-import { Lesson } from '../models/lessons.js';
+import Lesson from '../models/lesson.js';
 import AbstractService from '@/services/abstractService.js';
 
 const apiLikes = new Likes();

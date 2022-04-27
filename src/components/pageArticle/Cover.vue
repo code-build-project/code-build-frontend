@@ -47,11 +47,11 @@
         </div>
 
         <div
-          v-for="(tag, index) in article.tags"
+          v-for="(tag, index) in tagList"
           :key="index"
           class="cover__attributes-item ml-10px"
         >
-          {{ tag }}
+          {{ '#' + tag.name }}
         </div>
       </div>
     </div>
@@ -59,7 +59,6 @@
 </template>
 
 <script>
-// Components
 import VIcon from '@/components/common/VIcon';
 import VLike from '@/components/common/VLike';
 
@@ -94,7 +93,9 @@ export default {
           // Постер
           image: '',
           // Флаг лайка
-          isLike: false
+          isLike: false,
+          // Список id тегов
+          tags: [],
         };
       }
     }
@@ -102,9 +103,18 @@ export default {
 
   data() {
     return {
-      isAuth: this.$store.getters.isAuth
+      tagList: [],
+      isAuth: this.$store.getters.isAuth,
     };
   },
+
+  async created() {
+    const response = await this.$service.articles.getTags();
+
+    this.tagList = response.filter(item => {
+      return this.article.tags.includes(item.id);
+    })
+  }
 };
 </script>
 

@@ -22,17 +22,20 @@ import PopularArticles from '@/components/pageArticle/PopularArticles';
 
 export default {
   name: 'Article',
+  
   components: {
     ArticleCover,
     BlockSubscribe,
     PopularArticles
   },
+
   data() {
     return {
       article: {},
       popularArticleList: []
     };
   },
+
   methods: {
     async setArticle() {
       this.article = await this.$service.articles.getArticle({ id: this.$route.query.id });
@@ -41,6 +44,7 @@ export default {
       this.popularArticleList = await this.$service.articles.getPopulars({ id: this.$route.query.id });
     }
   },
+
   watch: {
     '$route.query.id': {
       handler() {
@@ -49,6 +53,7 @@ export default {
       }
     }
   },
+
   created() {
     this.setArticle();
     this.setPopularArticleList();

@@ -1,6 +1,6 @@
 import store from '@/store';
 import storage from '@/helpers/storage';
-import { User } from '@/models/users.js';
+import User from '@/models/user.js';
 import AbstractService from '@/services/abstractService.js';
 
 export default class Users extends AbstractService {

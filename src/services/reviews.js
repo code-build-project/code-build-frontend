@@ -1,4 +1,4 @@
-import { Review } from "../models/reviews.js";
+import Review from "../models/review.js";
 import AbstractService from '@/services/abstractService.js';
 
 export default class Reviews extends AbstractService {
