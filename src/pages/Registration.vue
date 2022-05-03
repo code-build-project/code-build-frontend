@@ -1,58 +1,72 @@
 <template>
-  <div class="page">
-    <form-main
-      v-if="openForm === 'main'"
-      class="page__form"
-      @changeForm="changeForm($event)"
-    />
-
-    <form-confirm v-else-if="openForm === 'confirm'" class="page__form" :form="form" />
-  </div>
+    <div class="page">
+        <component
+            :is="forms[currentForm]"
+            class="page__form"
+            :form="form"
+            @changeForm="changeForm($event)"
+        />
+    </div>
 </template>
 
 <script>
-// Components
 import FormMain from '@/components/pageReg/FormMain';
 import FormConfirm from '@/components/pageReg/FormConfirm';
 
 export default {
-  name: 'Registration',
-  components: {
-    FormMain,
-    FormConfirm
-  },
-  data() {
-    return {
-      openForm: 'main',
+    name: 'Registration',
 
-      form: {
-        name: '',
-        email: ''
-      }
-    };
-  },
-  methods: {
-    changeForm(ev) {
-      this.form = ev;
-      this.openForm = 'confirm';
+    components: {
+        FormMain,
+        FormConfirm
+    },
+
+    data() {
+        return {
+            forms: {
+                main: FormMain,
+                confirm: FormConfirm
+            },
+            currentForm: 'confirm',
+            // currentForm: 'main',
+            form: {
+                name: '',
+                email: ''
+            }
+        };
+    },
+
+    methods: {
+        changeForm(ev) {
+            this.form = ev;
+            this.currentForm = 'confirm';
+        }
     }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .page {
-  @extend .flex_row-center-center;
-  height: 100%;
+    @extend .flex_row-center-center;
+    height: 100%;
+    padding: 0 20px;
+}
 
-  &__form {
+.page__form {
     width: 490px;
     height: 735px;
-
     border: 2px solid $color-blue;
     border-radius: 8px;
-
     padding: 75px 58px;
-  }
+}
+
+@media screen and (max-width: 575px) {
+    .page__form {
+        width: 280px;
+        height: 460px;
+        border-width: 1px;
+        border-radius: 5px;
+        padding: 33px;
+    }
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
-  <div class="layout">
-    <router-view />
-  </div>
+    <div class="layout">
+        <router-view />
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'AuthLayout'
+    name: 'AuthLayout'
 };
 </script>
 
 <style lang="scss" scoped>
 .layout {
-  height: 100%;
+    height: 100%;
 }
 </style>

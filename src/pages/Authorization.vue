@@ -1,92 +1,59 @@
 <template>
-  <div class="page">
-    <form-main
-      v-if="openForm === 'main'"
-      class="page__form"
-      @changeForm="openForm = 'recovery'"
-    />
-
-    <form-recovery
-      v-else-if="openForm === 'recovery'"
-      class="page__form"
-      @changeForm="openForm = 'main'"
-    />
-  </div>
+    <div class="page">
+        <component 
+            :is="forms[currentForm]" 
+            class="page__form" 
+            @changeForm="currentForm = $event" 
+        />
+    </div>
 </template>
 
 <script>
-// Components
 import FormMain from '@/components/pageAuth/FormMain';
 import FormRecovery from '@/components/pageAuth/FormRecovery';
 
 export default {
-  name: 'Authorization',
-  components: {
-    FormMain,
-    FormRecovery
-  },
-  data() {
-    return {
-      openForm: 'main'
-    };
-  }
+    name: 'Authorization',
+
+    components: {
+        FormMain,
+        FormRecovery
+    },
+
+    data() {
+        return {
+            forms: {
+                main: FormMain,
+                recovery: FormRecovery
+            },
+            currentForm: 'main'
+        };
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .page {
-  @extend .flex_row-center-center;
-  height: 100%;
+    @extend .flex_row-center-center;
+    height: 100%;
+    padding: 0 20px;
+}
 
-  &__form {
+.page__form {
     width: 490px;
     height: 735px;
-
     border: 2px solid $color-blue;
     border-radius: 8px;
-
     padding: 75px 58px;
-  }
 }
 
-.loader{
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  position: relative;
-  margin: 0 auto;
+@media screen and (max-width: 575px) {
+    .page__form {
+        width: 280px;
+        height: 460px;
+        border-width: 1px;
+        border-radius: 5px;
+        padding: 39px 33px;
+    }
 }
-
-#loader-7{
-  -webkit-perspective: 120px;
-  -moz-perspective: 120px;
-  -ms-perspective: 120px;
-  perspective: 120px;
-}
-
-#loader-7:before{
-  content: "";
-  position: absolute;
-  left: 25px;
-  top: 25px;
-  width: 50px;
-  height: 50px;
-  background-color: #3498db;
-  animation: flip 1s infinite;
-}
-
-@keyframes flip {
-  0% {
-    transform: rotate(0);
-  }
-
-  50% {
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    transform: rotateY(180deg)  rotateX(180deg);
-  }
-}
-
 </style>

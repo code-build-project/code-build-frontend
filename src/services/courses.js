@@ -1,6 +1,6 @@
 import Tag from '@/models/tag.js';
 import Likes from '@/services/likes.js';
-import Course from '../models/course.js';
+import Course from '@/models/course.js';
 import AbstractService from '@/services/abstractService.js';
 
 const apiLikes = new Likes();

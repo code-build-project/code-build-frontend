@@ -1,119 +1,132 @@
 <template>
-  <button
-    class="button"
-    :class="isLoaded ? `button__type-${type}` : 'button__type-disabled'"
-    @click="$emit('click')"
-  >
-    <slot v-if="isLoaded">Кнопка</slot>
-    <div v-else class="button__preloader-wrap">
-      <div class="button__preloader" />
-    </div>
-  </button>
+    <button 
+        class="button" 
+        :class="classType" 
+        @click="$emit('click')"
+    >
+        <slot v-if="isLoaded">Кнопка</slot>
+
+        <div v-else class="button__preloader-wrap">
+            <div class="button__preloader" />
+        </div>
+    </button>
 </template>
 
 <script>
 export default {
-  name: 'VButton',
-  props: {
-    // Флаг отображения прелоадера
-    isLoaded: {
-      type: Boolean,
-      default: true
+    name: 'VButton',
+
+    props: {
+        // Флаг отображения прелоадера
+        isLoaded: {
+            type: Boolean,
+            default: true
+        },
+        // Тип стилизации кнопки
+        type: {
+            type: String,
+            default: 'normal',
+            validator: (value) => {
+                return ['normal', 'primary', 'disabled', 'active'].includes(value);
+            }
+        }
     },
-    //
-    type: {
-      type: String,
-      default: 'normal'
+
+    computed: {
+        classType() {
+            return this.isLoaded ? `button_type-${this.type}` : 'button_type-disabled';
+        }
     }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .button {
-  @extend .flex_row-center-center;
-  border-style: solid;
-  border-radius: 8px;
+    @extend .flex_row-center-center;
+    border-style: solid;
+    border-radius: 8px;
 }
 
-.button__type {
-  &-normal {
-    color: $color-black;
-    background: transparent;
-    border-color: $color-silver;
-    border-width: 1px;
-  }
-
-  &-primary {
-    color: $color-white;
-    background: $color-blue;
-    border: none;
-
-    &:active {
-      background: $color-navy;
+.button_type {
+    &-normal {
+        color: $color-black;
+        background: transparent;
+        border-color: $color-silver;
+        border-width: 1px;
     }
-  }
 
-  &-disabled {
-    color: $color-black;
-    background: transparent;
-    border-color: $color-gray;
-    border-width: 1px;
+    &-primary {
+        color: $color-white;
+        background: $color-blue;
+        border: none;
 
-    pointer-events: none;
-  }
+        &:active {
+            background: $color-navy;
+        }
+    }
 
-  &-active {
-    color: $color-white;
-    border: none;
-    background: $color-pink;
-  }
+    &-disabled {
+        color: $color-black;
+        background: transparent;
+        border-color: $color-gray;
+        border-width: 1px;
+        pointer-events: none;
+    }
+
+    &-active {
+        color: $color-white;
+        border: none;
+        background: $color-pink;
+    }
 }
 
 .button__preloader-wrap {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 30px;
+    height: 30px;
 }
 
 .button__preloader {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  position: relative;
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    border: 3px solid transparent;
-    border-top-color: $color-blue;
-    top: -3px;
-    left: -3px;
-  }
+    position: relative;
 
-  &:before {
-    z-index: 1;
-    animation: spin 1s infinite;
-  }
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        border: 3px solid transparent;
+        border-top-color: $color-blue;
+        top: -3px;
+        left: -3px;
+    }
 
-  &:after {
-    border: 3px solid transparent;
-  }
+    &:before {
+        z-index: 1;
+        animation: spin 1s infinite;
+    }
+
+    &:after {
+        border: 3px solid transparent;
+    }
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
 
-  100% {
-    transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .button {
+        border-radius: 5px;
+    }
 }
 </style>
