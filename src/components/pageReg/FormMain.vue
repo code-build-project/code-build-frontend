@@ -64,8 +64,8 @@ import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
 import VCheckBox from '@/components/common/VCheckBox';
 
-// Constants
-const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+// Helpers
+import { REGEX_EMAIL } from '@/helpers/constants';
 
 export default {
     name: 'FormRegMain',
@@ -79,7 +79,7 @@ export default {
 
     computed: {
         typeButton() {
-            const isValid = this.name && regex.test(this.email.name) && this.checkbox;
+            const isValid = this.name && REGEX_EMAIL.test(this.email.name) && this.checkbox;
             return isValid ? 'primary' : 'disabled';
         }
     },
@@ -98,7 +98,7 @@ export default {
 
     methods: {
         validateEmail() {
-            if (regex.test(this.email.name) === false) {
+            if (REGEX_EMAIL.test(this.email.name) === false) {
                 this.email.errorName = 'Неверный формат';
             } else {
                 this.email.errorName = '';

@@ -63,6 +63,10 @@ export default {
         &:active {
             background: $color-navy;
         }
+
+        &:hover {
+            box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
+        }
     }
 
     &-disabled {

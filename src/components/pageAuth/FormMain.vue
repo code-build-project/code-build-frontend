@@ -8,10 +8,10 @@
         <h1 class="auth__title">Войдите, чтобы продолжить</h1>
 
         <v-input
-            v-model="email.name"
+            v-model="form.email"
             class="auth__mail"
-            :error-message="email.errorName"
-            @change="email.errorName = ''"
+            :error-message="errors.email"
+            @change="errors.email = ''"
             @blur="validateEmail"
             @keyup.enter.native="onLogin()"
         >
@@ -19,11 +19,11 @@
         </v-input>
 
         <v-input
-            v-model="password.name"
+            v-model="form.password"
             class="auth__password"
             type="password"
-            :error-message="password.errorName"
-            @change="password.errorName = ''"
+            :error-message="errors.password"
+            @change="errors.password = ''"
             @keyup.enter.native="onLogin()"
         >
             Пароль
@@ -64,11 +64,11 @@ import VIcon from '@/components/common/VIcon';
 import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
 
-// Constants
-const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+// Helpers
+import { REGEX_EMAIL } from '@/helpers/constants';
 
 export default {
-    name: 'FormAuthMain',
+    name: 'AuthFormMain',
 
     components: {
         VIcon,
@@ -80,21 +80,21 @@ export default {
         return {
             isPageLoaded: true,
 
-            email: {
-                name: '',
-                errorName: ''
+            form: {
+                email: '',
+                password: '',
             },
 
-            password: {
-                name: '',
-                errorName: ''
+            errors: {
+                email: '',
+                password: '',
             }
         };
     },
 
     computed: {
         isValid() {
-            return regex.test(this.email.name) && this.password.name;
+            return REGEX_EMAIL.test(this.form.email) && this.form.password;
         },
         
         typeButton() {
@@ -104,10 +104,10 @@ export default {
 
     methods: {
         validateEmail() {
-            if (regex.test(this.email.name) === false) {
-                this.email.errorName = 'Неверный формат';
+            if (!REGEX_EMAIL.test(this.form.email)) {
+                this.errors.email = 'Неверный формат';
             } else {
-                this.email.errorName = '';
+                this.errors.email = '';
             }
         },
 
@@ -115,19 +115,14 @@ export default {
             if (!this.isValid) return;
             this.isPageLoaded = false;
 
-            const payload = {
-                email: this.email.name,
-                password: this.password.name
-            };
-
             try {
-                await this.$service.auth.logIn(payload);
+                await this.$service.auth.logIn(this.form);
                 this.$router.push('/').then(() => location.reload());
             } catch ({ data }) {
-                if (data.name === 'IncorrectEmail') {
-                    this.email.errorName = data.message;
+                if (data.type === 'IncorrectEmail') {
+                    this.errors.email = data.message;
                 } else {
-                    this.password.errorName = data.message;
+                    this.errors.password = data.message;
                 }
             } finally {
                 this.isPageLoaded = true;
@@ -168,7 +163,7 @@ export default {
 }
 
 .auth__forget {
-    margin-top: 20px;
+    margin-top: 10px;
     align-self: flex-end;
     font-size: 16px;
     color: $color-gray;
@@ -185,10 +180,6 @@ export default {
     margin-top: auto;
     font-family: 'EuclidCircular';
     font-size: 20px;
-
-    &:hover {
-        box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
-    }
 }
 
 .auth__footer {
@@ -225,15 +216,15 @@ export default {
     }
 
     .auth__mail {
-        margin-top: 35px;
+        margin-top: 25px;
     }
 
     .auth__password {
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     .auth__forget {
-        margin-top: 15px;
+        margin-top: 6px;
         font-size: 12px;
     }
 

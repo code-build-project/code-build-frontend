@@ -166,13 +166,13 @@ export default {
 
     .form__subtitle {
         margin-top: 30px;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 20px;
     }
 
     .form__send {
         margin-top: 20px;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 14px;
     }
 

@@ -1,28 +1,30 @@
 function createNotification(message) {
-  let notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.classList.add(message.status);
-  notification.innerText = message.text;
+    if (window.innerWidth < 1023) return;
 
-  if (!document.querySelector('#notification-field')) {
-    let notificationField = document.createElement('div');
-    notificationField.id = 'notification-field';
-    document.body.appendChild(notificationField);
-  }
+    let notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.classList.add(message.status);
+    notification.innerText = message.text;
 
-  document.querySelector('#notification-field').appendChild(notification);
+    if (!document.querySelector('#notification-field')) {
+        let notificationField = document.createElement('div');
+        notificationField.id = 'notification-field';
+        document.body.appendChild(notificationField);
+    }
 
-  setTimeout(() => {
-    notification.remove();
-    removeNotificationField();
-  }, 6000);
+    document.querySelector('#notification-field').appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+        removeNotificationField();
+    }, 6000);
 }
 
 function removeNotificationField() {
-  let notification = document.querySelectorAll('.notification');
-  if (notification.length === 0) {
-    document.querySelector('#notification-field').remove();
-  }
+    let notification = document.querySelectorAll('.notification');
+    if (notification.length === 0) {
+        document.querySelector('#notification-field').remove();
+    }
 }
 
 export { createNotification };

@@ -27,8 +27,7 @@ export default {
                 main: FormMain,
                 confirm: FormConfirm
             },
-            currentForm: 'confirm',
-            // currentForm: 'main',
+            currentForm: 'main',
             form: {
                 name: '',
                 email: ''
@@ -49,7 +48,7 @@ export default {
 .page {
     @extend .flex_row-center-center;
     height: 100%;
-    padding: 0 20px;
+    padding: 10px 20px;
 }
 
 .page__form {
@@ -68,5 +67,13 @@ export default {
         border-radius: 5px;
         padding: 33px;
     }
+}
+
+@media screen and (min-width: 576px) and (max-height: 735px), 
+       screen and (max-width: 575px) and (max-height: 460px) {
+    .page {
+        align-items: flex-start;
+        overflow-y: auto;
+    }   
 }
 </style>
