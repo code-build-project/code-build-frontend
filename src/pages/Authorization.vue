@@ -26,6 +26,7 @@ export default {
                 main: FormMain,
                 recovery: FormRecovery
             },
+            
             currentForm: 'main'
         };
     }

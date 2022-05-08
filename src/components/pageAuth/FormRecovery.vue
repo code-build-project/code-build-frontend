@@ -8,10 +8,10 @@
             </h2>
 
             <v-input
-                v-model="email.name"
-                class="mt-20px"
-                :error-message="email.errorName"
-                @change="email.isError = false"
+                v-model="form.email"
+                class="recovery__mail"
+                :error-message="errors.email"
+                @change="errors.email = ''"
                 @blur="validateEmail"
                 @keyup.enter.native="send()"
             >
@@ -26,11 +26,21 @@
             >
                 Отправить
             </v-button>
+
+            <div class="recovery__footer">
+                Вспомнили пароль?
+                <div 
+                    class="recovery__auth" 
+                    @click="$emit('changeForm', 'main')"
+                > 
+                    Войти 
+                </div>
+            </div>
         </template>
 
         <template v-else>
             <h2 class="recovery__subtitle">
-                По вашему запросу на адрес {{ email.name }} было отправлено письмо с новым паролем.
+                По вашему запросу на адрес {{ form.email }} было отправлено письмо с новым паролем.
             </h2>
 
             <v-button 
@@ -49,11 +59,11 @@
 import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
 
-// Constants
-const regex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+// Helpers
+import { REGEX_EMAIL } from '@/helpers/constants';
 
 export default {
-    name: 'FormAuthRecovery',
+    name: 'AuthFormRecovery',
 
     components: {
         VInput,
@@ -62,8 +72,9 @@ export default {
 
     computed: {
         isValid() {
-            return regex.test(this.email.name);
+            return REGEX_EMAIL.test(this.form.email);
         },
+
         typeButton() {
             return this.isValid ? 'primary' : 'disabled';
         }
@@ -72,22 +83,24 @@ export default {
     data() {
         return {
             isPageLoaded: true,
+            isSuccess: false,
 
-            email: {
-                name: '',
-                errorName: ''
+            form: {
+                email: ''
             },
 
-            isSuccess: false
+            errors: {
+                email: ''
+            }
         };
     },
 
     methods: {
         validateEmail() {
-            if (regex.test(this.email.name) === false) {
-                this.email.errorName = 'Неверный формат';
+            if (!REGEX_EMAIL.test(this.form.email)) {
+                this.errors.email = 'Неверный формат';
             } else {
-                this.email.errorName = '';
+                this.errors.email = '';
             }
         },
 
@@ -96,10 +109,12 @@ export default {
             this.isPageLoaded = false;
 
             try {
-                await this.$service.auth.recoveryPassword({ email: this.email.name });
+                await this.$service.auth.recovery(this.form);
                 this.isSuccess = true;
             } catch ({ data }) {
-                this.email.errorName = data.message;
+                if (data.type === 'IncorrectEmail') {
+                    this.errors.email = data.message;
+                }
             } finally {
                 this.isPageLoaded = true;
             }
@@ -125,11 +140,37 @@ export default {
     color: $color-black;
 }
 
+.recovery__mail {
+    margin-top: 60px;
+}
+
 .recovery__button {
     height: 70px;
     margin-top: auto;
     font-family: 'EuclidCircular';
     font-size: 20px;
+}
+
+.recovery__footer {
+    display: flex;
+    margin-top: 25px;
+    font-size: 16px;
+    color: $color-gray;
+    align-self: center;
+}
+
+.recovery__auth {
+    margin-left: 5px;
+    font-weight: bold;
+    color: $color-black;
+    background: no-repeat 0 90%;
+    background-image: linear-gradient($color-blue, $color-blue);
+    background-size: 100% 2px;
+
+    &:hover {
+        cursor: pointer;
+        color: $color-blue;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -143,9 +184,24 @@ export default {
         line-height: 20px;
     }
 
+    .recovery__mail {
+        margin-top: 30px;
+    }
+
     .recovery__button {
         height: 45px;
         font-size: 15px;
+    }
+
+    .recovery__footer {
+        margin-top: 13px;
+        font-size: 12px;
+    }
+
+    .recovery__auth {
+        margin-left: 2px;
+        font-weight: 700;
+        background-size: 100% 1px;
     }
 }
 </style>
