@@ -8,17 +8,19 @@
         <h1 class="reg__title">Зарегистрируйтесь в Code Build</h1>
 
         <v-input 
-            v-model="name" 
+            v-model="form.name" 
             class="reg__name"
+            formatName="formatString"
+            maxLength="20"
         > 
             Имя 
         </v-input>
 
         <v-input
-            v-model="email.name"
+            v-model="form.email"
             class="reg__mail"
-            :error-message="email.errorName"
-            @change="email.errorName = ''"
+            :error-message="errors.email"
+            @change="errors.email = ''"
             @blur="validateEmail"
         >
             E-mail
@@ -26,7 +28,7 @@
 
         <div class="reg__consent">
             <v-check-box 
-                v-model="checkbox" 
+                v-model="form.checkbox" 
             />
 
             <div class="reg__consent-text">
@@ -68,7 +70,7 @@ import VCheckBox from '@/components/common/VCheckBox';
 import { REGEX_EMAIL } from '@/helpers/constants';
 
 export default {
-    name: 'FormRegMain',
+    name: 'RegFormMain',
 
     components: {
         VIcon,
@@ -78,46 +80,50 @@ export default {
     },
 
     computed: {
+        isValid() {
+            const { name, email, checkbox } = this.form;
+            return name && REGEX_EMAIL.test(email) && checkbox;
+        },
+
         typeButton() {
-            const isValid = this.name && REGEX_EMAIL.test(this.email.name) && this.checkbox;
-            return isValid ? 'primary' : 'disabled';
+            return this.isValid ? 'primary' : 'disabled';
         }
     },
 
     data() {
         return {
             isPageLoaded: true,
-            name: '',
-            email: {
-                name: this.$route.params.email,
-                errorName: ''
+
+            form: {
+                name: '',
+                email: '',
+                checkbox: false
             },
-            checkbox: false
+
+            errors: {
+                email: ''
+            }
         };
     },
 
     methods: {
         validateEmail() {
-            if (REGEX_EMAIL.test(this.email.name) === false) {
-                this.email.errorName = 'Неверный формат';
+            if (!REGEX_EMAIL.test(this.form.email)) {
+                this.errors.email = 'Неверный формат';
             } else {
-                this.email.errorName = '';
+                this.errors.email = '';
             }
         },
 
         async onSign() {
+            if (!this.isValid) return;
             this.isPageLoaded = false;
 
-            const payload = {
-                name: this.name,
-                email: this.email.name
-            };
-
             try {
-                await this.$service.auth.signIn(payload);
-                this.$emit('changeForm', payload);
-            } catch (error) {
-                this.email.errorName = error.data.message;
+                await this.$service.reg.signIn(this.form);
+                this.$emit('changeForm', this.form);
+            } catch ({ data }) {
+                this.errors.email = data.message;
             } finally {
                 this.isPageLoaded = true;
             }
@@ -179,10 +185,6 @@ export default {
     margin-top: auto;
     font-family: 'EuclidCircular';
     font-size: 20px;
-
-    &:hover {
-        box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
-    }
 }
 
 .reg__footer {

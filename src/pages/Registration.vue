@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <component
-            :is="forms[currentForm]"
+            :is="component[currentComponent]"
             class="page__form"
             :form="form"
             @changeForm="changeForm($event)"
@@ -23,11 +23,13 @@ export default {
 
     data() {
         return {
-            forms: {
+            currentComponent: 'main',
+
+            component: {
                 main: FormMain,
                 confirm: FormConfirm
             },
-            currentForm: 'main',
+
             form: {
                 name: '',
                 email: ''
@@ -38,7 +40,7 @@ export default {
     methods: {
         changeForm(ev) {
             this.form = ev;
-            this.currentForm = 'confirm';
+            this.currentComponent = 'confirm';
         }
     }
 };

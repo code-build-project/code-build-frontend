@@ -112,9 +112,7 @@ export default {
                 await this.$service.auth.recovery(this.form);
                 this.isSuccess = true;
             } catch ({ data }) {
-                if (data.type === 'IncorrectEmail') {
-                    this.errors.email = data.message;
-                }
+                this.errors.email = data.message;
             } finally {
                 this.isPageLoaded = true;
             }

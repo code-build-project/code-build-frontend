@@ -9,17 +9,18 @@
         </h2>
 
         <v-input
-            v-model="password.name"
+            v-model="password"
             class="form__password"
-            :error-message="password.errorName"
-            @change="password.errorName = ''"
+            :error-message="passwordError"
+            @change="passwordError = ''"
+            @keyup.enter.native="confirmRegistration()"
         >
             Пароль
         </v-input>
 
         <div class="form__send">
             <div v-if="interval">
-                Отправить новый пароль через 00:{{ interval > 9 ? interval : '0' + interval }}
+                Отправить новый пароль через {{ time }}
             </div>
             <div 
                 v-else 
@@ -32,7 +33,7 @@
 
         <v-button
             class="form__button"
-            type="primary"
+            :type="typeButton" 
             :isLoaded="isPageLoaded"
             @click="confirmRegistration()"
         >
@@ -46,7 +47,7 @@ import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
 
 export default {
-    name: 'FormRegConfirm',
+    name: 'RegFormConfirm',
 
     components: { 
         VInput, 
@@ -61,17 +62,30 @@ export default {
             }
         }
     },
+    
+    computed: {
+        time() {
+            let minutes = this.interval >= 60 ? '01' : '00';
+            let newInterval = this.interval >= 60 ? this.interval - 60 : this.interval;
+            let seconds = newInterval > 9 ? newInterval : '0' + newInterval;
+            return minutes + ':' + seconds;
+        },
+
+        isValid() {
+            return this.form.email && this.password;
+        },
+
+        typeButton() {
+            return this.isValid ? 'primary' : 'disabled';
+        }
+    },
 
     data() {
         return {
             isPageLoaded: true,
-
-            password: {
-                name: '',
-                errorName: ''
-            },
-
-            interval: 60
+            interval: 119,
+            password: '',
+            passwordError: ''
         };
     },
 
@@ -89,23 +103,29 @@ export default {
         },
 
         async sendCodeAgain() {
-            await this.$service.auth.signIn(this.form);
-            this.interval = 60;
-            this.startTimer();
+            try {
+                await this.$service.reg.signIn(this.form);
+                this.interval = 119;
+                this.startTimer();
+                this.passwordError = '';
+            } catch ({ data }) {
+                this.passwordError = data.message;
+            }
         },
 
         async confirmRegistration() {
+            if (!this.isValid) return;
             this.isPageLoaded = false;
 
             const payload = {
                 email: this.form.email,
-                password: this.password.name
+                password: this.password
             };
 
             try {
-                await this.$service.auth.completionSignIn(payload);
-            } catch (err) {
-                this.password.errorName = err.response.data.message;
+                await this.$service.reg.completion(payload);
+            } catch ({ data }) {
+                this.passwordError = data.message;
             } finally {
                 this.isPageLoaded = true;
             }

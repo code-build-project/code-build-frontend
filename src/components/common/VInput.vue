@@ -8,7 +8,7 @@
             :value="value"
             :type="isPassword ? 'password' : 'text'"
             required="true"
-            @input="onInput($event.target.value)"
+            @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
         />
@@ -45,7 +45,11 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon';
+
+// Helpers
+import formatter from '@/helpers/formatters';
 
 export default {
     name: 'VInput',
@@ -74,7 +78,17 @@ export default {
         errorMessage: {
             type: String,
             default: ''
-        }
+        },
+        // Название форматтера ограничений
+        formatName: {
+            type: String,
+            default: ''
+        },
+        // Максимальное количество символов
+        maxLength: {
+            type: [String, Number],
+            default: 0
+        },
     },
 
     computed: {
@@ -105,7 +119,15 @@ export default {
         },
 
         onInput(event) {
-            this.$emit('change', event);
+            if (this.maxLength && event.target.value.length > this.maxLength) {
+                event.target.value = this.value;
+            }
+
+            if (this.formatName) {
+                event.target.value = formatter[this.formatName](event.target.value);
+            } 
+
+            this.$emit('change', event.target.value);
         },
 
         onClickIcon(value) {
