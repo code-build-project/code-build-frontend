@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router';
 import storage from '@/helpers/storage';
 import { createNotification } from '@/helpers/notification';
 
@@ -41,7 +42,7 @@ requestAccess.interceptors.response.use(
 
         if (status === 401 && data.name === 'TokenExpiredError') {
             storage.clearTokens('local');
-            window.location.href = '/';
+            router.push('/').then(() => location.reload());
         } else if (status !== 401 && data.name !== 'JsonWebTokenError') {
             createNotification({
                 text: data.message,

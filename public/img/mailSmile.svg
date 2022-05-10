@@ -1,0 +1,9 @@
+<svg display="none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="mailSmile" viewBox="0 0 20 20">
+        <path d="M16.2185 18.8627C17.8762 18.8627 19.2198 17.5191 19.2198 15.8614V8.52538C19.2198 7.59899 18.7926 6.72463 18.0613 6.15639L12.0588 1.48745C10.9753 0.644097 9.45771 0.644097 8.37326 1.48745L2.37076 6.15639C1.63946 6.72463 1.21228 7.59899 1.21228 8.52538V15.8614C1.21228 17.5191 2.55584 18.8627 4.21353 18.8627" stroke="#B1B8C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.2185 18.8627H4.2135" stroke="#B1B8C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8.21517 8.85852V9.85894" stroke="#B1B8C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12.2169 8.85852V9.85894" stroke="#B1B8C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.7175 13.5485C13.7175 13.5485 12.405 14.861 10.2161 14.861C8.02715 14.861 6.7146 13.5485 6.7146 13.5485" stroke="#B1B8C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+</svg>

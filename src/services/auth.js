@@ -1,3 +1,4 @@
+import router from '@/router';
 import storage from '@/helpers/storage';
 import AbstractService from '@/services/abstractService';
 
@@ -27,6 +28,6 @@ export default class Auth extends AbstractService {
      */
     logOut() {
         storage.clearTokens('local');
-        window.location.href = '/';
+        router.push('/').then(() => location.reload());
     }
 }

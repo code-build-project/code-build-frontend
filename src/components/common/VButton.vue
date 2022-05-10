@@ -81,6 +81,10 @@ export default {
         color: $color-white;
         border: none;
         background: $color-pink;
+
+        &:hover {
+            box-shadow: 0px 12px 18px -13px $color-pink;
+        }
     }
 }
 
