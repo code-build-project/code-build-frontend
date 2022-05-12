@@ -94,24 +94,6 @@ export default {
     @extend .flex_row;
 }
 
-.menu__icon-user {
-    @extend .flex_row-center-center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid $color-blue;
-    border-radius: 8px;
-    stroke: $color-blue;
-    padding: 13px;
-}
-
-.menu__icon-close {
-    display: none;
-    width: 38px;
-    height: 38px;
-    stroke: $color-blue;
-    padding: 8px;
-}
-
 .menu__user {
     @extend .flex_row-center;
     margin-left: 20px;
@@ -132,11 +114,32 @@ export default {
     text-overflow: ellipsis;
 }
 
-.menu__icon-angle-bracket {
-    width: 9px;
-    height: 7px;
-    stroke: $color-gray;
-    margin-left: 12px;
+// Иконки
+.menu__icon {
+    &-user {
+        @extend .flex_row-center-center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid $color-blue;
+        border-radius: 8px;
+        stroke: $color-blue;
+        padding: 13px;
+    }
+
+    &-close {
+        display: none;
+        width: 38px;
+        height: 38px;
+        stroke: $color-blue;
+        padding: 8px;
+    }
+    
+    &-angle-bracket {
+        width: 9px;
+        height: 7px;
+        stroke: $color-gray;
+        margin-left: 12px;
+    }
 }
 
 // Модификаторы

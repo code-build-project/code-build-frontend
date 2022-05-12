@@ -86,18 +86,6 @@ export default {
     color: $color-black;
 }
 
-.menu__icon-burger {
-    width: 36px;
-    height: 36px;
-}
-
-.menu__icon-close {
-    width: 36px;
-    height: 36px;
-    stroke: $color-black;
-    padding: 8px;
-}
-
 .menu__dropdown {
     @extend .flex_column-start-center;
     position: absolute;
@@ -122,25 +110,6 @@ export default {
     }
 }
 
-.menu__icon-mail {
-    width: 18px;
-    height: 19px;
-    fill: transparent;
-}
-
-.menu__icon-document {
-    width: 14px;
-    height: 18px;
-    fill: transparent;
-}
-
-.menu__icon-video {
-    width: 18px;
-    height: 18px;
-    fill: transparent;
-    stroke: $color-gray;
-}
-
 .menu__button {
     width: 204px;
     height: 55px;
@@ -148,10 +117,44 @@ export default {
     font-size: 16px;
 }
 
-.menu__icon-premium {
-    width: 17px;
-    height: 17px;
-    fill: $color-white;
-    margin-right: 9px;
+// Иконки
+.menu__icon {
+    &-burger {
+        width: 36px;
+        height: 36px;
+    }
+
+    &-close {
+        width: 36px;
+        height: 36px;
+        stroke: $color-black;
+        padding: 8px;
+    }
+
+    &-mail {
+        width: 18px;
+        height: 19px;
+        fill: transparent;
+    }
+
+    &-document {
+        width: 14px;
+        height: 18px;
+        fill: transparent;
+    }
+
+    &-video {
+        width: 18px;
+        height: 18px;
+        fill: transparent;
+        stroke: $color-gray;
+    }
+
+    &-premium {
+        width: 17px;
+        height: 17px;
+        fill: $color-white;
+        margin-right: 9px;
+    }
 }
 </style>

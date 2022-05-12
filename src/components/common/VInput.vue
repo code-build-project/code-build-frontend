@@ -8,6 +8,7 @@
             :value="value"
             :type="isPassword ? 'password' : 'text'"
             required="true"
+            :maxLength="maxLength"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
@@ -119,10 +120,6 @@ export default {
         },
 
         onInput(event) {
-            if (this.maxLength && event.target.value.length > this.maxLength) {
-                event.target.value = this.value;
-            }
-
             if (this.formatName) {
                 event.target.value = formatter[this.formatName](event.target.value);
             } 

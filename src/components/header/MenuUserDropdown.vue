@@ -71,16 +71,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dropdown__icon-user {
-    @extend .flex_row-center-center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid $color-blue;
-    border-radius: 8px;
-    stroke: $color-blue;
-    padding: 13px;
-}
-
 .dropdown__name {
     max-width: 250px;
     overflow: hidden;
@@ -132,25 +122,6 @@ export default {
     color: $color-gray;
 }
 
-.dropdown__icon-profile {
-    width: 18px;
-    height: 18px;
-    stroke: $color-gray;
-}
-
-.dropdown__icon-heart {
-    width: 18px;
-    height: 16px;
-    fill: transparent;
-    stroke: $color-gray;
-}
-
-.dropdown__icon-exit {
-    width: 20px;
-    height: 20px;
-    stroke: $color-gray;
-}
-
 .dropdown__button {
     width: 204px;
     height: 55px;
@@ -159,11 +130,43 @@ export default {
     font-size: 16px;
 }
 
-.dropdown__icon-premium {
-    width: 17px;
-    height: 17px;
-    fill: $color-white;
-    margin-right: 9px;
+// Иконки
+.dropdown__icon {
+    &-user {
+        @extend .flex_row-center-center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid $color-blue;
+        border-radius: 8px;
+        stroke: $color-blue;
+        padding: 13px;
+    }
+
+    &-profile {
+        width: 18px;
+        height: 18px;
+        stroke: $color-gray;
+    }
+
+    &-heart {
+        width: 18px;
+        height: 16px;
+        fill: transparent;
+        stroke: $color-gray;
+    }
+
+    &-exit {
+        width: 20px;
+        height: 20px;
+        stroke: $color-gray;
+    }
+
+    &-premium {
+        width: 17px;
+        height: 17px;
+        fill: $color-white;
+        margin-right: 9px;
+    }
 }
 
 @media screen and (max-width: 1023px) {
