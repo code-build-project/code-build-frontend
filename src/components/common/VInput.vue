@@ -88,7 +88,7 @@ export default {
         // Максимальное количество символов
         maxLength: {
             type: [String, Number],
-            default: 0
+            default: ''
         },
     },
 
