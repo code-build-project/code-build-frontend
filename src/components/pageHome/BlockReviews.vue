@@ -1,173 +1,218 @@
 <template>
-  <div class="reviews">
-    <h1 class="reviews__title">Отзывы о наших курсах</h1>
+    <div class="reviews">
+        <h1 class="reviews__title">Отзывы<br/> о наших курсах</h1>
 
-    <div class="reviews__list" :style="heightList">
-      <div v-for="(boxList, indexBox) in reviewList" :key="indexBox" class="reviews__box-list">
-        <v-review-card
-          v-for="(item, index) in boxList"
-          :key="index"
-          class="reviews__list-item"
-          :height="index === 2 ? '700' : '335'"
-          :review="item"
-          @click="selectedReview = item"
+        <div class="reviews__list" :class="componentClasses">
+            <div
+                v-for="(boxList, indexBox) in reviewList"
+                :key="indexBox"
+                class="reviews__box-list"
+            >
+                <card-review
+                    v-for="(item, index) in boxList"
+                    :key="index"
+                    class="reviews__list-item"
+                    :review="item"
+                    @click="selectedReview = item"
+                />
+            </div>
+        </div>
+
+        <div v-if="!isOpenList" class="reviews__footer">
+            <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
+        </div>
+
+        <popup-review
+            v-if="selectedReview.id"
+            :review="selectedReview"
+            @close="selectedReview = {}"
+            @clickLeft="setReview('decrement')"
+            @clickRight="setReview('increment')"
         />
-      </div>
     </div>
-
-    <div v-if="!isOpenList" class="reviews__footer">
-      <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
-    </div>
-
-    <popup-review
-      v-if="selectedReview.id"
-      :review="selectedReview"
-      @close="selectedReview = {}"
-      @clickLeft="setReview('decrement')"
-      @clickRight="setReview('increment')"
-    />
-  </div>
 </template>
 
 <script>
-import VButton from '@/components/common/VButton.vue';
-import VReviewCard from '@/components/common/VReviewCard.vue';
-import PopupReview from '@/components/pageHome/PopupReview.vue';
+import VButton from '@/components/common/VButton';
+import CardReview from '@/components/pageHome/CardReview';
+import PopupReview from '@/components/pageHome/PopupReview';
 
 export default {
-  name: 'BlockReviews',
+    name: 'BlockReviews',
 
-  components: {
-    VButton,
-    VReviewCard,
-    PopupReview
-  },
-  computed: {
-    heightList() {
-      const { length } = this.reviewList;
-      const height = this.isOpenList && length > 1 ? 750 * length + 'px' : '1060px';
-      return { height };
-    }
-  },
-  data() {
-    return {
-      isOpenList: false,
-      allReviews: [],
-      reviewList: [],
-      selectedReview: {}
-    };
-  },
-
-  created() {
-    this.getReviews();
-  },
-
-  methods: {
-    async getReviews() {
-      this.allReviews = await this.$service.reviews.getReviewList();
-
-      // Количество коробок(отзывы по 5 штук)
-      const countBox = Math.ceil(this.allReviews.length / 5);
-
-      for (let i = 0; i < countBox; i++) {
-        this.reviewList.push([]);
-      }
-
-      // Количество отзывов для одной коробки(максимум 5)
-      let count = 0;
-      // Индекс коробки
-      let index = 0;
-
-      for (let item of this.allReviews) {
-        this.reviewList[index].push(item);
-        count++;
-
-        if (count === 5) {
-          count = 0;
-          index++;
-        }
-      }
+    components: {
+        VButton,
+        CardReview,
+        PopupReview
     },
 
-    setReview(operator) {
-      let index = this.allReviews.indexOf(this.selectedReview);
-      const lastIndex = this.allReviews.length - 1;
+    computed: {
+        componentClasses() {
+            return {
+                'reviews__list_open': this.isOpenList
+            }
+        }
+    },
 
-      if (operator === 'increment') index++;
-      if (operator === 'decrement') index--;
+    data() {
+        return {
+            isOpenList: false,
+            allReviews: [],
+            reviewList: [],
+            selectedReview: {}
+        };
+    },
 
-      if (index > lastIndex) index = 0;
-      if (index < 0) index = lastIndex;
+    created() {
+        this.getReviews();
+    },
 
-      this.selectedReview = this.allReviews[index];
+    methods: {
+        async getReviews() {
+            this.allReviews = await this.$service.reviews.getReviewList();
+
+            // Количество коробок(отзывы по 5 штук)
+            const countBox = Math.ceil(this.allReviews.length / 5);
+
+            for (let i = 0; i < countBox; i++) {
+                this.reviewList.push([]);
+            }
+
+            // Количество отзывов для одной коробки(максимум 5)
+            let count = 0;
+            // Индекс коробки
+            let index = 0;
+
+            for (let item of this.allReviews) {
+                this.reviewList[index].push(item);
+                count++;
+
+                if (count === 5) {
+                    count = 0;
+                    index++;
+                }
+            }
+        },
+
+        setReview(operator) {
+            let index = this.allReviews.indexOf(this.selectedReview);
+            const lastIndex = this.allReviews.length - 1;
+
+            if (operator === 'increment') index++;
+            if (operator === 'decrement') index--;
+
+            if (index > lastIndex) index = 0;
+            if (index < 0) index = lastIndex;
+
+            this.selectedReview = this.allReviews[index];
+        }
     }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .reviews {
-  position: relative;
-  width: 1160px;
-  padding: 100px 0px 100px 0px;
+    position: relative;
+    width: 1160px;
+    padding: 100px 0px 100px 0px;
+}
 
-  &__title {
+.reviews__title {
     font-family: 'ObjectSans';
     font-size: 40px;
     line-height: 44px;
     letter-spacing: -1.5px;
-    color: #18214d;
-  }
+    color: $color-black;
 
-  &__list {
+    br {
+        display: none;
+    }
+}
+
+.reviews__list {
     @extend .flex_column;
     height: 1060px;
     margin-top: 20px;
     overflow: hidden;
     transition: all 0.7s linear;
-  }
+}
 
-  &__box-list {
+.reviews__box-list {
     @extend .flex_column-between;
     flex-wrap: wrap;
     height: 700px;
     margin-top: 30px;
-  }
+}
 
-  &__footer {
+.reviews__list-item {
+    height: 335px;
+
+    &:nth-child(3n) {
+        height: 700px;
+    }
+}
+
+.reviews__footer {
     @extend .flex_row-center-center;
-
     position: absolute;
     height: 300px;
-    width: 1160px;
-
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.95) 29.69%,
-      $color-white 100%
-    );
-
+    width: 100%;
+    background: linear-gradient(180deg,rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 0.95) 29.69%, $color-white 100%);
     bottom: 0px;
-  }
+}
 
-  &__button {
+.reviews__button {
     width: 230px;
     height: 60px;
     margin-top: 160px;
-
     font-family: 'EuclidCircular';
     font-size: 18px;
     color: $color-blue;
     border: 1px solid $color-blue;
-  }
+
+    &:hover {
+        color: $color-white;
+        background: $color-blue;
+    }
 }
 
-// hovers
-:hover.reviews {
-  &__button {
-    color: $color-white;
-    background: $color-blue;
-  }
+// Модификаторы
+.reviews__list_open {
+    height: auto;
+}
+
+@media screen and (max-width: 575px) {
+    .reviews {
+        width: 100%;
+        padding: 42px 0px 50px 0px;
+    }
+
+    .reviews__title {
+        font-size: 22px;
+        line-height: 26px;
+        letter-spacing: -1px;
+        text-align: center;
+
+        br {
+            display: block;
+        }
+    }
+
+    .reviews__box-list {
+        height: auto;
+        align-items: center;
+    }
+
+    .reviews__list-item {
+        margin-top: 20px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:nth-child(3n) {
+            height: 335px;
+        }
+    }
 }
 </style>

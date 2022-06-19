@@ -1,57 +1,74 @@
 <template>
-  <div class="courses__wrap">
-    <div class="courses">
-      <!-- Левая часть -->
-      <div class="courses__main">
-        <v-icon class="courses__icon-play" path="img/play.svg" width="24" height="26" />
+    <div class="courses__wrap">
+        <div class="courses">
+            <div class="courses__main">
+                <v-icon 
+                    class="courses__icon-play" 
+                    path="img/play.svg" 
+                />
 
-        <h1 class="courses__title">
-          В нашем сервисе большинство курсов являются полностью бесплатными
-        </h1>
+                <h1 class="courses__title">
+                    В нашем сервисе большинство курсов являются полностью бесплатными
+                </h1>
 
-        <h2 class="courses__subtitle">
-          Вы можете приступить к изучению как платных, так и бесплатных курсов прямо сейчас
-        </h2>
+                <h2 class="courses__subtitle">
+                    Вы можете приступить к изучению как платных, так и бесплатных курсов прямо
+                    сейчас
+                </h2>
+                
+                <v-button 
+                    class="courses__button" 
+                    @click="$router.push('/courses')"
+                >
+                    Все курсы
+                    <v-icon 
+                        class="courses__icon-arrow" 
+                        path="img/arrow.svg" 
+                    />
+                </v-button>
+            </div>
 
-        <v-button class="courses__button" @click="$router.push('/courses')">
-          Все курсы
-          <v-icon class="courses__icon-arrow" path="img/arrow.svg" />
-        </v-button>
-      </div>
-      <!-- Левая часть -->
+            <div class="courses__cards">
+                <card-course
+                    class="courses__card"
+                    :course="courseList[0]"
+                    @click="$router.push(`/course?id=${courseList[0].id}`)"
+                />
 
-      <!-- Правая часть -->
-      <div class="courses__cards">
-        <div class="flex_column">
-          <card-course
-            class="mt-70px"
-            :course="courseList[0]"
-            @click="$router.push(`/course?id=${courseList[0].id}`)"
-          />
-          <card-course
-            class="mt-35px"
-            :course="courseList[1]"
-            @click="$router.push(`/course?id=${courseList[1].id}`)"
-          />
+                <card-course
+                    class="courses__card"
+                    fire
+                    :course="courseList[2]"
+                    @click="$router.push(`/course?id=${courseList[2].id}`)"
+                />
+
+                <card-course
+                    class="courses__card"
+                    :course="courseList[1]"
+                    @click="$router.push(`/course?id=${courseList[1].id}`)"
+                />
+
+                <card-course
+                    class="courses__card"
+                    :course="courseList[3]"
+                    @click="$router.push(`/course?id=${courseList[3].id}`)"
+                />
+            </div>
+
+            <!-- Появится только на мобилке -->
+            <v-button 
+                class="courses__button adaptive" 
+                @click="$router.push('/courses')"
+            >
+                Все курсы
+                <v-icon 
+                    class="courses__icon-arrow" 
+                    path="img/arrow.svg" 
+                />
+            </v-button>
+            <!-- Появится только на мобилке -->
         </div>
-
-        <div class="flex_column ml-30px">
-          <card-course
-            fire
-            :course="courseList[2]"
-            @click="$router.push(`/course?id=${courseList[2].id}`)"
-          />
-          <card-course
-            class="mt-35px"
-            level="Intermediate"
-            :course="courseList[3]"
-            @click="$router.push(`/course?id=${courseList[3].id}`)"
-          />
-        </div>
-      </div>
-      <!-- Правая часть -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -60,134 +77,203 @@ import VButton from '@/components/common/VButton';
 import CardCourse from '@/components/pageHome/CardCourse';
 
 export default {
-  name: 'BlockCourses',
-  components: {
-    VIcon,
-    VButton,
-    CardCourse
-  },
-  data() {
-    return {
-      courseList: []
-    };
-  },
-  methods: {
-    async getCourses() {
-      this.courseList = await this.$service.courses.getCoursesList();
+    name: 'BlockCourses',
+
+    components: {
+        VIcon,
+        VButton,
+        CardCourse
+    },
+
+    data() {
+        return {
+            courseList: []
+        };
+    },
+
+    async created() {
+        this.courseList = await this.$service.courses.getCoursesList();
     }
-  },
-  created() {
-    this.getCourses();
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .courses__wrap {
-  @extend .flex_row-center-center;
-  width: 100%;
-  background: #17191f;
+    @extend .flex_row-center-center;
+    width: 100%;
+    background: #17191f;
 }
 
 .courses {
-  @extend .flex_row-center-between;
-  width: 1160px;
-  height: 1045px;
+    @extend .flex_row-center-between;
+    width: 1160px;
+    height: 1045px; 
+}
 
-  &__title {
+.courses__main {
+    @extend .flex_column;
+}
+
+.courses__cards {
+    @extend .flex_wrap;
+    justify-content: space-between;
+    width: 566px;
+}
+
+.courses__card {
+    &:nth-child(1) {
+        margin-top: 70px;
+    }
+    &:nth-child(3) {
+        margin-top: 35px;
+    }
+    &:nth-child(4) {
+        margin-top: -35px;
+    }
+}
+
+.courses__title {
+    position: relative;
     width: 450px;
     margin-top: 65px;
-
     font-family: 'ObjectSans';
     font-size: 40px;
     line-height: 48px;
-    letter-spacing: -0.01em;
+    letter-spacing: -1px;
     color: $color-white;
 
     &:after {
-      content: 'FREE';
-
-      position: absolute;
-      width: 56px;
-      height: 29px;
-
-      background: $color-pink;
-      border-radius: 5px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      font-weight: 500;
-      font-size: 11px;
-      line-height: 24px;
-      color: $color-white;
-
-      margin-top: 15px;
-      margin-left: 10px;
+        content: 'FREE';
+        position: absolute;
+        width: 56px;
+        height: 29px;
+        background: $color-pink;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 11px;
+        color: $color-white;
+        bottom: 4px;
+        left: 275px;
     }
-  }
+}
 
-  &__subtitle {
+.courses__subtitle {
     width: 340px;
     margin-top: 35px;
-
-    font-family: 'Circe';
     font-size: 22px;
     line-height: 29px;
     letter-spacing: -0.025em;
     color: #43485e;
-  }
+}
 
-  &__button {
+.courses__button {
     width: 200px;
     height: 60px;
     margin-top: 70px;
-
     font-family: 'EuclidCircular';
     font-size: 18px;
     color: $color-white;
     border: 1px solid $color-blue;
     background: transparent;
-  }
+
+    &.adaptive {
+        display: none;
+    }
+
+    &:hover {
+        background-color: $color-blue;
+    }
 }
 
-// flex containers
-.courses {
-  &__main {
-    @extend .flex_column;
-  }
-
-  &__cards {
-    @extend .flex_row;
-  }
-}
-
-// icons
+// Иконки
 .courses__icon {
-  &-play {
-    @extend .flex_row-center-center;
-    width: 90px;
-    height: 90px;
+    &-play {
+        @extend .flex_row-center-center;
+        width: 90px;
+        height: 90px;
+        border: 2px solid $color-black;
+        border-radius: 20px;
+        padding: 29px;
+    }
 
-    border: 2px solid $color-black;
-    border-radius: 20px;
-  }
-
-  &-arrow {
-    width: 24px;
-    height: 24px;
-
-    margin-top: 3px;
-    margin-left: 9px;
-    stroke: $color-white;
-  }
+    &-arrow {
+        width: 24px;
+        height: 24px;
+        margin-top: 3px;
+        margin-left: 9px;
+        stroke: $color-white;
+    }
 }
 
-// hovers
-:hover.courses {
-  &__button {
-    background-color: $color-blue;
-  }
+@media screen and (max-width: 575px) {
+    .courses {
+        flex-direction: column;
+        width: 320px;
+        height: auto;
+        padding: 54px 0 40px 0;
+    }
+
+    .courses__main {
+        align-items: center;
+    }
+
+    .courses__cards {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .courses__card {
+        &:first-child {
+            margin-top: 40px;
+        }
+
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
+    }
+
+    .courses__icon-play {
+        width: 80px;
+        height: 80px;
+        border-radius: 18px;
+        padding: 27px;
+    }
+
+    .courses__title {
+        width: 269px;
+        margin-top: 28px;
+        font-size: 22px;
+        line-height: 26px;
+        text-align: center;
+
+        &:after {
+            bottom: -40px;
+            left: calc(50% - 56px/2);
+        }
+    }
+
+    .courses__subtitle {
+        width: 230px;
+        margin-top: 60px;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0;
+        text-align: center;
+    }
+
+    .courses__button {
+        width: 254px;
+        height: 58px;
+        margin-top: 25px;
+        display: none;
+
+        &.adaptive {
+            display: flex;
+        }
+    }
 }
 </style>
