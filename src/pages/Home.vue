@@ -2,7 +2,7 @@
     <div class="home">
         <block-intro />
 
-        <!-- <block-actuality /> -->
+        <block-actuality />
 
         <block-courses />
 
@@ -18,7 +18,7 @@
 
 <script>
 import BlockIntro from '@/components/pageHome/BlockIntro';
-// import BlockActuality from '@/components/pageHome/BlockActuality';
+import BlockActuality from '@/components/pageHome/BlockActuality';
 import BlockCourses from '@/components/pageHome/BlockCourses';
 import BlockArticles from '@/components/pageHome/BlockArticles';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
@@ -30,7 +30,7 @@ export default {
     
     components: {
         BlockIntro,
-        // BlockActuality,
+        BlockActuality,
         BlockCourses,
         BlockArticles,
         BlockSubscribe,
