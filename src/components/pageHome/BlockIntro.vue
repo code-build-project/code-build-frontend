@@ -108,7 +108,7 @@ export default {
     }
 }
 
-// icons
+// Иконки
 .intro__icon {
     &-arrow {
         width: 30px;
@@ -135,56 +135,49 @@ export default {
     }
 }
 
-// @media screen and (max-width: 1160px) {
-//     .intro {
-//         padding: 0 25px;
-//     }
-// }
+@media screen and (max-width: 1160px) {
+    .intro {
+        padding: 32px 20px;
+    }
 
-// @media screen and (max-width: 1023px) {
-//     .intro {
-//         // max-width: 320px;
-//         // padding: 0 25px;
-//         height: 860px;
-//         align-items: center;
-//     }
+    .intro__icon-iphone {
+        right: 210px;
+        top: 580px;
+    }
 
-//     .intro__title {
-//         margin-top: 100px;
-//         font-size: 51px;
-//         // font-size: 8.1vw;
-//         line-height: 50px;
-//         // line-height: 9.35vw;
-//         color: #272A37;
-//         text-align: center;
-//     }
+    .intro__icon-ipad {
+        right: -430px;
+        top: 350px;
+    }
+}
 
-//     .intro__subtitle {
-//         margin-top: 15px;
-//         font-size: 20px;
-//         line-height: 31px;
-//         text-align: center;
-//     }
+@media screen and (max-width: 991px) {
+    .intro {
+        align-items: center;
+        padding: 0;
+        height: 760px;
+    }
 
-//     .intro__icon-iphone {
-//         width: 211px;
-//         height: 569px;
-//         right: 234px;
-//         top: 587px;
-//     }
+    .intro__title {
+        margin-top: 110px;
+        font-size: 52px;
+        line-height: 51px;
+        text-align: center;
+    }
 
-//     .intro__icon-ipad {
-//         width: 451px;
-//         height: 518px;
-//         right: -124px;
-//         top: 542px;
-//     }
-// }
+    .intro__subtitle {
+        text-align: center;
+    }
+
+    .intro__icon-iphone,
+    .intro__icon-ipad {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 575px) {
     .intro {
         max-width: 320px;
-        // padding: 0 25px;
         height: 605px;
         align-items: center;
     }
@@ -192,9 +185,7 @@ export default {
     .intro__title {
         margin-top: 32px;
         font-size: 26px;
-        // font-size: 8.1vw;
         line-height: 30px;
-        // line-height: 9.35vw;
         color: #272A37;
         text-align: center;
     }
@@ -204,6 +195,7 @@ export default {
         font-size: 14px;
         line-height: 20px;
         text-align: center;
+        max-width: 230px;
     }
 
     .intro__button {
@@ -221,6 +213,7 @@ export default {
     }
 
     .intro__icon-iphone {
+        display: block;
         width: 159px;
         height: 316px;
         right: 140px;
@@ -228,8 +221,21 @@ export default {
     }
 
     .intro__icon-ipad {
+        display: block;
         width: 400px;
         height: 323px;
+        right: -140px; 
+        top: 337px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .intro__icon-iphone {
+        right: 140px;
+        top: 422px;
+    }
+
+    .intro__icon-ipad {
         right: -140px; 
         top: 337px;
     }
