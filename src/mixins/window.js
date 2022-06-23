@@ -1,7 +1,8 @@
 export default {
     data() {
         return {
-            isDesktop: true
+            width: 0,
+            isDesktop: true,
         };
     },
 
@@ -12,9 +13,9 @@ export default {
 
     methods: {
         windowUpdateWidth() {
-            let width = window.innerWidth;
+            this.width = window.innerWidth;
 
-            if (width < 1024) {
+            if (this.width < 1024) {
                 this.isDesktop = false;
             } else {
                 this.isDesktop = true;
