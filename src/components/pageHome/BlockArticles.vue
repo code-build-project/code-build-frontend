@@ -88,13 +88,13 @@ export default {
     },
 
     methods: {
-        async getPopularArticleList() {
+        async setArticleList() {
             this.articleList = await this.$service.articles.getPopulars();
         }
     },
 
     created() {
-        this.getPopularArticleList();
+        this.setArticleList();
     }
 };
 </script>
@@ -192,12 +192,21 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1219px) {
     .articles {
         flex-direction: column-reverse;
-        width: 320px;
         height: auto;
         padding: 40px 0 50px 0;
+    }
+
+    .articles__cards {
+        margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .articles {
+        width: 320px;
     }
 
     .articles__main {
@@ -208,6 +217,7 @@ export default {
         width: 100%;
         flex-direction: column;
         align-items: center;
+        margin-top: 0;
     }
 
     .articles__card {

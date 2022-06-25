@@ -91,8 +91,14 @@ export default {
         };
     },
 
-    async created() {
-        this.courseList = await this.$service.courses.getCoursesList();
+    methods: {
+        async setCourseList() {
+            this.courseList = await this.$service.courses.getCoursesList();
+        }
+    },
+
+    created() {
+        this.setCourseList();
     }
 };
 </script>
@@ -208,12 +214,21 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1219px) {
     .courses {
         flex-direction: column;
-        width: 320px;
         height: auto;
         padding: 54px 0 40px 0;
+    }
+
+    .courses__cards {
+        margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .courses {
+        width: 320px;
     }
 
     .courses__main {
@@ -224,6 +239,7 @@ export default {
         width: 100%;
         flex-direction: column;
         align-items: center;
+        margin-top: 0;
     }
 
     .courses__card {

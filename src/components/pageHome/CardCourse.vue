@@ -16,7 +16,7 @@
                     v-for="item in [1, 2, 3, 4, 5]"
                     :key="item"
                     class="card__level-circle"
-                    :style="{ background: course.level >= item ? '#EE3465' : '#3A3F4F' }"
+                    :style="getLevelColor(item)"
                 />
             </div>
 
@@ -38,7 +38,7 @@
                         class="card__icon-footer" 
                         path="img/timer.svg" 
                     />
-                    {{ course.time }}
+                    <span>{{ course.time }}</span>
                 </div>
 
                 <div class="card__footer-item">
@@ -100,6 +100,12 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+
+    methods: {
+        getLevelColor(level) {
+            return { background: this.course.level >= level ? '#EE3465' : '#3A3F4F' };
+        }
     }
 };
 </script>
@@ -148,17 +154,20 @@ export default {
     height: 6px;
     margin-left: 2px;
     border-radius: 4px;
+    margin-top: 2px;
     &:first-child {
         margin-left: 7px;
     }
 }
 
 .card__title {
-    width: 200px;
     font-family: 'EuclidCircular';
     font-size: 13px;
     line-height: 21px;
     color: $color-white;
+    word-wrap: break-word;
+    max-height: 63px;
+    overflow: hidden;
 }
 
 .card__footer {
@@ -174,6 +183,7 @@ export default {
     padding-right: 10px;
     border: 1px solid #383c4a;
     border-radius: 5px;
+    height: 28px;
 }
 
 // Иконки
@@ -198,7 +208,7 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
     .card {
         &:hover {
             transform: translateY(0);

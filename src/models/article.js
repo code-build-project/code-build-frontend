@@ -10,5 +10,6 @@ export default class Article {
     this.gradient = article.gradient;
     this.image = article.image;
     this.content = article.content;
+    this.time = article.time;
   }
 }

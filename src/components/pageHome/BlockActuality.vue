@@ -36,7 +36,7 @@
                 <v-icon
                     class="actuality__icon"
                     path="img/css3.svg"
-                    :style="getPositionStyles(379, 28, 45)"
+                    :style="getPositionStyles(379, 14, 45)"
                 />
 
                 <v-icon

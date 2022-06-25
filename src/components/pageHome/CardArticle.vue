@@ -113,17 +113,19 @@ export default {
     font-family: 'EuclidCircular';
     font-weight: 500;
     font-size: 12px;
-    line-height: 23px;
     color: #4c5169;
 }
 
 .card__title {
-    width: 240px;
     font-family: 'EuclidCircular';
     font-weight: 500;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 20px;
     color: $color-white;
+    word-wrap: break-word;
+    max-height: 62px;
+    overflow: hidden;
+    margin-top: 8px;
 }
 
 .card__footer {
@@ -156,7 +158,7 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
     .card {
         &:hover {
             transform: translateY(0);
