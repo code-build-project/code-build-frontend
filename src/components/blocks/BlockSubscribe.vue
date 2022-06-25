@@ -113,10 +113,28 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1160px) {
     .subscribe {
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+    }
+
+    .subscribe__title {
+        text-align: center;
+    }
+
+    .subscribe__subtitle {
+        text-align: center;
+        margin-top: 22px;
+    }
+
+    .subscribe__social {
+        margin-top: 35px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .subscribe {
         width: 320px;
         height: 298px;
     }
@@ -124,8 +142,6 @@ export default {
     .subscribe__title {
         font-size: 19px;
         letter-spacing: -1px;
-        margin-top: 45px;
-        text-align: center;
     }
 
     .subscribe__subtitle {
@@ -133,13 +149,10 @@ export default {
         font-size: 16px;
         line-height: 20px;
         letter-spacing: 0;
-        margin-top: 22px;
-        text-align: center;
     }
 
     .subscribe__social {
         width: 270px;
-        margin-top: 35px;
     }
 
     .subscribe__icon-social {

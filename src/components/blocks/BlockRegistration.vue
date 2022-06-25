@@ -149,10 +149,23 @@ export default {
     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1160px) {
     .reg {
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+    }
+
+    .reg__title {
+        text-align: center;
+    }
+
+    .reg__input {
+        margin-top: 33px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .reg {
         width: 320px;
         height: auto;
         padding: 40px 0;
@@ -163,13 +176,11 @@ export default {
         font-size: 16px;
         line-height: 20px;
         letter-spacing: 0;
-        text-align: center;
     }
 
     .reg__input {
         width: 254px;
         height: 55px;
-        margin-top: 33px;
     }
 
     .reg__input-label {
