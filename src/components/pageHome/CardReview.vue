@@ -8,7 +8,7 @@
                 class="card__icon-star" 
                 path="img/star.svg" 
             />
-            <span>{{ review.score }}</span>
+            <span class="card__score-text">{{ review.score }}</span>
         </div>
 
         <div class="card__text">
@@ -93,6 +93,10 @@ export default {
     padding: 0px 10px 0px 10px;
     background: #ecf2ff;
     border-radius: 5px;
+
+    &-text {
+        margin-top: 3px;
+    }
 }
 
 .card__text {

@@ -2,7 +2,10 @@
     <div class="reviews">
         <h1 class="reviews__title">Отзывы<br/> о наших курсах</h1>
 
-        <div class="reviews__list" :class="componentClasses">
+        <div 
+            class="reviews__list" 
+            :class="componentClasses"
+        >
             <div
                 v-for="(boxList, indexBox) in reviewList"
                 :key="indexBox"
@@ -13,19 +16,27 @@
                     :key="index"
                     class="reviews__list-item"
                     :review="item"
-                    @click="selectedReview = item"
+                    @click="openPopup(item)"
                 />
             </div>
         </div>
 
-        <div v-if="!isOpenList" class="reviews__footer">
-            <v-button class="reviews__button" @click="isOpenList = true"> Показать еще </v-button>
+        <div 
+            v-if="!isOpenList" 
+            class="reviews__footer"
+        >
+            <v-button 
+                class="reviews__button" 
+                @click="isOpenList = true"
+            > 
+                Показать еще 
+            </v-button>
         </div>
 
         <popup-review
             v-if="selectedReview.id"
             :review="selectedReview"
-            @close="selectedReview = {}"
+            @close="closePopup"
             @clickLeft="setReview('decrement')"
             @clickRight="setReview('increment')"
         />
@@ -105,6 +116,16 @@ export default {
             if (index < 0) index = lastIndex;
 
             this.selectedReview = this.allReviews[index];
+        },
+
+        openPopup(review) {
+            this.selectedReview = review;
+            document.body.style.overflow = "hidden";
+        },
+
+        closePopup() {
+            this.selectedReview = {};
+            document.body.style.overflow = "";
         }
     }
 };
@@ -132,9 +153,10 @@ export default {
 .reviews__list {
     @extend .flex_column;
     height: 1060px;
+    max-height: 1060px;
     margin-top: 20px;
     overflow: hidden;
-    transition: all 0.7s linear;
+    transition: all 2.5s ease-in;
 }
 
 .reviews__box-list {
@@ -179,23 +201,17 @@ export default {
 // Модификаторы
 .reviews__list_open {
     height: auto;
+    max-height: 3740px;
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1160px) {
     .reviews {
         width: 100%;
         padding: 42px 0px 50px 0px;
     }
 
     .reviews__title {
-        font-size: 22px;
-        line-height: 26px;
-        letter-spacing: -1px;
         text-align: center;
-
-        br {
-            display: block;
-        }
     }
 
     .reviews__box-list {
@@ -212,6 +228,18 @@ export default {
 
         &:nth-child(3n) {
             height: 335px;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .reviews__title {
+        font-size: 22px;
+        line-height: 26px;
+        letter-spacing: -1px;
+
+        br {
+            display: block;
         }
     }
 }
