@@ -1,31 +1,36 @@
 <template>
-  <div class="courses__wrap">
-    <div class="courses">
-      <h1 class="courses__title">Все видеокурсы</h1>
+    <div class="courses__wrap">
+        <div class="courses">
+            <h1 class="courses__title">Все видеокурсы</h1>
 
-      <v-filter-group
-        v-model="filterId"
-        class="courses__filters"
-        :array="filterList"
-        @change="getCourses()"
-      />
+            <v-filter-group
+                v-model="filterId"
+                class="courses__filters"
+                :array="filterList"
+                @change="setCourses()"
+            />
 
-      <card-preloader v-if="pageLoading" class="courses__preloader" />
+            <card-preloader 
+                v-if="isPageLoading" 
+                class="courses__preloader" 
+            />
 
-      <div v-else class="courses__list">
-        <div v-for="(item, index) in courseList" :key="index">
-          <card-course
-            class="mb-30px"
-            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :course="item"
-            @click="$router.push(`/course?id=${item.id}`)"
-          />
+            <div 
+                v-else 
+                class="courses__list"
+            >
+                <card-course
+                    v-for="(item, index) in courseList" 
+                    :key="index"
+                    class="courses__card"
+                    :course="item"
+                    @click="$router.push(`/course?id=${item.id}`)"
+                />
+            </div>
         </div>
-      </div>
-    </div>
 
-    <block-registration class="courses__reg" />
-  </div>
+        <block-registration class="courses__reg" />
+    </div>
 </template>
 
 <script>
@@ -35,69 +40,133 @@ import VFilterGroup from '@/components/common/VFilterGroup';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
 
 export default {
-  name: 'Courses',
+    name: 'Courses',
 
-  components: {
-    CardCourse,
-    CardPreloader,
-    VFilterGroup,
-    BlockRegistration
-  },
+    components: {
+        CardCourse,
+        CardPreloader,
+        VFilterGroup,
+        BlockRegistration
+    },
 
-  data() {
-    return {
-      filterId: '',
+    data() {
+        return {
+            filterId: '',
+            filterList: [],
+            courseList: [],
+            isPageLoading: false
+        };
+    },
 
-      filterList: [],
-      courseList: [],
+    methods: {
+        async setCourses() {
+            this.isPageLoading = true;
+            this.courseList = await this.$service.courses.getCoursesList({ tag: this.filterId });
+            this.isPageLoading = false;
+        },
 
-      pageLoading: false
-    };
-  },
+        async setFilters() {
+            this.filterList = await this.$service.courses.getTags();
+        }
+    },
 
-  methods: {
-    async getCourses() {
-      this.pageLoading = true;
-      this.courseList = await this.$service.courses.getCoursesList({ tag: this.filterId });
-      this.pageLoading = false;
+    created() {
+        this.setFilters();
+        this.setCourses();
     }
-  },
-  
-  async created() {
-    this.filterList = await this.$service.courses.getTags();
-    this.getCourses();
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .courses__wrap {
-  background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 .courses {
-  @extend .container;
+    @extend .container;
+}
 
-  &__title {
+.courses__title {
     font-family: 'ObjectSans';
     font-size: 40px;
     letter-spacing: -1px;
     color: $color-black;
-  }
+}
 
-  &__filters {
-    width: 1000px;
+.courses__filters {
     margin-top: 30px;
-  }
+}
 
-  &__preloader {
+.courses__preloader {
     margin-top: 60px;
-  }
+}
 
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
+.courses__list {
+    @extend .flex_wrap;
     margin-top: 60px;
-  }
+}
+
+.courses__card {
+    margin-bottom: 30px;
+
+    &:nth-child(3n+2) {
+        margin-left: 29px;
+        margin-right: 29px;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .courses__title {
+        text-align: center;
+    }
+
+    .courses__filters {
+        display: flex;
+        justify-content: center;
+    }
+
+    .courses__list {
+        justify-content: center;
+    }
+
+    .courses__card {
+        &:nth-child(3n+2) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        &:nth-child(2n+2) {
+            margin-left: 29px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .courses__card {
+        &:nth-child(2n+2) {
+            margin-left: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .courses__title {
+        font-size: 32px;
+    }
+
+    .courses__filters {
+        margin-top: 20px;
+    }
+
+    .courses__preloader {
+        margin-top: 30px;
+    }
+
+   .courses__list {
+        margin-top: 30px;
+    }
+
+    .courses__card {
+        margin-bottom: 20px;
+    }
 }
 </style>
