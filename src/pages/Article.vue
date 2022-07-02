@@ -1,103 +1,149 @@
 <template>
-  <div class="article">
-    <article-cover v-if="article.id" class="article__cover" :article="article" />
+    <div class="article">
+        <article-cover 
+            v-if="article.id" 
+            class="article__cover" 
+            :article="article" 
+        />
 
-    <article class="article__content">
-      <div v-for="(item, index) in article.content" :key="index" class="article__content-item">
-        <h2 class="article__content-title">{{ item.title }}</h2>
-        <p class="article__content-text">{{ item.text }}</p>
-      </div>
-    </article>
+        <article class="article__content">
+            <div
+                v-for="(item, index) in article.content"
+                :key="index"
+                class="article__content-item"
+            >
+                <h2 class="article__content-title">{{ item.title }}</h2>
+                <p class="article__content-text">{{ item.text }}</p>
+            </div>
+        </article>
 
-    <popular-articles class="article__popular" :articleList="popularArticleList" />
+        <block-popular 
+            class="article__popular" 
+            :articleList="popularArticleList" 
+        />
 
-    <block-subscribe class="article__subscribe" />
-  </div>
+        <block-subscribe class="article__subscribe" />
+    </div>
 </template>
 
 <script>
 import ArticleCover from '@/components/pageArticle/Cover';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
-import PopularArticles from '@/components/pageArticle/PopularArticles';
+import BlockPopular from '@/components/blocks/BlockPopular';
 
 export default {
-  name: 'Article',
-  
-  components: {
-    ArticleCover,
-    BlockSubscribe,
-    PopularArticles
-  },
+    name: 'Article',
 
-  data() {
-    return {
-      article: {},
-      popularArticleList: []
-    };
-  },
-
-  methods: {
-    async setArticle() {
-      this.article = await this.$service.articles.getArticle({ id: this.$route.query.id });
+    components: {
+        ArticleCover,
+        BlockSubscribe,
+        BlockPopular
     },
-    async setPopularArticleList() {
-      this.popularArticleList = await this.$service.articles.getPopulars({ id: this.$route.query.id });
-    }
-  },
 
-  watch: {
-    '$route.query.id': {
-      handler() {
+    data() {
+        return {
+            article: {},
+            popularArticleList: []
+        };
+    },
+
+    methods: {
+        async setArticle() {
+            let payload = { id: this.$route.query.id };
+            this.article = await this.$service.articles.getArticle(payload);
+        },
+
+        async setPopularArticleList() {
+            let payload = { id: this.$route.query.id };
+            this.popularArticleList = await this.$service.articles.getPopulars(payload);
+        }
+    },
+
+    watch: {
+        '$route.query.id': {
+            handler() {
+                this.setArticle();
+                this.setPopularArticleList();
+            }
+        }
+    },
+
+    created() {
         this.setArticle();
         this.setPopularArticleList();
-      }
     }
-  },
-
-  created() {
-    this.setArticle();
-    this.setPopularArticleList();
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .article {
-  background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 .article__content {
-  width: 1160px;
-  min-height: 710px;
-  margin-top: 65px;
+    width: 100%;
+    max-width: 1160px;
+    min-height: 710px;
+    padding: 65px 0 70px 0;
+    color: $color-black;
+    padding-bottom: 70px;
+    border-bottom: 1px solid $color-silver;
 
-  font-family: 'Circe';
-  color: $color-black;
+    &-item {
+        margin-bottom: 50px;
+    }
 
-  padding-bottom: 70px;
-  border-bottom: 1px solid $color-silver;
+    &-title {
+        font-weight: bold;
+        font-size: 30px;
+    }
 
-  &-item {
-    margin-bottom: 50px;
-  }
-
-  &-title {
-    font-weight: bold;
-    font-size: 30px;
-  }
-
-  &-text {
-    margin-top: 15px;
-    font-size: 20px;
-    line-height: 30px;
-  }
+    &-text {
+        margin-top: 15px;
+        font-size: 20px;
+        line-height: 30px;
+    }
 }
 
 .article__popular {
-  margin-top: 80px;
+    margin-top: 80px;
 }
 
 .article__subscribe {
-  margin-top: 110px;
+    margin-top: 110px;
+}
+
+@media screen and (max-width: 1160px) {
+    .article__content {
+        padding: 20px;
+        border-bottom: none;
+    }
+
+    .article__popular {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .article__content {
+        &-item {
+            margin-bottom: 30px;
+        }
+
+        &-title {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        &-text {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 18px;
+        }
+    }
+
+    .article__subscribe {
+        margin-top: 20px;
+    }
 }
 </style>

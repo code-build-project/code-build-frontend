@@ -1,221 +1,261 @@
 <template>
-  <div class="cover__wrap" :style="{ background: article.gradient }">
-    <div class="cover">
-      <div class="cover__header">
-        <div class="cover__route">
-          <div class="cover__route-item">
-            <span class="cover__route-link" @click="$router.push('/')">Code build</span>
-            <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
-          </div>
+    <div 
+        class="cover__wrap" 
+        :style="{ background: article.gradient }"
+    >
+        <div class="cover">
+            <div class="cover__header">
+                <v-bread-crumbs
+                    class="cover__breadcrumbs"
+                    :links="breadcrumbs" 
+                />
 
-          <div class="cover__route-item ml-20px">
-            <span class="cover__route-link" @click="$router.push('/articles')">Статьи</span>
-            <v-icon class="cover__icon-arrow" path="img/arrow.svg" />
-          </div>
+                <v-like
+                    v-if="isAuth"
+                    v-model="article.isLike"
+                    class="cover__icon-heart"
+                    :contentId="article.id"
+                    fieldName="articles"
+                />
+            </div>
 
-          <div class="cover__route-item ml-20px">
-            {{ article.title }}
-          </div>
+            <h1 class="cover__title">{{ article.title }}</h1>
+
+            <h2 class="cover__subtitle">{{ article.subtitle }}</h2>
+
+            <div class="cover__attributes">
+                <div class="cover__attributes-item">
+                    <v-icon 
+                        class="cover__icon-attribute" 
+                        path="img/timer.svg" 
+                    />
+                    {{ article.date }}
+                </div>
+
+                <div class="cover__attributes-item">
+                    <v-icon 
+                        class="cover__icon-attribute" 
+                        path="img/openEye.svg" 
+                    />
+                    {{ article.views }}
+                </div>
+
+                <div
+                    v-for="(tag, index) in tagList"
+                    :key="index"
+                    class="cover__attributes-item"
+                >
+                    {{ '#' + tag.name }}
+                </div>
+            </div>
         </div>
-
-        <v-like
-          v-if="isAuth"
-          v-model="article.isLike"
-          class="cover__icon-heart"
-          :contentId="article.id"
-          fieldName="articles"
-        />
-      </div>
-
-      <h1 class="cover__title">
-        {{ article.title }}
-      </h1>
-
-      <h2 class="cover__subtitle">
-        {{ article.subtitle }}
-      </h2>
-
-      <div class="cover__attributes">
-        <div class="cover__attributes-item">
-          <v-icon class="cover__icon-attribute" path="img/timer.svg" />
-          {{ article.date }}
-        </div>
-
-        <div class="cover__attributes-item ml-10px">
-          <v-icon class="cover__icon-attribute" path="img/openEye.svg" />
-          {{ article.views }}
-        </div>
-
-        <div
-          v-for="(tag, index) in tagList"
-          :key="index"
-          class="cover__attributes-item ml-10px"
-        >
-          {{ '#' + tag.name }}
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon';
 import VLike from '@/components/common/VLike';
+import VBreadCrumbs from '@/components/common/VBreadCrumbs';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'ArticleCover',
+    name: 'ArticleCover',
 
-  components: {
-    VIcon,
-    VLike
-  },
+    components: {
+        VIcon,
+        VLike,
+        VBreadCrumbs
+    },
 
-  props: {
-    // Информация о статье
-    article: {
-      type: Object,
-      default: () => {
+    props: {
+        article: {
+            type: Object,
+            default: () => {
+                return {
+                    id: '',
+                    title: 'Название статьи',
+                    subtitle: 'Подзаголовок статьи',
+                    date: '12 апреля 2021',
+                    time: '15 м.',
+                    views: '300',
+                    likes: [],
+                    image: '',
+                    isLike: false,
+                    tags: []
+                };
+            }
+        }
+    },
+
+    computed: {
+        ...mapGetters(['isAuth']),
+    },
+
+    data() {
         return {
-          // Id статьи
-          id: '',
-          // Название статьи
-          title: 'Название статьи',
-          // Подзаголовок статьи
-          subtitle: 'Подзаголовок статьи',
-          // Дата публикации
-          date: '12 апреля 2021',
-          // Среднее время прочтения
-          time: '15 м.',
-          // Количество просмотров статьи
-          views: '300',
-          // Список id юзеров, лайкнувших статью
-          likes: [],
-          // Постер
-          image: '',
-          // Флаг лайка
-          isLike: false,
-          // Список id тегов
-          tags: [],
+            tagList: [],
+            breadcrumbs: [
+                { title: 'Code build', path: '/' },
+                { title: 'Статьи', path: '/articles' },
+                { title: this.article.title },
+            ]
         };
-      }
+    },
+
+    methods: {
+        async setTags() {
+            const response = await this.$service.articles.getTags();
+
+            this.tagList = response.filter(item => {
+                return this.article.tags.includes(item.id);
+            });
+        }
+    },
+
+    created() {
+        this.setTags();
     }
-  },
-
-  data() {
-    return {
-      tagList: [],
-      isAuth: this.$store.getters.isAuth,
-    };
-  },
-
-  async created() {
-    const response = await this.$service.articles.getTags();
-
-    this.tagList = response.filter(item => {
-      return this.article.tags.includes(item.id);
-    })
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .cover__wrap {
-  @extend .flex_row-center-center;
-  width: 100%;
-  background: $color-blue;
+    @extend .flex_row-center-center;
+    width: 100%;
+    background: $color-blue;
 }
 
 .cover {
-  @extend .flex_column;
-  width: 1160px;
-  height: 600px;
-  padding: 85px 0px;
+    position: relative;
+    @extend .flex_column;
+    width: 100%;
+    max-width: 1160px;
+    min-height: 532px;
+    padding: 85px 0px;
+}
 
-  &__header {
+.cover__header {
     @extend .flex_row-center-between;
-  }
+}
 
-  &__route {
-    @extend .flex_row;
-
-    font-family: 'Circe';
-    font-size: 16px;
-    line-height: 27px;
-    color: $color-white;
-  }
-
-  &__route-item {
-    @extend .flex_row-center-center;
-  }
-
-  &__title {
-    width: 1030px;
+.cover__title {
+    width: 100%;
+    max-width: 900px;
     margin-top: 35px;
-
     font-family: 'ObjectSans';
     font-size: 62px;
     line-height: 69px;
     letter-spacing: -1px;
     color: $color-white;
-  }
+}
 
-  &__subtitle {
+.cover__subtitle {
     flex: 1;
     margin-top: 20px;
-
-    font-family: 'Circe';
     font-size: 20px;
     line-height: 30px;
     color: $color-white;
-  }
+}
 
-  &__attributes {
+.cover__attributes {
     @extend .flex_row;
     margin-top: 30px;
-  }
+}
 
-  &__attributes-item {
+.cover__attributes-item {
     @extend .flex_row-center-between;
-    font-family: 'Circe';
     font-size: 18px;
     color: $color-white;
-
     padding: 17px 25px 17px 25px;
-
     border: 1px solid $color-white;
     border-radius: 9px;
-  }
-}
-
-// icons
-.cover__icon {
-  &-arrow {
-    width: 20px;
-    height: 20px;
-    margin-left: 20px;
-
-    stroke: $color-white;
-  }
-
-  &-heart {
-    width: 18px;
-    height: 16px;
-  }
-
-  &-attribute {
-    width: 22px;
-    height: 22px;
     margin-right: 10px;
-
-    fill: $color-white;
-  }
+    margin-bottom: 10px;
 }
 
-// hovers
-:hover.cover {
-  &__route-link {
-    cursor: pointer;
-    color: $color-navy;
-  }
+// Иконки
+.cover__icon {
+    &-heart {
+        width: 18px;
+        height: 16px;
+    }
+
+    &-attribute {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+        fill: $color-white;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .cover {
+        padding: 85px 20px;
+    }
+
+    .cover__attributes {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .cover {
+        min-height: auto;
+        padding: 30px 20px 10px 20px;
+    }
+
+    .cover__breadcrumbs {
+        display: none;
+    }
+
+    .cover__title {
+        margin-top: 0;
+        font-size: 34px;
+        line-height: 40px;
+    }
+
+    .cover__subtitle {
+        margin-top: 17px;
+        font-size: 15px;
+        line-height: 21px;
+    }
+
+    .cover__attributes {
+        max-width: 85%;
+    }
+
+    .cover__attributes-item {
+        font-size: 15px;
+        padding: 11px 11px 11px 11px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        margin-right: 8px;
+    }
+
+    .cover__icon-attribute {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+    }
+
+    .cover__icon-heart {
+        position: absolute;
+        width: 26px;
+        height: 23px;
+        right: 24px;
+        bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .cover__title {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .cover__subtitle {
+        font-size: 13px;
+        line-height: 18px;
+    }
 }
 </style>

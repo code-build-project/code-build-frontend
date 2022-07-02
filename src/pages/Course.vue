@@ -1,33 +1,37 @@
 <template>
-  <div class="course">
-    <course-cover v-if="course.id" class="course__cover" :course="course" />
-
-    <div class="course__lessons">
-      <div v-for="(item, index) in lessonList" :key="index">
-        <card-mini-lesson
-          class="mb-30px"
-          :class="[
-            { 'ml-22px': (index - 1) % 4 === 0 },
-            { 'ml-22px mr-22px': (index - 1) % 2 === 0 }
-          ]"
-          :lesson="item"
-          @click="selectedLesson = item"
+    <div class="course">
+        <course-cover 
+            v-if="course.id" 
+            class="course__cover" 
+            :course="course" 
         />
-      </div>
+
+        <div class="course__lessons">
+            <card-mini-lesson
+                v-for="(item, index) in lessonList" 
+                :key="index"
+                class="course__card"
+                :lesson="item"
+                @click="selectedLesson = item"
+            />
+        </div>
+
+        <block-popular 
+            v-if="course.id" 
+            class="course__popular" 
+            :courseList="courseList" 
+        />
+
+        <block-subscribe class="course__subscribe" />
+
+        <popup-player
+            v-if="selectedLesson.id"
+            :lesson="selectedLesson"
+            @close="selectedLesson = {}"
+            @clickLeft="setLesson('decrement')"
+            @clickRight="setLesson('increment')"
+        />
     </div>
-
-    <popular-courses v-if="course.id" class="course__popular" :courseList="courseList" />
-
-    <block-subscribe class="course__subscribe" />
-
-    <popup-player
-      v-if="selectedLesson.id"
-      :lesson="selectedLesson"
-      @close="selectedLesson = {}"
-      @clickLeft="setLesson('decrement')"
-      @clickRight="setLesson('increment')"
-    />
-  </div>
 </template>
 
 <script>
@@ -35,87 +39,158 @@ import PopupPlayer from '@/components/pageCourse/PopupPlayer';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import CardMiniLesson from '@/components/cards/CardMiniLesson';
 import CourseCover from '@/components/pageCourse/Cover';
-import PopularCourses from '@/components/pageCourse/PopularCourses';
+import BlockPopular from '@/components/blocks/BlockPopular';
 
 export default {
-  name: 'Course',
-  components: {
-    PopupPlayer,
-    BlockSubscribe,
-    CardMiniLesson,
-    CourseCover,
-    PopularCourses
-  },
-  data() {
-    return {
-      lessonList: [],
-      courseList: [],
-      course: {},
-      selectedLesson: {}
-    };
-  },
-  watch: {
-    '$route.query.id': {
-      handler() {
-        this.getLessons();
-        this.getCourse();
-        this.getPopularCourseList();
-      }
-    }
-  },
-  created() {
-    this.getLessons();
-    this.getCourse();
-    this.getPopularCourseList();
-  },
-  methods: {
-    async getLessons() {
-      this.lessonList = await this.$service.lessons.getLessonList({ courseId: this.$route.query.id });
-    },
-    async getCourse() {
-      this.course = await this.$service.courses.getCourse({ id: this.$route.query.id });
-    },
-    async getPopularCourseList() {
-      this.courseList = await this.$service.courses.getPopulars({ id: this.$route.query.id });
-    },
-    setLesson(operator) {
-      let index = this.lessonList.indexOf(this.selectedLesson);
-      const lastIndex = this.lessonList.length - 1;
+    name: 'Course',
 
-      if (operator === 'increment') index++;
-      if (operator === 'decrement') index--;
+    components: {
+        PopupPlayer,
+        BlockSubscribe,
+        CardMiniLesson,
+        CourseCover,
+        BlockPopular
+    },
 
-      if (index > lastIndex) index = 0;
-      if (index < 0) index = lastIndex;
+    data() {
+        return {
+            lessonList: [],
+            courseList: [],
+            course: {},
+            selectedLesson: {}
+        };
+    },
 
-      this.selectedLesson = this.lessonList[index];
-    }
-  }
+    methods: {
+        async setLessons() {
+            let payload = { courseId: this.$route.query.id };
+            this.lessonList = await this.$service.lessons.getLessonList(payload);
+        },
+
+        async setCourse() {
+            let payload = { id: this.$route.query.id };
+            this.course = await this.$service.courses.getCourse(payload);
+        },
+
+        async setPopularCourseList() {
+            let payload = { id: this.$route.query.id };
+            this.courseList = await this.$service.courses.getPopulars(payload);
+        },
+
+        setLesson(operator) {
+            let index = this.lessonList.indexOf(this.selectedLesson);
+            const lastIndex = this.lessonList.length - 1;
+
+            if (operator === 'increment') index++;
+            if (operator === 'decrement') index--;
+
+            if (index > lastIndex) index = 0;
+            if (index < 0) index = lastIndex;
+
+            this.selectedLesson = this.lessonList[index];
+        }
+    },
+
+    watch: {
+        '$route.query.id': {
+            handler() {
+                this.setLessons();
+                this.setCourse();
+                this.setPopularCourseList();
+            }
+        }
+    },
+
+    created() {
+        this.setLessons();
+        this.setCourse();
+        this.setPopularCourseList();
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .course {
-  background: #f4f4f4;
+    background: #f4f4f4;
+}
 
-  &__lessons {
-    width: 1160px;
+.course__lessons {
+    @extend .flex_wrap;
+    width: 100%;
+    max-width: 1160px;
     min-height: 710px;
     margin-top: 87px;
-
-    display: flex;
-    flex-wrap: wrap;
-
     padding-bottom: 70px;
     border-bottom: 1px solid $color-silver;
-  }
+}
 
-  &__popular {
+.course__card {
+    margin-bottom: 30px;
+
+    &:nth-child(4n+2) {
+        margin-left: 29px;
+        margin-right: 29px;
+    }
+    &:nth-child(4n+3) {
+        margin-right: 29px;
+    }
+}
+
+.course__popular {
     margin-top: 80px;
-  }
+}
 
-  &__subscribe {
+.course__subscribe {
     margin-top: 110px;
-  }
+}
+
+@media screen and (max-width: 1160px) {
+    .course__lessons {
+        justify-content: center;
+        padding: 0 20px;
+        border-bottom: none;
+    }
+
+    .course__card {
+        &:nth-child(4n+2) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        &:nth-child(4n+3) {
+            margin-right: 0;
+        }
+        &:nth-child(3n+2) {
+            margin-left: 29px;
+            margin-right: 29px;
+        }
+    }
+
+    .course__popular {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 867px) {
+    .course__card {
+        &:nth-child(3n+2) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        &:nth-child(2n+2) {
+            margin-left: 29px;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .course__card {
+        &:nth-child(2n+2) {
+            margin-left: 0;
+        }
+    }
+
+    .course__subscribe {
+        margin-top: 0;
+    }
 }
 </style>

@@ -1,171 +1,174 @@
 <template>
-  <div class="card" @click="$emit('click')">
-    <img class="card__poster" alt="" :src="lesson.image" />
+    <div 
+        class="card" 
+        @click="$emit('click')"
+    >
+        <img 
+            class="card__poster" 
+            alt="Постер" 
+            :src="lesson.image" 
+        />
 
-    <div class="card__main">
-      <div class="card__lesson-number">Урок №{{ lesson.number }}</div>
+        <div class="card__main">
+            <div class="card__lesson-number">Урок №{{ lesson.number }}</div>
 
-      <h1 class="card__title">
-        {{ lesson.title }}
-      </h1>
+            <h1 class="card__title">{{ lesson.title }}</h1>
 
-      <div class="card__attributes">
-        <div class="card__attributes-item" style="width: 126px">
-          <v-icon class="card__icon-attributes" path="img/timer.svg" />
-          {{ lesson.time }}
+            <div class="card__attributes">
+                <div class="card__attributes-item">
+                    <v-icon 
+                        class="card__icon-attributes" 
+                        path="img/timer.svg" 
+                    />
+                    {{ lesson.time }}
+                </div>
+
+                <div class="card__attributes-item">
+                    <v-icon 
+                        class="card__icon-attributes" 
+                        path="img/openEye.svg" 
+                    />
+                    {{ lesson.views }}
+                </div>
+            </div>
         </div>
 
-        <div class="card__attributes-item" style="width: 96px">
-          <v-icon class="card__icon-attributes" path="img/openEye.svg" />
-          {{ lesson.views }}
-        </div>
-      </div>
+        <v-like
+            v-if="isAuth"
+            v-model="lesson.isLike"
+            class="card__icon-heart"
+            :contentId="lesson.id"
+            fieldName="lessons"
+        />
     </div>
-
-    <v-like
-      v-if="isAuth"
-      v-model="lesson.isLike"
-      class="card__icon-heart"
-      :contentId="lesson.id"
-      fieldName="lessons"
-    />
-  </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon';
 import VLike from '@/components/common/VLike';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'CardMiniLesson',
+    name: 'CardMiniLesson',
 
-  components: {
-    VIcon,
-    VLike
-  },
+    components: {
+        VIcon,
+        VLike
+    },
 
-  props: {
-    // Информация о уроке
-    lesson: {
-      type: Object,
-      default: () => {
-        return {
-          // Id урока
-          id: '',
-          // Название урока
-          title: 'Название урока',
-          // Номер урока
-          number: '1',
-          // Длительность по времени
-          time: '15 м.',
-          // Количество просмотров  видео
-          views: '300',
-          // Список id юзеров, лайкнувших урок
-          likes: [],
-          // Название курса(коллекции в бд)
-          courseId: '',
-          // Ссылка на изображение постера
-          image: '',
-          // Флаг лайка
-          isLike: false
-        };
-      }
+    props: {
+        // Информация о уроке
+        lesson: {
+            type: Object,
+            default: () => {
+                return {
+                    // Id урока
+                    id: '',
+                    // Название урока
+                    title: 'Название урока',
+                    // Номер урока
+                    number: '1',
+                    // Длительность по времени
+                    time: '15 м.',
+                    // Количество просмотров  видео
+                    views: '300',
+                    // Список id юзеров, лайкнувших урок
+                    likes: [],
+                    // Название курса(коллекции в бд)
+                    courseId: '',
+                    // Ссылка на изображение постера
+                    image: '',
+                    // Флаг лайка
+                    isLike: false
+                };
+            }
+        }
+    },
+
+    computed: {
+        ...mapGetters(['isAuth'])
     }
-  },
-
-  data() {
-    return {
-      isAuth: this.$store.getters
-    };
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
-  position: relative;
-  width: 268px;
-  height: 338px;
-  transition: all 0.4s ease;
+    position: relative;
+    width: 268px;
+    height: 338px;
+    transition: all 0.4s ease;
 
-  &__poster {
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.03);
+    }
+}
+
+.card__poster {
     width: 268px;
     height: 181px;
     margin-bottom: -4px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
-  }
+}
 
-  &__main {
+.card__main {
     @extend .flex_column-between-center;
     align-items: stretch;
-
     width: 268px;
     height: 157px;
-
     padding: 17px;
-
     background: $color-white;
     border-radius: 0px 0px 8px 8px;
-  }
+}
 
-  &__lesson-number {
+.card__lesson-number {
     cursor: pointer;
-
-    font-family: 'Circe';
     font-size: 15px;
     color: $color-blue;
-  }
+}
 
-  &__title {
+.card__title {
     width: 200px;
-
-    font-family: 'Circe';
     font-size: 20px;
     line-height: 21px;
     color: #3a3f4f;
-  }
+}
 
-  &__attributes {
-    @extend .flex_row-center-between;
-
-    font-family: 'Circe';
+.card__attributes {
+    @extend .flex_row-center-start;
     font-size: 14px;
     color: #3a3f4f;
-  }
+}
 
-  &__attributes-item {
+.card__attributes-item {
     @extend .flex_row-center-center;
+    width: 126px;
     height: 40px;
-
     border: 1px solid #ededed;
     border-radius: 7px;
-  }
+
+    &:last-child {
+        width: 96px;
+        margin-left: 6px;
+    }
 }
 
-// icons
+// Иконки
 .card__icon {
-  &-attributes {
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
+    &-attributes {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        fill: #3a3f4f;
+    }
 
-    fill: #3a3f4f;
-  }
-
-  &-heart {
-    position: absolute;
-    width: 18px;
-    height: 16px;
-
-    top: 19px;
-    right: 19px;
-  }
-}
-
-// hovers
-:hover.card {
-  cursor: pointer;
-  transform: scale(1.03);
+    &-heart {
+        position: absolute;
+        width: 18px;
+        height: 16px;
+        top: 19px;
+        right: 19px;
+    }
 }
 </style>
