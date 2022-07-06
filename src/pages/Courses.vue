@@ -161,7 +161,7 @@ export default {
         margin-top: 30px;
     }
 
-   .courses__list {
+    .courses__list {
         margin-top: 30px;
     }
 

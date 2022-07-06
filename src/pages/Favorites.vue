@@ -1,52 +1,51 @@
 <template>
-  <div class="favorites__wrap">
-    <div class="favorites">
-      <!-- Фильтры -->
-      <div class="favorites__header">
-        <h1 class="favorites__title">Избранное</h1>
+    <div class="favorites__wrap">
+        <div class="favorites">
+            <div class="favorites__header">
+                <h1 class="favorites__title">Избранное</h1>
 
-        <v-filter-group
-          v-model="filterId"
-          class="favorites__filters"
-          :array="filterList"
-          @change="setFavoriteList"
-        />
-      </div>
-      <!-- Фильтры -->
+                <v-filter-group
+                    v-model="filterId"
+                    class="favorites__filters"
+                    :array="filterList"
+                    @change="setFavoriteList"
+                />
+            </div>
 
-      <card-preloader v-if="pageLoading" class="favorites__preloader" />
+            <card-preloader 
+                v-if="pageLoading" 
+                class="favorites__preloader" 
+            />
 
-      <div class="favorites__list">
-        <div v-for="(item, index) in favoriteList" :key="index">
-          <card-course
-            v-if="filterId === 1"
-            class="mb-30px"
-            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :course="item"
-            @click="$router.push(`/course?id=${item.id}`)"
-          />
+            <div class="favorites__list">
+                <div 
+                    v-for="(item, index) in favoriteList" 
+                    :key="index"
+                    class="favorites__card"
+                >
+                    <card-course
+                        v-if="filterId === 1"
+                        :course="item"
+                        @click="$router.push(`/course?id=${item.id}`)"
+                    />
 
-          <card-lesson
-            v-if="filterId === 2"
-            class="mb-30px"
-            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :lesson="item"
-            @click="$router.push(`/course?id=${item.courseId}`)"
-          />
+                    <card-lesson
+                        v-if="filterId === 2"
+                        :lesson="item"
+                        @click="$router.push(`/course?id=${item.courseId}`)"
+                    />
 
-          <card-article
-            v-if="filterId === 3"
-            class="mb-30px"
-            :class="{ 'ml-29px mr-29px': (index - 1) % 3 === 0 }"
-            :article="item"
-            @click="$router.push(`/article?id=${item.id}`)"
-          />
+                    <card-article
+                        v-if="filterId === 3"
+                        :article="item"
+                        @click="$router.push(`/article?id=${item.id}`)"
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <block-subscribe class="favorites__subscribe" />
-  </div>
+        <block-subscribe class="favorites__subscribe" />
+    </div>
 </template>
 
 <script>
@@ -58,101 +57,172 @@ import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import VFilterGroup from '@/components/common/VFilterGroup';
 
 export default {
-  name: 'Favorites',
-  components: {
-    CardCourse,
-    CardLesson,
-    CardArticle,
-    CardPreloader,
-    BlockSubscribe,
-    VFilterGroup
-  },
-  data() {
-    return {
-      filterId: 1,
+    name: 'Favorites',
 
-      filterList: [
-        {
-          id: 1,
-          name: 'Курсы',
-        },
-        {
-          id: 2,
-          name: 'Уроки',
-        },
-        {
-          id: 3,
-          name: 'Статьи',
-        }
-      ],
-
-      favoriteList: [],
-
-      pageLoading: true
-    };
-  },
-
-  methods: {
-    async setFavoriteList(filterId) {
-      this.pageLoading = true;
-      this.filterId = filterId;
-    
-      switch (this.filterId) {
-        case 1:
-          this.favoriteList = await this.$service.courses.getFavorites();
-          break;
-        case 2:
-          this.favoriteList = await this.$service.lessons.getFavorites();
-          break;
-        case 3:
-          this.favoriteList = await this.$service.articles.getFavorites();
-          break;
-        default:
-          this.favoriteList = await this.$service.courses.getFavorites();
-      }
-
-      this.pageLoading = false;
+    components: {
+        CardCourse,
+        CardLesson,
+        CardArticle,
+        CardPreloader,
+        BlockSubscribe,
+        VFilterGroup
     },
-  },
 
-  created() {
-    this.setFavoriteList(this.filterId);
-  },
+    data() {
+        return {
+            filterId: 1,
+
+            filterList: [
+                {
+                    id: 1,
+                    name: 'Курсы'
+                },
+                {
+                    id: 2,
+                    name: 'Уроки'
+                },
+                {
+                    id: 3,
+                    name: 'Статьи'
+                }
+            ],
+
+            favoriteList: [],
+
+            pageLoading: true
+        };
+    },
+
+    methods: {
+        async setFavoriteList(filterId) {
+            this.pageLoading = true;
+            this.filterId = filterId;
+
+            switch (this.filterId) {
+                case 1:
+                    this.favoriteList = await this.$service.courses.getFavorites();
+                    break;
+                case 2:
+                    this.favoriteList = await this.$service.lessons.getFavorites();
+                    break;
+                case 3:
+                    this.favoriteList = await this.$service.articles.getFavorites();
+                    break;
+                default:
+                    this.favoriteList = await this.$service.courses.getFavorites();
+            }
+
+            this.pageLoading = false;
+        }
+    },
+
+    created() {
+        this.setFavoriteList(this.filterId);
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .favorites__wrap {
-  background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 .favorites {
-  @extend .container;
+    @extend .container;
+}
 
-  &__header {
+.favorites__header {
     @extend .flex_row;
-  }
+}
 
-  &__title {
+.favorites__title {
     font-family: 'ObjectSans';
     font-size: 40px;
     letter-spacing: -1px;
     color: $color-black;
-  }
+}
 
-  &__filters {
-    width: 380px;
+.favorites__filters {
     margin-left: 50px;
-  }
+}
 
-  &__preloader {
+.favorites__preloader {
     margin-top: 60px;
-  }
+}
 
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
+.favorites__list {
+    @extend .flex_wrap;
     margin-top: 60px;
-  }
+}
+
+.favorites__card {
+    margin-bottom: 30px;
+
+    &:nth-child(3n+2) {
+        margin-left: 29px;
+        margin-right: 29px;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .favorites__title {
+        text-align: center;
+    }
+
+    .favorites__header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .favorites__filters {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+    .favorites__list {
+        justify-content: center;
+    }
+
+    .favorites__card {
+        &:nth-child(3n+2) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        &:nth-child(2n+2) {
+            margin-left: 29px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .favorites__card {
+        &:nth-child(2n+2) {
+            margin-left: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .favorites__title {
+        font-size: 32px;
+    }
+
+    .favorites__filters {
+        margin-top: 20px;
+    }
+
+    .favorites__preloader {
+        margin-top: 30px;
+    }
+
+    .favorites__list {
+        margin-top: 30px;
+    }
+
+    .favorites__card {
+        margin-bottom: 20px;
+    }
 }
 </style>
