@@ -1,54 +1,74 @@
 <template>
-  <div class="popup">
-    <div class="popup__player">
-      <iframe
-        v-show="isPageLoaded"
-        class="popup__screen"
-        :src="lesson.video"
-        frameborder="0"
-        scrolling="no"
-        allowfullscreen
-        @load="load"
-      />
+    <div class="popup">
+        <div class="popup__player">
+            <div class="popup__screen">
+                <iframe
+                    v-show="isPageLoaded"
+                    class="popup__iframe"
+                    :src="lesson.video"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen
+                    @load="load"
+                />
+            </div>
 
-      <v-preloader v-if="!isPageLoaded" class="popup__preloader" />
-
-      <div class="popup__footer">
-        <div class="popup__footer-titles">
-          <div class="popup__lesson-number">Урок №{{ lesson.number }}</div>
-          <h1 class="popup__title">{{ lesson.title }}</h1>
-        </div>
-
-        <div class="popup__footer-buttons">
-          <div v-if="isAuth" class="popup__icon-heart">
-            <v-like
-              v-model="lesson.isLike"
-              stroke="secondary"
-              :contentId="lesson.id"
-              fieldName="lessons"
+            <v-preloader 
+                v-if="!isPageLoaded" 
+                class="popup__preloader" 
             />
-          </div>
-          <v-button class="popup__button" type="active">
-            <a :href="lesson.video" target="_blank">Смотреть на YouTube</a>
-          </v-button>
-        </div>
-      </div>
 
-      <!-- Внешние кнопки -->
-      <v-icon class="popup__icon-close" path="img/close.svg" @click="$emit('close')" />
-      <v-icon
-        class="popup__icon-bracket-left"
-        path="img/angleBracketPopup.svg"
-        @click="changeVideo('clickLeft')"
-      />
-      <v-icon
-        class="popup__icon-bracket-right"
-        path="img/angleBracketPopup.svg"
-        @click="changeVideo('clickRight')"
-      />
-      <!-- Внешние кнопки -->
+            <div class="popup__footer">
+                <div class="popup__footer-titles">
+                    <div class="popup__lesson-number">Урок №{{ lesson.number }}</div>
+                    <h1 class="popup__title">{{ lesson.title }}</h1>
+                </div>
+
+                <div class="popup__footer-buttons">
+                    <div 
+                        v-if="isAuth" 
+                        class="popup__icon-heart"
+                    >
+                        <v-like
+                            v-model="lesson.isLike"
+                            stroke="secondary"
+                            :contentId="lesson.id"
+                            fieldName="lessons"
+                        />
+                    </div>
+                    <v-button 
+                        class="popup__button" 
+                        type="active"
+                    >
+                        <a 
+                            :href="lesson.video" 
+                            target="_blank"
+                        >
+                            Смотреть на YouTube
+                        </a>
+                    </v-button>
+                </div>
+            </div>
+
+            <!-- Внешние кнопки -->
+            <v-icon 
+                class="popup__icon-close" 
+                path="img/close.svg" 
+                @click="$emit('close')" 
+            />
+            <v-icon
+                class="popup__icon-bracket-left"
+                path="img/angleBracketPopup.svg"
+                @click="changeVideo('clickLeft')"
+            />
+            <v-icon
+                class="popup__icon-bracket-right"
+                path="img/angleBracketPopup.svg"
+                @click="changeVideo('clickRight')"
+            />
+            <!-- Внешние кнопки -->
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -60,184 +80,249 @@ import VPreloader from '@/components/common/VPreloader';
 
 // Helpers
 import { debounce } from 'lodash';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'PopupPlayer',
-  components: {
-    VIcon,
-    VLike,
-    VButton,
-    VPreloader
-  },
-  props: {
-    // Информация о уроке
-    lesson: {
-      type: Object,
-      default: () => {
-        return {
-          // Id урока
-          id: '',
-          // Название урока
-          title: 'Название урока',
-          // Номер урока
-          number: '1',
-          // Длительность по времени
-          time: '15 м.',
-          // Количество просмотров  видео
-          views: '300',
-          // Список id юзеров, лайкнувших урок
-          likes: [],
-          // Название курса(коллекции в бд)
-          courseId: '',
-          // Ссылка на изображение постера
-          image: '',
-          // Ссылка на видео
-          video: '',
-          // Флаг лайка
-          isLike: false
-        };
-      }
-    }
-  },
-  data() {
-    return {
-      isAuth: this.$store.getters.isAuth,
-      isPageLoaded: false
-    };
-  },
-  methods: {
-    load() {
-      this.isPageLoaded = true;
+    name: 'PopupPlayer',
+
+    components: {
+        VIcon,
+        VLike,
+        VButton,
+        VPreloader
+    },
+    
+    props: {
+        lesson: {
+            type: Object,
+            default: () => {
+                return {
+                    id: '',
+                    title: 'Название урока',
+                    number: '1',
+                    time: '15 м.',
+                    views: '300',
+                    likes: [],
+                    courseId: '',
+                    image: '',
+                    video: '',
+                    isLike: false
+                };
+            }
+        }
     },
 
-    changeVideo: debounce(function (click) {
-      this.$emit(click);
-      this.isPageLoaded = false;
-    }, 500)
-  }
+    computed: {
+        ...mapGetters(['isAuth']),
+    },
+
+    data() {
+        return {
+            isPageLoaded: false
+        };
+    },
+
+    methods: {
+        load() {
+            this.isPageLoaded = true;
+        },
+
+        changeVideo: debounce(function(click) {
+            this.$emit(click);
+            this.isPageLoaded = false;
+        }, 500)
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .popup {
-  @extend .flex_row-center-center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+    @extend .flex_row-center-center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+}
 
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(18px);
-
-  &__player {
+.popup__player {
     @extend .flex_column;
     position: relative;
-    width: 1022px;
-    height: 660px;
-
-    padding: 35px;
-
+    width: 100%;
+    max-width: 1022px;
     background: $color-white;
     border-radius: 8px;
-  }
+}
 
-  &__screen {
-    width: 952px;
-    height: 498px;
+.popup__screen {
+    width: 100%;
+    height: 535px;
+    padding: 35px 35px 0 35px;
+    overflow: hidden;
+    line-height: 0;
+}
 
+.popup__iframe {
+    width: 100%;
+    height: 100%;
     background: #202020;
-  }
+}
 
-  &__lesson-number {
-    font-family: 'Circe';
+.popup__lesson-number {
     font-size: 17px;
     color: $color-blue;
-  }
+}
 
-  &__title {
+.popup__title {
     margin-top: 20px;
-
-    font-family: 'Circe';
     font-size: 24px;
     line-height: 19px;
     color: #3a3f4f;
-  }
+}
 
-  &__button {
+.popup__button {
     width: 206px;
     height: 53px;
-    margin-left: 8px;
-
-    font-family: 'Circe';
     font-size: 15px;
-  }
 }
 
 .popup__preloader {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: calc(50% - 40px);
-  left: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
 }
 
 .popup__footer {
-  @extend .flex_row-center-between;
-  margin-top: auto;
-  width: 100%;
+    @extend .flex_row-center-between;
+    width: 100%;
+    padding: 29px 35px 35px 35px;
 
-  &-titles {
-    @extend .flex_column;
-  }
-  &-buttons {
-    @extend .flex_row;
-  }
+    &-titles {
+        @extend .flex_column;
+    }
+    &-buttons {
+        @extend .flex_row;
+    }
 }
 
-// icons
+// Иконки
 .popup__icon {
-  &-heart {
-    @extend .flex_row-center-center;
-    width: 53px;
-    height: 53px;
-    padding: 15px;
+    &-heart {
+        @extend .flex_row-center-center;
+        width: 53px;
+        height: 53px;
+        padding: 15px;
+        border: 0.8px solid #dedede;
+        border-radius: 8px;
+    }
 
-    border: 0.8px solid #dedede;
-    border-radius: 8px;
-  }
+    &-close {
+        position: absolute;
+        width: 33px;
+        height: 33px;
+        top: -60px;
+        right: 0px;
+        cursor: pointer;
+        stroke: $color-white;
+    }
 
-  &-close {
-    position: absolute;
-    width: 33px;
-    height: 33px;
+    &-bracket-left,
+    &-bracket-right {
+        position: absolute;
+        width: 20px;
+        height: 38px;
+        top: 320px;
+        cursor: pointer;
+        stroke: $color-white;
+    }
 
-    top: -60px;
-    right: 0px;
-    cursor: pointer;
-    stroke: $color-white;
-  }
+    &-bracket-left {
+        left: -80px;
+        transform: rotate(180deg);
+    }
 
-  &-bracket-left,
-  &-bracket-right {
-    position: absolute;
-    width: 20px;
-    height: 38px;
+    &-bracket-right {
+        right: -80px;
+        transform: rotate(0deg);
+    }
+}
 
-    top: 320px;
-    cursor: pointer;
-    stroke: $color-white;
-  }
+@media screen and (max-width: 1160px) {
+    .popup {
+        padding: 20px;
+    }
+}
 
-  &-bracket-left {
-    left: -80px;
-    transform: rotate(180deg);
-  }
+@media screen and (max-width: 575px) {
+    .popup__player {
+        @extend .flex_column;
+        position: relative;
+        width: 100%;
+        padding: 0;
+    }
 
-  &-bracket-right {
-    right: -80px;
-    transform: rotate(0deg);
-  }
+    .popup__screen {
+        padding: 0;
+        height: 47.5vw;
+    }
+
+    .popup__lesson-number {
+        font-size: 4vw;
+    }
+
+    .popup__title {
+        margin-top: 7px;
+        font-size: 6vw;
+        line-height: 7vw;
+    }
+
+    .popup__footer-buttons {
+        margin-top: 25px;
+    }
+
+    .popup__button {
+        width: 180px;
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .popup__preloader {
+        width: 40px;
+        height: 40px;
+        top: calc(50% - 100px);
+        left: calc(50% - 20px);
+    }
+
+    .popup__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 18px 20px 20px 20px;
+    }
+
+    .popup__icon-close {
+        width: 17px;
+        height: 17px;
+        top: -30px;
+        right: 0px;
+    }
+
+    .popup__icon-bracket-left,
+    .popup__icon-bracket-right {
+        top: calc(100% + 30px);
+    }
+
+    .popup__icon-bracket-left {
+        left: 10px;
+    }
+
+    .popup__icon-bracket-right {
+        right: 10px;
+    }
 }
 </style>

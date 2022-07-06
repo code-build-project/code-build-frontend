@@ -15,7 +15,7 @@ export default {
         windowUpdateWidth() {
             this.width = window.innerWidth;
 
-            if (this.width < 1024) {
+            if (this.width < 1161) {
                 this.isDesktop = false;
             } else {
                 this.isDesktop = true;

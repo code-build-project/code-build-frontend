@@ -149,7 +149,7 @@ export default {
     }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1160px) {
     .menu__icon-user {
         width: 38px;
         height: 38px;

@@ -63,7 +63,7 @@ export default {
     fill: $color-white;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1160px) {
     .menu__link {
         color: $color-black;
     }
