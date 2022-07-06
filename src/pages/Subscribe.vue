@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script>;
+<script>
 import BlockMain from '@/components/pageSubscribe/BlockMain';
 import BlockQuestions from '@/components/pageSubscribe/BlockQuestions';
 
