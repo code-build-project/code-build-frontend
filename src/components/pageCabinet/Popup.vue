@@ -1,138 +1,140 @@
 <template>
-  <div class="popup">
-    <div class="popup__form">
-      <v-icon class="popup__icon-close" path="img/close.svg" @click="$emit('close')" />
+    <div class="popup">
+        <div class="popup__form">
+            <v-icon 
+                class="popup__icon-close" 
+                path="img/close.svg" 
+                @click="$emit('close')" 
+            />
 
-      <h2 class="popup__title">Сохранить внесенные изменения?</h2>
+            <h2 class="popup__title">Сохранить внесенные изменения?</h2>
 
-      <div class="popup__button-group">
-        <v-button
-          class="popup__button popup__button-1"
-          :isLoaded="isPageLoaded"
-          type="active"
-          @click="save()"
-        >
-          Сохранить
-        </v-button>
-        <v-button
-          class="popup__button popup__button-2"
-          @click="$emit('close')"
-        >
-          Отмена
-        </v-button>
-      </div>
+            <div class="popup__button-group">
+                <v-button
+                    class="popup__button popup__button-1"
+                    :isLoaded="isPageLoaded"
+                    type="active"
+                    @click="save()"
+                >
+                    Сохранить
+                </v-button>
+
+                <v-button 
+                    class="popup__button popup__button-2"
+                    @click="$emit('close')"
+                >
+                    Отмена
+                </v-button>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon.vue';
-import VButton from '@/components/common/VButton.vue';
+import VIcon from '@/components/common/VIcon';
+import VButton from '@/components/common/VButton';
 
 export default {
-  name: 'PopupCabinet',
-  components: {
-    VIcon,
-    VButton
-  },
-  props: {
-    newName: {
-      type: String,
-      default: ''
+    name: 'PopupCabinet',
+
+    components: {
+        VIcon,
+        VButton
+    },
+
+    props: {
+        newName: {
+            type: String,
+            default: ''
+        }
+    },
+
+    data() {
+        return {
+            isPageLoaded: true
+        };
+    },
+
+    methods: {
+        async save() {
+            this.isPageLoaded = false;
+            await this.$service.users.changeName({ name: this.newName });
+            this.isPageLoaded = true;
+        }
     }
-  },
-  data() {
-    return {
-      isPageLoaded: true
-    };
-  },
-  methods: {
-    async save() {
-      this.isPageLoaded = false;
-      await this.$service.users.changeName({ name: this.newName });
-      this.isPageLoaded = true;
-    }
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .popup {
-  @extend .flex_row-center-center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+    @extend .flex_row-center-center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+}
 
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(18px);
-
-  &__form {
+.popup__form {
     @extend .flex_column;
     position: relative;
     width: 368px;
     height: 380px;
-
     padding: 40px;
-
     background: $color-white;
     border-radius: 6px;
-  }
+}
 
-  &__title {
+.popup__title {
     margin-top: 10px;
     font-family: 'ObjectSans';
     font-size: 22px;
     color: $color-black;
-  }
+}
 
-  &__button-group {
+.popup__button-group {
     @extend .flex_row;
     margin-top: auto;
-  }
+}
 
-  &__button {
+.popup__button {
     padding: 15px 0px;
     height: 50px;
     font-size: 18px;
-  }
+}
 
-  &__button-1 {
+.popup__button-1 {
     width: 130px;
-  }
 
-  &__button-2 {
+    &:hover {
+        box-shadow: 0px 12px 18px -13px $color-pink;
+    }
+}
+
+.popup__button-2 {
     width: 100px;
     margin-left: 25px;
     border: 1px solid $color-pink;
-  }
+
+    &:hover {
+        color: $color-white;
+        background: $color-pink;
+    }
 }
 
-// icons
+// Иконки
 .popup__icon {
-  &-close {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    stroke: $color-gray;
-  }
-}
-
-// hovers
-:hover.popup {
-  &__button-1 {
-    box-shadow: 0px 12px 18px -13px $color-pink;
-  }
-
-  &__button-2 {
-    color: $color-white;
-    background: $color-pink;
-  }
+    &-close {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        stroke: $color-gray;
+    }
 }
 </style>

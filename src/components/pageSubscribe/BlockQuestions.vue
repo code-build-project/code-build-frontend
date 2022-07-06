@@ -25,7 +25,6 @@ export default {
     width: 100%;
     max-width: 1160px;
     min-height: 437px;
-    margin-top: 40px;
     padding: 73px 80px 72px 77px;
     background: $color-white;
     border-radius: 29px;
