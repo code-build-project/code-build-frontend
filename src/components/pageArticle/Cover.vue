@@ -104,7 +104,7 @@ export default {
 
     methods: {
         async setTags() {
-            const response = await this.$service.articles.getTags();
+            const response = await this.$store.dispatch('tags/getArticleList', this);
 
             this.tagList = response.filter(item => {
                 return this.article.tags.includes(item.id);

@@ -66,7 +66,7 @@ export default {
         },
 
         async setFilters() {
-            this.filterList = await this.$service.courses.getTags();
+            this.filterList = await this.$store.dispatch('tags/getCourseList', this);
         }
     },
 
