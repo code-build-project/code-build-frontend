@@ -39,7 +39,7 @@
 
                     <div class="main__consent-text">
                         Я принимаю
-                        <v-underline>условия подписки</v-underline>
+                        <div>условия подписки</div>
                     </div>
                 </div>
 
@@ -65,7 +65,6 @@
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
 import VCheckBox from '@/components/common/VCheckBox';
-import VUnderline from '@/components/common/VUnderline';
 import PopupSubscribe from '@/components/pageSubscribe/Popup';
 import SubscribeRadio from '@/components/pageSubscribe/Radio';
 
@@ -79,7 +78,6 @@ export default {
         VIcon,
         VButton,
         VCheckBox,
-        VUnderline,
         PopupSubscribe,
         SubscribeRadio,
     },
@@ -163,6 +161,13 @@ export default {
 
 .main__consent-text {
     margin-left: 13px;
+
+    div {
+        color: $color-blue;
+        background: no-repeat 0 110%;
+        background-image: linear-gradient($color-blue, $color-blue);
+        background-size: 100% 1px;
+    }
 }
 
 .main__button {
