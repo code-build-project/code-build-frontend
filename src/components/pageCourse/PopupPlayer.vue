@@ -82,6 +82,9 @@ import VPreloader from '@/components/common/VPreloader';
 import { debounce } from 'lodash';
 import { mapGetters } from 'vuex';
 
+// Mixins
+import popup from '@/mixins/popup';
+
 export default {
     name: 'PopupPlayer',
 
@@ -91,6 +94,8 @@ export default {
         VButton,
         VPreloader
     },
+
+    mixins: [popup],
     
     props: {
         lesson: {

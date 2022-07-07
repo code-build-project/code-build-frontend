@@ -120,12 +120,10 @@ export default {
 
         openPopup(review) {
             this.selectedReview = review;
-            document.body.style.overflow = "hidden";
         },
 
         closePopup() {
             this.selectedReview = {};
-            document.body.style.overflow = "";
         }
     }
 };

@@ -26,8 +26,12 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
+
+// Mixins
+import popup from '@/mixins/popup';
 
 export default {
     name: 'PopupSubscribe',
@@ -35,7 +39,9 @@ export default {
     components: {
         VIcon,
         VButton
-    }
+    },
+
+    mixins: [popup],
 };
 </script>
 

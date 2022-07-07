@@ -49,7 +49,11 @@
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon.vue';
+// Components
+import VIcon from '@/components/common/VIcon';
+
+// Mixins
+import popup from '@/mixins/popup';
 
 export default {
     name: 'PopupReview',
@@ -58,34 +62,22 @@ export default {
         VIcon
     },
 
+    mixins: [popup],
+
     props: {
-        // Информация об отзыве
         review: {
             type: Object,
             default: () => {
                 return {
-                    // Оценка
                     score: '',
-                    // Текст
                     text: '',
-                    // Имя автора
                     name: '',
-                    // Дата публикации
                     date: '',
-                    // Аватарка пользователя
                     image: ''
                 };
             }
         }
-    },
-
-    // mounted() {
-    //     document.body.style.overflow = "hidden";
-    // },
-
-    // beforeDestroy() {
-    //     document.body.style.overflow = "";
-    // }
+    }
 };
 </script>
 
