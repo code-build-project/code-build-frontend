@@ -11,7 +11,7 @@ export default class Auth extends AbstractService {
     async logIn(params) {
         const { data } = await this.api.post('/login', params);
 
-        storage.setTokens('local', data);
+        storage.setTokens(data);
         return data;
     }
 
@@ -27,7 +27,7 @@ export default class Auth extends AbstractService {
      * Выйти из личного кабинета
      */
     logOut() {
-        storage.clearTokens('local');
+        storage.clearTokens();
         router.push('/').then(() => location.reload());
     }
 }

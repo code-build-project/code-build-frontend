@@ -1,16 +1,22 @@
 export default {
-    getTokens: type => ({
-        token: window[`${type}Storage`].token
-        // refreshToken: window[`${type}Storage`].refreshToken
+    getTokens: () => ({
+        token: localStorage.getItem('token'),
+        // refreshToken: localStorage.getItem('refreshToken')
     }),
 
-    setTokens: (type, params) => {
-        window[`${type}Storage`].token = params.token;
-        // window[`${type}Storage`].refreshToken = params.refreshToken;
+    setTokens: params => {
+        localStorage.setItem('token', params.token);
+        // localStorage.setItem('refreshToken', params.refreshToken);
     },
 
-    clearTokens: type => {
-        window[`${type}Storage`].token = '';
-        // window[`${type}Storage`].refreshToken = '';
-    }
+    clearTokens: () => {
+        localStorage.setItem('token', '');
+        // localStorage.setItem('refreshToken', '');
+    },
+
+    getLikes: field => (localStorage.getItem('likes-' + field)),
+
+    setLikes: params => {
+        localStorage.setItem('likes-' + params.field, params.likes);
+    },
 };

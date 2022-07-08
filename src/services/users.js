@@ -23,7 +23,7 @@ export default class Users extends AbstractService {
      */
     async changeName(params) {
         const { data } = await this.apiAccess.put('/user/change-name', params);
-        storage.setTokens('local', data);
+        storage.setTokens(data);
         window.location.reload();
     }
 }

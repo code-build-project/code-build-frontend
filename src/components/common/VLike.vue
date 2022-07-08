@@ -68,13 +68,13 @@ export default {
         }, 500),
 
         addLike(payload) {
-            this.$service.likes.add(payload).then(() => {
+            this.$store.dispatch('likes/addLike', payload).then(() => {
                 this.$emit('change', true);
             });
         },
 
         deleteLike(payload) {
-            this.$service.likes.delete(payload).then(() => {
+            this.$store.dispatch('likes/deleteLike', payload).then(() => {
                 this.$emit('change', false);
             });
         }

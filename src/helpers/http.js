@@ -3,7 +3,7 @@ import router from '@/router';
 import storage from '@/helpers/storage';
 import { createNotification } from '@/helpers/notification';
 
-const token = storage.getTokens('local').token;
+const { token } = storage.getTokens();
 
 const request = axios.create({
     // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
@@ -41,7 +41,7 @@ requestAccess.interceptors.response.use(
         const { status, data } = err.response;
 
         if (status === 401 && data.name === 'TokenExpiredError') {
-            storage.clearTokens('local');
+            storage.clearTokens();
             router.push('/').then(() => location.reload());
         } else if (status !== 401 && data.name !== 'JsonWebTokenError') {
             createNotification({
