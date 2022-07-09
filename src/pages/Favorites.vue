@@ -1,5 +1,8 @@
 <template>
-    <div class="favorites__wrap">
+    <div 
+        v-if="isAuth" 
+        class="favorites__wrap"
+    >
         <div class="favorites">
             <div class="favorites__header">
                 <h1 class="favorites__title">Избранное</h1>
@@ -55,6 +58,7 @@ import CardArticle from '@/components/cards/CardArticle';
 import CardPreloader from '@/components/cards/CardPreloader';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import VFilterGroup from '@/components/common/VFilterGroup';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'Favorites',
@@ -66,6 +70,10 @@ export default {
         CardPreloader,
         BlockSubscribe,
         VFilterGroup
+    },
+
+    computed: {
+        ...mapGetters(['isAuth'])
     },
 
     data() {
@@ -117,6 +125,11 @@ export default {
     },
 
     created() {
+        if (!this.isAuth) {
+            this.$router.push('/');
+            return;
+        }
+
         this.setFavoriteList(this.filterId);
     }
 };

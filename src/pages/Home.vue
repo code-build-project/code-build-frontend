@@ -12,7 +12,7 @@
 
         <block-reviews />
 
-        <block-registration />
+        <block-registration  v-if="!isAuth"/>
     </div>
 </template>
 
@@ -24,6 +24,7 @@ import BlockArticles from '@/components/pageHome/BlockArticles';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import BlockReviews from '@/components/pageHome/BlockReviews';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'Home',
@@ -36,6 +37,10 @@ export default {
         BlockSubscribe,
         BlockReviews,
         BlockRegistration
+    },
+
+    computed: {
+        ...mapGetters(['isAuth'])
     }
 };
 </script>

@@ -128,6 +128,14 @@ export default {
                 this.isPageLoaded = true;
             }
         }
+    },
+
+    mounted() {
+        const routeEmail = this.$route.params.email;
+        
+        if (routeEmail) {
+            this.form.email = routeEmail;
+        }
     }
 };
 </script>

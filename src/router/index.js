@@ -52,31 +52,16 @@ const routes = [
                 path: 'favorites',
                 name: 'Favorites',
                 component: () => import('@/pages/Favorites.vue'),
-                // Попытка перейти в избранное без авторизации
-                beforeEnter: async (to, from, next) => {
-                    const isAuth = store.getters.isAuth;
-                    isAuth ? next() : next({ name: 'Home' });
-                }
             },
             {
                 path: 'cabinet',
                 name: 'Cabinet',
                 component: () => import('@/pages/Cabinet.vue'),
-                // Попытка перейти в личный кабинет без авторизации
-                beforeEnter: async (to, from, next) => {
-                    const isAuth = store.getters.isAuth;
-                    isAuth ? next() : next({ name: 'Home' });
-                }
             },
             {
                 path: 'subscribe',
                 name: 'Subscribe',
                 component: () => import('@/pages/Subscribe.vue'),
-                // Попытка перейти на страницу покупки подписки, когда подписка уже имеется
-                beforeEnter: async (to, from, next) => {
-                    const { isPremium } = store.getters.user;
-                    isPremium ? next({ name: 'Home' }) : next();
-                }
             },
             {
                 path: 'icons',

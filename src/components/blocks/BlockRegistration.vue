@@ -132,7 +132,7 @@ export default {
         height: 50px;
         right: 0px;
         bottom: 20px;
-        border: 1px solid #3a7afe;
+        border: 1px solid $color-white;
         border-radius: 10px;
         stroke: $color-white;
         padding: 11px;
@@ -145,6 +145,8 @@ export default {
 
         &_disable {
             pointer-events: none;
+            border: 1px solid #3a7afe;
+            stroke: #3a7afe;
         }
     }
 }

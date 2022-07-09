@@ -1,5 +1,8 @@
 <template>
-    <div class="cabinet">
+    <div 
+        v-if="isAuth" 
+        class="cabinet"
+    >
         <block-main class="cabinet__main" />
 
         <block-premium class="cabinet__premium" />
@@ -9,6 +12,7 @@
 <script>
 import BlockMain from '@/components/pageCabinet/BlockMain';
 import BlockPremium from '@/components/pageCabinet/BlockPremium';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'Cabinet',
@@ -16,6 +20,16 @@ export default {
     components: {
         BlockMain,
         BlockPremium
+    },
+
+    computed: {
+        ...mapGetters(['isAuth'])
+    },
+
+    created() {
+        if (!this.isAuth) {
+            this.$router.push('/');
+        }
     }
 };
 </script>
