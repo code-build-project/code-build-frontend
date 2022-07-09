@@ -38,6 +38,7 @@
             v-model="lesson.isLike"
             class="card__icon-heart"
             :contentId="lesson.id"
+            :courseId="lesson.courseId"
             fieldName="lessons"
         />
     </div>

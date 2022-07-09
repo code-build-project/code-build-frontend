@@ -33,6 +33,7 @@
                             v-model="lesson.isLike"
                             stroke="secondary"
                             :contentId="lesson.id"
+                            :courseId="lesson.courseId"
                             fieldName="lessons"
                         />
                     </div>
@@ -192,6 +193,7 @@ export default {
     width: 206px;
     height: 53px;
     font-size: 15px;
+    margin-left: 8px;
 }
 
 .popup__preloader {
@@ -308,6 +310,14 @@ export default {
         align-items: flex-start;
         justify-content: flex-start;
         padding: 18px 20px 20px 20px;
+    }
+
+    .popup__icon-heart {
+        width: 46px;
+        height: 46px;
+        padding: 13px;
+        border: 1.3px solid #dedede;
+        border-radius: 7px;
     }
 
     .popup__icon-close {

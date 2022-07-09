@@ -5,7 +5,7 @@
             :class="'stroke-' + stroke"
             path="img/heart.svg"
             :fill="isLike ? '#EE3465' : 'transparent'"
-            @click="onLike"
+            @click.stop.native="onLike"
         />
     </a>
 </template>
@@ -36,6 +36,12 @@ export default {
             default: ''
         },
 
+        // Id курса (нужно только для lessons)
+        courseId: {
+            type: [String, Number],
+            default: ''
+        },
+
         // Название раздела контента
         fieldName: {
             type: String,
@@ -57,10 +63,14 @@ export default {
 
     methods: {
         onLike: debounce(function() {
-            const payload = {
+            let payload = {
                 id: this.contentId,
                 field: this.fieldName
             };
+
+            if (this.fieldName === 'lessons') {
+                payload.courseId = this.courseId;
+            }
 
             if (this.isLike) {
                 this.deleteLike(payload);

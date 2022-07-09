@@ -18,7 +18,7 @@
                 v-else
                 class="menu__icon-close" 
                 path="img/close.svg" 
-                @click.stop.native="isDropdown = false"
+                @click="isDropdown = false"
             />
 
             <div class="menu__user">

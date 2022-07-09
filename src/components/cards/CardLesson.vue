@@ -28,7 +28,7 @@
                         class="card__icon-attributes" 
                         path="img/openEye.svg" 
                     />
-                    {{ lesson.views }}>
+                    {{ lesson.views }}
                 </div>
             </div>
         </div>
@@ -38,6 +38,7 @@
             v-model="lesson.isLike"
             class="card__icon-heart"
             :contentId="lesson.id"
+            :courseId="lesson.courseId"
             fieldName="lessons"
         />
     </div>
@@ -127,7 +128,7 @@ export default {
 }
 
 .card__attributes {
-    @extend .flex_row-center-between;
+    @extend .flex_row-center-start;
     margin-top: 15px;
     font-size: 14px;
     line-height: 12px;
@@ -143,6 +144,7 @@ export default {
 
     &:last-child {
         width: 130px;
+        margin-left: 6px;
     }
 }
 
@@ -201,6 +203,7 @@ export default {
 
         &:last-child {
             width: 61px;
+            margin-left: 8px;
         }
     }
 
