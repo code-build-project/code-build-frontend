@@ -1,3 +1,9 @@
+import Courses from '@/services/courses';
+import Articles from '@/services/articles';
+
+const apiCourses = new Courses();
+const apiArticles = new Articles();
+
 export default  {
     namespaced: true,
 
@@ -17,18 +23,18 @@ export default  {
     },
 
     actions: {
-        async getArticleList({ commit, state }, vm) {
+        async getArticleList({ commit, state }) {
             if (!state.articles.length) {
-                let tags = await vm.$service.articles.getTags();
+                let tags = await apiArticles.getTags();
                 commit('setArticleList', tags);
             }
             
             return state.articles;
         },
 
-        async getCourseList({ commit, state }, vm) {
+        async getCourseList({ commit, state }) {
             if (!state.courses.length) {
-                let tags = await vm.$service.courses.getTags();
+                let tags = await apiCourses.getTags();
                 commit('setCourseList', tags);
             }
 

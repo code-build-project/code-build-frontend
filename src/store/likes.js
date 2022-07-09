@@ -22,7 +22,7 @@ export default  {
         async getLikeList({ commit }, field) {
             let likes = storage.getLikes(field);
             likes = likes ? JSON.parse(likes) : null;
-            likes = Array.isArray(likes) ? likes : null;
+            likes = Array.isArray(likes) && likes.length ? likes : null;
 
             if (!likes) {
                 likes = await apiLikes.getLikeList(field);
@@ -34,20 +34,21 @@ export default  {
             return likes;
         },
 
-        async addLike({ commit }, payload) {
+        async addLike({ dispatch }, payload) {
             await apiLikes.add(payload);
-            let likes = await apiLikes.getLikeList(payload.field);
-
-            commit('setLikeList', { field: payload.field, likes });
-            storage.setLikes({ field: payload.field, likes: JSON.stringify(likes) });
+            dispatch('clearLikeList', payload.field);
+            dispatch('getLikeList', payload.field);
         },
 
-        async deleteLike({ commit }, payload) {
+        async deleteLike({ dispatch }, payload) {
             await apiLikes.delete(payload);
-            let likes = await apiLikes.getLikeList('articles');
+            dispatch('clearLikeList', payload.field);
+            dispatch('getLikeList', payload.field);
+        },
 
-            commit('setLikeList', { field: payload.field, likes });
-            storage.setLikes({ field: payload.field, likes: JSON.stringify(likes) });
+        clearLikeList({ commit }, field) {
+            commit('setLikeList', { field, likes: [] });
+            storage.setLikes({ field, likes: JSON.stringify([]) });
         },
     },
 }

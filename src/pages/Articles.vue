@@ -66,7 +66,7 @@ export default {
         },
 
         async setFilters() {
-            this.filterList = await this.$store.dispatch('tags/getArticleList', this);
+            this.filterList = await this.$store.dispatch('tags/getArticleList');
         }
     },
 
