@@ -58,16 +58,44 @@
                 @click="$emit('close')" 
             />
             <v-icon
+                v-if="intNumber > 1"
                 class="popup__icon-bracket-left"
                 path="img/angleBracketPopup.svg"
                 @click="changeVideo('clickLeft')"
             />
             <v-icon
+                v-if="intNumber !== lessonsLength"
                 class="popup__icon-bracket-right"
                 path="img/angleBracketPopup.svg"
                 @click="changeVideo('clickRight')"
             />
             <!-- Внешние кнопки -->
+
+            <!-- Только для адаптива -->
+            <div
+                v-if="intNumber > 1"
+                class="popup__button-left"
+                @click="changeVideo('clickLeft')"
+            >
+                <v-icon
+                    class="popup__icon-bracket-left"
+                    path="img/angleBracketPopup.svg"
+                />
+                Урок №{{ intNumber - 1 }}
+            </div>
+
+            <div
+                v-if="intNumber !== lessonsLength"
+                class="popup__button-right"
+                @click="changeVideo('clickRight')"
+            >
+                Урок №{{ intNumber + 1 }}
+                <v-icon
+                    class="popup__icon-bracket-right"
+                    path="img/angleBracketPopup.svg"
+                />
+            </div>
+            <!-- Только для адаптива -->
         </div>
     </div>
 </template>
@@ -115,11 +143,20 @@ export default {
                     isLike: false
                 };
             }
+        },
+
+        lessonsLength: {
+            type: Number,
+            default: 0
         }
     },
 
     computed: {
         ...mapGetters(['isAuth']),
+
+        intNumber() {
+            return Number(this.lesson.number);
+        }
     },
 
     data() {
@@ -193,7 +230,6 @@ export default {
     width: 206px;
     height: 53px;
     font-size: 15px;
-    margin-left: 8px;
 }
 
 .popup__preloader {
@@ -217,6 +253,11 @@ export default {
     }
 }
 
+.popup__button-left,
+.popup__button-right {
+    display: none;
+}
+
 // Иконки
 .popup__icon {
     &-heart {
@@ -226,6 +267,7 @@ export default {
         padding: 15px;
         border: 0.8px solid #dedede;
         border-radius: 8px;
+        margin-right: 8px;
     }
 
     &-close {
@@ -329,15 +371,36 @@ export default {
 
     .popup__icon-bracket-left,
     .popup__icon-bracket-right {
+        display: none;
+    }
+    
+    .popup__button-left,
+    .popup__button-right {
+        position: absolute;
+        width: 136px;
+        height: 50px;
         top: calc(100% + 30px);
+        cursor: pointer;
+        border: 1px solid $color-white;
+        border-radius: 8px;
+        font-size: 16px;
+        color: $color-white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px;
+
+        .popup__icon-bracket-left,
+        .popup__icon-bracket-right {
+            display: block;
+            position: static;
+            width: 6px;
+            height: 100%;
+        }
     }
 
-    .popup__icon-bracket-left {
-        left: 10px;
-    }
-
-    .popup__icon-bracket-right {
-        right: 10px;
+    .popup__button-right {
+        right: 0;
     }
 }
 </style>

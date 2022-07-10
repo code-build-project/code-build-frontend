@@ -16,7 +16,7 @@
 
                 <v-icon
                     class="reg__icon-arrow"
-                    :class="{ 'reg__icon-arrow_disable': !isValid }"
+                    :class="{ 'reg__icon-arrow_active': isValid }"
                     path="img/arrow.svg"
                     @click="openPageRegistration()"
                 />
@@ -113,6 +113,7 @@ export default {
     background: transparent;
     color: $color-white;
     outline: none;
+    width: 80%;
 
     &::placeholder {
         color: #518aff;
@@ -132,10 +133,12 @@ export default {
         height: 50px;
         right: 0px;
         bottom: 20px;
-        border: 1px solid $color-white;
-        border-radius: 10px;
-        stroke: $color-white;
         padding: 11px;
+        pointer-events: none;
+        stroke: #3a7afe;
+        border: 2px solid #3a7afe;
+        border-radius: 10px;
+        transition: ease-out 0.3s;
 
         &:hover {
             cursor: pointer;
@@ -143,10 +146,10 @@ export default {
             background: $color-white;
         }
 
-        &_disable {
-            pointer-events: none;
-            border: 1px solid #3a7afe;
-            stroke: #3a7afe;
+        &_active {
+            pointer-events: auto;
+            stroke: $color-white;
+            border-color: $color-white;
         }
     }
 }
@@ -212,12 +215,12 @@ export default {
         font-family: 'EuclidCircular';
         font-size: 18px;
         text-align: center;
-        color: $color-white;
+        color: #3a7afe;
         border: 2px solid #3A7AFE;
+        transition: ease-out 0.3s;
 
         &_active {
-            color: #3a7afe;
-            background: $color-white;
+            color: $color-white;
             border-color: $color-white;
         }
     }

@@ -27,6 +27,7 @@
         <popup-player
             v-if="selectedLesson.id"
             :lesson="selectedLesson"
+            :lessonsLength="lessonList.length"
             @close="selectedLesson = {}"
             @clickLeft="setLesson('decrement')"
             @clickRight="setLesson('increment')"

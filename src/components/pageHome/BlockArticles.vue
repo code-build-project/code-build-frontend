@@ -161,14 +161,15 @@ export default {
     font-size: 18px;
     color: $color-white;
     border: 1px solid $color-blue;
-    background: transparent;
+    box-shadow: inset 0 0 0 0 $color-blue;
+    transition: ease-out 0.4s;
 
     &.adaptive {
         display: none;
     }
 
     &:hover {
-        background-color: $color-blue;
+        box-shadow: inset -200px 0 0 0 $color-blue;
     }
 }
 

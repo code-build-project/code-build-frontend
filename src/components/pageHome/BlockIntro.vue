@@ -97,10 +97,12 @@ export default {
     font-size: 24px;
     color: $color-blue;
     border: 2px solid $color-blue;
+    box-shadow: inset 0 0 0 0 $color-blue;
+    transition: ease-out 0.3s;
 
     &:hover {
         color: $color-white;
-        background: $color-blue;
+        box-shadow: inset 298px 0 0 0 $color-blue;
 
         .intro__icon-arrow {
             stroke: $color-white;
@@ -115,6 +117,7 @@ export default {
         height: 30px;
         margin-left: 9px;
         stroke: $color-blue;
+        transition: ease-out 0.4s;
     }
 
     &-iphone {
