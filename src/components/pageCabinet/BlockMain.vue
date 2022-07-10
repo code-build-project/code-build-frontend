@@ -1,31 +1,35 @@
 <template>
     <div class="main">
-        <div class="main__title">
-            Мой<br />
-            профиль
+        <div class="main__row">
+            <div class="main__title">
+                Мой<br />
+                профиль
+            </div>
+
+            <div class="main__fields">
+                <cabinet-input :value="user.name">
+                    Имя
+                </cabinet-input>
+
+                <cabinet-input 
+                    class="main__field"
+                    :value="user.email" 
+                >
+                    E-mail
+                </cabinet-input>
+            </div>
         </div>
 
-        <div class="main__fields">
-            <cabinet-input 
-                :value="user.name" 
-                @change="changeName($event)" 
-                @blur="getPopup()"
-            >
-                Имя
-            </cabinet-input>
-
-            <cabinet-input 
-                class="main__field"
-                :value="user.email" 
-                readonly
-            >
-                E-mail
-            </cabinet-input>
-        </div>
+        <v-button
+            class="main__button"
+            type="normal"
+            @click="isPopup = true"
+        >
+            Изменить
+        </v-button>
         
-        <popup-cabinet 
+        <popup-form 
             v-if="isPopup" 
-            :newName="newName" 
             @close="isPopup = false" 
         />
     </div>
@@ -34,7 +38,7 @@
 <script>
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
-import PopupCabinet from '@/components/pageCabinet/Popup';
+import PopupForm from '@/components/pageCabinet/PopupForm';
 import CabinetInput from '@/components/pageCabinet/CabinetInput';
 import { mapGetters } from 'vuex';
 
@@ -44,7 +48,7 @@ export default {
     components: {
         VIcon,
         VButton,
-        PopupCabinet,
+        PopupForm,
         CabinetInput,
     },
 
@@ -54,37 +58,24 @@ export default {
 
     data() {
         return {
-            newName: '',
             isPopup: false,
-            isChange: false
         };
-    },
-
-    methods: {
-        getPopup() {
-            if (this.isChange) {
-                this.isPopup = true;
-                this.isChange = false;
-            }
-        },
-
-        changeName(name) {
-            this.isChange = true;
-            this.newName = name;
-        }
     }
 };
 </script>
 
 <style lang="scss" scoped>
 .main {
-    @extend .flex_row-center-between;
+    @extend .flex_column;
     width: 100%;
     max-width: 1160px;
-    height: 403px;
-    padding: 58px 80px 72px 72px;
+    padding: 58px 80px 50px 72px;
     background: $color-white;
     border-radius: 29px;
+}
+
+.main__row {
+    @extend .flex_row-start-between;
 }
 
 .main__title {
@@ -102,6 +93,23 @@ export default {
 
 .main__field {
     margin-top: 30px;
+}
+
+.main__button {
+    align-self: center;
+    width: 200px;
+    height: 60px;
+    margin-top: 70px;
+    font-family: 'EuclidCircular';
+    font-size: 18px;
+    color: $color-blue;
+    border: 1px solid $color-blue;
+    margin-left: 110px;
+
+    &:hover {
+        color: $color-white;
+        background: $color-blue;
+    }
 }
 
 @media screen and (max-width: 1160px) {

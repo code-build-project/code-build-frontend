@@ -9,6 +9,7 @@
             :type="isPassword ? 'password' : 'text'"
             required="true"
             :maxLength="maxLength"
+            :disabled="disabled"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
@@ -90,6 +91,11 @@ export default {
             type: [String, Number],
             default: ''
         },
+        // Флаг блокирования поля
+        disabled: {
+            type: Boolean,
+            default: false
+        }
     },
 
     computed: {
@@ -97,7 +103,8 @@ export default {
             return {
                 input_focus: this.isFocus || this.value,
                 input_error: this.errorMessage,
-                input_password: this.type === 'password'
+                input_password: this.type === 'password',
+                input_disabled: this.disabled,
             };
         }
     },
@@ -175,6 +182,7 @@ export default {
     width: 21px;
     height: 15px;
     fill: $color-silver;
+    cursor: pointer;
 }
 
 .input__error {
@@ -202,6 +210,10 @@ export default {
     .input__field {
         padding-right: 20px;
     }
+}
+
+.input_disabled {
+    opacity: 0.4;
 }
 
 @media screen and (max-width: 575px) {

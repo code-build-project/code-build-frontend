@@ -49,7 +49,7 @@ requestAccess.interceptors.response.use(
                 status: 'error'
             });
 
-            throw err;
+            throw err.response;
         }
     }
 );

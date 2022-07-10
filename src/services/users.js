@@ -26,4 +26,15 @@ export default class Users extends AbstractService {
         storage.setTokens(data);
         window.location.reload();
     }
+
+    /**
+     * Изменение пароля пользователя
+     * @param {string} oldPassword - текущий пароль пользователя
+     * @param {string} newPassword - новый пароль пользователя
+     */
+    async changePassword(params) {
+        const { data } = await this.apiAccess.put('/user/change-password', params);
+        storage.setTokens(data);
+        window.location.reload();
+    }
 }

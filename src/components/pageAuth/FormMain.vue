@@ -50,7 +50,6 @@
             <router-link 
                 class="auth__reg" 
                 to="/reg" 
-                target="_blank"
             >
                 Зарегистрируйтесь
             </router-link>

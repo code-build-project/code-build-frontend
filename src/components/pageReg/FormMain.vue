@@ -51,7 +51,6 @@
             <router-link 
                 class="reg__auth" 
                 to="/auth" 
-                target="_blank"
             > 
                 Войти 
             </router-link>
