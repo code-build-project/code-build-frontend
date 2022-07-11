@@ -124,7 +124,7 @@ export default {
 
             try {
                 if (this.form.name !== this.user.name) {
-                    await this.$service.users.changeName(this.form);
+                    await this.$service.users.changeName(this.form.name);
                 }
 
                 if (this.form.checkbox) {
@@ -133,6 +133,8 @@ export default {
             } catch ({ data }) {
                 if (data.type === 'IncorrectName') {
                     this.errors.name = data.message;
+                } else {
+                    this.errors.newPassword = data.message;
                 }
             } finally {
                 this.isPageLoaded = true;

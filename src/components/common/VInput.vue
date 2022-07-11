@@ -214,6 +214,7 @@ export default {
 
 .input_disabled {
     opacity: 0.4;
+    pointer-events: none;
 }
 
 @media screen and (max-width: 575px) {
