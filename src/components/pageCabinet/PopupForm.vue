@@ -133,9 +133,11 @@ export default {
             } catch ({ data }) {
                 if (data.type === 'IncorrectName') {
                     this.errors.name = data.message;
-                } else {
-                    this.errors.newPassword = data.message;
-                }
+                } 
+                
+                if (data.field) {
+                    this.errors[data.field] = data.message;
+                } 
             } finally {
                 this.isPageLoaded = true;
             }
@@ -178,7 +180,7 @@ export default {
 }
 
 .popup__field {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .popup__change {
@@ -216,6 +218,35 @@ export default {
         left: calc(100% + 20px);
         cursor: pointer;
         stroke: $color-white;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .popup {
+        padding: 0 10px;
+    }
+
+    .popup__form {
+        width: 300px;
+        border-radius: 5px;
+        padding: 25px;
+    }
+
+    .popup__title {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    .popup__button {
+        height: 45px;
+        font-size: 15px;
+        margin-top: 45px;
+    }
+
+    .popup__icon-close {
+        top: -30px;
+        left: calc(100% - 25px);
     }
 }
 </style>

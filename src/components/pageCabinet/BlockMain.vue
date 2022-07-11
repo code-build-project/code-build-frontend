@@ -114,8 +114,12 @@ export default {
 
 @media screen and (max-width: 1160px) {
     .main {
-        flex-direction: column;
         height: auto;
+    }
+
+    .main__row {
+        flex-direction: column;
+        align-items: center;
     }
 
     .main__title {
@@ -124,6 +128,10 @@ export default {
 
     .main__fields {
         margin-top: 50px;
+    }
+
+    .main__button {
+        margin-left: 0;
     }
 }
 
@@ -141,6 +149,12 @@ export default {
         width: 100%;
         max-width: 400px;
         margin-top: 30px;
+    }
+
+    .main__button {
+        width: 100%;
+        max-width: 254px;
+        height: 58px;
     }
 }
 </style>
