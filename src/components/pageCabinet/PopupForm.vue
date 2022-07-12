@@ -12,6 +12,7 @@
             <v-input
                 v-model="form.name"
                 class="popup__field"
+                maxLength="20"
                 :error-message="errors.name"
                 @change="errors.name = ''"
             >
@@ -20,7 +21,7 @@
 
             <div class="popup__change">
                 <v-check-box 
-                    v-model="form.checkbox"
+                    v-model="form.isChangePassword"
                     class="popup__checkbox"
                 />
 
@@ -31,7 +32,7 @@
                 v-model="form.oldPassword"
                 class="popup__field"
                 type="password"
-                :disabled="!form.checkbox"
+                :disabled="!form.isChangePassword"
                 :error-message="errors.oldPassword"
                 @change="errors.oldPassword = ''"
             >
@@ -42,7 +43,8 @@
                 v-model="form.newPassword"
                 class="popup__field"
                 type="password"
-                :disabled="!form.checkbox"
+                maxLength="20"
+                :disabled="!form.isChangePassword"
                 :error-message="errors.newPassword"
                 @change="errors.newPassword = ''"
             >
@@ -88,10 +90,10 @@ export default {
         ...mapGetters(['user']),
 
         isValid() {
-            let { name, checkbox, oldPassword, newPassword } = this.form;
+            let { name, isChangePassword, oldPassword, newPassword } = this.form;
             let isChangeName = name !== this.user.name;
 
-            return checkbox ? name && oldPassword && newPassword : name && isChangeName;
+            return isChangePassword ? name && oldPassword && newPassword : name && isChangeName;
         },
 
         typeButton() {
@@ -105,7 +107,7 @@ export default {
 
             form: {
                 name: '',
-                checkbox: false,
+                isChangePassword: false,
                 oldPassword: '',
                 newPassword: '',
             },
@@ -123,13 +125,7 @@ export default {
             this.isPageLoaded = false;
 
             try {
-                if (this.form.name !== this.user.name) {
-                    await this.$service.users.changeName(this.form.name);
-                }
-
-                if (this.form.checkbox) {
-                    await this.$service.users.changePassword(this.form);
-                }
+                await this.$service.users.change(this.form);
             } catch ({ data }) {
                 if (data.type === 'IncorrectName') {
                     this.errors.name = data.message;

@@ -18,24 +18,18 @@ export default class Users extends AbstractService {
     }
 
     /**
-     * Изменение имени пользователя
+     * Изменение данных пользователя
      * @param {string} name - новое имя пользователя
-     */
-    async changeName(name) {
-        const { data } = await this.apiAccess.put('/user/change-name', { name });
-        storage.setTokens(data);
-        window.location.reload();
-    }
-
-    /**
-     * Изменение пароля пользователя
+     * @param {boolean} isChangePassword - флаг на изменение пароля
      * @param {string} oldPassword - текущий пароль пользователя
      * @param {string} newPassword - новый пароль пользователя
      */
-    async changePassword(params) {
-        const { data } = await this.apiAccess.put('/user/change-password', {
-            oldPassword: params.oldPassword,
-            newPassword: params.newPassword
+    async change({ name, isChangePassword, oldPassword, newPassword }) {
+        const { data } = await this.apiAccess.put('/user/change', {
+            name,
+            isChangePassword,
+            oldPassword,
+            newPassword
         });
         storage.setTokens(data);
         window.location.reload();
