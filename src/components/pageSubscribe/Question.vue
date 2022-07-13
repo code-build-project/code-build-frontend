@@ -1,7 +1,8 @@
 <template>
     <div 
         class="question" 
-        @click="isDropdown = !isDropdown"
+        :class="{ 'question_open': isDropdown }"
+        @click="toggle"
     >
         <div class="question__title">
             Какие преимущества даёт Премиум подписка?
@@ -9,13 +10,12 @@
             <v-icon
                 class="question__icon-angle-bracket"
                 path="img/angleBracketMenu.svg"
-                :style="iconStyles"
             />
         </div>
 
         <div
+            ref="dropdown"
             class="question__dropdown"
-            :class="dropdownClasses"
         >
             Премиум подписка даёт вам доступ к платным курсам и их обновлениям, в течении выбранного
             срока подписки.
@@ -33,21 +33,20 @@ export default {
         VIcon
     },
 
-    computed: {
-        iconStyles() {
-            return this.isDropdown ? 'transform: rotate(180deg)' : 'transform: rotate(0deg)'
-        },
-
-        dropdownClasses() {
-            return this.isDropdown ? 'animation-appearance' : 'animation-disappearance'
-        }
-    },
-
     data() {
         return {
             isDropdown: false
         };
-    }
+    },
+
+    methods: {
+        toggle() {
+            this.isDropdown = !this.isDropdown;
+            let maxHeight = this.$refs.dropdown.style.maxHeight;
+            let scrollHeight = this.$refs.dropdown.scrollHeight;
+            this.$refs.dropdown.style.maxHeight = maxHeight ? null : scrollHeight + 'px';
+        }
+    },
 };
 </script>
 
@@ -69,45 +68,22 @@ export default {
 
     &:hover {
         color: $color-blue;
+
+        .question__icon-angle-bracket {
+            stroke: $color-blue;
+        }
     }
 }
 
 .question__dropdown {
+    max-height: 0;
+    overflow: hidden;
     font-weight: 350;
     font-size: 18px;
     line-height: 20px;
     letter-spacing: -0.01em;
     color: $color-black;
-}
-
-.animation-appearance {
-    opacity: 0;
-    animation: appearance 0.7s linear forwards;
-}
-
-.animation-disappearance {
-    opacity: 1;
-    animation: disappearance 0.7s linear forwards;
-}
-
-@keyframes appearance {
-    0% {
-        margin-top: -30px;
-    }
-    100% {
-        opacity: 1;
-        margin-top: 15px;
-    }
-}
-
-@keyframes disappearance {
-    0% {
-        margin-top: 15px;
-    }
-    100% {
-        margin-top: -30px;
-        opacity: 0;
-    }
+    transition: max-height 0.3s ease-out;
 }
 
 // Иконки
@@ -117,10 +93,13 @@ export default {
         height: 12px;
         stroke: #323232;
         stroke-width: 6px;
+    }
+}
 
-        &:hover {
-            stroke: $color-blue;
-        }
+// Модификаторы
+.question_open {
+    .question__icon-angle-bracket {
+        transform: rotate(180deg);
     }
 }
 

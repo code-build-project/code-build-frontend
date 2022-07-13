@@ -15,8 +15,7 @@
             </p>
 
             <v-button 
-                class="popup__button" 
-                type="normal" 
+                class="popup__button"
                 @click="$emit('close')"
             >
                 Понятно
@@ -104,6 +103,45 @@ export default {
         right: 35px;
         cursor: pointer;
         stroke: $color-gray;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .popup {
+        padding: 0 10px;
+    }
+
+    .popup__form {
+        width: 100%;
+        height: 500px;
+        border-radius: 5px;
+        padding: 25px;
+    }
+
+    .popup__title {
+        margin-top: 0px;
+        font-size: 32px;
+    }
+
+    .popup__text {
+        margin-top: 30px;
+        font-size: 22px;
+        line-height: 32px;
+    }
+
+    .popup__button {
+        align-self: center;
+        width: 100%;
+        max-width: 300px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .popup__icon-close {
+        width: 20px;
+        height: 20px;
+        top: 20px;
+        right: 20px;
     }
 }
 </style>

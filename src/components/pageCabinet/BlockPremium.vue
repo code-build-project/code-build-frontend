@@ -30,7 +30,6 @@
             <v-button
                 v-if="user.isPremium"
                 class="premium__button premium__button-cancel"
-                type="normal"
                 @click="$router.push('/subscribe')"
             >
                 Отменить подписку

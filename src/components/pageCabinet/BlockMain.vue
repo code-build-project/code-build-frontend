@@ -22,7 +22,6 @@
 
         <v-button
             class="main__button"
-            type="normal"
             @click="isPopup = true"
         >
             Изменить

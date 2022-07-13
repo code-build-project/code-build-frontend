@@ -33,7 +33,8 @@
             <div class="main__footer">
                 <div class="main__consent">
                     <v-check-box 
-                        key-field="11" 
+                        v-model="isChecked"
+                        key-field="consent"
                         type="primary" 
                     />
 
@@ -44,7 +45,8 @@
                 </div>
 
                 <v-button 
-                    class="main__button" 
+                    class="main__button"
+                    :type="typeButton"
                     @click="isPopup = true"
                 >
                     Подключить
@@ -93,12 +95,21 @@ export default {
                 { title: '3 месяца' + subscribe, price: '239', economy: '58' },
                 { title: '1 год' + subscribe, price: '799', economy: '389' }
             ]
+        },
+
+        isValid() {
+            return this.radioValue && this.isChecked;
+        },
+
+        typeButton() {
+            return this.isValid ? 'active' : 'disabled';
         }
     },
 
     data() {
         return {
             radioValue: '',
+            isChecked: false,
             isPopup: false
         };
     }
@@ -174,13 +185,6 @@ export default {
     width: 188px;
     height: 60px;
     font-size: 18px;
-
-    &:hover {
-        border: none;
-        color: $color-white;
-        background: $color-pink;
-        box-shadow: 0px 12px 18px -13px $color-pink;
-    }
 }
 
 // Иконки
