@@ -107,4 +107,9 @@ h2 {
     font-weight: normal;
     margin: 0%;
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
 </style>

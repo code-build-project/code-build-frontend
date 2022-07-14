@@ -130,6 +130,7 @@ export default {
     margin-bottom: -4px;
     background: $color-blue;
     border-radius: 7px 7px 0px 0px;
+    line-height: 50px;
 }
 
 .card__main {

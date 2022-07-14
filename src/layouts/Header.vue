@@ -79,6 +79,7 @@ export default {
     border: 2px solid $color-blue;
     border-radius: 4.5px;
     fill: $color-blue;
+    transition: linear 0.2s;
 
     &:hover {
         cursor: pointer;
@@ -99,6 +100,10 @@ export default {
         cursor: pointer;
         color: $color-blue;
     }
+}
+
+.router-link-exact-active {
+    color: $color-blue;
 }
 
 .header__menu {

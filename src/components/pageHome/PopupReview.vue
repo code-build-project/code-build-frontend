@@ -15,7 +15,7 @@
                 <span class="popup__score-text">{{ review.score }}</span>
             </div>
 
-            <div class="popup__text">
+            <div ref="text" class="popup__text">
                 {{ review.text }}
             </div>
 
@@ -36,12 +36,12 @@
             <v-icon
                 class="popup__icon-bracket-left"
                 path="img/angleBracketPopup.svg"
-                @click="$emit('clickLeft')"
+                @click="onClick('clickLeft')"
             />
             <v-icon
                 class="popup__icon-bracket-right"
                 path="img/angleBracketPopup.svg"
-                @click="$emit('clickRight')"
+                @click="onClick('clickRight')"
             />
             <!-- Внешние кнопки -->
         </div>
@@ -76,6 +76,13 @@ export default {
                     image: ''
                 };
             }
+        }
+    },
+
+    methods: {
+        onClick(emitName) {
+            this.$emit(emitName);
+            this.$refs.text.scrollTo(0,0);
         }
     }
 };
@@ -187,18 +194,27 @@ export default {
         height: 39px;
         cursor: pointer;
         stroke: $color-white;
+        transition: linear 0.2s;
     }
 
     &-bracket-left {
         right: calc(100% + 42px);
         top: 50%;
         transform: rotate(180deg);
+
+        &:hover {
+            transform: scale(1.2) rotate(180deg);
+        }
     }
 
     &-bracket-right {
         left: calc(100% + 42px);
         top: 50%;
         transform: rotate(0deg);
+
+        &:hover {
+            transform: scale(1.3);
+        }
     }
 }
 

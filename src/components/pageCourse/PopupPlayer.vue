@@ -58,13 +58,11 @@
                 @click="$emit('close')" 
             />
             <v-icon
-                v-if="intNumber > 1"
                 class="popup__icon-bracket-left"
                 path="img/angleBracketPopup.svg"
                 @click="changeVideo('clickLeft')"
             />
             <v-icon
-                v-if="intNumber !== lessonsLength"
                 class="popup__icon-bracket-right"
                 path="img/angleBracketPopup.svg"
                 @click="changeVideo('clickRight')"
@@ -288,16 +286,25 @@ export default {
         top: 320px;
         cursor: pointer;
         stroke: $color-white;
+        transition: linear 0.2s;
     }
 
     &-bracket-left {
         left: -80px;
         transform: rotate(180deg);
+
+        &:hover {
+            transform: scale(1.2) rotate(180deg);
+        }
     }
 
     &-bracket-right {
         right: -80px;
         transform: rotate(0deg);
+
+        &:hover {
+            transform: scale(1.3);
+        }
     }
 }
 
@@ -309,15 +316,17 @@ export default {
 
 @media screen and (max-width: 575px) {
     .popup__player {
-        @extend .flex_column;
-        position: relative;
-        width: 100%;
         padding: 0;
     }
 
     .popup__screen {
         padding: 0;
         height: 47.5vw;
+    }
+
+    .popup__iframe {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
 
     .popup__lesson-number {

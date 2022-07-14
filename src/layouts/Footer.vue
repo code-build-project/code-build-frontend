@@ -10,7 +10,7 @@
 
                 <div class="footer__social">
                     <a
-                        v-for="(item, index) in $options.socialList"
+                        v-for="(item, index) in socialList"
                         :key="index"
                         :href="item.url"
                         target="_blank"
@@ -76,31 +76,22 @@
 </template>
 
 <script>
+// Components
 import VIcon from '@/components/common/VIcon';
+
+// Helpers
+import { socialList } from '@/helpers/constants';
 
 export default {
     components: {
         VIcon
     },
 
-    socialList: [
-        {
-            url: 'https://example.ru',
-            path: 'img/youtube.svg'
-        },
-        {
-            url: 'https://vk.com/shkiper195',
-            path: 'img/vk.svg'
-        },
-        {
-            url: 'https://instagram.com/code__build',
-            path: 'img/insta.svg'
-        },
-        {
-            url: 'https://t.me/codebuild',
-            path: 'img/telegram.svg'
-        }
-    ],
+    data() {
+        return {
+            socialList
+        };
+    },
 
     methods: {
         copyToClipboard() {
@@ -183,6 +174,7 @@ export default {
         border: 2px solid $color-white;
         border-radius: 4.5px;
         fill: $color-white;
+        transition: linear 0.2s;
 
         &:hover {
             cursor: pointer;

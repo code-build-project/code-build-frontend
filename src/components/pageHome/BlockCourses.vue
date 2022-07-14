@@ -184,7 +184,7 @@ export default {
     color: $color-white;
     border: 1px solid $color-blue;
     box-shadow: inset 0 0 0 0 $color-blue;
-    transition: ease-out 0.4s;
+    transition: ease-out 0.3s;
 
     &.adaptive {
         display: none;
