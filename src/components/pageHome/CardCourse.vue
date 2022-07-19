@@ -38,13 +38,13 @@
                         class="card__icon-footer" 
                         path="img/timer.svg" 
                     />
-                    <span>{{ course.time }}</span>
+                    {{ course.time }}
                 </div>
 
                 <div class="card__footer-item">
                     <v-icon 
                         class="card__icon-footer" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ course.views }}
                 </div>
@@ -116,9 +116,11 @@ export default {
     transition: all 0.4s ease;
     line-height: 0;
 
-    &:hover {
-        cursor: pointer;
-        transform: translateY(-10px);
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-10px);
+        }
     }
 }
 
@@ -162,9 +164,9 @@ export default {
 }
 
 .card__title {
-    font-family: 'EuclidCircular';
-    font-size: 13px;
-    line-height: 21px;
+    font-family: 'ObjectSans';
+    font-size: 17px;
+    line-height: 20px;
     color: $color-white;
     word-wrap: break-word;
     max-height: 63px;
@@ -179,12 +181,23 @@ export default {
 }
 
 .card__footer-item {
-    @extend .flex_row-center-between;
-    padding-left: 10px;
-    padding-right: 10px;
+    @extend .flex_row-center-center;
     border: 1px solid #383c4a;
     border-radius: 5px;
     height: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:nth-child(1) {
+        width: 85px;
+    }
+    &:nth-child(2) {
+        width: 79px;
+    }
+    &:nth-child(3) {
+        width: 60px;
+    }
 }
 
 // Иконки
@@ -206,16 +219,11 @@ export default {
         height: 13px;
         margin-right: 5px;
         fill: $color-white;
+        margin-right: 5px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .card {
-        &:hover {
-            transform: translateY(0);
-        }
-    }
-
     .card__icon-fire {
         display: none;
     }

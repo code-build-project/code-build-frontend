@@ -16,27 +16,11 @@
             
             <div class="articles__cards">
                 <card-article
+                    v-for="(item, index) in articleList"
+                    :key="index"
                     class="articles__card"
-                    :article="articleList[0]"
-                    @click="$router.push(`/article?id=${articleList[0].id}`)"
-                />
-
-                <card-article
-                    class="articles__card"
-                    :article="articleList[0]"
-                    @click="$router.push(`/article?id=${articleList[0].id}`)"
-                />
-
-                <card-article
-                    class="articles__card"
-                    :article="articleList[1]"
-                    @click="$router.push(`/article?id=${articleList[1].id}`)"
-                />
-
-                <card-article
-                    class="articles__card"
-                    :article="articleList[1]"
-                    @click="$router.push(`/article?id=${articleList[1].id}`)"
+                    :article="item"
+                    @click="$router.push(`/article?id=${item.id}`)"
                 />
             </div>
 
@@ -90,6 +74,9 @@ export default {
     methods: {
         async setArticleList() {
             this.articleList = await this.$service.articles.getPopulars();
+            // TO DO - удалить когда минимум статьей будет 4 штуки
+            this.articleList.push(this.articleList[0]);
+            this.articleList.push(this.articleList[1]);
         }
     },
 
@@ -161,15 +148,16 @@ export default {
     font-size: 18px;
     color: $color-white;
     border: 1px solid $color-blue;
-    box-shadow: inset 0 0 0 0 $color-blue;
     transition: ease-out 0.3s;
 
     &.adaptive {
         display: none;
     }
 
-    &:hover {
-        box-shadow: inset -200px 0 0 0 $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            background: $color-blue;
+        }
     }
 }
 
@@ -190,6 +178,7 @@ export default {
         margin-top: 3px;
         margin-left: 9px;
         stroke: $color-white;
+        stroke-width: 1.5px;
     }
 }
 
@@ -228,6 +217,10 @@ export default {
 
         &:not(:first-child) {
             margin-top: 20px;
+        }
+
+        &:last-child {
+            display: none;
         }
     }
 

@@ -30,28 +30,12 @@
 
             <div class="courses__cards">
                 <card-course
+                    v-for="(item, index) in courseList"
+                    :key="index"
                     class="courses__card"
-                    :course="courseList[0]"
-                    @click="$router.push(`/course?id=${courseList[0].id}`)"
-                />
-
-                <card-course
-                    class="courses__card"
-                    fire
-                    :course="courseList[2]"
-                    @click="$router.push(`/course?id=${courseList[2].id}`)"
-                />
-
-                <card-course
-                    class="courses__card"
-                    :course="courseList[1]"
-                    @click="$router.push(`/course?id=${courseList[1].id}`)"
-                />
-
-                <card-course
-                    class="courses__card"
-                    :course="courseList[3]"
-                    @click="$router.push(`/course?id=${courseList[3].id}`)"
+                    :course="item"
+                    :fire="index === 1"
+                    @click="$router.push(`/course?id=${item.id}`)"
                 />
             </div>
 
@@ -183,15 +167,16 @@ export default {
     font-size: 18px;
     color: $color-white;
     border: 1px solid $color-blue;
-    box-shadow: inset 0 0 0 0 $color-blue;
     transition: ease-out 0.3s;
 
     &.adaptive {
         display: none;
     }
 
-    &:hover {
-        box-shadow: inset 200px 0 0 0 $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            background: $color-blue;
+        }
     }
 }
 
@@ -212,6 +197,7 @@ export default {
         margin-top: 3px;
         margin-left: 9px;
         stroke: $color-white;
+        stroke-width: 1.5px;
     }
 }
 
@@ -250,6 +236,10 @@ export default {
 
         &:not(:first-child) {
             margin-top: 20px;
+        }
+
+        &:last-child {
+            display: none;
         }
     }
 

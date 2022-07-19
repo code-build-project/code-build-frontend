@@ -127,10 +127,4 @@ export default {
         transform: rotate(360deg);
     }
 }
-
-@media screen and (max-width: 575px) {
-    .button {
-        border-radius: 5px;
-    }
-}
 </style>

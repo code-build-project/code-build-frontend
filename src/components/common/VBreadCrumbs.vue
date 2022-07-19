@@ -89,5 +89,6 @@ export default {
     height: 20px;
     margin-left: 20px;
     stroke: $color-white;
+    stroke-width: 1.5px;
 }
 </style>

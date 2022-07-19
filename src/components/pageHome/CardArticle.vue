@@ -30,7 +30,7 @@
                 <div class="card__footer-item">
                     <v-icon 
                         class="card__icon-footer" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ article.views }}
                 </div>
@@ -82,9 +82,11 @@ export default {
     transition: all 0.4s ease;
     line-height: 0;
 
-    &:hover {
-        cursor: pointer;
-        transform: translateY(-10px);
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-10px);
+        }
     }
 }
 
@@ -93,10 +95,8 @@ export default {
     min-height: 208px;
     width: 268px;
     height: 208px;
-    margin-bottom: -4px;
     background: $color-blue;
     border-radius: 7px 7px 0px 0px;
-    line-height: 50px;
 }
 
 .card__main {
@@ -118,9 +118,8 @@ export default {
 }
 
 .card__title {
-    font-family: 'EuclidCircular';
-    font-weight: 500;
-    font-size: 15px;
+    font-family: 'ObjectSans';
+    font-size: 17px;
     line-height: 20px;
     color: $color-white;
     word-wrap: break-word;
@@ -142,10 +141,10 @@ export default {
     border: 1px solid #383c4a;
     border-radius: 5px;
     &:nth-child(1) {
-        width: 155px;
+        width: 157px;
     }
     &:nth-child(2) {
-        width: 70px;
+        width: 72px;
     }
 }
 
@@ -156,14 +155,6 @@ export default {
         height: 13px;
         margin-right: 5px;
         fill: $color-white;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .card {
-        &:hover {
-            transform: translateY(0);
-        }
     }
 }
 </style>

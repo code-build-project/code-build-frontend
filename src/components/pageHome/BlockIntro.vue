@@ -100,12 +100,14 @@ export default {
     box-shadow: inset 0 0 0 0 $color-blue;
     transition: ease-out 0.3s;
 
-    &:hover {
-        color: $color-white;
-        box-shadow: inset 298px 0 0 0 $color-blue;
-
-        .intro__icon-arrow {
-            stroke: $color-white;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-white;
+            box-shadow: inset 298px 0 0 0 $color-blue;
+    
+            .intro__icon-arrow {
+                stroke: $color-white;
+            }
         }
     }
 }
@@ -118,6 +120,7 @@ export default {
         margin-left: 9px;
         stroke: $color-blue;
         transition: ease-out 0.4s;
+        stroke-width: 1.5px;
     }
 
     &-iphone {
@@ -213,6 +216,7 @@ export default {
         width: 25px;
         height: 25px;
         margin-left: 9px;
+        stroke-width: 1px;
     }
 
     .intro__icon-iphone {

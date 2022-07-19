@@ -136,6 +136,7 @@ export default {
         padding: 11px;
         pointer-events: none;
         stroke: #3a7afe;
+        stroke-width: 1.5px;
         border: 2px solid #3a7afe;
         border-radius: 10px;
         transition: ease-out 0.3s;
