@@ -5,8 +5,8 @@
                 <h1 class="subscribe__title">Подпишись на нас</h1>
 
                 <h2 class="subscribe__subtitle">
-                    Присоединяйся к сообществу программистов, узнавай много нового из мира IT и будь
-                    в курсе всех событий!
+                    Присоединяйся к сообществу программистов, узнавай
+                    много нового из мира IT и будь в курсе всех событий!
                 </h2>
             </div>
 
@@ -80,6 +80,7 @@ export default {
     line-height: 31px;
     letter-spacing: -0.025em;
     color: $color-white;
+    margin-top: 20px;
 }
 
 .subscribe__social {
@@ -98,9 +99,11 @@ export default {
         border-radius: 21px;
         fill: $color-white;
 
-        &:hover {
-            cursor: pointer;
-            background: #3a7afe;
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                cursor: pointer;
+                background: #3a7afe;
+            }
         }
     }
 }
