@@ -128,11 +128,9 @@ export default {
     min-width: 268px;
     min-height: 208px;
     width: 268px;
-    height: 208px;
-    margin-bottom: -4px;
+    height: 208px;;
     background: $color-blue;
     border-radius: 7px 7px 0px 0px;
-    line-height: 50px;
 }
 
 .card__main {
