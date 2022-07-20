@@ -2,6 +2,25 @@
 @import '~@/assets/scss/colors.scss';
 @import '~@/assets/scss/notification.scss';
 
+.custom-scroll {
+    // https://xhtml.ru/2020/css/css-scrollbars/
+    @media screen and (min-width: 1160px) {
+        scrollbar-width: auto;
+        scrollbar-color: #cacaca;
+        
+        /* для Chrome/Edge/Safari/Opera */
+        &::-webkit-scrollbar {
+            height: 3px;
+            width: 3px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-color: #cacaca;
+        }
+    }
+}
+
 .container {
     width: 100%;
     max-width: 1160px;

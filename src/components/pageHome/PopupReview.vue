@@ -136,6 +136,7 @@ export default {
     font-size: 25px;
     line-height: 36px;
     color: #3e4462;
+    @extend .custom-scroll;
 }
 
 .popup__footer {
@@ -178,6 +179,13 @@ export default {
         align-self: flex-end;
         stroke: $color-gray;
         cursor: pointer;
+        transition: ease-out 0.2s;
+
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                stroke: $color-blue;
+            }
+        }
     }
 
     &-star {
@@ -202,8 +210,10 @@ export default {
         top: 50%;
         transform: rotate(180deg);
 
-        &:hover {
-            transform: scale(1.2) rotate(180deg);
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                transform: scale(1.2) rotate(180deg);
+            }
         }
     }
 
@@ -212,8 +222,10 @@ export default {
         top: 50%;
         transform: rotate(0deg);
 
-        &:hover {
-            transform: scale(1.3);
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                transform: scale(1.3);
+            }
         }
     }
 }

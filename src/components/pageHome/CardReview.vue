@@ -79,9 +79,11 @@ export default {
     border: 1.5px solid #dce7ff;
     border-radius: 8px;
 
-    &:hover {
-        border-color: $color-blue;
-        cursor: pointer;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            border-color: $color-blue;
+            cursor: pointer;
+        }
     }
 }
 

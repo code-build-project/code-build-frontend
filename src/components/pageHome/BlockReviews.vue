@@ -191,9 +191,11 @@ export default {
     border: 1px solid $color-blue;
     transition: linear 0.2s;
 
-    &:hover {
-        color: $color-white;
-        background: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-white;
+            background: $color-blue;
+        }
     }
 }
 
@@ -211,6 +213,10 @@ export default {
 
     .reviews__title {
         text-align: center;
+    }
+
+    .reviews__list {
+        margin-top: 0;
     }
 
     .reviews__box-list {
