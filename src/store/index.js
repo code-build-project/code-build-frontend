@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import tags from './tags';
 import likes from './likes';
+import alert from './alert';
 
 Vue.use(Vuex);
 
@@ -28,6 +29,7 @@ export default new Vuex.Store({
 
     modules: {
         tags,
-        likes
+        likes,
+        alert
     }
 });

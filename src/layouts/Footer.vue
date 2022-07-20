@@ -96,6 +96,11 @@ export default {
     methods: {
         copyToClipboard() {
             navigator.clipboard.writeText('help@codebuild.com')
+                .then(() => {
+                    this.$store.commit('alert/set', {
+                        message: 'Скопировано'
+                    });
+                })
                 .catch(err => {
                     console.log(err);
                 });
@@ -141,9 +146,11 @@ export default {
     font-size: 17px;
     line-height: 18px;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-blue;
+        }
     }
 }
 
@@ -176,10 +183,12 @@ export default {
         fill: $color-white;
         transition: linear 0.2s;
 
-        &:hover {
-            cursor: pointer;
-            fill: #171717;
-            background: $color-white;
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                cursor: pointer;
+                fill: #171717;
+                background: $color-white;
+            }
         }
     }
 
@@ -192,9 +201,11 @@ export default {
         border-radius: 9px;
         fill: $color-white;
 
-        &:hover {
-            cursor: pointer;
-            background: $color-black;
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                cursor: pointer;
+                background: $color-black;
+            }
         }
     }
 
@@ -221,9 +232,11 @@ export default {
         margin-left: 12px;
         padding: 7px;
 
-        &:hover {
-            cursor: pointer;
-            background: $color-black;
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                cursor: pointer;
+                background: $color-black;
+            }
         }
     }
 }

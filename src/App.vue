@@ -5,16 +5,21 @@
             v-else 
             class="app__preloader" 
         />
+        <v-alert />
     </div>
 </template>
 
 <script>
+import VAlert from '@/components/common/VAlert';
 import VPreloader from '@/components/common/VPreloader';
 
 export default {
     name: 'App',
 
-    components: { VPreloader },
+    components: {
+        VAlert,
+        VPreloader 
+    },
 
     data() {
         return {

@@ -106,7 +106,7 @@ export default {
 }
 
 .reg__input-field {
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 26px;
     letter-spacing: -0.02em;
     border: none;
@@ -114,6 +114,7 @@ export default {
     color: $color-white;
     outline: none;
     width: 80%;
+    line-height: 0;
 
     &::placeholder {
         color: #518aff;
@@ -141,10 +142,12 @@ export default {
         border-radius: 10px;
         transition: ease-out 0.3s;
 
-        &:hover {
-            cursor: pointer;
-            stroke: $color-blue;
-            background: $color-white;
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                cursor: pointer;
+                stroke: $color-blue;
+                background: $color-white;
+            }
         }
 
         &_active {
@@ -198,6 +201,7 @@ export default {
         width: 100%;
         margin-top: 9px;
         font-size: 19px;
+        text-align: center;
 
         &::placeholder {
             text-align: center;
@@ -213,11 +217,10 @@ export default {
         width: 254px;
         height: 58px;
         margin-top: 32px;
-        font-family: 'EuclidCircular';
         font-size: 18px;
         text-align: center;
         color: #3a7afe;
-        border: 2px solid #3A7AFE;
+        border: 1px solid #3A7AFE;
         transition: ease-out 0.3s;
 
         &_active {
