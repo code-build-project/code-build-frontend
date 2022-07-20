@@ -141,6 +141,7 @@ export default {
         width: 14px;
         height: 18px;
         fill: transparent;
+        margin-right: 2px;
     }
 
     &-video {

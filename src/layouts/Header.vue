@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-    @extend .flex_row-center-between;
+    @extend .flex_row-center-start;
     max-width: 1160px;
     width: 100%;
     padding: 32px 0;
@@ -81,24 +81,29 @@ export default {
     fill: $color-blue;
     transition: linear 0.2s;
 
-    &:hover {
-        cursor: pointer;
-        fill: $color-white;
-        background: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            fill: $color-white;
+            background: $color-blue;
+        }
     }
 }
 
 .header__nav {
     @extend .flex_row-center-between;
     width: 360px;
+    margin-left: 220px;
 }
 
 .header__nav-item {
     color: $color-black;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-blue;
+        }
     }
 }
 
@@ -108,6 +113,7 @@ export default {
 
 .header__menu {
     @extend .flex_row;
+    margin-left: auto;
 }
 
 .header__burger {

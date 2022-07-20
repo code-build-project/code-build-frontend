@@ -44,9 +44,11 @@ export default {
 .menu__link {
     color: $color-pink;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-black;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-black;
+        }
     }
 }
 

@@ -97,11 +97,13 @@ export default {
     @extend .flex_row-center;
     margin-left: 20px;
 
-    &:hover {
-        cursor: pointer;
-
-        .menu__icon-angle-bracket {
-            stroke: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+    
+            .menu__icon-angle-bracket {
+                stroke: $color-blue;
+            }
         }
     }
 }

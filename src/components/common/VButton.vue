@@ -60,8 +60,10 @@ export default {
         background: $color-blue;
         border: none;
         
-        &:hover {
-            box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                box-shadow: 0px 27px 19px -18px rgba(37, 108, 254, 0.31);
+            }
         }
     }
 
@@ -77,9 +79,11 @@ export default {
         color: $color-white;
         border: none;
         background: $color-pink;
-
-        &:hover {
-            box-shadow: 0px 12px 18px -13px $color-pink;
+        
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                box-shadow: 0px 12px 18px -13px $color-pink;
+            }
         }
     }
 }

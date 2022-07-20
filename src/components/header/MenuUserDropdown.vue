@@ -107,12 +107,14 @@ export default {
         border-top: none;
     } 
 
-    &:hover {
-        cursor: pointer;
-        color: $color-blue;
-
-        * {
-            stroke: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-blue;
+    
+            * {
+                stroke: $color-blue;
+            }
         }
     }
 }
@@ -179,6 +181,10 @@ export default {
 
     .dropdown__name {
         max-width: 140px;
+        text-overflow: clip;
+        white-space: normal;
+        overflow: visible;
+        word-break: break-word;
     }
 
     .dropdown {
