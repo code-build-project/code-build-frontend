@@ -45,6 +45,7 @@ export default {
             let maxHeight = this.$refs.dropdown.style.maxHeight;
             let scrollHeight = this.$refs.dropdown.scrollHeight;
             this.$refs.dropdown.style.maxHeight = maxHeight ? null : scrollHeight + 'px';
+            this.$refs.dropdown.style.marginBottom = maxHeight ? null : '15px';
         }
     },
 };
@@ -54,7 +55,7 @@ export default {
 .question {
     @extend .flex_column;
     width: 550px;
-    padding: 34px 0;
+    padding: 34px 0 19px 0;
     border-bottom: 1px solid $color-silver;
     cursor: pointer;
 }
@@ -66,11 +67,13 @@ export default {
     background: $color-white;
     position: relative;
 
-    &:hover {
-        color: $color-blue;
-
-        .question__icon-angle-bracket {
-            stroke: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-blue;
+    
+            .question__icon-angle-bracket {
+                stroke: $color-blue;
+            }
         }
     }
 }
@@ -84,6 +87,7 @@ export default {
     letter-spacing: -0.01em;
     color: $color-black;
     transition: max-height 0.3s ease-out;
+    margin-top: 15px;
 }
 
 // Иконки
@@ -111,7 +115,7 @@ export default {
 
 @media screen and (max-width: 575px) {
     .question {
-        padding: 14px 0;
+        padding: 14px 0 0 0;
     }
 
     .question__title {

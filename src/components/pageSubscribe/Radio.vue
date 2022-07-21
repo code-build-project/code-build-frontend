@@ -97,9 +97,11 @@ export default {
     border: 1px solid $color-silver;
     border-radius: 18px;
 
-    &:hover {
-        border-color: $color-pink;
-        cursor: pointer;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            border-color: $color-pink;
+            cursor: pointer;
+        }
     }
 
     &__main {
@@ -168,8 +170,10 @@ export default {
     background-size: 55% 55%;
     cursor: pointer;
 
-    &:hover {
-        border-color: $color-pink;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            border-color: $color-pink;
+        }
     }
 }
 

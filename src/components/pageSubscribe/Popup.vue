@@ -87,9 +87,11 @@ export default {
     font-size: 24px;
     border: 2px solid $color-pink;
 
-    &:hover {
-        color: $color-white;
-        background: $color-pink;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-white;
+            background: $color-pink;
+        }
     }
 }
 
