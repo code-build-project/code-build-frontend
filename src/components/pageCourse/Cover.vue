@@ -170,7 +170,8 @@ export default {
     @extend .flex_row-center-between;
     font-size: 18px;
     color: $color-white;
-    padding: 17px 25px 17px 25px;
+    height: 53px;
+    padding: 0 25px;
     border: 1px solid $color-white;
     border-radius: 9px;
     margin-right: 10px;
@@ -188,6 +189,7 @@ export default {
         width: 22px;
         height: 22px;
         margin-right: 10px;
+        margin-top: -2px;
         fill: $color-white;
     }
 }
@@ -230,7 +232,8 @@ export default {
 
     .cover__attributes-item {
         font-size: 15px;
-        padding: 11px 11px 11px 11px;
+        padding: 0 11px;
+        height: 35px;
         border-radius: 6px;
         margin-bottom: 8px;
         margin-right: 8px;
