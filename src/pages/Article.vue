@@ -59,14 +59,15 @@ export default {
         }
     },
 
-    watch: {
-        '$route.query.id': {
-            handler() {
-                this.setArticle();
-                this.setPopularArticleList();
-            }
-        }
-    },
+    // TO DO - не знаю зачем этот код, если выясню, то добавить коммент и вернуть в работу его
+    // watch: {
+    //     '$route.query.id': {
+    //         handler() {
+    //             this.setArticle();
+    //             this.setPopularArticleList();
+    //         }
+    //     }
+    // },
 
     created() {
         this.setArticle();
@@ -120,7 +121,7 @@ export default {
     }
 
     .article__popular {
-        display: none;
+        margin-top: 40px;
     }
 }
 
@@ -140,6 +141,10 @@ export default {
             font-size: 13px;
             line-height: 18px;
         }
+    }
+
+    .article__popular {
+        margin-top: 20px;
     }
 
     .article__subscribe {

@@ -26,7 +26,7 @@
                 <div class="card__attributes-item">
                     <v-icon 
                         class="card__icon-attributes" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ lesson.views }}
                 </div>
@@ -98,17 +98,21 @@ export default {
     width: 268px;
     height: 338px;
     transition: all 0.4s ease;
+    line-height: 0;
 
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.03);
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.03);
+        }
     }
 }
 
 .card__poster {
-    width: 268px;
+    width: 100%;
     height: 181px;
-    margin-bottom: -4px;
+    min-width: 100%;
+    min-height: 181px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
 }
@@ -130,10 +134,10 @@ export default {
 }
 
 .card__title {
-    width: 200px;
     font-size: 20px;
     line-height: 21px;
     color: #3a3f4f;
+    overflow: hidden;
 }
 
 .card__attributes {

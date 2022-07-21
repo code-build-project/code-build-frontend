@@ -66,6 +66,7 @@ export default {
         async setLessons() {
             let payload = { courseId: this.$route.query.id };
             this.lessonList = await this.$service.lessons.getLessonList(payload);
+            this.lessonList.push(this.lessonList[0])
         },
 
         async setCourse() {
@@ -92,15 +93,16 @@ export default {
         }
     },
 
-    watch: {
-        '$route.query.id': {
-            handler() {
-                this.setLessons();
-                this.setCourse();
-                this.setPopularCourseList();
-            }
-        }
-    },
+    // TO DO - не знаю зачем этот код, если выясню, то добавить коммент и вернуть в работу его
+    // watch: {
+    //     '$route.query.id': {
+    //         handler() {
+    //             this.setLessons();
+    //             this.setCourse();
+    //             this.setPopularCourseList();
+    //         }
+    //     }
+    // },
 
     created() {
         this.setLessons();
@@ -112,6 +114,7 @@ export default {
 
 <style lang="scss" scoped>
 .course {
+    @extend .flex_column;
     background: #f4f4f4;
 }
 
@@ -146,10 +149,14 @@ export default {
 }
 
 @media screen and (max-width: 1160px) {
+    .course {
+        align-items: center;
+    }
+
     .course__lessons {
-        justify-content: center;
         padding: 0 20px;
         border-bottom: none;
+        max-width: 902px;
     }
 
     .course__card {
@@ -167,12 +174,19 @@ export default {
     }
 
     .course__popular {
-        display: none;
+        margin-top: 40px;
     }
 }
 
 @media screen and (max-width: 867px) {
+    .course__lessons {
+        max-width: 605px;
+        margin-top: 20px;
+    }
+
     .course__card {
+        margin-bottom: 20px;
+
         &:nth-child(3n+2) {
             margin-left: 0;
             margin-right: 0;
@@ -181,9 +195,18 @@ export default {
             margin-left: 29px;
         }
     }
+
+    .course__popular {
+        margin-top: 20px;
+    }
 }
 
 @media screen and (max-width: 575px) {
+    .course__lessons {
+        justify-content: center;
+        max-width: 100%;
+    }
+
     .course__card {
         &:nth-child(2n+2) {
             margin-left: 0;

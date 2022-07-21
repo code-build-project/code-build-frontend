@@ -35,7 +35,7 @@
                 <div class="cover__attributes-item">
                     <v-icon 
                         class="cover__icon-attribute" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ article.views }}
                 </div>
@@ -140,7 +140,6 @@ export default {
 
 .cover__title {
     width: 100%;
-    max-width: 900px;
     margin-top: 35px;
     font-family: 'ObjectSans';
     font-size: 62px;

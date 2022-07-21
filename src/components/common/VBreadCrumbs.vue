@@ -78,9 +78,11 @@ export default {
 }
 
 .breadcrumbs__link {
-    &:hover {
-        cursor: pointer;
-        color: $color-navy;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-navy;
+        }
     }
 }
 

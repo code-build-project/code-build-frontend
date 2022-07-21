@@ -3,9 +3,10 @@
         <div class="popular">
             <h1 class="popular__title">Также стоит посмотреть</h1>
 
-            <div class="popular__cards">,
+            <div class="popular__cards">
                 <card-article
                     v-for="(item, index) in articleList"
+                    class="popular__card"
                     :key="index"
                     :article="item"
                     @click="openArticle(item.id)"
@@ -13,6 +14,7 @@
 
                 <card-course
                     v-for="(item, index) in courseList"
+                    class="popular__card"
                     :key="index"
                     :course="item"
                     @click="openCourse(item.id)"
@@ -68,6 +70,7 @@ export default {
     @extend .flex_column;
     width: 100%;
     max-width: 1160px;
+    overflow: hidden;
 }
 
 .popular__title {
@@ -78,7 +81,49 @@ export default {
 }
 
 .popular__cards {
-    @extend .flex_row-center-between;
+    @extend .flex_row;
     margin-top: 50px;
+}
+
+.popular__card {
+    &:not(:first-child) {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width: 1160px) {
+    .popular {
+        align-items: center;
+    }
+
+    .popular__card {
+        &:nth-child(3n) {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 867px) {
+    .popular {
+        padding-bottom: 20px;
+    }
+
+    .popular__title {
+        font-size: 32px;
+        letter-spacing: 0;
+        text-align: center;
+    }
+
+    .popular__cards {
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+    .popular__card {
+        &:not(:first-child) {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
 }
 </style>

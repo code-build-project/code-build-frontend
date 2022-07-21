@@ -31,7 +31,10 @@ const requestAccess = axios.create({
     // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
     baseURL: 'http://127.0.1.1:5000/',
     headers: {
-        Authorization: token ? token.substring(7) : ''
+        'Authorization': token ? token.substring(7) : '',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Expires': '0',
     }
 });
 
