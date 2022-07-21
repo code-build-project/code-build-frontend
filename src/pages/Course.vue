@@ -1,25 +1,32 @@
 <template>
     <div class="course">
-        <course-cover 
-            v-if="course.id" 
-            class="course__cover" 
-            :course="course" 
-        />
-
-        <div class="course__lessons">
-            <card-mini-lesson
-                v-for="(item, index) in lessonList" 
-                :key="index"
-                class="course__card"
-                :lesson="item"
-                @click="selectedLesson = item"
+        <template v-if="isPageLoaded">
+            <course-cover
+                v-if="course.id"
+                class="course__cover"
+                :course="course"
             />
-        </div>
 
-        <block-popular 
-            v-if="course.id" 
-            class="course__popular" 
-            :courseList="courseList" 
+            <div class="course__lessons">
+                <card-mini-lesson
+                    v-for="(item, index) in lessonList"
+                    :key="index"
+                    class="course__card"
+                    :lesson="item"
+                    @click="selectedLesson = item"
+                />
+            </div>
+
+            <block-popular
+                v-if="course.id"
+                class="course__popular"
+                :courseList="courseList"
+            />
+        </template>
+
+        <v-preloader
+            v-else 
+            class="course__preloader" 
         />
 
         <block-subscribe class="course__subscribe" />
@@ -41,6 +48,7 @@ import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import CardMiniLesson from '@/components/cards/CardMiniLesson';
 import CourseCover from '@/components/pageCourse/Cover';
 import BlockPopular from '@/components/blocks/BlockPopular';
+import VPreloader from '@/components/common/VPreloader';
 
 export default {
     name: 'Course',
@@ -50,11 +58,13 @@ export default {
         BlockSubscribe,
         CardMiniLesson,
         CourseCover,
-        BlockPopular
+        BlockPopular,
+        VPreloader
     },
 
     data() {
         return {
+            isPageLoaded: false,
             lessonList: [],
             courseList: [],
             course: {},
@@ -66,7 +76,7 @@ export default {
         async setLessons() {
             let payload = { courseId: this.$route.query.id };
             this.lessonList = await this.$service.lessons.getLessonList(payload);
-            this.lessonList.push(this.lessonList[0])
+            this.isPageLoaded = true;
         },
 
         async setCourse() {
@@ -146,6 +156,12 @@ export default {
 
 .course__subscribe {
     margin-top: 110px;
+}
+
+.course__preloader {
+    width: 80px;
+    height: 80px;
+    margin: 150px 0;
 }
 
 @media screen and (max-width: 1160px) {

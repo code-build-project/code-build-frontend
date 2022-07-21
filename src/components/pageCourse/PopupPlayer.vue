@@ -276,6 +276,13 @@ export default {
         right: 0px;
         cursor: pointer;
         stroke: $color-white;
+        transition: ease-out 0.2s;
+
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                transform: scale(0.9);
+            }
+        }
     }
 
     &-bracket-left,
@@ -293,8 +300,10 @@ export default {
         left: -80px;
         transform: rotate(180deg);
 
-        &:hover {
-            transform: scale(1.2) rotate(180deg);
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                transform: scale(1.2) rotate(180deg);
+            }
         }
     }
 
@@ -302,8 +311,10 @@ export default {
         right: -80px;
         transform: rotate(0deg);
 
-        &:hover {
-            transform: scale(1.3);
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                transform: scale(1.3);
+            }
         }
     }
 }
@@ -311,6 +322,31 @@ export default {
 @media screen and (max-width: 1160px) {
     .popup {
         padding: 20px;
+    }
+
+    .popup__screen {
+        height: 340px;
+    }
+}
+
+@media screen and (max-width: 867px) {
+    .popup {
+        padding: 20px;
+    }
+
+    .popup__screen {
+        height: 335px;
+    }
+
+    .popup__footer-buttons {
+        margin-top: 25px;
+    }
+
+    .popup__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 18px 20px 20px 20px;
     }
 }
 
@@ -336,11 +372,7 @@ export default {
     .popup__title {
         margin-top: 7px;
         font-size: 6vw;
-        line-height: 7vw;
-    }
-
-    .popup__footer-buttons {
-        margin-top: 25px;
+        line-height: 6vw;
     }
 
     .popup__button {
@@ -354,13 +386,6 @@ export default {
         height: 40px;
         top: calc(50% - 100px);
         left: calc(50% - 20px);
-    }
-
-    .popup__footer {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 18px 20px 20px 20px;
     }
 
     .popup__icon-heart {

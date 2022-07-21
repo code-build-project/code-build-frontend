@@ -1,25 +1,32 @@
 <template>
     <div class="article">
-        <article-cover 
-            v-if="article.id" 
-            class="article__cover" 
-            :article="article" 
-        />
+        <template v-if="isPageLoaded">
+            <article-cover
+                v-if="article.id"
+                class="article__cover"
+                :article="article"
+            />
 
-        <article class="article__content">
-            <div
-                v-for="(item, index) in article.content"
-                :key="index"
-                class="article__content-item"
-            >
-                <h2 class="article__content-title">{{ item.title }}</h2>
-                <p class="article__content-text">{{ item.text }}</p>
-            </div>
-        </article>
+            <article class="article__content">
+                <div
+                    v-for="(item, index) in article.content"
+                    :key="index"
+                    class="article__content-item"
+                >
+                    <h2 class="article__content-title">{{ item.title }}</h2>
+                    <p class="article__content-text">{{ item.text }}</p>
+                </div>
+            </article>
 
-        <block-popular 
-            class="article__popular" 
-            :articleList="popularArticleList" 
+            <block-popular
+                class="article__popular"
+                :articleList="popularArticleList"
+            />
+        </template>
+
+        <v-preloader
+            v-else 
+            class="article__preloader" 
         />
 
         <block-subscribe class="article__subscribe" />
@@ -30,6 +37,7 @@
 import ArticleCover from '@/components/pageArticle/Cover';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import BlockPopular from '@/components/blocks/BlockPopular';
+import VPreloader from '@/components/common/VPreloader';
 
 export default {
     name: 'Article',
@@ -37,11 +45,13 @@ export default {
     components: {
         ArticleCover,
         BlockSubscribe,
-        BlockPopular
+        BlockPopular,
+        VPreloader
     },
 
     data() {
         return {
+            isPageLoaded: false,
             article: {},
             popularArticleList: []
         };
@@ -51,6 +61,7 @@ export default {
         async setArticle() {
             let payload = { id: this.$route.query.id };
             this.article = await this.$service.articles.getArticle(payload);
+            this.isPageLoaded = true;
         },
 
         async setPopularArticleList() {
@@ -112,6 +123,12 @@ export default {
 
 .article__subscribe {
     margin-top: 110px;
+}
+
+.article__preloader {
+    width: 80px;
+    height: 80px;
+    margin: 150px 0;
 }
 
 @media screen and (max-width: 1160px) {
