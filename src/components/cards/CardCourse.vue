@@ -45,7 +45,7 @@
                 <div class="card__footer-item">
                     <v-icon 
                         class="card__icon-footer" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ course.views }}
                 </div>
@@ -105,17 +105,21 @@ export default {
     position: relative;
     width: 367px;
     transition: all 0.4s ease;
+    line-height: 0;
 
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.03);
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.03);
+        }
     }
 }
 
 .card__poster {
     width: 100%;
     height: 240px;
-    margin-bottom: -4px;
+    min-width: 100%;
+    min-height: 240px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
 }
@@ -202,14 +206,11 @@ export default {
 @media screen and (max-width: 575px) {
     .card {
         width: 280px;
-
-        &:hover {
-            transform: scale(1);
-        }
     }
 
     .card__poster {
         height: 183px;
+        min-height: 183px;
         border-radius: 6px 6px 0px 0px;
     }
 
@@ -220,7 +221,7 @@ export default {
     }
 
     .card__title {
-        margin-top: 12px;
+        margin-top: 20px;
         font-size: 19px;
         line-height: 23px;
     }

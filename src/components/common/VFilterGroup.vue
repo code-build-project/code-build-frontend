@@ -47,13 +47,15 @@ export default {
     padding: 1em 1.7em 1em 1.7em;
     border: 1px solid #e2e2e2;
     border-radius: 8px;
-    transition: all 0.2s linear;
+    transition: all 0.2s ease-out;
     margin-bottom: 15px;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-white;
-        background: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-white;
+            background: $color-blue;
+        }
     }
 
     &:not(:first-child) {

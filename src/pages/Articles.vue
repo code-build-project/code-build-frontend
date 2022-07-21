@@ -84,6 +84,7 @@ export default {
 
 .articles {
     @extend .container;
+    @extend .flex_column;
 }
 
 .articles__title {
@@ -116,8 +117,8 @@ export default {
 }
 
 @media screen and (max-width: 1160px) {
-    .articles__title {
-        text-align: center;
+    .articles {
+        align-items: center;
     }
 
     .articles__filters {
@@ -126,7 +127,7 @@ export default {
     }
 
     .articles__list {
-        justify-content: center;
+        width: 763px;
     }
 
     .articles__card {
@@ -141,6 +142,11 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
+    .articles__list {
+        justify-content: center;
+        width: 100%;
+    }
+
     .articles__card {
         &:nth-child(2n+2) {
             margin-left: 0;

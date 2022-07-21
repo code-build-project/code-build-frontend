@@ -84,6 +84,7 @@ export default {
 
 .courses {
     @extend .container;
+    @extend .flex_column;
 }
 
 .courses__title {
@@ -116,8 +117,8 @@ export default {
 }
 
 @media screen and (max-width: 1160px) {
-    .courses__title {
-        text-align: center;
+    .courses {
+        align-items: center;
     }
 
     .courses__filters {
@@ -126,7 +127,7 @@ export default {
     }
 
     .courses__list {
-        justify-content: center;
+        width: 763px;
     }
 
     .courses__card {
@@ -141,6 +142,11 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
+    .courses__list {
+        justify-content: center;
+        width: 100%;
+    }
+
     .courses__card {
         &:nth-child(2n+2) {
             margin-left: 0;
