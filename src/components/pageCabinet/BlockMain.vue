@@ -105,9 +105,11 @@ export default {
     border: 1px solid $color-blue;
     margin-left: 110px;
 
-    &:hover {
-        color: $color-white;
-        background: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-white;
+            background: $color-blue;
+        }
     }
 }
 
@@ -136,7 +138,7 @@ export default {
 
 @media screen and (max-width: 767px) {
     .main {
-        padding: 37px 6px 21px 6px;
+        padding: 37px 13px 21px 13px;
     }
 
     .main__title {
@@ -154,6 +156,7 @@ export default {
         width: 100%;
         max-width: 254px;
         height: 58px;
+        margin-top: 30px;
     }
 }
 </style>

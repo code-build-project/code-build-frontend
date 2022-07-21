@@ -109,15 +109,19 @@ export default {
 }
 
 .premium__button-cancel {
-    &:hover {
-        color: $color-white;
-        background: $color-pink;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            color: $color-white;
+            background: $color-pink;
+        }
     }
 }
 
 .premium__button-buy {
-    &:hover {
-        box-shadow: 0px 12px 18px -13px $color-pink;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            box-shadow: 0px 12px 18px -13px $color-pink;
+        }
     }
 }
 

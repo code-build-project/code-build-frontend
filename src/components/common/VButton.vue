@@ -45,6 +45,7 @@ export default {
     @extend .flex_row-center-center;
     border-style: solid;
     border-radius: 8px;
+    transition: ease-out 0.2s;
 }
 
 .button_type {

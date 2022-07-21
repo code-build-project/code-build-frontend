@@ -26,7 +26,7 @@
                 <div class="card__attributes-item">
                     <v-icon 
                         class="card__icon-attributes" 
-                        path="img/openEye.svg" 
+                        path="img/cardEye.svg" 
                     />
                     {{ lesson.views }}
                 </div>
@@ -86,17 +86,21 @@ export default {
     position: relative;
     width: 367px;
     transition: all 0.4s ease;
+    line-height: 0;
 
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.03);
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.03);
+        }
     }
 }
 
 .card__poster {
     width: 100%;
     height: 240px;
-    margin-bottom: -4px;
+    min-width: 100%;
+    min-height: 240px;
     background: #c4c4c4;
     border-radius: 8px 8px 0px 0px;
 }
@@ -110,7 +114,6 @@ export default {
 }
 
 .card__course-title {
-    width: 200px;
     font-family: 'EuclidCircular';
     font-size: 15px;
     line-height: 20px;
@@ -118,13 +121,13 @@ export default {
 }
 
 .card__title {
-    width: 314px;
-    height: 95px;
-    margin-top: 15px;
+    height: 100%;
+    margin-top: 10px;
     font-size: 26px;
     line-height: 31px;
     color: #3a3f4f;
     letter-spacing: -0.01em;
+    overflow: hidden;
 }
 
 .card__attributes {
@@ -169,14 +172,11 @@ export default {
 @media screen and (max-width: 575px) {
     .card {
         width: 280px;
-
-        &:hover {
-            transform: scale(1);
-        }
     }
 
     .card__poster {
         height: 183px;
+        min-height: 183px;
         border-radius: 6px 6px 0px 0px;
     }
 
@@ -186,31 +186,25 @@ export default {
         border-radius: 0px 0px 6px 6px;
     }
 
+    .card__course-title {
+        font-size: 13px;
+        line-height: 15px;
+    }
+
     .card__title {
-        margin-top: 12px;
         font-size: 19px;
         line-height: 23px;
     }
 
-    .card__attributes {
-        font-size: 13px;
-    }
-
     .card__attributes-item {
-        width: 78px;
-        height: 30px;
+        width: 131px;
+        height: 40px;
         border-radius: 5px;
 
         &:last-child {
-            width: 61px;
+            width: 101px;
             margin-left: 8px;
         }
-    }
-
-    .card__icon-attributes {
-        width: 12px;
-        height: 12px;
-        margin-right: 5px;
     }
 }
 </style>

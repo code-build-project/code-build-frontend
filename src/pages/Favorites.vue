@@ -142,6 +142,7 @@ export default {
 
 .favorites {
     @extend .container;
+    @extend .flex_column;
 }
 
 .favorites__header {
@@ -178,8 +179,8 @@ export default {
 }
 
 @media screen and (max-width: 1160px) {
-    .favorites__title {
-        text-align: center;
+    .favorites {
+        align-items: center;
     }
 
     .favorites__header {
@@ -195,7 +196,7 @@ export default {
     }
 
     .favorites__list {
-        justify-content: center;
+        width: 763px;
     }
 
     .favorites__card {
@@ -210,6 +211,11 @@ export default {
 }
 
 @media screen and (max-width: 767px) {
+    .favorites__list {
+        justify-content: center;
+        width: 100%;
+    }
+
     .favorites__card {
         &:nth-child(2n+2) {
             margin-left: 0;
