@@ -167,8 +167,10 @@ export default {
     cursor: pointer;
     color: $color-blue;
 
-    &:hover {
-        opacity: 0.7;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
 

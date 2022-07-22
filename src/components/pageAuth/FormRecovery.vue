@@ -165,9 +165,11 @@ export default {
     background-image: linear-gradient($color-blue, $color-blue);
     background-size: 100% 2px;
 
-    &:hover {
-        cursor: pointer;
-        color: $color-blue;
+    @media screen and (min-width: 1160px) {
+        &:hover {
+            cursor: pointer;
+            color: $color-blue;
+        }
     }
 }
 

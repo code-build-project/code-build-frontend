@@ -31,7 +31,7 @@
                     >
                         <v-like
                             v-model="lesson.isLike"
-                            stroke="secondary"
+                            type="secondary"
                             :contentId="lesson.id"
                             :courseId="lesson.courseId"
                             fieldName="lessons"

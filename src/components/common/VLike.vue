@@ -2,9 +2,8 @@
     <a class="like">
         <v-icon
             class="like__icon"
-            :class="'stroke-' + stroke"
+            :class="componentClasses"
             path="img/heart.svg"
-            :fill="isLike ? '#EE3465' : 'transparent'"
             @click.stop.native="onLike"
         />
     </a>
@@ -35,29 +34,39 @@ export default {
             type: [String, Number],
             default: ''
         },
-
         // Id курса (нужно только для lessons)
         courseId: {
             type: [String, Number],
             default: ''
         },
-
         // Название раздела контента
         fieldName: {
             type: String,
             default: ''
         },
-
         // Флаг автивности лайка
         isLike: {
             type: Boolean,
             default: false
         },
-
-        // Цвет бордера лайка
-        stroke: {
+        // Тип стиля лайка
+        type: {
             type: String,
-            default: 'primary'
+            default: 'primary',
+            validator: (value) => {
+                return ['primary', 'secondary'].includes(value);
+            }
+        }
+    },
+
+    computed: {
+        componentClasses() {
+            return [
+                'type-' + this.type,
+                {
+                    'like__icon_active': this.isLike
+                }
+            ]
         }
     },
 
@@ -105,14 +114,23 @@ export default {
 .like__icon {
     fill: transparent;
     cursor: pointer;
+    transition: all 0.2s ease-in;
 }
 
-// Strokes
-.stroke-primary {
+// Types
+.type-primary {
     stroke: $color-white;
+
+    &.like__icon_active {
+        fill: $color-white;
+    }
 }
 
-.stroke-secondary {
+.type-secondary {
     stroke: #dedede;
+
+    &.like__icon_active {
+        fill: $color-pink;
+    }
 }
 </style>
