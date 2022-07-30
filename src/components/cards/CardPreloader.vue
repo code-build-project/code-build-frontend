@@ -23,7 +23,7 @@ export default {
     width: 367px;
     height: 465px;
     margin-bottom: 30px;
-    background: linear-gradient(-90deg, #f3f3f3, $color-silver);
+    background: linear-gradient(-90deg, $color-white-dark, $color-silver);
     background-size: 200% 200%;
     border-radius: 8px;
     animation: gradient 1.5s linear infinite;

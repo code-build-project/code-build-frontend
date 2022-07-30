@@ -101,7 +101,7 @@ export default {
     height: 240px;
     min-width: 100%;
     min-height: 240px;
-    background: #c4c4c4;
+    background: $color-smoky;
     border-radius: 8px 8px 0px 0px;
 }
 
@@ -125,7 +125,7 @@ export default {
     margin-top: 10px;
     font-size: 26px;
     line-height: 31px;
-    color: #3a3f4f;
+    color: $color-black-light;
     letter-spacing: -0.01em;
     overflow: hidden;
 }
@@ -135,7 +135,7 @@ export default {
     margin-top: 15px;
     font-size: 14px;
     line-height: 12px;
-    color: #3a3f4f;
+    color: $color-black-light;
 }
 
 .card__attributes-item {
@@ -157,7 +157,7 @@ export default {
         width: 18px;
         height: 18px;
         margin-right: 7px;
-        fill: #3a3f4f;
+        fill: $color-black-light;
     }
 
     &-heart {

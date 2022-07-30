@@ -103,7 +103,7 @@ export default {
     @extend .flex_row-center-between;
     width: 100%;
     height: 56px;
-    border-top: 1px solid #f2f2f2;
+    border-top: 1px solid $color-white-dark;
 
     &:first-child { 
         border-top: none;

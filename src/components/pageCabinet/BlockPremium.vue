@@ -97,7 +97,7 @@ export default {
     color: $color-black;
 
     span {
-        color: #ee3465
+        color: $color-pink;
     }
 }
 

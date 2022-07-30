@@ -209,7 +209,7 @@ export default {
 .popup__iframe {
     width: 100%;
     height: 100%;
-    background: #202020;
+    background: $color-black;
 }
 
 .popup__lesson-number {
@@ -221,7 +221,7 @@ export default {
     margin-top: 20px;
     font-size: 24px;
     line-height: 19px;
-    color: #3a3f4f;
+    color: $color-black-light;
 }
 
 .popup__button {
@@ -263,7 +263,7 @@ export default {
         width: 53px;
         height: 53px;
         padding: 15px;
-        border: 0.8px solid #dedede;
+        border: 0.8px solid $color-silver;
         border-radius: 8px;
         margin-right: 8px;
     }
@@ -392,7 +392,7 @@ export default {
         width: 46px;
         height: 46px;
         padding: 13px;
-        border: 1.3px solid #dedede;
+        border: 1.3px solid $color-silver;
         border-radius: 7px;
     }
 

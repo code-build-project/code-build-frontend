@@ -101,7 +101,7 @@ export default {
     @extend .flex_row-center-between;
     width: 100%;
     height: 60px;
-    border-top: 1px solid #f2f2f2;
+    border-top: 1px solid $color-white-dark;
 
     &:nth-child(2) {
         border-top: none;
@@ -200,7 +200,7 @@ export default {
 
     .dropdown__item {
         &:nth-child(2) {
-            border-top: 1px solid #f2f2f2;
+            border-top: 1px solid $color-white-dark;
         } 
     }
 }

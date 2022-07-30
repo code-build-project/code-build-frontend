@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
 .articles__wrap {
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .articles {

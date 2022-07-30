@@ -38,7 +38,7 @@ export default {
 .cabinet {
     @extend .flex_column;
     padding: 40px;
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .cabinet__premium {

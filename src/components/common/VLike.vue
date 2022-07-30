@@ -127,7 +127,7 @@ export default {
 }
 
 .type-secondary {
-    stroke: #dedede;
+    stroke: $color-silver;
 
     &.like__icon_active {
         fill: $color-pink;

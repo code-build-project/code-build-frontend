@@ -102,7 +102,7 @@ export default {
 
 <style lang="scss" scoped>
 .article {
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .article__content {

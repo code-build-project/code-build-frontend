@@ -104,7 +104,7 @@ export default {
 
     methods: {
         getLevelColor(level) {
-            return { background: this.course.level >= level ? '#EE3465' : '#3A3F4F' };
+            return { background: this.course.level >= level ? '#ee3465' : '#3a3f4f' };
         }
     }
 };

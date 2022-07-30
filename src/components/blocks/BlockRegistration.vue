@@ -117,7 +117,7 @@ export default {
     line-height: 0;
 
     &::placeholder {
-        color: #518aff;
+        color: $color-blue-light;
     }
 }
 
@@ -136,9 +136,9 @@ export default {
         bottom: 20px;
         padding: 11px;
         pointer-events: none;
-        stroke: #3a7afe;
+        stroke: $color-blue-light;
         stroke-width: 1.5px;
-        border: 2px solid #3a7afe;
+        border: 2px solid $color-blue-light;
         border-radius: 10px;
         transition: ease-out 0.3s;
 
@@ -219,8 +219,8 @@ export default {
         margin-top: 32px;
         font-size: 18px;
         text-align: center;
-        color: #3a7afe;
-        border: 1px solid #3A7AFE;
+        color: $color-blue-light;
+        border: 1px solid $color-blue-light;
         transition: ease-out 0.3s;
 
         &_active {

@@ -24,7 +24,7 @@ export default {
 .subscribe {
     @extend .flex_column;
     padding: 40px;
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .subscribe__questions {

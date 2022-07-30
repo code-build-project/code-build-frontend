@@ -84,7 +84,7 @@ export default {
 
 /* стили для чекбокса, находящегося в состоянии disabled */
 .checkbox-input:disabled + label::before {
-    background-color: #e9ecef;
+    background-color: $color-silver;
 }
 
 /* стили для активного чекбокса (при нажатии на него) */

@@ -45,7 +45,7 @@ export default {
     font-size: 18px;
     color: $color-black;
     padding: 1em 1.7em 1em 1.7em;
-    border: 1px solid #e2e2e2;
+    border: 1px solid $color-silver;
     border-radius: 8px;
     transition: all 0.2s ease-out;
     margin-bottom: 15px;

@@ -164,7 +164,7 @@ export default {
 <style lang="scss" scoped>
 .course {
     @extend .flex_column;
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .course__lessons {

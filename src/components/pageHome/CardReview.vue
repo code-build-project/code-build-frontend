@@ -107,7 +107,7 @@ export default {
     font-size: 16px;
     line-height: 25px;
     letter-spacing: -0.025em;
-    color: #3e4462;
+    color: $color-black;
 }
 
 .card__footer {
@@ -141,13 +141,13 @@ export default {
     font-weight: bold;
     font-size: 20px;
     letter-spacing: -0.55px;
-    color: #18214d;
+    color: $color-black;
 }
 
 .card__avatar-date {
     font-size: 14px;
     letter-spacing: -0.4px;
-    color: #b0b7c8;
+    color: $color-gray;
 }
 
 // Иконки

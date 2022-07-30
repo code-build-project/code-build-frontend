@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
 .courses__wrap {
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .courses {

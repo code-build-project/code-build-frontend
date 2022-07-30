@@ -137,7 +137,7 @@ export default {
 
 <style lang="scss" scoped>
 .favorites__wrap {
-    background: #f4f4f4;
+    background: $color-white-dark;
 }
 
 .favorites {

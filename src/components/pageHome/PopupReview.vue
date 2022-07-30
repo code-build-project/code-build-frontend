@@ -118,7 +118,7 @@ export default {
     margin-top: 38px;
     font-size: 29px;
     letter-spacing: -0.9px;
-    color: #3e4462;
+    color: $color-black;
     background: #ecf2ff;
     border-radius: 9px;
 
@@ -135,7 +135,7 @@ export default {
     overflow: auto;
     font-size: 25px;
     line-height: 36px;
-    color: #3e4462;
+    color: $color-black;
     @extend .custom-scroll;
 }
 
@@ -161,13 +161,13 @@ export default {
         font-weight: bold;
         font-size: 20px;
         letter-spacing: -0.55px;
-        color: #18214d;
+        color: $color-black;
     }
 
     &-date {
         font-size: 14px;
         letter-spacing: -0.4px;
-        color: #b0b7c8;
+        color: $color-gray;
     }
 }
 

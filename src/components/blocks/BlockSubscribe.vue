@@ -95,14 +95,14 @@ export default {
         width: 100px;
         height: 100px;
         padding: 32px;
-        border: 2px solid #3a7afe;
+        border: 2px solid $color-blue-light;
         border-radius: 21px;
         fill: $color-white;
 
         @media screen and (min-width: 1160px) {
             &:hover {
                 cursor: pointer;
-                background: #3a7afe;
+                background: $color-blue-light;
             }
         }
     }
@@ -154,7 +154,7 @@ export default {
         width: 60px;
         height: 60px;
         padding: 17px;
-        border: 1.2px solid #3a7afe;
+        border: 1.2px solid $color-blue-light;
         border-radius: 12px;
     }
 }

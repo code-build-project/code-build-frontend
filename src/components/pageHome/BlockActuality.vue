@@ -181,8 +181,8 @@ export default {
 .actuality__icon {
     @extend .flex_row-center-center;
     position: absolute;
-    background: #3a7afe;
-    border: 2px solid #3a7afe;
+    background: $color-blue-light;
+    border: 2px solid $color-blue-light;
     border-radius: 21%;
     transition: all 1s ease-in-out;
     &:nth-child(1) {

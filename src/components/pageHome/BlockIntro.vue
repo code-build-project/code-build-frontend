@@ -87,7 +87,7 @@ export default {
     margin-top: 30px;
     font-size: 24px;
     line-height: 35px;
-    color: #3e4462;
+    color: $color-black;
 }
 
 .intro__button {
@@ -192,7 +192,6 @@ export default {
         margin-top: 32px;
         font-size: 26px;
         line-height: 30px;
-        color: #272A37;
         text-align: center;
     }
 

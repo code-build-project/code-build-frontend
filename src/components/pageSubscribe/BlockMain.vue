@@ -146,7 +146,7 @@ export default {
     margin-top: 25px;
     font-size: 24px;
     line-height: 32px;
-    color: #3e4462;
+    color: $color-black;
 }
 
 .main__right-side {

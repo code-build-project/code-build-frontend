@@ -17,7 +17,7 @@
                     v-for="item in [1, 2, 3, 4, 5]"
                     :key="item"
                     class="card__level-circle"
-                    :style="{ background: course.level >= item ? '#EE3465' : '#EDEDED' }"
+                    :style="getLevelColor(item)"
                 />
             </div>
 
@@ -96,6 +96,12 @@ export default {
 
     computed: {
         ...mapGetters(['isAuth'])
+    },
+
+    methods: {
+        getLevelColor(level) {
+            return { background: this.course.level >= level ? '#ee3465' : '#ededed' };
+        }
     }
 };
 </script>
@@ -120,7 +126,7 @@ export default {
     height: 240px;
     min-width: 100%;
     min-height: 240px;
-    background: #c4c4c4;
+    background: $color-smoky;
     border-radius: 8px 8px 0px 0px;
 }
 
@@ -136,7 +142,7 @@ export default {
     @extend .flex_row-center;
     font-family: 'EuclidCircular';
     font-size: 15px;
-    color: #3a3f4f;
+    color: $color-black-light;
 
     &-title {
         margin-right: 5px;
@@ -155,7 +161,7 @@ export default {
     margin-top: 15px;
     font-size: 26px;
     line-height: 35px;
-    color: #3a3f4f;
+    color: $color-black-light;
     letter-spacing: -0.01em;
     overflow: hidden;
 }
@@ -164,7 +170,7 @@ export default {
     @extend .flex_row-center-start;
     margin-top: 15px;
     font-size: 14px;
-    color: #3a3f4f;
+    color: $color-black-light;
 }
 
 .card__footer-item {
@@ -191,7 +197,7 @@ export default {
         width: 18px;
         height: 18px;
         margin-right: 8px;
-        fill: #3a3f4f;
+        fill: $color-black-light;
     }
 
     &-heart {

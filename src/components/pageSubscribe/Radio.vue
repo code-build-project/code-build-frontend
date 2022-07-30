@@ -202,7 +202,7 @@ export default {
 
 /* стили для чекбокса, находящегося в состоянии disabled */
 .radio__input:disabled + label::before {
-    background-color: #e9ecef;
+    background-color: $color-silver;
 }
 
 @media screen and (max-width: 1160px) {
