@@ -54,4 +54,13 @@ export default class Courses extends AbstractService {
         const { data } = await this.api.get('/courses/popular-courses', { params });
         return data.map(item => new Course(item, likes));
     }
+
+    /**
+     * Увеличение количества просмотров курса
+     * @param {string} id - id курса
+     */
+     async addView(params) {
+        const { data } = await this.api.put('/courses/add-view', params);
+        return data;
+    }
 }

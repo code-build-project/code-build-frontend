@@ -53,7 +53,8 @@ export default {
         return {
             isPageLoaded: false,
             article: {},
-            popularArticleList: []
+            popularArticleList: [],
+            timer: null
         };
     },
 
@@ -67,6 +68,13 @@ export default {
         async setPopularArticleList() {
             let payload = { id: this.$route.query.id };
             this.popularArticleList = await this.$service.articles.getPopulars(payload);
+        },
+
+        startViewAlgorithm() {
+            let payload = { id: this.$route.query.id };
+            this.timer = setTimeout(() => {
+                this.$service.articles.addView(payload);
+            }, 60000);
         }
     },
 
@@ -83,6 +91,11 @@ export default {
     created() {
         this.setArticle();
         this.setPopularArticleList();
+        this.startViewAlgorithm();
+    },
+
+    beforeDestroy() {
+        clearTimeout(this.timer);
     }
 };
 </script>

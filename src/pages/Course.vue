@@ -13,7 +13,7 @@
                     :key="index"
                     class="course__card"
                     :lesson="item"
-                    @click="selectedLesson = item"
+                    @click="openPopup(item)"
                 />
             </div>
 
@@ -35,7 +35,7 @@
             v-if="selectedLesson.id"
             :lesson="selectedLesson"
             :lessonsLength="lessonList.length"
-            @close="selectedLesson = {}"
+            @close="closePopup"
             @clickLeft="setLesson('decrement')"
             @clickRight="setLesson('increment')"
         />
@@ -68,7 +68,8 @@ export default {
             lessonList: [],
             courseList: [],
             course: {},
-            selectedLesson: {}
+            selectedLesson: {},
+            timer: null
         };
     },
 
@@ -100,6 +101,39 @@ export default {
             if (index < 0) index = lastIndex;
 
             this.selectedLesson = this.lessonList[index];
+
+            clearTimeout(this.timer);
+            this.startViewAlgorithmLesson();
+        },
+
+        openPopup(lesson) {
+            this.selectedLesson = lesson;
+            clearTimeout(this.timer);
+            this.startViewAlgorithmLesson();
+        },
+
+        closePopup() {
+            this.selectedLesson = {};
+            clearTimeout(this.timer);
+        },
+
+        // Алгоритмы просмотра курса/урока
+        startViewAlgorithmCourse() {
+            let payload = { id: this.$route.query.id };
+            this.timer = setTimeout(() => {
+                this.$service.courses.addView(payload);
+            }, 8000);
+        },
+
+        startViewAlgorithmLesson() {
+            let payload = { 
+                id: this.selectedLesson.id,
+                courseId: this.$route.query.id,
+            };
+
+            this.timer = setTimeout(() => {
+                this.$service.lessons.addView(payload);
+            }, 60000);
         }
     },
 
@@ -118,7 +152,12 @@ export default {
         this.setLessons();
         this.setCourse();
         this.setPopularCourseList();
+        this.startViewAlgorithmCourse();
     },
+
+    beforeDestroy() {
+        clearTimeout(this.timer);
+    }
 };
 </script>
 

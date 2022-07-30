@@ -54,4 +54,13 @@ export default class Articles extends AbstractService {
         const { data } = await this.api.get('/articles/popular-articles', { params });
         return data.map(item => new Article(item, likes));
     }
+
+    /**
+     * Увеличение количества просмотров статьи
+     * @param {string} id - id статьи
+     */
+    async addView(params) {
+        const { data } = await this.api.put('/articles/add-view', params);
+        return data;
+    }
 }
