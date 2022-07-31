@@ -17,47 +17,51 @@
             @click="isDropdown = false"
         />
 
-        <ul v-if="isDropdown" class="menu__dropdown">
-            <li class="menu__dropdown-item" @click="setRoute('/')">
-                О проекте
-                <v-icon class="menu__icon-mail" path="img/mailSmile.svg" />
-            </li>
+        <v-transition>
+            <ul v-if="isDropdown" class="menu__dropdown">
+                <li class="menu__dropdown-item" @click="setRoute('/')">
+                    О проекте
+                    <v-icon class="menu__icon-mail" path="img/mailSmile.svg" />
+                </li>
 
-            <li class="menu__dropdown-item" @click="setRoute('/articles')">
-                Блог
-                <v-icon class="menu__icon-document" path="img/document.svg" />
-            </li>
-            
-            <li class="menu__dropdown-item" @click="setRoute('/courses')">
-                Видеокурсы
-                <v-icon class="menu__icon-video" path="img/video.svg" />
-            </li>
+                <li class="menu__dropdown-item" @click="setRoute('/articles')">
+                    Блог
+                    <v-icon class="menu__icon-document" path="img/document.svg" />
+                </li>
 
-            <v-button
-                class="menu__button"
-                type="active"
-                @click="setRoute('subscribe')"
-            >
-                <v-icon 
-                    class="menu__icon-premium" 
-                    path="img/premium.svg" 
-                />
-                Купить премиум
-            </v-button>
-        </ul>
+                <li class="menu__dropdown-item" @click="setRoute('/courses')">
+                    Видеокурсы
+                    <v-icon class="menu__icon-video" path="img/video.svg" />
+                </li>
+
+                <v-button
+                    class="menu__button"
+                    type="active"
+                    @click="setRoute('subscribe')"
+                >
+                    <v-icon
+                        class="menu__icon-premium"
+                        path="img/premium.svg"
+                    />
+                    Купить премиум
+                </v-button>
+            </ul>
+        </v-transition>
     </div>
 </template>
 
 <script>
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
+import VTransition from '@/components/common/VTransition';
 
 export default {
     name: 'MenuBurger',
 
     components: {
         VIcon,
-        VButton
+        VButton,
+        VTransition
     },
 
     data() {

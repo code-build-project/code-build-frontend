@@ -29,10 +29,12 @@
             </div>
         </div>
 
-        <menu-user-dropdown 
-            v-if="isDropdown" 
-            @close="onClickOutside" 
-        />
+        <v-transition>
+            <menu-user-dropdown
+                v-if="isDropdown"
+                @close="onClickOutside"
+            />
+        </v-transition>
     </div>
 </template>
 
@@ -40,6 +42,7 @@
 // Components
 import { mapState } from 'vuex';
 import VIcon from '@/components/common/VIcon';
+import VTransition from '@/components/common/VTransition';
 import MenuUserDropdown from '@/components/header/MenuUserDropdown';
 
 // Mixins
@@ -50,6 +53,7 @@ export default {
 
     components: {
         VIcon,
+        VTransition,
         MenuUserDropdown
     },
 

@@ -28,9 +28,11 @@
         </nav>
 
         <div class="header__menu">
-            <menu-default v-if="!user.id" />
+            <v-transition>
+                <menu-default v-if="!user.id" />
 
-            <menu-user v-else />
+                <menu-user v-else />
+            </v-transition>
 
             <menu-burger class="header__burger" />
         </div>
@@ -43,6 +45,7 @@ import VIcon from '@/components/common/VIcon';
 import MenuUser from '@/components/header/MenuUser';
 import MenuBurger from '@/components/header/MenuBurger';
 import MenuDefault from '@/components/header/MenuDefault';
+import VTransition from '@/components/common/VTransition';
 
 export default {
     name: 'Header',
@@ -51,7 +54,8 @@ export default {
         VIcon,
         MenuUser,
         MenuBurger,
-        MenuDefault
+        MenuDefault,
+        VTransition
     },
 
     computed: {
