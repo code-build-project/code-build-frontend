@@ -34,10 +34,14 @@
 </template>
 
 <script>
+// Components
 import ArticleCover from '@/components/pageArticle/Cover';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import BlockPopular from '@/components/blocks/BlockPopular';
 import VPreloader from '@/components/common/VPreloader';
+
+// Helpers
+import { createNotification } from '@/helpers/notification';
 
 export default {
     name: 'Article',
@@ -81,8 +85,17 @@ export default {
     methods: {
         async setArticle() {
             let payload = { id: this.$route.query.id };
-            this.article = await this.$service.articles.getArticle(payload);
-            this.isPageLoaded = true;
+
+            try {
+                this.article = await this.$service.articles.getArticle(payload);
+            } catch {
+                createNotification({
+                    text: 'Не удалось загрузить статью.',
+                    status: 'error'
+                });
+            } finally {
+                this.isPageLoaded = true;
+            }
         },
 
         async setPopularArticleList() {

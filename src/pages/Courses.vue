@@ -34,10 +34,14 @@
 </template>
 
 <script>
+// Components
 import CardCourse from '@/components/cards/CardCourse';
 import CardPreloader from '@/components/cards/CardPreloader';
 import VFilterGroup from '@/components/common/VFilterGroup';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
+
+// Helpers
+import { createNotification } from '@/helpers/notification';
 
 export default {
     name: 'Courses',
@@ -66,8 +70,17 @@ export default {
     methods: {
         async setCourses() {
             this.isPageLoading = true;
-            this.courseList = await this.$service.courses.getCoursesList({ tag: this.filterId });
-            this.isPageLoading = false;
+
+            try {
+                this.courseList = await this.$service.courses.getCoursesList({ tag: this.filterId });
+            } catch {
+                createNotification({
+                    text: 'Не удалось загрузить курсы.',
+                    status: 'error'
+                });
+            } finally {
+                this.isPageLoading = false;
+            }
         },
 
         async setFilters() {

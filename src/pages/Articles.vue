@@ -34,10 +34,14 @@
 </template>
 
 <script>
+// Components
 import CardArticle from '@/components/cards/CardArticle';
 import CardPreloader from '@/components/cards/CardPreloader';
 import VFilterGroup from '@/components/common/VFilterGroup';
 import BlockRegistration from '@/components/blocks/BlockRegistration';
+
+// Helpers
+import { createNotification } from '@/helpers/notification';
 
 export default {
     name: 'Articles',
@@ -66,8 +70,17 @@ export default {
     methods: {
         async setArticles() {
             this.isPageLoading = true;
-            this.articleList = await this.$service.articles.getArticleList({ tag: this.filterId });
-            this.isPageLoading = false;
+
+            try {
+                this.articleList = await this.$service.articles.getArticleList({ tag: this.filterId });
+            } catch {
+                createNotification({
+                    text: 'Не удалось загрузить статьи.',
+                    status: 'error'
+                });
+            } finally {
+                this.isPageLoading = false;
+            }
         },
 
         async setFilters() {

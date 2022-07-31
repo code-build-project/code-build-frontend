@@ -41,16 +41,18 @@ const requestAccess = axios.create({
 requestAccess.interceptors.response.use(
     response => response,
     err => {
-        const { data } = err.response;
+        const { status, data } = err.response;
 
         if (data.name === 'TokenExpiredError') {
             storage.clearTokens();
             router.push('/').then(() => location.reload());
         } else {
-            createNotification({
-                text: data.message,
-                status: 'error'
-            });
+            if (status === 500) {
+                createNotification({
+                    text: data.message,
+                    status: 'error'
+                });
+            }
 
             throw err.response;
         }

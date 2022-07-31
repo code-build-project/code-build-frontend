@@ -43,12 +43,16 @@
 </template>
 
 <script>
+// Components
 import PopupPlayer from '@/components/pageCourse/PopupPlayer';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import CardMiniLesson from '@/components/cards/CardMiniLesson';
 import CourseCover from '@/components/pageCourse/Cover';
 import BlockPopular from '@/components/blocks/BlockPopular';
 import VPreloader from '@/components/common/VPreloader';
+
+// Helpers
+import { createNotification } from '@/helpers/notification';
 
 export default {
     name: 'Course',
@@ -98,8 +102,17 @@ export default {
     methods: {
         async setLessons() {
             let payload = { courseId: this.$route.query.id };
-            this.lessonList = await this.$service.lessons.getLessonList(payload);
-            this.isPageLoaded = true;
+
+            try {
+                this.lessonList = await this.$service.lessons.getLessonList(payload);
+            } catch {
+                createNotification({
+                    text: 'Не удалось загрузить уроки курса.',
+                    status: 'error'
+                });
+            } finally {
+                this.isPageLoaded = true;
+            }
         },
 
         async setCourse() {

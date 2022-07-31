@@ -16,7 +16,7 @@
             </div>
 
             <card-preloader 
-                v-if="pageLoading" 
+                v-if="isPageLoading" 
                 class="favorites__preloader" 
             />
 
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+// Components
 import CardCourse from '@/components/cards/CardCourse';
 import CardLesson from '@/components/cards/CardLesson';
 import CardArticle from '@/components/cards/CardArticle';
@@ -59,6 +60,9 @@ import CardPreloader from '@/components/cards/CardPreloader';
 import BlockSubscribe from '@/components/blocks/BlockSubscribe';
 import VFilterGroup from '@/components/common/VFilterGroup';
 import { mapGetters } from 'vuex';
+
+// Helpers
+import { createNotification } from '@/helpers/notification';
 
 export default {
     name: 'Favorites',
@@ -93,7 +97,7 @@ export default {
 
             favoriteList: [],
 
-            pageLoading: true
+            isPageLoading: true
         };
     },
 
@@ -112,24 +116,33 @@ export default {
 
     methods: {
         async setFavoriteList(filterId) {
-            this.pageLoading = true;
+            this.isPageLoading = true;
             this.filterId = filterId;
 
-            switch (this.filterId) {
-                case 1:
-                    this.favoriteList = await this.$service.courses.getFavorites();
-                    break;
-                case 2:
-                    this.favoriteList = await this.$service.lessons.getFavorites();
-                    break;
-                case 3:
-                    this.favoriteList = await this.$service.articles.getFavorites();
-                    break;
-                default:
-                    this.favoriteList = await this.$service.courses.getFavorites();
+            try {
+                switch (this.filterId) {
+                    case 1:
+                        this.favoriteList = await this.$service.courses.getFavorites();
+                        break;
+                    case 2:
+                        this.favoriteList = await this.$service.lessons.getFavorites();
+                        break;
+                    case 3:
+                        this.favoriteList = await this.$service.articles.getFavorites();
+                        break;
+                    default:
+                        this.favoriteList = await this.$service.courses.getFavorites();
+                }
+            } catch {
+                this.favoriteList = [];
+                
+                createNotification({
+                    text: 'Не удалось загрузить выбранный список.',
+                    status: 'error'
+                });
+            } finally {
+                this.isPageLoading = false;
             }
-
-            this.pageLoading = false;
         }
     }
 };
