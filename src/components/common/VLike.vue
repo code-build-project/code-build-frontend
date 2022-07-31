@@ -4,7 +4,7 @@
             class="like__icon"
             :class="componentClasses"
             path="img/heart.svg"
-            @click.stop.native="onLike"
+            @click.stop.native="debounceOnLike"
         />
     </a>
 </template>
@@ -59,6 +59,12 @@ export default {
         }
     },
 
+    data() {
+        return {
+            debounceOnLike: debounce(this.onLike, 500),
+        }
+    },
+
     computed: {
         componentClasses() {
             return [
@@ -71,7 +77,7 @@ export default {
     },
 
     methods: {
-        onLike: debounce(function() {
+        onLike() {
             let payload = {
                 id: this.contentId,
                 field: this.fieldName
@@ -84,7 +90,7 @@ export default {
             if (this.isLike) {
                 this.deleteLike(payload);
             } else this.addLike(payload);
-        }, 500),
+        },
 
         addLike(payload) {
             this.$store.dispatch('likes/addLike', payload).then(() => {

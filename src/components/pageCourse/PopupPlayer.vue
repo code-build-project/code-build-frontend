@@ -60,12 +60,12 @@
             <v-icon
                 class="popup__icon-bracket-left"
                 path="img/angleBracketPopup.svg"
-                @click="changeVideo('clickLeft')"
+                @click="debounceChangeVideo('clickLeft')"
             />
             <v-icon
                 class="popup__icon-bracket-right"
                 path="img/angleBracketPopup.svg"
-                @click="changeVideo('clickRight')"
+                @click="debounceChangeVideo('clickRight')"
             />
             <!-- Внешние кнопки -->
 
@@ -73,7 +73,7 @@
             <div
                 v-if="intNumber > 1"
                 class="popup__button-left"
-                @click="changeVideo('clickLeft')"
+                @click="debounceChangeVideo('clickLeft')"
             >
                 <v-icon
                     class="popup__icon-bracket-left"
@@ -85,7 +85,7 @@
             <div
                 v-if="intNumber !== lessonsLength"
                 class="popup__button-right"
-                @click="changeVideo('clickRight')"
+                @click="debounceChangeVideo('clickRight')"
             >
                 Урок №{{ intNumber + 1 }}
                 <v-icon
@@ -149,6 +149,13 @@ export default {
         }
     },
 
+    data() {
+        return {
+            isPageLoaded: false,
+            debounceChangeVideo: debounce(this.changeVideo, 500),
+        };
+    },
+
     computed: {
         ...mapGetters(['isAuth']),
 
@@ -157,21 +164,15 @@ export default {
         }
     },
 
-    data() {
-        return {
-            isPageLoaded: false
-        };
-    },
-
     methods: {
         load() {
             this.isPageLoaded = true;
         },
 
-        changeVideo: debounce(function(click) {
+        changeVideo(click) {
             this.$emit(click);
             this.isPageLoaded = false;
-        }, 500)
+        }
     }
 };
 </script>
