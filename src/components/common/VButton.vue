@@ -45,7 +45,7 @@ export default {
     @extend .flex_row-center-center;
     border-style: solid;
     border-radius: 8px;
-    transition: ease-out 0.2s;
+    transition: ease 0.2s;
 }
 
 .button_type {
@@ -59,7 +59,8 @@ export default {
     &-primary {
         color: $color-white;
         background: $color-blue;
-        border: none;
+        border-color: $color-blue;
+        border-width: 1px;
         
         @media screen and (min-width: 1160px) {
             &:hover {
@@ -78,8 +79,9 @@ export default {
 
     &-active {
         color: $color-white;
-        border: none;
         background: $color-pink;
+        border-color: $color-pink;
+        border-width: 1px;
         
         @media screen and (min-width: 1160px) {
             &:hover {

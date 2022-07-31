@@ -70,7 +70,6 @@ export default {
     @extend .flex_column;
     width: 100%;
     max-width: 1160px;
-    overflow: hidden;
 }
 
 .popular__title {

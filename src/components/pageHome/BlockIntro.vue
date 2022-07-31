@@ -98,7 +98,7 @@ export default {
     color: $color-blue;
     border: 2px solid $color-blue;
     box-shadow: inset 0 0 0 0 $color-blue;
-    transition: ease-out 0.3s;
+    transition: ease 0.7s;
 
     @media screen and (min-width: 1160px) {
         &:hover {
@@ -119,7 +119,7 @@ export default {
         height: 30px;
         margin-left: 9px;
         stroke: $color-blue;
-        transition: ease-out 0.4s;
+        transition: ease 0.8s;
         stroke-width: 1.5px;
     }
 

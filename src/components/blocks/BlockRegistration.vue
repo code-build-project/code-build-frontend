@@ -1,5 +1,8 @@
 <template>
-    <div class="reg__wrap">
+    <div 
+        v-if="!isAuth" 
+        class="reg__wrap"
+    >
         <div class="reg">
             <h1 class="reg__title">
                 Зарегистрируйся в codebuild и получи бесплатный доступ к более чем 20 курсам
@@ -39,6 +42,7 @@
 // Components
 import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
+import { mapGetters } from 'vuex';
 
 // Helpers
 import { REGEX_EMAIL } from '@/helpers/constants';
@@ -58,6 +62,8 @@ export default {
     },
 
     computed: {
+        ...mapGetters(['isAuth']),
+
         isValid() {
             return REGEX_EMAIL.test(this.email);
         }

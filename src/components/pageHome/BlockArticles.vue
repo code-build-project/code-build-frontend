@@ -150,7 +150,7 @@ export default {
     font-size: 18px;
     color: $color-white;
     border: 1px solid $color-blue;
-    transition: ease-out 0.3s;
+    transition: ease 0.7s;
 
     &.adaptive {
         display: none;
