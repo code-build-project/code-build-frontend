@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import storage from '@/helpers/storage';
 
 Vue.use(VueRouter);
 
@@ -98,10 +99,19 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+    let needGoToHome = storage.getNeedGoToHome();
+
     // При переходе на странциу MainLayout по дефолту открывается главная страница
     if (to.name !== 'Home' && to.path === '/') {
         next({ name: 'Home' });
-    } else next();
+    }
+    // Если нужно перейти на гланую страницу, при перезагрузке
+    else if (needGoToHome) {
+        storage.setNeedGoToHome(false);
+        next({ name: 'Home' });
+    } else {
+        next();
+    }
 });
 
 export default router;

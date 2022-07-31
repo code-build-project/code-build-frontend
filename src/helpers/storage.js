@@ -19,4 +19,10 @@ export default {
     setLikes: params => {
         localStorage.setItem('likes-' + params.field, params.likes);
     },
+
+    // Флаг для проверки того, нужно ли после перезагрузки страницы, перекинуть на главную страницу
+    // Как пример: Авторизация, Выходи из учетки и тд.
+    getNeedGoToHome: () => (localStorage.getItem('needGoToHome') === 'true'),
+
+    setNeedGoToHome: value => { localStorage.setItem('needGoToHome', value) },
 };

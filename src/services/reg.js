@@ -20,6 +20,5 @@ export default class Reg extends AbstractService {
     async completion(params) {
         const { data } = await this.api.post('/sign/confirm', params);
         storage.setTokens(data);
-        router.push('/').then(() => location.reload());
     }
 }

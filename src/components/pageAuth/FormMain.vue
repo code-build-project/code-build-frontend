@@ -64,6 +64,7 @@ import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
 
 // Helpers
+import storage from '@/helpers/storage';
 import { REGEX_EMAIL } from '@/helpers/constants';
 
 export default {
@@ -116,7 +117,7 @@ export default {
 
             try {
                 await this.$service.auth.logIn(this.form);
-                this.$router.push('/').then(() => location.reload());
+                this.redirectToHome();
             } catch ({ data }) {
                 if (data.type === 'IncorrectEmail') {
                     this.errors.email = data.message;
@@ -126,6 +127,11 @@ export default {
             } finally {
                 this.isPageLoaded = true;
             }
+        },
+
+        redirectToHome() {
+            storage.setNeedGoToHome(true);
+            location.reload();
         }
     }
 };

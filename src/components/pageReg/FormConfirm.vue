@@ -43,8 +43,12 @@
 </template>
 
 <script>
+// Components
 import VInput from '@/components/common/VInput';
 import VButton from '@/components/common/VButton';
+
+// Helpers
+import storage from '@/helpers/storage';
 
 export default {
     name: 'RegFormConfirm',
@@ -124,11 +128,17 @@ export default {
 
             try {
                 await this.$service.reg.completion(payload);
+                this.redirectToHome();
             } catch ({ data }) {
                 this.passwordError = data.message;
             } finally {
                 this.isPageLoaded = true;
             }
+        },
+
+        redirectToHome() {
+            storage.setNeedGoToHome(true);
+            location.reload();
         }
     }
 };

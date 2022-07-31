@@ -28,6 +28,7 @@ export default class Auth extends AbstractService {
      */
     logOut() {
         storage.clearTokens();
-        router.push('/').then(() => location.reload());
+        storage.setNeedGoToHome(true);
+        location.reload();
     }
 }
