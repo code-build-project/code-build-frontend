@@ -51,7 +51,7 @@ export default class Courses extends AbstractService {
     async getPopulars(params) {
         let likes = await store.dispatch('likes/getLikeList', 'courses');
 
-        const { data } = await this.api.get('/courses/popular-courses', { params });
+        const { data } = await this.api.get('/courses/populars', { params });
         return data.map(item => new Course(item, likes));
     }
 

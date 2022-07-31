@@ -18,7 +18,7 @@ export default class Reg extends AbstractService {
      * @param {string} password - пароль который пришел на почту
      */
     async completion(params) {
-        const { data } = await this.api.post('/confirm-sign', params);
+        const { data } = await this.api.post('/sign/confirm', params);
         storage.setTokens(data);
         router.push('/').then(() => location.reload());
     }

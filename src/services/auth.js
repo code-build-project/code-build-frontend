@@ -20,7 +20,7 @@ export default class Auth extends AbstractService {
      * @param {string} email - почта пользователя
      */
     async recovery(params) {
-        await this.api.post('/recovery-password', params);
+        await this.api.post('/login/recovery', params);
     }
 
     /**

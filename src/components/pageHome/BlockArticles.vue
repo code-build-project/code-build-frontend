@@ -92,7 +92,7 @@ export default {
 .articles__wrap {
     @extend .flex_row-center-center;
     width: 100%;
-    background: red;
+    background: #17191f;
 }
 
 .articles {

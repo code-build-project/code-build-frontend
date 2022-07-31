@@ -51,7 +51,7 @@ export default class Articles extends AbstractService {
     async getPopulars(params) {
         let likes = await store.dispatch('likes/getLikeList', 'articles');
 
-        const { data } = await this.api.get('/articles/popular-articles', { params });
+        const { data } = await this.api.get('/articles/populars', { params });
         return data.map(item => new Article(item, likes));
     }
 
