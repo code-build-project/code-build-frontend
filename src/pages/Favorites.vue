@@ -72,10 +72,6 @@ export default {
         VFilterGroup
     },
 
-    computed: {
-        ...mapGetters(['isAuth'])
-    },
-
     data() {
         return {
             filterId: 1,
@@ -99,6 +95,10 @@ export default {
 
             pageLoading: true
         };
+    },
+
+    computed: {
+        ...mapGetters(['isAuth'])
     },
 
     created() {
