@@ -2,15 +2,15 @@
     <div class="actuality__wrap" @mousemove="mousemove">
         <div ref="actuality" class="actuality">
             <h1 class="actuality__title">
-                Вы с нуля<br class="adaptive"/> освоите профессию<br class="desktop"/>
-                разработчика и сможете добавить<br class="desktop"/>
-                в арсенал<br class="adaptive"/> необходимые навыки.
+                Вы с нуля<br class="adaptive" /> освоите профессию<br class="desktop" />
+                разработчика и сможете добавить<br class="desktop" />
+                в арсенал<br class="adaptive" /> необходимые навыки.
             </h1>
 
             <h2 class="actuality__subtitle">
-                Мы помогаем новичкам стать<br class="adaptive"/> профессиональными<br class="desktop"/>
-                программистами,<br class="adaptive"/> а опытным разработчикам<br class="adaptive"/> получать<br class="desktop"/>
-                новые знания и расти<br class="adaptive"/> профессионально
+                Мы помогаем новичкам стать<br class="adaptive" /> профессиональными<br class="desktop" />
+                программистами,<br class="adaptive" /> а опытным разработчикам<br class="adaptive" /> получать<br class="desktop" />
+                новые знания и расти<br class="adaptive" /> профессионально
             </h2>
 
             <!-- Иконки заднего фона -->

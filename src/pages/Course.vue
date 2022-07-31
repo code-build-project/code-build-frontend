@@ -73,6 +73,28 @@ export default {
         };
     },
 
+    // TO DO - не знаю зачем этот код, если выясню, то добавить коммент и вернуть в работу его
+    // watch: {
+    //     '$route.query.id': {
+    //         handler() {
+    //             this.setLessons();
+    //             this.setCourse();
+    //             this.setPopularCourseList();
+    //         }
+    //     }
+    // },
+
+    created() {
+        this.setLessons();
+        this.setCourse();
+        this.setPopularCourseList();
+        this.startViewAlgorithmCourse();
+    },
+
+    beforeDestroy() {
+        clearTimeout(this.timer);
+    },
+
     methods: {
         async setLessons() {
             let payload = { courseId: this.$route.query.id };
@@ -135,28 +157,6 @@ export default {
                 this.$service.lessons.addView(payload);
             }, 60000);
         }
-    },
-
-    // TO DO - не знаю зачем этот код, если выясню, то добавить коммент и вернуть в работу его
-    // watch: {
-    //     '$route.query.id': {
-    //         handler() {
-    //             this.setLessons();
-    //             this.setCourse();
-    //             this.setPopularCourseList();
-    //         }
-    //     }
-    // },
-
-    created() {
-        this.setLessons();
-        this.setCourse();
-        this.setPopularCourseList();
-        this.startViewAlgorithmCourse();
-    },
-
-    beforeDestroy() {
-        clearTimeout(this.timer);
     }
 };
 </script>

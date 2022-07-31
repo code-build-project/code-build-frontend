@@ -23,7 +23,7 @@
                 :key="index"
                 v-model="radioValue"
                 class="main__radio"
-                :key-field="index"
+                :keyField="index"
                 :price="item.price"
                 :economy="item.economy"
             >
@@ -34,7 +34,7 @@
                 <div class="main__consent">
                     <v-check-box 
                         v-model="isChecked"
-                        key-field="consent"
+                        keyField="consent"
                         type="primary" 
                     />
 
@@ -86,6 +86,14 @@ export default {
 
     mixins: [window],
 
+    data() {
+        return {
+            radioValue: '',
+            isChecked: false,
+            isPopup: false
+        };
+    },
+
     computed: {
         radioList() {
             let subscribe = this.isDesktop ? ' подписки' : '';
@@ -104,14 +112,6 @@ export default {
         typeButton() {
             return this.isValid ? 'active' : 'disabled';
         }
-    },
-
-    data() {
-        return {
-            radioValue: '',
-            isChecked: false,
-            isPopup: false
-        };
     }
 };
 </script>

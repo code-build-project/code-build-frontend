@@ -19,7 +19,7 @@
         <v-input
             v-model="form.email"
             class="reg__mail"
-            :error-message="errors.email"
+            :errorMessage="errors.email"
             @change="errors.email = ''"
             @blur="validateEmail"
         >
@@ -78,17 +78,6 @@ export default {
         VCheckBox
     },
 
-    computed: {
-        isValid() {
-            const { name, email, checkbox } = this.form;
-            return name && REGEX_EMAIL.test(email) && checkbox;
-        },
-
-        typeButton() {
-            return this.isValid ? 'primary' : 'disabled';
-        }
-    },
-
     data() {
         return {
             isPageLoaded: true,
@@ -103,6 +92,25 @@ export default {
                 email: ''
             }
         };
+    },
+
+    computed: {
+        isValid() {
+            const { name, email, checkbox } = this.form;
+            return name && REGEX_EMAIL.test(email) && checkbox;
+        },
+
+        typeButton() {
+            return this.isValid ? 'primary' : 'disabled';
+        }
+    },
+
+    mounted() {
+        const routeEmail = this.$route.params.email;
+        
+        if (routeEmail) {
+            this.form.email = routeEmail;
+        }
     },
 
     methods: {
@@ -126,14 +134,6 @@ export default {
             } finally {
                 this.isPageLoaded = true;
             }
-        }
-    },
-
-    mounted() {
-        const routeEmail = this.$route.params.email;
-        
-        if (routeEmail) {
-            this.form.email = routeEmail;
         }
     }
 };

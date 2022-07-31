@@ -101,6 +101,15 @@ export default {
         };
     },
 
+    created() {
+        if (!this.isAuth) {
+            this.$router.push('/');
+            return;
+        }
+
+        this.setFavoriteList(this.filterId);
+    },
+
     methods: {
         async setFavoriteList(filterId) {
             this.pageLoading = true;
@@ -122,15 +131,6 @@ export default {
 
             this.pageLoading = false;
         }
-    },
-
-    created() {
-        if (!this.isAuth) {
-            this.$router.push('/');
-            return;
-        }
-
-        this.setFavoriteList(this.filterId);
     }
 };
 </script>

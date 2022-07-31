@@ -58,26 +58,6 @@ export default {
         };
     },
 
-    methods: {
-        async setArticle() {
-            let payload = { id: this.$route.query.id };
-            this.article = await this.$service.articles.getArticle(payload);
-            this.isPageLoaded = true;
-        },
-
-        async setPopularArticleList() {
-            let payload = { id: this.$route.query.id };
-            this.popularArticleList = await this.$service.articles.getPopulars(payload);
-        },
-
-        startViewAlgorithm() {
-            let payload = { id: this.$route.query.id };
-            this.timer = setTimeout(() => {
-                this.$service.articles.addView(payload);
-            }, 60000);
-        }
-    },
-
     // TO DO - не знаю зачем этот код, если выясню, то добавить коммент и вернуть в работу его
     // watch: {
     //     '$route.query.id': {
@@ -96,6 +76,26 @@ export default {
 
     beforeDestroy() {
         clearTimeout(this.timer);
+    },
+
+    methods: {
+        async setArticle() {
+            let payload = { id: this.$route.query.id };
+            this.article = await this.$service.articles.getArticle(payload);
+            this.isPageLoaded = true;
+        },
+
+        async setPopularArticleList() {
+            let payload = { id: this.$route.query.id };
+            this.popularArticleList = await this.$service.articles.getPopulars(payload);
+        },
+
+        startViewAlgorithm() {
+            let payload = { id: this.$route.query.id };
+            this.timer = setTimeout(() => {
+                this.$service.articles.addView(payload);
+            }, 60000);
+        }
     }
 };
 </script>

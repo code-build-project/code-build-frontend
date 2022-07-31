@@ -11,7 +11,7 @@
         <v-input
             v-model="password"
             class="form__password"
-            :error-message="passwordError"
+            :errorMessage="passwordError"
             @change="passwordError = ''"
             @keyup.enter.native="confirmRegistration()"
         >
@@ -62,6 +62,15 @@ export default {
             }
         }
     },
+
+    data() {
+        return {
+            isPageLoaded: true,
+            interval: 119,
+            password: '',
+            passwordError: ''
+        };
+    },
     
     computed: {
         time() {
@@ -78,15 +87,6 @@ export default {
         typeButton() {
             return this.isValid ? 'primary' : 'disabled';
         }
-    },
-
-    data() {
-        return {
-            isPageLoaded: true,
-            interval: 119,
-            password: '',
-            passwordError: ''
-        };
     },
 
     mounted() {

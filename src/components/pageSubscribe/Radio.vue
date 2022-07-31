@@ -40,12 +40,12 @@ import window from '@/mixins/window';
 export default {
     name: 'SubscribeRadio',
 
+    mixins: [window],
+
     model: {
         prop: 'picked',
         event: 'change'
     },
-
-    mixins: [window],
 
     props: {
         // Значение выбранного переключателя

@@ -58,6 +58,11 @@ export default {
         };
     },
 
+    created() {
+        this.setFilters();
+        this.setArticles();
+    },
+
     methods: {
         async setArticles() {
             this.isPageLoading = true;
@@ -68,11 +73,6 @@ export default {
         async setFilters() {
             this.filterList = await this.$store.dispatch('tags/getArticleList');
         }
-    },
-
-    created() {
-        this.setFilters();
-        this.setArticles();
     }
 };
 </script>

@@ -10,7 +10,7 @@
             <v-input
                 v-model="form.email"
                 class="recovery__mail"
-                :error-message="errors.email"
+                :errorMessage="errors.email"
                 @change="errors.email = ''"
                 @blur="validateEmail"
                 @keyup.enter.native="send()"
@@ -70,16 +70,6 @@ export default {
         VButton
     },
 
-    computed: {
-        isValid() {
-            return REGEX_EMAIL.test(this.form.email);
-        },
-
-        typeButton() {
-            return this.isValid ? 'primary' : 'disabled';
-        }
-    },
-
     data() {
         return {
             isPageLoaded: true,
@@ -93,6 +83,16 @@ export default {
                 email: ''
             }
         };
+    },
+
+    computed: {
+        isValid() {
+            return REGEX_EMAIL.test(this.form.email);
+        },
+
+        typeButton() {
+            return this.isValid ? 'primary' : 'disabled';
+        }
     },
 
     methods: {

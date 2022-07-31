@@ -9,8 +9,8 @@
                 <div class="reg__input-label">Email</div>
 
                 <input
-                    class="reg__input-field"
                     v-model="email"
+                    class="reg__input-field"
                     placeholder="your.email@example.com"
                 />
 
@@ -51,16 +51,16 @@ export default {
         VButton
     },
 
-    computed: {
-        isValid() {
-            return REGEX_EMAIL.test(this.email);
-        }
-    },
-
     data() {
         return {
             email: ''
         };
+    },
+
+    computed: {
+        isValid() {
+            return REGEX_EMAIL.test(this.email);
+        }
     },
 
     methods: {

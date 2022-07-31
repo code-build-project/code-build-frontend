@@ -20,7 +20,9 @@ module.exports = {
 
         'vue/max-attributes-per-line': 'off',
 
-        'vue/html-indent': ['error', 4] // Размер таба в пробелах
+        'vue/html-indent': ['error', 4], // Размер таба в пробелах
+
+        "vue/attribute-hyphenation": ["error", "never"] // Отключить передачу пропсов через дефис
 
         // инфу по правилам можно найти здесь https://eslint.vuejs.org/rules
     }

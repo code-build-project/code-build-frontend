@@ -13,7 +13,7 @@
                 v-model="form.name"
                 class="popup__field"
                 maxLength="20"
-                :error-message="errors.name"
+                :errorMessage="errors.name"
                 @change="errors.name = ''"
             >
                 Имя
@@ -33,7 +33,7 @@
                 class="popup__field"
                 type="password"
                 :disabled="!form.isChangePassword"
-                :error-message="errors.oldPassword"
+                :errorMessage="errors.oldPassword"
                 @change="errors.oldPassword = ''"
             >
                 Старый пароль
@@ -45,7 +45,7 @@
                 type="password"
                 maxLength="20"
                 :disabled="!form.isChangePassword"
-                :error-message="errors.newPassword"
+                :errorMessage="errors.newPassword"
                 @change="errors.newPassword = ''"
             >
                 Новый пароль
@@ -120,6 +120,10 @@ export default {
         };
     },
 
+    mounted() {
+        this.form.name = this.user.name;
+    },
+
     methods: {
         async save() {
             this.isPageLoaded = false;
@@ -138,10 +142,6 @@ export default {
                 this.isPageLoaded = true;
             }
         }
-    },
-
-    mounted() {
-        this.form.name = this.user.name;
     }
 };
 </script>

@@ -98,6 +98,13 @@ export default {
         }
     },
 
+    data() {
+        return {
+            isFocus: false,
+            isPassword: this.type === 'password'
+        };
+    },
+
     computed: {
         componentClasses() {
             return {
@@ -107,13 +114,6 @@ export default {
                 input_disabled: this.disabled,
             };
         }
-    },
-
-    data() {
-        return {
-            isFocus: false,
-            isPassword: this.type === 'password'
-        };
     },
 
     methods: {

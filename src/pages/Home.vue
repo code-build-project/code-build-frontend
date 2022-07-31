@@ -12,7 +12,7 @@
 
         <block-reviews />
 
-        <block-registration  v-if="!isAuth"/>
+        <block-registration v-if="!isAuth" />
     </div>
 </template>
 

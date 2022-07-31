@@ -58,6 +58,11 @@ export default {
         };
     },
 
+    created() {
+        this.setFilters();
+        this.setCourses();
+    },
+
     methods: {
         async setCourses() {
             this.isPageLoading = true;
@@ -68,11 +73,6 @@ export default {
         async setFilters() {
             this.filterList = await this.$store.dispatch('tags/getCourseList');
         }
-    },
-
-    created() {
-        this.setFilters();
-        this.setCourses();
     }
 };
 </script>

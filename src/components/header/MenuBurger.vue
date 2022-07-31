@@ -1,7 +1,7 @@
 <template>
     <div 
-        class="menu"
-        v-click-outside="onClickOutside" 
+        v-click-outside="onClickOutside"
+        class="menu" 
     >
         <v-icon 
             v-if="!isDropdown"

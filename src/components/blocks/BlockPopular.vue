@@ -6,16 +6,16 @@
             <div class="popular__cards">
                 <card-article
                     v-for="(item, index) in articleList"
-                    class="popular__card"
                     :key="index"
+                    class="popular__card"
                     :article="item"
                     @click="openArticle(item.id)"
                 />
 
                 <card-course
                     v-for="(item, index) in courseList"
-                    class="popular__card"
                     :key="index"
+                    class="popular__card"
                     :course="item"
                     @click="openCourse(item.id)"
                 />

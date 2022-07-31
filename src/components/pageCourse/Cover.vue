@@ -108,6 +108,10 @@ export default {
         };
     },
 
+    created() {
+        this.setTags();
+    },
+
     methods: {
         async setTags() {
             const response = await this.$store.dispatch('tags/getCourseList');
@@ -116,10 +120,6 @@ export default {
                 return this.course.tags.includes(item.id);
             });
         }
-    },
-
-    created() {
-        this.setTags();
     }
 };
 </script>

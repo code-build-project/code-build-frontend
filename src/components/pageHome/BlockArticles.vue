@@ -30,7 +30,9 @@
                     path="img/list.svg" 
                 />
 
-                <h1 class="articles__title">Свежие новости и познавательные статьи из мира IT</h1>
+                <h1 class="articles__title">
+                    Свежие новости и познавательные статьи из мира IT
+                </h1>
 
                 <h2 class="articles__subtitle">
                     Читай наши статьи и улучшай навыки программирования
@@ -71,6 +73,10 @@ export default {
         };
     },
 
+    created() {
+        this.setArticleList();
+    },
+
     methods: {
         async setArticleList() {
             this.articleList = await this.$service.articles.getPopulars();
@@ -78,10 +84,6 @@ export default {
             this.articleList.push(this.articleList[0]);
             this.articleList.push(this.articleList[1]);
         }
-    },
-
-    created() {
-        this.setArticleList();
     }
 };
 </script>

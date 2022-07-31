@@ -16,6 +16,14 @@ export default {
         ...mapState('alert', ['isAlert', 'message'])
     },
 
+    watch: {
+        isAlert(value) {
+            if (value === true) {
+                this.startTimer();
+            }
+        }
+    },
+
     methods: {
         startTimer() {
             setTimeout(this.stopTimer, 3000);
@@ -23,14 +31,6 @@ export default {
 
         stopTimer() {
             this.$store.commit('alert/close');
-        }
-    },
-
-    watch: {
-        isAlert(value) {
-            if (value === true) {
-                this.startTimer();
-            }
         }
     },
 };

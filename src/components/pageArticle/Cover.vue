@@ -102,6 +102,10 @@ export default {
         };
     },
 
+    created() {
+        this.setTags();
+    },
+
     methods: {
         async setTags() {
             const response = await this.$store.dispatch('tags/getArticleList');
@@ -110,10 +114,6 @@ export default {
                 return this.article.tags.includes(item.id);
             });
         }
-    },
-
-    created() {
-        this.setTags();
     }
 };
 </script>

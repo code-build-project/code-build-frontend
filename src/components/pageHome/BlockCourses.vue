@@ -75,14 +75,14 @@ export default {
         };
     },
 
+    created() {
+        this.setCourseList();
+    },
+
     methods: {
         async setCourseList() {
             this.courseList = await this.$service.courses.getCoursesList();
         }
-    },
-
-    created() {
-        this.setCourseList();
     }
 };
 </script>

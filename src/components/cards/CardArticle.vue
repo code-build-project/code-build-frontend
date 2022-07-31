@@ -19,7 +19,7 @@
             </h1>
 
             <div class="card__footer">
-                <div  class="card__footer-item">
+                <div class="card__footer-item">
                     <v-icon 
                         class="card__icon-footer" 
                         path="img/timer.svg" 

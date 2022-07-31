@@ -1,6 +1,6 @@
 <template>
     <div class="reviews">
-        <h1 class="reviews__title">Отзывы<br/> о наших курсах</h1>
+        <h1 class="reviews__title">Отзывы<br /> о наших курсах</h1>
 
         <div 
             class="reviews__list" 
@@ -57,14 +57,6 @@ export default {
         PopupReview
     },
 
-    computed: {
-        componentClasses() {
-            return {
-                'reviews__list_open': this.isOpenList
-            }
-        }
-    },
-
     data() {
         return {
             isOpenList: false,
@@ -72,6 +64,14 @@ export default {
             reviewList: [],
             selectedReview: {}
         };
+    },
+
+    computed: {
+        componentClasses() {
+            return {
+                'reviews__list_open': this.isOpenList
+            }
+        }
     },
 
     created() {

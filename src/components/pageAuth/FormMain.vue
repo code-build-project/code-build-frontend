@@ -10,7 +10,7 @@
         <v-input
             v-model="form.email"
             class="auth__mail"
-            :error-message="errors.email"
+            :errorMessage="errors.email"
             @change="errors.email = ''"
             @blur="validateEmail"
             @keyup.enter.native="onLogin()"
@@ -22,7 +22,7 @@
             v-model="form.password"
             class="auth__password"
             type="password"
-            :error-message="errors.password"
+            :errorMessage="errors.password"
             @change="errors.password = ''"
             @keyup.enter.native="onLogin()"
         >

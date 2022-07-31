@@ -54,8 +54,7 @@
         <v-icon 
             v-if="fire" 
             class="card__icon-fire" 
-            path="img/fire.svg" 
-    
+            path="img/fire.svg"
         />
     </div>
 </template>
