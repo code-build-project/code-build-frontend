@@ -63,11 +63,18 @@ export default {
 
 @media screen and (max-width: 575px) {
     .page__form {
-        width: 280px;
-        height: 460px;
+        width: 330px;
+        height: 490px;
         border-width: 1px;
         border-radius: 5px;
         padding: 33px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .page__form {
+        width: 280px;
+        height: 460px;
     }
 }
 

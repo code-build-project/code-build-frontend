@@ -225,7 +225,7 @@ export default {
     }
 
     .auth__mail {
-        margin-top: 25px;
+        margin-top: 45px;
     }
 
     .auth__password {
@@ -252,6 +252,12 @@ export default {
         margin-left: 0px;
         font-weight: 700;
         background-size: 100% 1px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .auth__mail {
+        margin-top: 25px;
     }
 }
 </style>

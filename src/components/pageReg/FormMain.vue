@@ -240,7 +240,7 @@ export default {
     }
 
     .reg__consent {
-        margin-top: 37px;
+        margin-top: 55px;
 
         &-text {
             margin-left: 9px;
@@ -269,6 +269,12 @@ export default {
         margin-left: 2px;
         font-weight: 700;
         background-size: 100% 1px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .reg__consent {
+        margin-top: 37px;
     }
 }
 </style>
