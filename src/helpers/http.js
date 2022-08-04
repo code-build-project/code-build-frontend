@@ -5,8 +5,6 @@ import { createNotification } from '@/helpers/notification';
 
 const { token } = storage.getTokens();
 
-console.log(process.env)
-
 const request = axios.create({
     baseURL: process.env.VUE_APP_API_BASE_URL
 });
