@@ -4,10 +4,11 @@ import storage from '@/helpers/storage';
 import { createNotification } from '@/helpers/notification';
 
 const { token } = storage.getTokens();
-const VUE_APP_API_BASE_URL = 'http://92.53.104.29/';
+
+console.log(process.env)
 
 const request = axios.create({
-    baseURL: VUE_APP_API_BASE_URL
+    baseURL: process.env.VUE_APP_API_BASE_URL
 });
 
 request.interceptors.response.use(
@@ -27,7 +28,7 @@ request.interceptors.response.use(
 );
 
 const requestAccess = axios.create({
-    baseURL: VUE_APP_API_BASE_URL,
+    baseURL: process.env.VUE_APP_API_BASE_URL,
     headers: {
         'Authorization': token ? token.substring(7) : '',
         'Cache-Control': 'no-cache',
