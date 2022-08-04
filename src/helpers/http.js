@@ -4,11 +4,10 @@ import storage from '@/helpers/storage';
 import { createNotification } from '@/helpers/notification';
 
 const { token } = storage.getTokens();
+const VUE_APP_API_BASE_URL = 'http://92.53.104.29/';
 
 const request = axios.create({
-    // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
-    // baseURL: process.env.VUE_APP_API_BASE_URL,
-    baseURL: 'http://127.0.1.1:5000/'
+    baseURL: VUE_APP_API_BASE_URL
 });
 
 request.interceptors.response.use(
@@ -28,8 +27,7 @@ request.interceptors.response.use(
 );
 
 const requestAccess = axios.create({
-    // baseURL: 'https://guarded-springs-38118.herokuapp.com/',
-    baseURL: 'http://127.0.1.1:5000/',
+    baseURL: VUE_APP_API_BASE_URL,
     headers: {
         'Authorization': token ? token.substring(7) : '',
         'Cache-Control': 'no-cache',

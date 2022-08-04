@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import VIcon from '@/components/common/VIcon';
 import VButton from '@/components/common/VButton';
 import PopupForm from '@/components/pageCabinet/PopupForm';
 import CabinetInput from '@/components/pageCabinet/CabinetInput';
@@ -45,20 +44,19 @@ export default {
     name: 'BlockMain',
 
     components: {
-        VIcon,
         VButton,
         PopupForm,
         CabinetInput,
-    },
-
-    computed: {
-        ...mapGetters(['user'])
     },
 
     data() {
         return {
             isPopup: false,
         };
+    },
+    
+    computed: {
+        ...mapGetters(['user'])
     }
 };
 </script>
