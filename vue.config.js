@@ -16,7 +16,8 @@ module.exports = {
         }
     },
 
-    publicPath: process.env.NODE_ENV === 'production' ? '/demo.github.io/' : '/',
+    // Настройка для хостинга гитхаба
+    // publicPath: process.env.NODE_ENV === 'production' ? '/demo.github.io/' : '/',
 
     pages: {
         // Название вкладки
