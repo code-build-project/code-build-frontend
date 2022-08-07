@@ -30,7 +30,7 @@
                         class="card__icon-footer" 
                         path="img/video.svg" 
                     />
-                    {{ course.lessons }}
+                    <span class="card__footer-text">{{ course.lessons }}</span>
                 </div>
 
                 <div class="card__footer-item">
@@ -38,7 +38,7 @@
                         class="card__icon-footer" 
                         path="img/timer.svg" 
                     />
-                    {{ course.time }}
+                    <span class="card__footer-text">{{ course.time }}</span>
                 </div>
 
                 <div class="card__footer-item">
@@ -46,7 +46,7 @@
                         class="card__icon-footer" 
                         path="img/cardEye.svg" 
                     />
-                    {{ course.views }}
+                    <span class="card__footer-text">{{ course.views }}</span>
                 </div>
             </div>
         </div>
@@ -175,6 +175,10 @@ export default {
     font-size: 11px;
     line-height: 24px;
     color: $color-white;
+
+    &-text {
+        margin-top: 1.5px;
+    }
 }
 
 .card__footer-item {
@@ -183,8 +187,6 @@ export default {
     border-radius: 5px;
     height: 28px;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 
     &:nth-child(1) {
         width: 85px;

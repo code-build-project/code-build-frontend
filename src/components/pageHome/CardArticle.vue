@@ -24,7 +24,7 @@
                         class="card__icon-footer" 
                         path="img/timer.svg" 
                     />
-                    Время прочтения: {{ article.time }}
+                    <span class="card__footer-text">Время прочтения: {{ article.time }}</span>
                 </div>
 
                 <div class="card__footer-item">
@@ -32,7 +32,7 @@
                         class="card__icon-footer" 
                         path="img/cardEye.svg" 
                     />
-                    {{ article.views }}
+                    <span class="card__footer-text">{{ article.views }}</span>
                 </div>
             </div>
         </main>
@@ -130,6 +130,10 @@ export default {
 
 .card__footer {
     @extend .flex_row-center-between;
+
+    &-text {
+        margin-top: 1.5px;
+    }
 }
 
 .card__footer-item {

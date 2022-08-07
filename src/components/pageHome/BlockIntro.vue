@@ -189,7 +189,7 @@ export default {
 @media screen and (max-width: 575px) {
     .intro {
         max-width: 320px;
-        height: 605px;
+        height: 470px;
         align-items: center;
     }
 
