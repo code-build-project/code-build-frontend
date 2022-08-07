@@ -95,10 +95,13 @@ export default {
     height: 84px;
     margin-top: 80px;
     font-size: 24px;
-    color: $color-blue;
-    border: 2px solid $color-blue;
     box-shadow: inset 0 0 0 0 $color-blue;
     transition: ease 0.7s;
+
+    &.button{
+        color: $color-blue;
+        border: 2px solid $color-blue;
+    }
 
     @media screen and (min-width: 1160px) {
         &:hover {
@@ -177,7 +180,9 @@ export default {
 
     .intro__icon-iphone,
     .intro__icon-ipad {
-        display: none;
+        &.icon {
+            display: none;
+        }
     }
 }
 

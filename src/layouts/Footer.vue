@@ -273,7 +273,9 @@ export default {
     .footer__nav-wrap,
     .footer__icon-flag,
     .footer__icon-copy {
-        display: none;
+        &.icon{
+            display: none;
+        }
     }
 
     .footer__line {
@@ -296,7 +298,9 @@ export default {
     }
     
     .footer__icon-logo {
-        display: none;
+        &.icon{
+            display: none;
+        }
     }
 }
 </style>

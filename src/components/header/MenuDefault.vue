@@ -71,7 +71,9 @@ export default {
     }
 
     .menu__button {
-        display: none;
+        &.button {
+            display: none;
+        }
     }
 }
 </style>

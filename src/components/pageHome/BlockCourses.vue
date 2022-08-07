@@ -165,9 +165,12 @@ export default {
     margin-top: 70px;
     font-family: 'EuclidCircular';
     font-size: 18px;
-    color: $color-white;
-    border: 1px solid $color-blue;
     transition: ease-out 0.3s;
+    
+    &.button{
+        color: $color-white;
+        border: 1px solid $color-blue;
+    }
 
     &.adaptive {
         display: none;
