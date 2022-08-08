@@ -33,7 +33,13 @@
 
             <div class="reg__consent-text">
                 Я согласен с условиями обработки
-                <span class="reg__consent-link">персональных данных</span>
+                <a
+                    class="reg__consent-link"
+                    href="https://s3.timeweb.com/cm25643-code-build-media/pdf/Обработка персональных данных.pdf"
+                    target="_blank"
+                > 
+                    персональных данных
+                </a>
             </div>
         </div>
 
@@ -182,7 +188,13 @@ export default {
 
     &-link {
         display: block;
-        color: $color-blue;;
+        color: $color-blue;
+
+        @media screen and (min-width: 1160px) {
+            &:hover {
+                color: $color-black;
+            }
+        }
     }
 }
 
