@@ -16,12 +16,17 @@ import VIcon from '@/components/common/VIcon';
 // Helpers
 import { debounce } from 'lodash';
 
+// Mixins
+import window from '@/mixins/window';
+
 export default {
     name: 'VLike',
 
     components: {
         VIcon
     },
+
+    mixins: [window],
 
     model: {
         prop: 'isLike',
@@ -61,6 +66,7 @@ export default {
 
     data() {
         return {
+            isMobileAnimation: false,
             debounceOnLike: debounce(this.onLike, 500),
         }
     },
@@ -70,7 +76,8 @@ export default {
             return [
                 'type-' + this.type,
                 {
-                    'like__icon_active': this.isLike
+                    'like__icon_active': this.isLike,
+                    'like_mobile-animate': this.isMobileAnimation
                 }
             ]
         }
@@ -87,6 +94,8 @@ export default {
                 payload.courseId = this.courseId;
             }
 
+            this.startMobileAnimation();
+
             if (this.isLike) {
                 this.deleteLike(payload);
             } else this.addLike(payload);
@@ -102,6 +111,13 @@ export default {
             this.$store.dispatch('likes/deleteLike', payload).then(() => {
                 this.$emit('change', false);
             });
+        },
+
+        startMobileAnimation() {
+            if (!this.isDesktop) {
+                this.isMobileAnimation = true;
+                setTimeout(() => this.isMobileAnimation = false, 400);
+            }
         }
     }
 };
@@ -137,6 +153,22 @@ export default {
 
     &.like__icon_active {
         fill: $color-pink;
+    }
+}
+
+.like_mobile-animate {
+    animation: anim 0.4s ease forwards;
+}
+
+@keyframes anim {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.7);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 </style>

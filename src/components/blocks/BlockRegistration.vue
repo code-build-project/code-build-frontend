@@ -128,7 +128,9 @@ export default {
 }
 
 .reg__button {
-    display: none;
+    &.button{
+        display: none;
+    }
 }
 
 // Иконки
@@ -215,23 +217,30 @@ export default {
     }
 
     .reg__icon-arrow {
-        display: none;
+        &.icon {
+            display: none;
+        }
     }
 
     .reg__button {
-        display: block;
         width: 254px;
         height: 58px;
         margin-top: 32px;
         font-size: 18px;
         text-align: center;
-        color: $color-blue-light;
-        border: 1px solid $color-blue-light;
         transition: ease-out 0.3s;
 
+        &.button{
+            display: block;
+            color: $color-blue-light;
+            border: 1px solid $color-blue-light;
+        }
+
         &_active {
-            color: $color-white;
-            border-color: $color-white;
+            &.button{
+                color: $color-white;
+                border-color: $color-white;
+            }
         }
     }
 }
