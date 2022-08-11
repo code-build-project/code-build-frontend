@@ -33,14 +33,19 @@
             </div>
         </div>
 
-        <v-like
+        <div 
             v-if="isAuth"
-            v-model="lesson.isLike"
-            class="card__icon-heart"
-            :contentId="lesson.id"
-            :courseId="lesson.courseId"
-            fieldName="lessons"
-        />
+            class="card__heart" 
+            @click.stop=""
+        >
+            <v-like
+                v-model="lesson.isLike"
+                class="card__icon-heart"
+                :contentId="lesson.id"
+                :courseId="lesson.courseId"
+                fieldName="lessons"
+            />
+        </div>
     </div>
 </template>
 
@@ -151,6 +156,14 @@ export default {
     }
 }
 
+.card__heart {
+    position: absolute;
+    padding: 20px;
+    box-sizing: content-box;
+    top: 0;
+    right: 0;
+}
+
 // Иконки
 .card__icon {
     &-attributes {
@@ -161,11 +174,8 @@ export default {
     }
 
     &-heart {
-        position: absolute;
         width: 26px;
         height: 23px;
-        top: 20px;
-        right: 20px;
     }
 }
 

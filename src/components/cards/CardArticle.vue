@@ -37,13 +37,18 @@
             </div>
         </main>
 
-        <v-like
+        <div 
             v-if="isAuth"
-            v-model="article.isLike"
-            class="card__icon-heart"
-            :contentId="article.id"
-            fieldName="articles"
-        />
+            class="card__heart" 
+            @click.stop=""
+        >
+            <v-like
+                v-model="article.isLike"
+                class="card__icon-heart"
+                :contentId="article.id"
+                fieldName="articles"
+            />
+        </div>
     </div>
 </template>
 
@@ -161,6 +166,14 @@ export default {
     }
 }
 
+.card__heart {
+    position: absolute;
+    padding: 20px;
+    box-sizing: content-box;
+    top: 0;
+    right: 0;
+}
+
 // Иконки
 .card__icon {
     &-footer {
@@ -171,11 +184,8 @@ export default {
     }
 
     &-heart {
-        position: absolute;
         width: 26px;
         height: 23px;
-        top: 20px;
-        right: 20px;
     }
 }
 

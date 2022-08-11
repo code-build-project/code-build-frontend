@@ -128,15 +128,16 @@ export default {
     display: flex;
     transition: all 0.1s ease;
 
-    &:active {
-        transform: scale(0.7);
+    @media screen and (min-width: 1160px) {
+        &:active {
+            transform: scale(0.7);
+        }
     }
 }
 
 .like__icon {
     fill: transparent;
     cursor: pointer;
-    transition: all 0.2s ease-in;
 }
 
 // Types
