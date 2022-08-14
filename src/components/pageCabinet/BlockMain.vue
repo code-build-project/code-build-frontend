@@ -99,9 +99,12 @@ export default {
     margin-top: 70px;
     font-family: 'EuclidCircular';
     font-size: 18px;
-    color: $color-blue;
-    border: 1px solid $color-blue;
     margin-left: 110px;
+
+    &.button{
+        color: $color-blue;
+        border: 1px solid $color-blue;
+    }
 
     @media screen and (min-width: 1160px) {
         &:hover {
