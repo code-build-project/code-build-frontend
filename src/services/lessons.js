@@ -18,6 +18,7 @@ export default class Lessons extends AbstractService {
      * Получение списка пролайканных уроков
      */
     async getFavorites() {
+        await store.dispatch('likes/clearLikeList', 'lessons');
         let likes = await store.dispatch('likes/getLikeList', 'lessons');
 
         const { data } = await this.apiAccess.get('/lessons/favorites');

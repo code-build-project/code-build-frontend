@@ -11,7 +11,7 @@ export default class Courses extends AbstractService {
     async getCoursesList(params) {
         let likes = await store.dispatch('likes/getLikeList', 'courses');
 
-        const { data } = await this.api.get(`/courses`, { params });
+        const { data } = await this.api.get('/courses', { params });
         return data.map(item => new Course(item, likes));
     }
 
@@ -22,7 +22,7 @@ export default class Courses extends AbstractService {
     async getCourse(params) {
         let likes = await store.dispatch('likes/getLikeList', 'courses');
 
-        const { data } = await this.api.get(`/course`, { params });
+        const { data } = await this.api.get('/course', { params });
         return new Course(data, likes);
     }
 
@@ -30,9 +30,10 @@ export default class Courses extends AbstractService {
      * Получение списка пролайканных курсов
      */
     async getFavorites() {
+        await store.dispatch('likes/clearLikeList', 'courses');
         let likes = await store.dispatch('likes/getLikeList', 'courses');
 
-        const { data } = await this.apiAccess.get(`/courses/favorites`);
+        const { data } = await this.apiAccess.get('/courses/favorites');
         return data.map(item => new Course(item, likes));
     }
 

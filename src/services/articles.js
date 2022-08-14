@@ -30,6 +30,7 @@ export default class Articles extends AbstractService {
      * Получение списка пролайканных статьей
      */
     async getFavorites() {
+        store.dispatch('likes/clearLikeList', 'articles');
         let likes = await store.dispatch('likes/getLikeList', 'articles');
 
         const { data } = await this.apiAccess.get('/articles/favorites');
